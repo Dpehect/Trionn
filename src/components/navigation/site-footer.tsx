@@ -3,16 +3,9 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-lead">
-        <span className="wordmark-symbol">T/</span>
-        <p>One coherent product system from first signal to final release.</p>
-      </div>
-      <div className="footer-links">
-        <div><span>Product</span><Link href="/#product">Overview</Link><Link href="/#workflow">Workflow</Link><Link href="/pricing">Pricing</Link></div>
-        <div><span>Company</span><Link href="/changelog">Changelog</Link><Link href="/security">Security</Link><Link href="/contact">Contact</Link></div>
-        <div><span>Legal</span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><a href="mailto:hello@trionn.example">Email</a></div>
-      </div>
-      <div className="footer-bottom"><span>© 2026 TRIONN</span><span>Designed for ambitious product teams.</span><span>NO WEBGL / NO 3D</span></div>
+      <div className="footer-lead"><span className="wordmark-symbol">T/</span><p>Independent clothing and footwear objects from Istanbul.</p></div>
+      <div className="footer-links"><div><span>Shop</span><Link href="/shop">All products</Link><Link href="/shop?collection=Clothing">Clothing</Link><Link href="/shop?collection=Shoes">Shoes</Link></div><div><span>Studio</span><Link href="/#collections">Collections</Link><Link href="/#style-intelligence">Style intelligence</Link><Link href="/contact">Contact</Link></div><div><span>Service</span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><a href="mailto:hello@trionn.example">Email</a></div></div>
+      <div className="footer-bottom"><span>© 2026 TRIONN</span><span>ISTANBUL / WORLDWIDE</span><span>WEBGL LIGHT / NO 3D MODELS</span></div>
     </footer>
   );
 }

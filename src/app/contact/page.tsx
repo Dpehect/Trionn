@@ -1,10 +1,14 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
-import { ContentShell } from "@/components/navigation/content-shell";
-import { useProductStore } from "@/store/use-product-store";
+import { FormEvent } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
+import { SiteHeader } from "@/components/navigation/site-header";
+import { SiteFooter } from "@/components/navigation/site-footer";
+import { CartDrawer } from "@/components/commerce/cart-drawer";
 
 export default function ContactPage() {
-  const open = useProductStore((state) => state.setRequestOpen);
-  return <ContentShell><main className="content-page"><header className="content-hero"><span>CONTACT / PRODUCT ACCESS</span><h1>Tell us what<br /><em>you are moving next.</em></h1><p>New workspaces, product collaboration and enterprise deployment.</p></header><section className="contact-panel"><div><span>PRODUCT ACCESS</span><h2>Request a private beta workspace.</h2><p>Share your product, team and launch horizon. Every request is reviewed by a real person.</p><button className="button button-primary" type="button" onClick={() => open(true)}>Open request form <ArrowUpRight size={17} /></button></div><div><span>GENERAL</span><h2>hello@trionn.example</h2><p>For partnerships, press and product conversations.</p><a className="button button-secondary" href="mailto:hello@trionn.example">Send email <ArrowUpRight size={17} /></a></div></section></main></ContentShell>;
+  const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); event.currentTarget.reset(); toast.success("Mesajın hazırlandı", { description: "Demo formu bir e-posta veya CRM endpointine bağlanabilir." }); };
+  return <div className="product-site"><SiteHeader /><main className="contact-page"><Link href="/"><ArrowLeft size={17} /> Ana sayfa</Link><div className="contact-layout"><div><p className="section-eyebrow">CONTACT / ISTANBUL</p><h1>Talk to the boutique.</h1><p>Sipariş, beden, styling veya iş birliği için bize yaz.</p></div><form onSubmit={submit}><label>Ad<input name="name" required /></label><label>E-posta<input type="email" name="email" required /></label><label>Konu<select name="topic" defaultValue="Sizing"><option>Sizing</option><option>Order</option><option>Styling</option><option>Collaboration</option></select></label><label>Mesaj<textarea name="message" required /></label><button className="button button-primary" type="submit">Gönder</button></form></div></main><SiteFooter /><CartDrawer /></div>;
 }

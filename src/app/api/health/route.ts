@@ -1,3 +1,3 @@
 export function GET() {
-  return Response.json({ status: "ok", product: "trionn", renderer: "dom-svg", threeJs: false });
+  return Response.json({ status: "ok", product: "trionn-boutique", renderer: "dom-svg-webgl", threeJs: false });
 }

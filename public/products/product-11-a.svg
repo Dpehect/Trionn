@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Editorial product study 11">
+<rect width="900" height="1200" fill="#d8d2c8"/>
+<rect x="150" y="150" width="600" height="900" rx="260" fill="#302d29" opacity="0.93"/>
+<path d="M180 560 C320 250, 580 290, 730 560 L650 990 L260 990 Z" fill="#a67255" opacity="0.72"/>
+<circle cx="450" cy="260" r="92" fill="#d8d2c8" opacity="0.78"/>
+<path d="M170 1080 H730" stroke="#302d29" stroke-width="2" opacity="0.3"/>
+<text x="55" y="1125" font-family="Arial" font-size="22" fill="#302d29">TRIONN / STUDY 11A</text>
+</svg>

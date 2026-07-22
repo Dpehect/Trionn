@@ -1,33 +1,18 @@
-# TRIONN — Phase 14: Final Awwwards Polish
+# TRIONN Boutique — Awwwards Interaction Build
 
-**Enabled scope:** Final motion timing, composition, route reveal, QA and production packaging.
+A production-oriented Next.js boutique for clothing and footwear. The experience combines commerce interactions with cinematic motion while avoiding 3D models and persistent heavy render loops.
 
-This is a standalone cumulative snapshot. `src/config/phase.ts` exposes the experience intended for phase 14.
+## Included
 
-# TRIONN — Awwwards-Level Product Experience
-
-A production-oriented Next.js product showcase built around meaningful motion rather than 3D spectacle.
-
-## Technology stack
-
-- Next.js App Router, React, TypeScript, Tailwind CSS
-- shadcn-style primitives, Radix UI, Lucide React
-- GSAP, @gsap/react, Flip, ScrollTrigger, Observer, Draggable, InertiaPlugin
-- SplitText, MorphSVGPlugin, MotionPathPlugin, CustomEase, ScrollToPlugin
-- Lenis smooth scrolling and Motion route transitions
-- Zustand product state
-- React Hook Form + Zod validation
-- Vaul request-access drawer
-- Sonner feedback
-- Embla Carousel
-
-## Explicitly excluded
-
-- Three.js
-- React Three Fiber
-- WebGL
-- 3D models
-- Persistent canvas rendering
+- GSAP Flip category reflow and shared product transitions
+- Functional GSAP Draggable + Inertia product rail with click/tap selection
+- Raw lightweight WebGL fabric shader in the hero
+- GSAP SplitText, ScrollTrigger and editorial mask reveals
+- Motion layout/quick-view transitions
+- Interactive collections with working navigation
+- Style Intelligence prompts with dedicated detail pages
+- Product pages, wishlist, cart drawer, sizing and color selection
+- Responsive and reduced-motion fallbacks
 
 ## Run
 
@@ -44,6 +29,4 @@ npm run lint
 npm run build
 ```
 
-## Phase snapshots
-
-Every phase folder is standalone. The source architecture stays stable while `src/config/phase.ts` enables the scope intended for that phase. Open `phase-14-final-awwwards-polish` for the complete experience.
+All product media is local SVG artwork. Replace it with owned campaign photography before a public commercial launch.

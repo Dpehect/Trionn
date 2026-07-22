@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { ContentShell } from "@/components/navigation/content-shell";
-
-export const metadata: Metadata = { title: "Security", description: "Security and governance for Trionn workspaces." };
+export const metadata: Metadata = { title: "Care & Materials", description: "TRIONN material, care and production principles." };
 const controls = [
-  ["01", "Workspace access", "Role-based access, invited domains and configurable review gates."],
-  ["02", "Decision history", "Traceable changes with ownership, timestamps and linked product context."],
-  ["03", "Data boundaries", "Configurable retention, exports and organization-level controls."],
-  ["04", "Enterprise identity", "SAML, SSO and managed provisioning for scaled deployment."],
+  ["01", "Small production", "Limited quantities reduce excess stock and keep each collection focused."],
+  ["02", "Material clarity", "Every product page states the main material, fit and care direction."],
+  ["03", "Repair first", "Construction is selected to support repair before replacement where possible."],
+  ["04", "Lower-impact packaging", "Orders use compact recyclable packaging without decorative excess."],
 ];
-export default function SecurityPage() { return <ContentShell><main className="content-page"><header className="content-hero"><span>SECURITY / GOVERNANCE</span><h1>Move quickly<br /><em>without losing control.</em></h1><p>Security is part of the product operating model, not an overlay added at procurement.</p></header><section className="control-grid">{controls.map(([i,t,c])=><article key={t}><span>{i}</span><h2>{t}</h2><p>{c}</p></article>)}</section></main></ContentShell>; }
+export default function CarePage() { return <ContentShell><main className="content-page"><header className="content-hero"><span>CARE / MATERIALS</span><h1>Keep the object<br /><em>in motion.</em></h1><p>Care, repair and controlled production are treated as part of the design.</p></header><section className="control-grid">{controls.map(([i,t,c]) => <article key={t}><span>{i}</span><h2>{t}</h2><p>{c}</p></article>)}</section></main></ContentShell>; }

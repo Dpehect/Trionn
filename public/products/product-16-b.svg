@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="TRIONN Studio Boot editorial product image">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b7b6ac"/><stop offset="1" stop-color="#f2eadc" stop-opacity=".28"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="35" stdDeviation="28" flood-opacity=".22"/></filter></defs>
+<rect width="900" height="1200" fill="url(#bg)"/>
+<circle cx="220" cy="250" r="180" fill="#f2eadc" opacity=".24"/>
+<g transform="translate(900 0) scale(-1 1)" filter="url(#shadow)"><path d="M285 210 H505 L525 640 C560 668 626 715 702 778 C744 814 726 886 671 902 H244 C198 902 171 858 190 817 L260 662 Z" fill="#1d1e1c"/>
+<path d="M280 620 C370 660 455 676 538 676 C600 676 645 717 704 786" fill="none" stroke="#f2eadc" stroke-width="18"/>
+<path d="M256 861 H690" stroke="#f2eadc" stroke-width="26" stroke-linecap="round"/></g>
+<path d="M65 1040 H835" stroke="#1d1e1c" opacity=".18"/>
+<text x="65" y="1090" font-family="Arial, sans-serif" font-size="22" fill="#1d1e1c">TRIONN / STUDIO BOOT / B</text>
+<text x="65" y="1125" font-family="Arial, sans-serif" font-size="13" letter-spacing="3" fill="#1d1e1c" opacity=".55">FOOTWEAR STUDY 16</text>
+</svg>

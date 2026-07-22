@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="TRIONN Fold Mule editorial product image">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cbb8a5"/><stop offset="1" stop-color="#deff45" stop-opacity=".28"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="35" stdDeviation="28" flood-opacity=".22"/></filter></defs>
+<rect width="900" height="1200" fill="url(#bg)"/>
+<circle cx="220" cy="250" r="180" fill="#deff45" opacity=".24"/>
+<g transform="translate(900 0) scale(-1 1)" filter="url(#shadow)"><path d="M185 702 C275 630 378 593 505 599 C575 602 636 640 705 706 C764 762 733 851 657 856 H223 C158 856 126 770 178 715 Z" fill="#191817"/>
+<path d="M405 613 C430 681 474 721 550 738" fill="none" stroke="#deff45" stroke-width="20"/>
+<path d="M171 817 H704" stroke="#deff45" stroke-width="22" stroke-linecap="round"/></g>
+<path d="M65 1040 H835" stroke="#191817" opacity=".18"/>
+<text x="65" y="1090" font-family="Arial, sans-serif" font-size="22" fill="#191817">TRIONN / FOLD MULE / B</text>
+<text x="65" y="1125" font-family="Arial, sans-serif" font-size="13" letter-spacing="3" fill="#191817" opacity=".55">FOOTWEAR STUDY 17</text>
+</svg>

@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <div className="loading-screen"><span className="wordmark-symbol">T/</span><p>Loading product system</p><i /></div>;
+  return <div className="site-loading"><span>T/</span><p>Preparing the edit…</p></div>;
 }
