@@ -1,10 +1,15 @@
 import { SiteHeader } from "@/components/site-header";
 import { inquiryRepository } from "@/server/inquiry-repository";
 import { projects } from "@/data/projects";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { SignOutButton } from "@/components/sign-out-button";
 
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
+  const session = await auth();
+  if (!session?.user) redirect("/login");
   const inquiries = await inquiryRepository.list();
   const metrics = [
     ["Published projects", String(projects.length)],
@@ -17,7 +22,7 @@ export default async function Dashboard() {
     <main>
       <SiteHeader />
       <section className="container-x min-h-screen pb-20 pt-36">
-        <p className="eyebrow">Client portal / Server-rendered demo</p>
+        <div className="flex items-center justify-between"><p className="eyebrow">Client portal / {session.user.email}</p><SignOutButton /></div>
         <h1 className="mt-8 text-6xl tracking-[-.07em] md:text-9xl">CONTROL ROOM</h1>
 
         <div className="mt-16 grid gap-px border hairline bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">

@@ -1,11 +1,10 @@
-# Faz 08 — Data & API Layer
+# Faz 12 — Advanced WebGL
 
-- Repository pattern
-- JSON local persistence
-- `GET/POST /api/inquiries`
-- `GET /api/projects`
-- Zod server validation
-- Server-rendered dashboard
-- Vercel ortamında güvenli read-only fallback
-
-Not: Kalıcı production veritabanı Faz 10'da PostgreSQL/Supabase ile eklenecektir.
+- Transmission material
+- Torus-knot hero artifact
+- Pointer-driven deformation
+- Adaptive DPR
+- Performance monitor
+- Suspense boundary
+- Sparkles and advanced postprocessing
+- WebGL fallback
