@@ -1,7 +1,0 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { getProject,projects } from "@/data/projects";
-import { TrionnHeader } from "@/components/trionn/header";
-export function generateStaticParams(){return projects.map(p=>({slug:p.slug}));}
-export default async function ProjectPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=getProject(slug);if(!p)notFound();return <main className="trionn-site project-detail" style={{"--accent":p.accent} as React.CSSProperties}><TrionnHeader/><section className="case-hero"><div><p>{p.index} / {p.category} / {p.year}</p><h1>{p.title}</h1></div><div className="case-cover"><Image src={p.cover} alt="" fill priority sizes="100vw"/></div></section><section className="case-intro"><h2>{p.summary}</h2><div><p>SERVICES</p>{p.services.map(s=><span key={s}>{s}</span>)}</div><strong>{p.metric}</strong></section><section className="case-story"><p>THE PREMISE</p><h2>A digital system should not merely show the work. It should become part of the work.</h2><div className="case-art"><Image src={p.cover} alt="" fill sizes="100vw"/></div><div className="case-columns"><p>We translated the central idea into typography, movement, image behavior and interaction rules. Every component responds to the same visual logic.</p><p>The result is a system that remains expressive while scaling across content, devices and operational workflows.</p></div></section><Link className="next-project" href="/work">BACK TO ALL WORK ↗</Link></main>}

@@ -1,27 +1,49 @@
-# ATELIER/X — Production Release
+# Circle
 
-A full-stack cinematic digital studio platform.
+<br />
+<a href="https://vercel.com/oss">
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge.svg" />
+</a>
 
-## Stack
-Next.js 16, React 19, TypeScript, Tailwind CSS, GSAP, Lenis, Framer Motion, React Three Fiber, Drei, Three.js, Supabase, Auth, Zod, React Hook Form, Vitest and Playwright.
+<br />
+<br />
 
-## Local setup
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
+Project management interface inspired by Linear. Built with Next.js and shadcn/ui, this application allows tracking of issues, projects and teams with a modern, responsive UI.
+
+> The BaseUI code is available on [Square UI Pro](https://pro.lndev.me/templates).
+
+## 🛠️ Technologies
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Langage**: [TypeScript](https://www.typescriptlang.org/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+
+### 📦 Installation
+
+```shell
+git clone https://github.com/ln-dev7/circle.git
+cd circle
 ```
 
-## Verification
-```bash
-npm run lint
-npm run typecheck
-npm run test
-npm run build
-npm run test:e2e
+### Install dependencies
+
+```shell
+pnpm install
 ```
 
-## Production
-```bash
-npm run release:check
+### Start the development server
+
+```shell
+pnpm dev
 ```
+
+## Star History
+
+<a href="https://www.star-history.com/#ln-dev7/circle&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ln-dev7/circle&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ln-dev7/circle&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ln-dev7/circle&type=Date" />
+ </picture>
+</a>
