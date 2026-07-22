@@ -1,11 +1,7 @@
-# Faz 28 — Sound & Advanced Interaction
+# Faz 36 — Release
 
-- Web Audio API manager
-- Master volume
-- Sound persistence
-- Hover sound links
-- Menu sound
-- Interaction sound hooks
-- Velocity-reactive cursor
-- Reduced-motion cursor fallback
-- Updated global experience shell
+- Vercel configuration
+- Environment validation script
+- Release check command
+- Production README
+- Final launch checklist

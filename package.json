@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "analyze": "ANALYZE=true next build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "ci": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "validate:env": "node scripts/validate-env.mjs",
+    "release:check": "npm run validate:env && npm run ci"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
@@ -50,6 +57,12 @@
     "typescript": "^5.9.0",
     "eslint": "^9.35.0",
     "eslint-config-next": "^16.0.0",
-    "globals": "^16.3.0"
+    "globals": "^16.3.0",
+    "@next/bundle-analyzer": "^16.0.0",
+    "vitest": "^3.2.4",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "jsdom": "^26.1.0",
+    "@playwright/test": "^1.55.0"
   }
 }

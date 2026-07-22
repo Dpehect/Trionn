@@ -239,3 +239,39 @@ select:focus-visible {
     animation: none;
   }
 }
+
+@media (max-width: 767px) {
+  .container-x { width: min(calc(100% - 2rem), 100%); }
+  .section-space { padding-block: 5.5rem; }
+  .body-lg { font-size: 1.05rem; }
+  .btn-primary, .btn-secondary { min-height: 3rem; padding-inline: 1.15rem; }
+  [data-mobile-stack] { grid-template-columns: 1fr !important; }
+}
+@supports (height: 100svh) {
+  .min-h-screen { min-height: 100svh; }
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+@media (forced-colors: active) {
+  * { forced-color-adjust: auto; }
+}
+
+html { scroll-behavior: auto; }
+body::before {
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:linear-gradient(to bottom,rgba(255,255,255,.015),transparent 20%);
+}
+@media (hover:hover) {
+  a,button { cursor:none; }
+}

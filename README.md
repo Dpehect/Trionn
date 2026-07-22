@@ -1,30 +1,27 @@
-# ATELIER/X — Faz 08
+# ATELIER/X — Production Release
 
-Çalışan Next.js full-stack deneyim projesi.
+A full-stack cinematic digital studio platform.
 
-## Kurulum
+## Stack
+Next.js 16, React 19, TypeScript, Tailwind CSS, GSAP, Lenis, Framer Motion, React Three Fiber, Drei, Three.js, Supabase, Auth, Zod, React Hook Form, Vitest and Playwright.
 
+## Local setup
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-## Sayfalar
+## Verification
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+npm run test:e2e
+```
 
-- `/`
-- `/work`
-- `/work/astra-objects`
-- `/studio`
-- `/contact`
-- `/dashboard`
-
-## API
-
-- `GET /api/projects`
-- `GET /api/inquiries`
-- `POST /api/inquiries`
-
-## Veri davranışı
-
-Local geliştirmede iletişim formu `src/data/inquiries.json` dosyasına yazılır.
-Vercel serverless dosya sistemi kalıcı olmadığı için production veritabanı Faz 10'da eklenecektir.
+## Production
+```bash
+npm run release:check
+```
