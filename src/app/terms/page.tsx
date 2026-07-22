@@ -1,2 +1,0 @@
-import { ContentShell } from "@/components/navigation/content-shell";
-export default function TermsPage(){return <ContentShell><main className="legal-page"><span>LEGAL / TERMS</span><h1>Clear terms for orders and returns.</h1><p>Bu proje örnek koşullar içerir. Ticari kullanımdan önce fiyatlandırma, stok, ödeme, teslimat, iade, garanti, fikri mülkiyet ve tüketici haklarını açıklayan güncel şartlar eklenmelidir.</p></main></ContentShell>}

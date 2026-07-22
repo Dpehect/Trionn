@@ -1,18 +1,16 @@
-# TRIONN Boutique — Awwwards Interaction Build
+# AURA 3D Fashion Showcase
 
-A production-oriented Next.js boutique for clothing and footwear. The experience combines commerce interactions with cinematic motion while avoiding 3D models and persistent heavy render loops.
+Production-oriented immersive apparel showcase built with:
 
-## Included
-
-- GSAP Flip category reflow and shared product transitions
-- Functional GSAP Draggable + Inertia product rail with click/tap selection
-- Raw lightweight WebGL fabric shader in the hero
-- GSAP SplitText, ScrollTrigger and editorial mask reveals
-- Motion layout/quick-view transitions
-- Interactive collections with working navigation
-- Style Intelligence prompts with dedicated detail pages
-- Product pages, wishlist, cart drawer, sizing and color selection
-- Responsive and reduced-motion fallbacks
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Three.js
+- React Three Fiber
+- Drei
+- GSAP + ScrollTrigger
+- @studio-freight/lenis
+- Zustand
 
 ## Run
 
@@ -21,12 +19,15 @@ npm install
 npm run dev
 ```
 
-## Validate
+Open http://localhost:3000
 
-```bash
-npm run typecheck
-npm run lint
-npm run build
-```
+## Architecture
 
-All product media is local SVG artwork. Replace it with owned campaign photography before a public commercial launch.
+- `components/SmoothScroll.tsx`: Lenis and GSAP ticker synchronization.
+- `hooks/useGarmentAnimation.ts`: master ScrollTrigger timeline.
+- `components/canvas/Scene.tsx`: fixed R3F Canvas, lighting and environment.
+- `components/canvas/Garment.tsx`: lightweight procedural hoodie fallback.
+- `components/dom/Overlay.tsx`: editorial HTML interface and commerce controls.
+- `store/useGarmentStore.ts`: shared color, size and hotspot state.
+
+The garment is built from lightweight primitives so the project runs without an external GLTF asset. Replace the procedural fallback with `useGLTF()` when a licensed garment model is available.

@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f3efe8;
+  color: #11100f;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f3efe8;
+  color: #11100f;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #11100f;
+  color: #f3efe8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.canvas-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.overlay-shell {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 11vw, 11rem);
+  line-height: 0.82;
+  letter-spacing: -0.07em;
+}
+
+.editorial-copy {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.magnetic-button {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.hotspot-label {
+  border: 1px solid rgba(17, 16, 15, 0.22);
+  border-radius: 999px;
+  background: rgba(243, 239, 232, 0.9);
+  padding: 0.4rem 0.7rem;
+  color: #11100f;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

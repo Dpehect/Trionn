@@ -1,2 +1,0 @@
-import { ContentShell } from "@/components/navigation/content-shell";
-export default function PrivacyPage(){return <ContentShell><main className="legal-page"><span>LEGAL / PRIVACY</span><h1>Privacy for boutique customers.</h1><p>Bu demo; sepet ve favori tercihlerini yalnızca tarayıcıda saklar. Gerçek ticari yayına geçmeden önce ödeme, analitik, kargo ve müşteri hizmeti sağlayıcılarını kapsayan hukuk danışmanı onaylı gizlilik metni eklenmelidir.</p></main></ContentShell>}
