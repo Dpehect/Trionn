@@ -1,14 +1,12 @@
-# Faz 16 — Navigation & Preloader
+# Faz 20 — Case Study Engine
 
-## Eklenenler
-
-- Session-aware cinematic preloader
-- İlk ziyaret / tekrar ziyaret süreleri
-- Reduced-motion loader
-- Tam ekran erişilebilir menü
-- Escape ile kapatma
-- Active route göstergesi
-- Skip link
-- Sound preference button
-- Gelişmiş header
-- Büyük CTA footer
+- Typed block schema
+- Text block
+- Media block
+- Metric block
+- Quote block
+- Shared renderer
+- Dynamic metadata
+- Static params
+- Next-project navigation
+- Case-study data architecture ready for CMS
