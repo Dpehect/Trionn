@@ -2,10 +2,11 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { Volume2, VolumeX, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useExperienceStore } from "@/store/experience-store";
+import { useSound } from "@/hooks/use-sound";
+import { SoundLink } from "@/components/sound-link";
 
 const navigation = [
   { href: "/", label: "Index", number: "01" },
@@ -17,7 +18,8 @@ const navigation = [
 
 export function ExperienceShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { menu, sound, setMenu, toggleSound } = useExperienceStore();
+  const { menu, setMenu } = useExperienceStore();
+  const { sound, setSound, play } = useSound();
 
   useEffect(() => {
     setMenu(false);
@@ -27,7 +29,10 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
     document.documentElement.style.overflow = menu ? "hidden" : "";
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenu(false);
+      if (event.key === "Escape") {
+        play("menu");
+        setMenu(false);
+      }
     };
 
     window.addEventListener("keydown", closeOnEscape);
@@ -35,7 +40,7 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
       document.documentElement.style.overflow = "";
       window.removeEventListener("keydown", closeOnEscape);
     };
-  }, [menu, setMenu]);
+  }, [menu, play, setMenu]);
 
   return (
     <>
@@ -53,7 +58,10 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
           type="button"
           aria-pressed={sound}
           aria-label={sound ? "Disable sound" : "Enable sound"}
-          onClick={toggleSound}
+          onClick={() => {
+            setSound(!sound);
+            play("menu");
+          }}
           className="flex items-center gap-2 rounded-full border hairline bg-black/45 px-4 py-2 text-[10px] uppercase tracking-[.18em] backdrop-blur"
         >
           {sound ? <Volume2 size={14} /> : <VolumeX size={14} />}
@@ -77,7 +85,10 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
               <strong className="text-2xl tracking-[-.06em]">ATELIER/X</strong>
               <button
                 autoFocus
-                onClick={() => setMenu(false)}
+                onClick={() => {
+                  play("menu");
+                  setMenu(false);
+                }}
                 aria-label="Close menu"
                 className="grid h-11 w-11 place-items-center rounded-full border border-black/25"
               >
@@ -93,7 +104,7 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
                     : pathname.startsWith(item.href);
 
                 return (
-                  <Link
+                  <SoundLink
                     key={item.href}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
@@ -106,7 +117,7 @@ export function ExperienceShell({ children }: { children: React.ReactNode }) {
                     <span className="hidden text-xs uppercase tracking-[.18em] md:block">
                       {active ? "Current" : "Open"}
                     </span>
-                  </Link>
+                  </SoundLink>
                 );
               })}
             </nav>

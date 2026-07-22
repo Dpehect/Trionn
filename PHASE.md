@@ -1,13 +1,11 @@
-# Faz 24 — Authentication & Roles
+# Faz 28 — Sound & Advanced Interaction
 
-- Supabase SSR client
-- Cookie-based sessions
-- Sign-in API
-- Sign-out API
-- Login form
-- Admin/editor/viewer roles
-- Permission map
-- Role guard helper
-- Unauthorized page
-- Protected proxy routes
-- Login rate limiting
+- Web Audio API manager
+- Master volume
+- Sound persistence
+- Hover sound links
+- Menu sound
+- Interaction sound hooks
+- Velocity-reactive cursor
+- Reduced-motion cursor fallback
+- Updated global experience shell
