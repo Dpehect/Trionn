@@ -275,3 +275,14 @@ body::before {
 @media (hover:hover) {
   a,button { cursor:none; }
 }
+
+@media (max-width: 767px) {
+  .display-xl { font-size: clamp(3.6rem, 18vw, 6.5rem); line-height:.84; }
+  .display-lg { font-size: clamp(3rem, 14vw, 5rem); line-height:.88; }
+  .heading-lg { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .noise { opacity:.02; }
+}
+@media (max-width: 374px) {
+  .container-x { width: calc(100% - 1.5rem); }
+  .display-hero { font-size: 3.7rem; }
+}

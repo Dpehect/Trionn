@@ -1,0 +1,15 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "url": ["http://localhost:3000/", "http://localhost:3000/work", "http://localhost:3000/contact"]
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", {"minScore": 0.85}],
+        "categories:accessibility": ["error", {"minScore": 0.95}],
+        "categories:seo": ["error", {"minScore": 0.95}]
+      }
+    }
+  }
+}

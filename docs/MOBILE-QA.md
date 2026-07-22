@@ -1,0 +1,11 @@
+# Mobile QA
+- 320x568
+- 360x800
+- 390x844
+- 430x932
+- iPad portrait and landscape
+- Touch navigation
+- Keyboard appearance
+- Safe areas
+- Low power mode
+- Reduced motion

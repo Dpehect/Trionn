@@ -13,9 +13,15 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "ci": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "ci": "npm run lint && npm run typecheck && npm run test:coverage && npm run build",
     "validate:env": "node scripts/validate-env.mjs",
-    "release:check": "npm run validate:env && npm run ci"
+    "release:check": "npm run validate:env && npm run release:audit && npm run ci",
+    "clean": "rm -rf .next coverage playwright-report test-results",
+    "deadcode": "tsc --noEmit",
+    "db:types": "supabase gen types typescript --local > src/lib/database.generated.ts",
+    "db:check": "npm run db:types && git diff --exit-code src/lib/database.generated.ts",
+    "test:coverage": "vitest run --coverage",
+    "release:audit": "node scripts/release-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
@@ -43,9 +49,15 @@
     "zod": "^4.1.0",
     "zustand": "^5.0.8",
     "lenis": "^1.3.11",
-    "next-auth": "^5.0.0-beta.29",
     "@supabase/supabase-js": "^2.57.4",
-    "@supabase/ssr": "^0.7.0"
+    "@supabase/ssr": "^0.7.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "sharp": "^0.34.3",
+    "blurhash": "^2.0.5",
+    "@upstash/redis": "^1.35.3",
+    "resend": "^4.8.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
@@ -63,6 +75,10 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/jest-dom": "^6.8.0",
     "jsdom": "^26.1.0",
-    "@playwright/test": "^1.55.0"
+    "@playwright/test": "^1.55.0",
+    "supabase": "^2.39.2",
+    "axe-core": "^4.10.3",
+    "@axe-core/playwright": "^4.10.2",
+    "@vitest/coverage-v8": "^3.2.4"
   }
 }
