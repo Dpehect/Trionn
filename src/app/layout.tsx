@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { Providers } from "@/components/providers";
-import { PageShell } from "@/components/motion/page-shell";
-import { siteConfig } from "@/config/site";
-import { SkipLink } from "@/components/ui/skip-link";
+import { features } from "@/config/phase";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: { default: "SABLE — Independent Clothing", template: "%s — SABLE" },
-  description: siteConfig.description,
-  openGraph: { title: "SABLE", description: siteConfig.description, type: "website", images: ["/editorial/hero.svg"] },
+  title: { default: "Studio Freight", template: "%s — Studio Freight" },
+  description: "Independent design and digital studio presenting selected work through an interactive editorial mosaic.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><Providers><SkipLink/><Header/><div id="main-content"><PageShell>{children}</PageShell></div><Footer/></Providers></body></html>;
+  return (
+    <html lang="en">
+      <body className={features.customCursor ? "has-custom-cursor" : undefined}>
+        {children}
+        <Toaster position="bottom-center" richColors />
+      </body>
+    </html>
+  );
 }

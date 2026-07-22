@@ -1,0 +1,2 @@
+import { ContentShell } from "@/components/navigation/content-shell";
+export default function AeonPage() { return <ContentShell><main className="content-page"><div className="content-grid"><p className="content-kicker">Aeon</p><h1 className="content-heading">An ongoing research space for future-facing visual culture.</h1><p className="content-copy">Experiments, references and unfinished ideas are collected here without the pressure of a final answer.</p></div></main></ContentShell>; }

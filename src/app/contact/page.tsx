@@ -1,2 +1,3 @@
-import { ContactForm } from "@/components/forms/contact-form";
-export default function ContactPage(){ return <main className="container-shell grid gap-14 py-12 lg:grid-cols-2"><div><p className="eyebrow">Contact</p><h1 className="display mt-6">Talk to the studio.</h1><div className="mt-12 grid gap-3 text-sm"><a href="mailto:studio@example.com">studio@example.com</a><span>Istanbul / Türkiye</span><span>Mon–Fri, 10:00–18:00</span></div></div><ContactForm/></main> }
+import { ContentShell } from "@/components/navigation/content-shell";
+import { ContactForm } from "./contact-form";
+export default function ContactPage() { return <ContentShell><main className="content-page"><div className="content-grid"><p className="content-kicker">Contact</p><h1 className="content-heading">Tell us where you are trying to go.</h1><p className="content-copy">New business, collaborations and speaking engagements.</p><ContactForm /></div></main></ContentShell>; }

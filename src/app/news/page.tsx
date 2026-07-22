@@ -1,0 +1,3 @@
+import { ContentShell } from "@/components/navigation/content-shell";
+const posts = ["Studio notes on motion as a design material", "A new identity system for Argus Labs", "Pelé Foundation archive launches globally", "Lege joins the studio roster"];
+export default function NewsPage() { return <ContentShell><main className="content-page"><div className="content-grid"><p className="content-kicker">News</p><h1 className="content-heading">Updates from the studio and the work around it.</h1></div><div className="project-index">{posts.map((post, index) => <article className="project-row" key={post}><strong>{post}</strong><span>Journal</span><span>2026</span><span>{String(index + 1).padStart(2, "0")}</span></article>)}</div></main></ContentShell>; }

@@ -1,0 +1,8 @@
+{
+  "project": "Studio Freight reference rebuild",
+  "phaseCount": 14,
+  "finalPhase": "phase-14-final-reference-polish",
+  "stack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP", "GSAP Flip", "SplitType", "Zustand", "Sonner"],
+  "threeJs": false,
+  "media": "Local WebP crops generated from the user-supplied reference recording for offline review"
+}

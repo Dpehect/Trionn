@@ -1,26 +1,2 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ProductGrid } from "@/components/commerce/product-grid";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal } from "@/components/motion/reveal";
-import { TextReveal } from "@/components/motion/text-reveal";
-import { ScrollReveal } from "@/components/motion/scroll-reveal";
-import { featuredProducts } from "@/data/products";
-import { collections, journalEntries } from "@/data/editorial";
-
-export default function HomePage() {
-  return <>
-    <section className="container-shell grid min-h-[calc(100svh-4rem)] items-end gap-8 py-5 lg:grid-cols-[1.15fr_.85fr]">
-      <div className="pb-8"><p className="eyebrow mb-6">Independent clothing / Istanbul</p><TextReveal className="display max-w-5xl">Clothing with room to move.</TextReveal><div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg"><Link href="/shop">Shop collection <ArrowDownRight size={17}/></Link></Button><Button asChild variant="outline" size="lg"><Link href="/lookbook">View lookbook</Link></Button></div></div>
-      <ScrollReveal className="media-frame relative aspect-[4/5] lg:aspect-auto lg:h-[calc(100svh-7rem)]"><Image src="/editorial/hero.svg" alt="SABLE Form 01 campaign" fill priority sizes="(max-width:1024px) 100vw, 45vw"/></ScrollReveal>
-    </section>
-    <section className="section-space container-shell"><SectionHeading eyebrow="New collection" title="Form 01 studies the distance between body and cloth." copy="A focused series of outerwear, knitwear and trousers built around controlled volume."/><div className="mt-14"><ProductGrid products={featuredProducts.slice(0,8)}/></div><div className="mt-10 flex justify-end"><Button asChild variant="outline"><Link href="/shop">View all pieces <ArrowUpRight size={16}/></Link></Button></div></section>
-    <section className="bg-[var(--foreground)] py-10 text-[var(--background)] md:py-20"><div className="container-shell grid gap-8 lg:grid-cols-[.8fr_1.2fr]"><div className="flex flex-col justify-between"><p className="eyebrow opacity-60">Manifesto / 01</p><p className="mt-16 max-w-sm text-lg leading-7">We reduce noise, retain function and let proportion carry the identity.</p></div><Reveal><p className="headline text-balance">Not seasonal decoration. A wardrobe language designed to remain.</p></Reveal></div></section>
-    <section className="section-space container-shell"><SectionHeading eyebrow="Collections" title="Three systems. One continuous wardrobe."/><div className="mt-12 grid gap-5 lg:grid-cols-3">{collections.map((collection,index)=><Reveal key={collection.slug} delay={index*.08}><Link href={`/collections/${collection.slug}`} className="group block"><div className="media-frame relative aspect-[4/5]"><Image src={collection.image} alt={collection.title} fill sizes="(max-width:1024px) 100vw, 33vw" className="transition duration-700 group-hover:scale-[1.025]"/></div><div className="mt-4 flex justify-between"><div><h3 className="text-xl">{collection.title}</h3><p className="mt-1 text-sm text-[var(--muted)]">{collection.statement}</p></div><ArrowUpRight/></div></Link></Reveal>)}</div></section>
-    <section className="section-space border-y"><div className="container-shell grid gap-8 lg:grid-cols-2"><ScrollReveal className="media-frame relative aspect-[4/5]"><Image src="/editorial/lookbook-01.svg" alt="Night Study lookbook" fill sizes="(max-width:1024px) 100vw,50vw"/></ScrollReveal><div className="flex flex-col justify-between py-4"><div><p className="eyebrow">Lookbook / Night Study</p><h2 className="headline mt-6">Low light. Exact silhouette.</h2></div><div><p className="max-w-lg leading-7 text-[var(--muted)]">A visual study of garments in motion, photographed after sunset across unfinished interiors.</p><Button asChild variant="outline" className="mt-8"><Link href="/lookbook">Enter the lookbook</Link></Button></div></div></div></section>
-    <section className="section-space container-shell"><SectionHeading eyebrow="Journal" title="Notes on clothing, process and permanence."/><div className="mt-12 divide-y border-y">{journalEntries.map((entry,index)=><Link key={entry.slug} href={`/journal/${entry.slug}`} className="group grid gap-4 py-6 md:grid-cols-[80px_1fr_180px_auto] md:items-center"><span className="text-sm text-[var(--muted)]">0{index+1}</span><span className="text-2xl md:text-4xl">{entry.title}</span><span className="text-sm text-[var(--muted)]">{entry.category} / {entry.date}</span><ArrowUpRight className="transition group-hover:rotate-45"/></Link>)}</div></section>
-    <section className="container-shell pb-20"><div className="grid gap-8 border-t pt-8 md:grid-cols-2"><h2 className="headline">Private notes, sent occasionally.</h2><form className="flex items-end border-b-2 border-[var(--foreground)]"><label htmlFor="newsletter" className="sr-only">Email address</label><input id="newsletter" type="email" placeholder="Email address" className="w-full bg-transparent py-5 text-xl outline-none"/><button type="submit" className="p-5"><ArrowUpRight/></button></form></div></section>
-  </>;
-}
+import { StudioShell } from "@/components/studio-shell";
+export default function HomePage() { return <StudioShell />; }

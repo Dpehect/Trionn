@@ -1,5 +1,0 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { collections } from "@/data/editorial";
-export default function CollectionsPage(){ return <main className="container-shell py-10 md:py-16"><p className="eyebrow">Seasonal systems</p><h1 className="display mt-5">Collections.</h1><div className="mt-16 grid gap-12">{collections.map((c,index)=><Link href={`/collections/${c.slug}`} key={c.slug} className={`group grid gap-5 border-t pt-5 lg:grid-cols-2 ${index%2?"lg:[&>*:first-child]:order-2":""}`}><div className="media-frame relative aspect-[16/10]"><Image src={c.image} alt={c.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="transition duration-700 group-hover:scale-[1.02]"/></div><div className="flex flex-col justify-between"><div><p className="eyebrow">0{index+1} / {c.season}</p><h2 className="headline mt-6">{c.title}</h2></div><div className="flex items-end justify-between"><p className="max-w-sm text-[var(--muted)]">{c.statement}</p><ArrowUpRight size={30}/></div></div></Link>)}</div></main> }
