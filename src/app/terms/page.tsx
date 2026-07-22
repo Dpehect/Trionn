@@ -1,0 +1,2 @@
+import { ContentShell } from "@/components/navigation/content-shell";
+export default function TermsPage(){return <ContentShell><main className="legal-page"><span>LEGAL / TERMS</span><h1>Clear operating terms for a shared product system.</h1><p>This demonstration project includes placeholder terms. Before commercial release, add counsel-reviewed terms defining workspace access, acceptable use, intellectual property, data responsibilities, service availability and termination.</p></main></ContentShell>}

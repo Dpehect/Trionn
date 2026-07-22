@@ -1,0 +1,2 @@
+import { ContentShell } from "@/components/navigation/content-shell";
+export default function PrivacyPage(){return <ContentShell><main className="legal-page"><span>LEGAL / PRIVACY</span><h1>Privacy built around product trust.</h1><p>Trionn collects only the information required to operate requested workspaces, communicate with teams and protect the service. Production deployments should replace this demonstration copy with counsel-reviewed policy text covering your actual processors, retention periods and regional obligations.</p></main></ContentShell>}

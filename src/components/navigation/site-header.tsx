@@ -1,23 +1,47 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-const middleLinks = [
-  ["Work", "/work"], ["Info", "/info"], ["News", "/news"], ["Aeon", "/aeon"],
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { useProductStore } from "@/store/use-product-store";
+
+const links = [
+  ["Product", "/#product"],
+  ["Workflow", "/#workflow"],
+  ["Systems", "/#systems"],
+  ["Pricing", "/pricing"],
+  ["Changelog", "/changelog"],
 ] as const;
 
 export function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const setRequestOpen = useProductStore((state) => state.setRequestOpen);
+
   return (
-    <header className="site-header" aria-label="Primary navigation">
-      <Link className="brand-mark" href="/" aria-label="Studio Freight home">
-        <Image src="/brand-mark.svg" alt="" width={54} height={54} priority />
+    <header className="site-header">
+      <Link className="wordmark" href="/" aria-label="Trionn home">
+        <span className="wordmark-symbol">T/</span>
+        <span>TRIONN</span>
       </Link>
-      <Link className="home-link" href="/"><span aria-hidden>•</span> Home</Link>
-      <nav className="middle-nav">
-        {middleLinks.map(([label, href], index) => (
-          <span key={href}><Link href={href}>{label}</Link>{index < middleLinks.length - 1 ? "," : ""}</span>
-        ))}
+
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
       </nav>
-      <Link className="contact-link" href="/contact">Contact</Link>
+
+      <button className="header-cta" type="button" onClick={() => setRequestOpen(true)}>
+        Request access <span aria-hidden>↗</span>
+      </button>
+
+      <button className="menu-button" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
+        {menuOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {menuOpen && (
+        <div className="mobile-menu">
+          {links.map(([label, href]) => <Link href={href} key={href} onClick={() => setMenuOpen(false)}>{label}</Link>)}
+          <button type="button" onClick={() => { setMenuOpen(false); setRequestOpen(true); }}>Request access</button>
+        </div>
+      )}
     </header>
   );
 }

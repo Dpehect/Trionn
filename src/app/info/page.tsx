@@ -1,2 +1,0 @@
-import { ContentShell } from "@/components/navigation/content-shell";
-export default function InfoPage() { return <ContentShell><main className="content-page"><div className="content-grid"><p className="content-kicker">Information</p><h1 className="content-heading">A studio for missions that need to move.</h1><div className="content-copy"><p>We partner with founders, institutions and cultural teams to build identities and digital products with lasting clarity.</p><p>Strategy / Identity / Digital / Motion / Campaign</p></div></div></main></ContentShell>; }

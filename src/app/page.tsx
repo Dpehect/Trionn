@@ -1,2 +1,5 @@
-import { StudioShell } from "@/components/studio-shell";
-export default function HomePage() { return <StudioShell />; }
+import { ProductHome } from "@/components/product/product-home";
+
+export default function HomePage() {
+  return <ProductHome />;
+}

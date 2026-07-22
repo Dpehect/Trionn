@@ -1,5 +1,5 @@
 {
-  "name": "freight-studio-rebuild-phase-14",
+  "name": "trionn-awwwards-phase-14",
   "version": "0.14.0",
   "private": true,
   "scripts": {
@@ -11,15 +11,25 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
     "gsap": "^3.13.0",
+    "lenis": "^1.3.15",
     "lucide-react": "^0.548.0",
+    "motion": "^12.23.24",
     "next": "^16.2.10",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.65.0",
     "sonner": "^2.0.7",
-    "split-type": "^0.3.4",
     "tailwind-merge": "^3.3.1",
+    "vaul": "^1.1.2",
+    "zod": "^4.1.12",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
