@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { Preloader } from "@/components/preloader";
 import { Cursor } from "@/components/cursor";
 import { ExperienceShell } from "@/components/experience-shell";
 import { RouteCurtain } from "@/components/route-curtain";
+import { ExperienceProvider } from "@/components/experience-provider";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { QualityBadge } from "@/components/quality-badge";
 
 export const metadata: Metadata = {
   title: { default: "ATELIER/X", template: "%s — ATELIER/X" },
@@ -15,12 +17,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Preloader />
-        <SmoothScroll />
-        <Cursor />
-        <RouteCurtain />
-        <ExperienceShell>{children}</ExperienceShell>
-        <div className="noise" />
+        <ExperienceProvider>
+          <Preloader />
+          <Cursor />
+          <RouteCurtain />
+          <ScrollProgress />
+          <ExperienceShell>{children}</ExperienceShell>
+          <QualityBadge />
+          <div className="noise" />
+        </ExperienceProvider>
       </body>
     </html>
   );

@@ -1,13 +1,17 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
+import { env } from "@/lib/env";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
+const protectedPrefixes = ["/dashboard", "/admin"];
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: env.AUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
@@ -18,23 +22,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const parsed = credentialsSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
-        const adminEmail = process.env.ADMIN_EMAIL;
-        const adminPassword = process.env.ADMIN_PASSWORD;
-        if (!adminEmail || !adminPassword) return null;
+        if (!env.ADMIN_EMAIL || !env.ADMIN_PASSWORD) return null;
 
-        if (
-          parsed.data.email === adminEmail &&
-          parsed.data.password === adminPassword
-        ) {
-          return {
-            id: "admin",
-            email: adminEmail,
-            name: "Administrator",
-            role: "admin",
-          };
-        }
+        const validEmail = parsed.data.email === env.ADMIN_EMAIL;
+        const validPassword = parsed.data.password === env.ADMIN_PASSWORD;
 
-        return null;
+        if (!validEmail || !validPassword) return null;
+
+        return {
+          id: "admin",
+          email: env.ADMIN_EMAIL,
+          name: "Administrator",
+          role: "admin",
+        };
       },
     }),
   ],
@@ -53,10 +53,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
     authorized({ auth, request }) {
-      if (request.nextUrl.pathname.startsWith("/dashboard")) {
-        return Boolean(auth?.user);
-      }
-      return true;
+      const isProtected = protectedPrefixes.some((prefix) =>
+        request.nextUrl.pathname.startsWith(prefix)
+      );
+      return isProtected ? Boolean(auth?.user) : true;
     },
   },
 });

@@ -1,10 +1,14 @@
-# Faz 12 — Advanced WebGL
+# Faz 16 — Navigation & Preloader
 
-- Transmission material
-- Torus-knot hero artifact
-- Pointer-driven deformation
-- Adaptive DPR
-- Performance monitor
-- Suspense boundary
-- Sparkles and advanced postprocessing
-- WebGL fallback
+## Eklenenler
+
+- Session-aware cinematic preloader
+- İlk ziyaret / tekrar ziyaret süreleri
+- Reduced-motion loader
+- Tam ekran erişilebilir menü
+- Escape ile kapatma
+- Active route göstergesi
+- Skip link
+- Sound preference button
+- Gelişmiş header
+- Büyük CTA footer
