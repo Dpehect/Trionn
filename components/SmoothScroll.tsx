@@ -1,17 +1,11 @@
 "use client";
 
-import {
-  type PropsWithChildren,
-  useEffect,
-  useRef,
-} from "react";
+import { type PropsWithChildren, useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function SmoothScroll({ children }: PropsWithChildren) {
-  const lenisRef = useRef<Lenis | null>(null);
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -19,11 +13,9 @@ export function SmoothScroll({ children }: PropsWithChildren) {
       duration: 1.15,
       smoothWheel: true,
       syncTouch: false,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.2,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.15,
     });
-
-    lenisRef.current = lenis;
 
     const handleScroll = () => {
       ScrollTrigger.update();
@@ -35,17 +27,22 @@ export function SmoothScroll({ children }: PropsWithChildren) {
 
     lenis.on("scroll", handleScroll);
     gsap.ticker.add(ticker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(0, 0);
 
+    const handleRefresh = () => {
+      lenis.resize();
+    };
+
+    ScrollTrigger.addEventListener("refresh", handleRefresh);
     ScrollTrigger.refresh();
 
     return () => {
       lenis.off("scroll", handleScroll);
       gsap.ticker.remove(ticker);
+      ScrollTrigger.removeEventListener("refresh", handleRefresh);
       lenis.destroy();
-      lenisRef.current = null;
     };
   }, []);
 
-  return children;
+  return <>{children}</>;
 }

@@ -6,8 +6,9 @@ import {
   useRef,
 } from "react";
 import {
-  Environment,
   ContactShadows,
+  Environment,
+  Loader,
 } from "@react-three/drei";
 import {
   Canvas,
@@ -24,15 +25,14 @@ interface SceneProps {
   garmentRef: MutableRefObject<GarmentHandle | null>;
 }
 
-function SceneContent({
+function SceneContents({
   garmentRef,
 }: SceneProps) {
-  const cameraRef = useRef<PerspectiveCamera | null>(null);
   const camera = useThree(
     (state) => state.camera as PerspectiveCamera,
   );
 
-  cameraRef.current = camera;
+  const cameraRef = useRef<PerspectiveCamera | null>(camera);
 
   useGarmentAnimation({
     garmentRef,
@@ -41,13 +41,29 @@ function SceneContent({
 
   return (
     <>
-      <ambientLight intensity={0.7} />
+      <color attach="background" args={["#f3efe8"]} />
+
+      <ambientLight intensity={1.1} />
+
       <directionalLight
-        position={[3.5, 5, 4]}
-        intensity={3.2}
+        position={[4, 6, 5]}
+        intensity={3.6}
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
+        shadow-bias={-0.0001}
+      />
+
+      <directionalLight
+        position={[-3, 2, 4]}
+        intensity={1.4}
+        color="#dce7ff"
+      />
+
+      <pointLight
+        position={[0, -2, 3]}
+        intensity={0.8}
+        color="#f1d7c0"
       />
 
       <Suspense fallback={null}>
@@ -56,11 +72,11 @@ function SceneContent({
       </Suspense>
 
       <ContactShadows
-        position={[0, -1.65, 0]}
-        opacity={0.32}
-        scale={8}
+        position={[0, -1.55, 0]}
+        opacity={0.28}
+        scale={6}
         blur={2.8}
-        far={4.5}
+        far={4}
       />
     </>
   );
@@ -70,24 +86,35 @@ export function Scene({
   garmentRef,
 }: SceneProps) {
   return (
-    <div className="canvas-shell" aria-hidden>
-      <Canvas
-        shadows
-        dpr={[1, 1.75]}
-        camera={{
-          position: [0, 0, 5],
-          fov: 34,
-          near: 0.1,
-          far: 100,
-        }}
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: "high-performance",
-        }}
-      >
-        <SceneContent garmentRef={garmentRef} />
-      </Canvas>
-    </div>
+    <>
+      <div className="canvas-shell" aria-hidden>
+        <Canvas
+          shadows
+          dpr={[1, 1.75]}
+          camera={{
+            position: [0, 0, 5],
+            fov: 34,
+            near: 0.1,
+            far: 100,
+          }}
+          gl={{
+            antialias: true,
+            alpha: false,
+            powerPreference: "high-performance",
+          }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            width: "100vw",
+            height: "100vh",
+            pointerEvents: "none",
+          }}
+        >
+          <SceneContents garmentRef={garmentRef} />
+        </Canvas>
+      </div>
+
+      <Loader />
+    </>
   );
 }

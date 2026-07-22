@@ -13,7 +13,6 @@ import gsap from "gsap";
 import {
   Color,
   Group,
-  Mesh,
   MeshStandardMaterial,
 } from "three";
 import { useGarmentStore } from "@/store/useGarmentStore";
@@ -23,178 +22,260 @@ export interface GarmentHandle {
   material: MeshStandardMaterial;
 }
 
+const GARMENT_COLORS = {
+  black: "#171717",
+  cream: "#d8cfbd",
+  olive: "#596149",
+} as const;
+
 interface GarmentProps {
   pointerParallaxStrength?: number;
 }
 
-const colorMap = {
-  black: "#131313",
-  cream: "#d7cdbb",
-  olive: "#596148",
-} as const;
-
 export const Garment = forwardRef<GarmentHandle, GarmentProps>(
   function Garment(
     {
-      pointerParallaxStrength = 0.16,
+      pointerParallaxStrength = 0.1,
     },
     forwardedRef,
   ) {
     const groupRef = useRef<Group>(null);
-    const bodyRef = useRef<Group>(null);
-    const material = useMemo(
-      () =>
-        new MeshStandardMaterial({
-          color: colorMap.black,
-          roughness: 0.68,
-          metalness: 0.02,
-          envMapIntensity: 0.72,
-        }),
-      [],
-    );
+    const floatRef = useRef<Group>(null);
 
     const color = useGarmentStore((state) => state.color);
     const hotspotsVisible = useGarmentStore(
       (state) => state.hotspotsVisible,
     );
 
+    const fabricMaterial = useMemo(
+      () =>
+        new MeshStandardMaterial({
+          color: GARMENT_COLORS.black,
+          roughness: 0.7,
+          metalness: 0.1,
+          envMapIntensity: 1.05,
+        }),
+      [],
+    );
+
+    const ribMaterial = useMemo(
+      () =>
+        new MeshStandardMaterial({
+          color: "#0e0e0e",
+          roughness: 0.82,
+          metalness: 0.02,
+          envMapIntensity: 0.65,
+        }),
+      [],
+    );
+
     useImperativeHandle(
       forwardedRef,
       () => {
         if (!groupRef.current) {
-          throw new Error("Garment ref requested before scene initialization.");
+          throw new Error("Garment scene is not mounted.");
         }
 
         return {
           group: groupRef.current,
-          material,
+          material: fabricMaterial,
         };
       },
-      [material],
+      [fabricMaterial],
     );
 
     useEffect(() => {
-      const target = new Color(colorMap[color]);
+      const nextColor = new Color(GARMENT_COLORS[color]);
 
-      gsap.to(material.color, {
-        r: target.r,
-        g: target.g,
-        b: target.b,
-        duration: 0.75,
+      gsap.to(fabricMaterial.color, {
+        r: nextColor.r,
+        g: nextColor.g,
+        b: nextColor.b,
+        duration: 0.65,
         ease: "power3.out",
       });
-    }, [color, material]);
+
+      gsap.to(ribMaterial.color, {
+        r: nextColor.r * 0.72,
+        g: nextColor.g * 0.72,
+        b: nextColor.b * 0.72,
+        duration: 0.65,
+        ease: "power3.out",
+      });
+    }, [color, fabricMaterial, ribMaterial]);
 
     useEffect(() => {
-      return () => material.dispose();
-    }, [material]);
+      return () => {
+        fabricMaterial.dispose();
+        ribMaterial.dispose();
+      };
+    }, [fabricMaterial, ribMaterial]);
 
     useFrame((state, delta) => {
       const group = groupRef.current;
-      const body = bodyRef.current;
+      const floating = floatRef.current;
 
-      if (!group || !body) {
+      if (!group || !floating) {
         return;
       }
 
-      const targetRotationX =
-        state.pointer.y * pointerParallaxStrength;
-      const targetRotationZ =
-        -state.pointer.x * pointerParallaxStrength;
+      const targetX = state.pointer.y * pointerParallaxStrength;
+      const targetZ = -state.pointer.x * pointerParallaxStrength;
 
       group.rotation.x +=
-        (targetRotationX - group.rotation.x) *
-        Math.min(1, delta * 3.6);
+        (targetX - group.rotation.x) *
+        Math.min(1, delta * 2.8);
 
       group.rotation.z +=
-        (targetRotationZ - group.rotation.z) *
-        Math.min(1, delta * 3.6);
+        (targetZ - group.rotation.z) *
+        Math.min(1, delta * 2.8);
 
-      body.position.y =
-        Math.sin(state.clock.elapsedTime * 0.75) * 0.015;
+      floating.position.y =
+        Math.sin(state.clock.elapsedTime * 0.65) * 0.015;
     });
 
     return (
       <group
         ref={groupRef}
-        position={[0, -0.5, 0]}
-        rotation={[0, 0, 0]}
+        position={[0, -0.2, 0]}
+        scale={0.92}
       >
-        <group ref={bodyRef}>
+        <group ref={floatRef}>
+          {/* Torso */}
           <RoundedBox
-            args={[1.65, 2.05, 0.56]}
-            radius={0.22}
-            smoothness={8}
+            args={[1.62, 2.05, 0.48]}
+            radius={0.3}
+            smoothness={12}
             castShadow
             receiveShadow
           >
-            <primitive object={material} attach="material" />
+            <primitive object={fabricMaterial} attach="material" />
+          </RoundedBox>
+
+          {/* Shoulder shaping */}
+          <RoundedBox
+            args={[1.88, 0.46, 0.5]}
+            radius={0.22}
+            smoothness={10}
+            position={[0, 0.74, 0]}
+            castShadow
+          >
+            <primitive object={fabricMaterial} attach="material" />
+          </RoundedBox>
+
+          {/* Sleeves */}
+          <RoundedBox
+            args={[0.47, 1.72, 0.42]}
+            radius={0.2}
+            smoothness={10}
+            position={[-1.03, -0.03, 0.02]}
+            rotation={[0, 0, -0.17]}
+            castShadow
+          >
+            <primitive object={fabricMaterial} attach="material" />
           </RoundedBox>
 
           <RoundedBox
-            args={[0.56, 1.75, 0.46]}
-            radius={0.18}
-            smoothness={8}
-            position={[-1.03, -0.05, 0]}
-            rotation={[0, 0, -0.18]}
+            args={[0.47, 1.72, 0.42]}
+            radius={0.2}
+            smoothness={10}
+            position={[1.03, -0.03, 0.02]}
+            rotation={[0, 0, 0.17]}
             castShadow
           >
-            <primitive object={material} attach="material" />
+            <primitive object={fabricMaterial} attach="material" />
           </RoundedBox>
 
-          <RoundedBox
-            args={[0.56, 1.75, 0.46]}
-            radius={0.18}
-            smoothness={8}
-            position={[1.03, -0.05, 0]}
-            rotation={[0, 0, 0.18]}
-            castShadow
-          >
-            <primitive object={material} attach="material" />
-          </RoundedBox>
-
+          {/* Hood shell */}
           <mesh
-            position={[0, 1.16, -0.03]}
-            rotation={[Math.PI * 0.08, 0, 0]}
+            position={[0, 1.06, -0.08]}
+            rotation={[0.14, 0, 0]}
             castShadow
           >
-            <torusGeometry
+            <sphereGeometry
               args={[
-                0.52,
-                0.24,
-                32,
+                0.73,
                 64,
-                Math.PI * 1.9,
+                64,
+                0,
+                Math.PI * 2,
+                0,
+                Math.PI * 0.76,
               ]}
             />
-            <primitive object={material} attach="material" />
+            <primitive object={fabricMaterial} attach="material" />
           </mesh>
 
+          {/* Hood opening */}
+          <mesh
+            position={[0, 1.08, 0.43]}
+            rotation={[Math.PI / 2, 0, 0]}
+          >
+            <torusGeometry args={[0.39, 0.055, 24, 64]} />
+            <primitive object={ribMaterial} attach="material" />
+          </mesh>
+
+          {/* Waist rib */}
           <RoundedBox
-            args={[0.9, 0.48, 0.16]}
-            radius={0.14}
+            args={[1.55, 0.2, 0.5]}
+            radius={0.08}
             smoothness={8}
-            position={[0, -0.5, 0.34]}
+            position={[0, -1.03, 0]}
             castShadow
           >
-            <primitive object={material} attach="material" />
+            <primitive object={ribMaterial} attach="material" />
           </RoundedBox>
 
-          <mesh position={[0, 0.22, 0.305]} castShadow>
-            <boxGeometry args={[0.032, 1.45, 0.025]} />
+          {/* Cuffs */}
+          <RoundedBox
+            args={[0.42, 0.2, 0.4]}
+            radius={0.08}
+            smoothness={8}
+            position={[-1.17, -0.82, 0.02]}
+            rotation={[0, 0, -0.17]}
+            castShadow
+          >
+            <primitive object={ribMaterial} attach="material" />
+          </RoundedBox>
+
+          <RoundedBox
+            args={[0.42, 0.2, 0.4]}
+            radius={0.08}
+            smoothness={8}
+            position={[1.17, -0.82, 0.02]}
+            rotation={[0, 0, 0.17]}
+            castShadow
+          >
+            <primitive object={ribMaterial} attach="material" />
+          </RoundedBox>
+
+          {/* Kangaroo pocket */}
+          <RoundedBox
+            args={[0.96, 0.42, 0.14]}
+            radius={0.16}
+            smoothness={10}
+            position={[0, -0.52, 0.31]}
+            castShadow
+          >
+            <primitive object={fabricMaterial} attach="material" />
+          </RoundedBox>
+
+          {/* Center zipper */}
+          <mesh position={[0, 0.08, 0.255]} castShadow>
+            <boxGeometry args={[0.022, 1.7, 0.02]} />
             <meshStandardMaterial
-              color="#8c8c88"
-              roughness={0.35}
-              metalness={0.55}
+              color="#8a8882"
+              roughness={0.3}
+              metalness={0.65}
             />
           </mesh>
 
-          <mesh position={[0, -0.5, 0.38]} castShadow>
-            <boxGeometry args={[0.16, 0.12, 0.08]} />
+          <mesh position={[0, -0.38, 0.285]} castShadow>
+            <boxGeometry args={[0.12, 0.11, 0.055]} />
             <meshStandardMaterial
-              color="#8c8c88"
-              roughness={0.35}
-              metalness={0.55}
+              color="#9d9a93"
+              roughness={0.28}
+              metalness={0.7}
             />
           </mesh>
         </group>
@@ -202,30 +283,36 @@ export const Garment = forwardRef<GarmentHandle, GarmentProps>(
         {hotspotsVisible ? (
           <>
             <Html
-              position={[0.12, 0.5, 0.54]}
+              position={[0.2, 0.5, 0.48]}
               center
               transform
               distanceFactor={4}
             >
-              <span className="hotspot-label">Zipper</span>
+              <button className="hotspot-label pointer-events-auto">
+                Zipper
+              </button>
             </Html>
 
             <Html
-              position={[1.3, 0.1, 0.15]}
+              position={[-0.72, 0.74, 0.38]}
               center
               transform
               distanceFactor={4}
             >
-              <span className="hotspot-label">Sleeve</span>
+              <button className="hotspot-label pointer-events-auto">
+                Chest
+              </button>
             </Html>
 
             <Html
-              position={[0.55, -0.52, 0.52]}
+              position={[0.62, -0.48, 0.42]}
               center
               transform
               distanceFactor={4}
             >
-              <span className="hotspot-label">Pocket</span>
+              <button className="hotspot-label pointer-events-auto">
+                Pocket
+              </button>
             </Html>
           </>
         ) : null}

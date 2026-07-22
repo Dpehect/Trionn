@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  type MutableRefObject,
-  useLayoutEffect,
-} from "react";
+import { type MutableRefObject, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { PerspectiveCamera } from "three";
@@ -33,12 +30,12 @@ export function useGarmentAnimation({
       return;
     }
 
-    const reducedMotion = window.matchMedia(
+    const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (reducedMotion) {
-      garment.group.position.set(0, -0.5, 0);
+    if (reduceMotion) {
+      garment.group.position.set(0, -0.2, 0);
       garment.group.rotation.set(0, 0, 0);
       camera.position.set(0, 0, 4.5);
       setHotspotsVisible(true);
@@ -46,106 +43,134 @@ export function useGarmentAnimation({
     }
 
     const context = gsap.context(() => {
-      const timeline = gsap.timeline({
-        defaults: {
+      gsap.set(garment.group.position, {
+        x: 0,
+        y: -0.2,
+        z: 0,
+      });
+
+      gsap.set(garment.group.rotation, {
+        x: 0,
+        y: 0,
+        z: 0,
+      });
+
+      gsap.set(camera.position, {
+        x: 0,
+        y: 0,
+        z: 5,
+      });
+
+      // SECTION 1 — HERO
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+      .to(
+        garment.group.rotation,
+        {
+          y: Math.PI * 2,
           ease: "none",
         },
+        0,
+      )
+      .to(
+        garment.group.position,
+        {
+          y: -0.05,
+          ease: "none",
+        },
+        0,
+      );
+
+      // SECTION 2 — DETAILS
+      const detailsTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: "#experience-root",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.1,
+          trigger: "#details",
+          start: "top 75%",
+          end: "bottom 25%",
+          scrub: 1,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            setHotspotsVisible(self.progress >= 0.7);
-          },
-          onLeaveBack: () => setHotspotsVisible(false),
+          onEnter: () => setHotspotsVisible(false),
+          onEnterBack: () => setHotspotsVisible(false),
         },
       });
 
-      timeline
-        .set(garment.group.position, {
-          x: 0,
-          y: -0.5,
-          z: 0,
-        }, 0)
-        .set(garment.group.rotation, {
-          x: 0,
-          y: 0,
-          z: 0,
-        }, 0)
-        .set(camera.position, {
-          x: 0,
-          y: 0,
-          z: 5,
-        }, 0)
-
-        // Phase 1: 0% - 30%
-        .to(
-          garment.group.rotation,
-          {
-            y: Math.PI * 2,
-            duration: 0.3,
-          },
-          0,
-        )
-
-        // Phase 2: 30% - 70%
-        .to(
-          garment.group.position,
-          {
-            x: 1.2,
-            y: 0,
-            z: 1,
-            duration: 0.4,
-          },
-          0.3,
-        )
+      detailsTimeline
         .to(
           camera.position,
           {
-            x: 0.5,
-            y: 0.5,
-            z: 2,
-            duration: 0.4,
+            x: 0.6,
+            y: 0.3,
+            z: 2.2,
+            ease: "power2.inOut",
           },
-          0.3,
+          0,
+        )
+        .to(
+          garment.group.position,
+          {
+            x: -0.8,
+            y: 0.05,
+            z: 0.15,
+            ease: "power2.inOut",
+          },
+          0,
+        )
+        .to(
+          garment.group.rotation,
+          {
+            y: Math.PI * 2.12,
+            x: -0.05,
+            ease: "power2.inOut",
+          },
+          0,
         )
         .fromTo(
-          "[data-detail-copy]",
+          "[data-detail-card]",
           {
             autoAlpha: 0,
-            y: 20,
+            y: 24,
           },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.16,
-            stagger: 0.035,
+            stagger: 0.2,
+            duration: 0.55,
+            ease: "power3.out",
           },
-          0.38,
-        )
-        .to(
-          "[data-detail-copy]",
-          {
-            autoAlpha: 0,
-            y: -16,
-            duration: 0.1,
-            stagger: 0.02,
-          },
-          0.62,
-        )
+          0.18,
+        );
 
-        // Phase 3: 70% - 100%
+      // SECTION 3 — VARIANTS
+      const variantsTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#variants",
+          start: "top 75%",
+          end: "center center",
+          scrub: 1,
+          invalidateOnRefresh: true,
+          onEnter: () => setHotspotsVisible(true),
+          onEnterBack: () => setHotspotsVisible(true),
+          onLeaveBack: () => setHotspotsVisible(false),
+        },
+      });
+
+      variantsTimeline
         .to(
           camera.position,
           {
             x: 0,
             y: 0,
             z: 4.5,
-            duration: 0.3,
+            ease: "power2.inOut",
           },
-          0.7,
+          0,
         )
         .to(
           garment.group.position,
@@ -153,31 +178,36 @@ export function useGarmentAnimation({
             x: 0,
             y: -0.15,
             z: 0,
-            duration: 0.3,
+            ease: "power2.inOut",
           },
-          0.7,
+          0,
         )
         .to(
           garment.group.rotation,
           {
+            x: 0,
             y: Math.PI * 2,
-            duration: 0.3,
+            z: 0,
+            ease: "power2.inOut",
           },
-          0.7,
+          0,
         )
         .fromTo(
-          "[data-buy-panel]",
+          "[data-variant-panel]",
           {
             autoAlpha: 0,
-            y: 28,
+            y: 30,
           },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.18,
+            duration: 0.7,
+            ease: "power3.out",
           },
-          0.76,
+          0.18,
         );
+
+      ScrollTrigger.refresh();
     });
 
     return () => {

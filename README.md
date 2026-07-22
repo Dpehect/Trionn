@@ -1,16 +1,28 @@
-# Changed files
+# Trionn 3D Refactor Files
 
-Replace these files in the project root:
+Replace the matching files in the repository root:
 
-- `package.json`
+- `app/page.tsx`
+- `app/globals.css`
 - `components/SmoothScroll.tsx`
+- `components/canvas/Scene.tsx`
+- `components/canvas/Garment.tsx`
+- `components/dom/Overlay.tsx`
+- `hooks/useGarmentAnimation.ts`
 
-Then delete the old dependency lock/cache and reinstall:
+This refactor adds:
+
+- fixed Canvas and overlay stacking
+- pointer-event isolation
+- Lenis + GSAP ticker sync
+- section-specific ScrollTrigger timelines
+- hero rotation, detail close-up and variants reset
+- hotspot visibility by section
+- improved lighting and fabric material
+- refined procedural hoodie geometry
+
+Then run:
 
 ```bash
-rm -rf node_modules package-lock.json .next
-npm install
 npm run build
 ```
-
-On Vercel, redeploy without the previous build cache.

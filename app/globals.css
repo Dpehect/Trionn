@@ -18,10 +18,10 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: #f3efe8;
   color: #11100f;
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
 button,
@@ -31,54 +31,64 @@ textarea {
   font: inherit;
 }
 
-::selection {
-  background: #11100f;
-  color: #f3efe8;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .canvas-shell {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
+}
+
+.canvas-shell canvas,
+.canvas-shell > div {
+  pointer-events: none !important;
 }
 
 .overlay-shell {
   position: relative;
   z-index: 10;
+  width: 100%;
+  pointer-events: none;
+}
+
+.overlay-shell button,
+.overlay-shell a,
+.overlay-shell input,
+.overlay-shell select,
+.overlay-shell textarea {
+  pointer-events: auto;
 }
 
 .hero-title {
-  font-size: clamp(4rem, 11vw, 11rem);
-  line-height: 0.82;
-  letter-spacing: -0.07em;
+  font-size: clamp(4rem, 9vw, 9.5rem);
+  line-height: 0.83;
+  letter-spacing: -0.065em;
 }
 
 .editorial-copy {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-.magnetic-button {
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
 .hotspot-label {
-  border: 1px solid rgba(17, 16, 15, 0.22);
+  cursor: pointer;
+  border: 1px solid rgba(17, 16, 15, 0.2);
   border-radius: 999px;
-  background: rgba(243, 239, 232, 0.9);
-  padding: 0.4rem 0.7rem;
+  background: rgba(243, 239, 232, 0.92);
+  padding: 0.42rem 0.72rem;
   color: #11100f;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: clamp(3.6rem, 18vw, 6.3rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
