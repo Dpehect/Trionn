@@ -1,26 +1,3 @@
-export type CaseStudyBlock =
-  | {
-      type: "text";
-      eyebrow: string;
-      title: string;
-      body: string;
-    }
-  | {
-      type: "metric";
-      items: { label: string; value: string }[];
-    }
-  | {
-      type: "media";
-      title: string;
-      ratio: "16/9" | "4/3" | "1/1";
-      accent: string;
-    }
-  | {
-      type: "quote";
-      quote: string;
-      attribution: string;
-    };
-
 export type Project = {
   slug: string;
   title: string;
@@ -30,130 +7,17 @@ export type Project = {
   services: string[];
   metric: string;
   accent: string;
-  blocks: CaseStudyBlock[];
+  cover: string;
+  index: string;
 };
 
 export const projects: Project[] = [
-  {
-    slug: "astra-objects",
-    title: "Astra Objects",
-    category: "Digital flagship",
-    year: "2026",
-    summary: "A spatial commerce experience for collectible industrial objects.",
-    services: ["Strategy", "Art direction", "WebGL", "Development"],
-    metric: "+42% product exploration",
-    accent: "#d8ff61",
-    blocks: [
-      {
-        type: "text",
-        eyebrow: "Context",
-        title: "A catalogue that behaved like a gallery.",
-        body: "The interface removes conventional product-grid rhythm and replaces it with guided spatial discovery.",
-      },
-      {
-        type: "media",
-        title: "Spatial product field",
-        ratio: "16/9",
-        accent: "#d8ff61",
-      },
-      {
-        type: "metric",
-        items: [
-          { label: "Exploration", value: "+42%" },
-          { label: "Session depth", value: "2.8×" },
-          { label: "Launch regions", value: "12" },
-        ],
-      },
-      {
-        type: "quote",
-        quote: "The website finally feels like the objects we make.",
-        attribution: "Creative Director, Astra Objects",
-      },
-      {
-        type: "text",
-        eyebrow: "System",
-        title: "One motion language across DOM and WebGL.",
-        body: "A shared progress model coordinates typography, scene rotation and project transitions.",
-      },
-    ],
-  },
-  {
-    slug: "monument",
-    title: "Monument",
-    category: "Interactive identity",
-    year: "2026",
-    summary: "A kinetic identity and launch platform for an experimental architecture practice.",
-    services: ["Identity", "Motion", "Creative development"],
-    metric: "3.1× longer sessions",
-    accent: "#ff7058",
-    blocks: [
-      {
-        type: "text",
-        eyebrow: "Context",
-        title: "Architecture needed a digital material.",
-        body: "The visual language was translated into shifting mass, scale and negative space rather than decorative transitions.",
-      },
-      {
-        type: "media",
-        title: "Kinetic identity study",
-        ratio: "4/3",
-        accent: "#ff7058",
-      },
-      {
-        type: "metric",
-        items: [
-          { label: "Session time", value: "3.1×" },
-          { label: "Press mentions", value: "48" },
-          { label: "Markets", value: "7" },
-        ],
-      },
-      {
-        type: "text",
-        eyebrow: "Result",
-        title: "A launch platform with a physical presence.",
-        body: "The website became a presentation tool used in pitches, exhibitions and recruitment.",
-      },
-    ],
-  },
-  {
-    slug: "parallel-form",
-    title: "Parallel Form",
-    category: "Commerce experience",
-    year: "2025",
-    summary: "Editorial commerce for a limited-run apparel label.",
-    services: ["UX", "E-commerce", "Motion system"],
-    metric: "+31% conversion",
-    accent: "#8fa7ff",
-    blocks: [
-      {
-        type: "text",
-        eyebrow: "Context",
-        title: "A store designed like a moving publication.",
-        body: "Campaign storytelling and purchase paths were merged into the same page rhythm.",
-      },
-      {
-        type: "media",
-        title: "Editorial commerce sequence",
-        ratio: "16/9",
-        accent: "#8fa7ff",
-      },
-      {
-        type: "metric",
-        items: [
-          { label: "Conversion", value: "+31%" },
-          { label: "Return visits", value: "+22%" },
-          { label: "Drop cadence", value: "Monthly" },
-        ],
-      },
-      {
-        type: "quote",
-        quote: "It feels like a magazine without slowing down the purchase.",
-        attribution: "Founder, Parallel Form",
-      },
-    ],
-  },
+  { slug:"neural-archive", title:"NEURAL ARCHIVE", category:"AI / Cultural platform", year:"2026", summary:"A living visual archive where machine intelligence reorganizes cultural memory in real time.", services:["Strategy","Art direction","Creative development"], metric:"4.8× exploration", accent:"#ff4d00", cover:"/art/neural-archive.svg", index:"01" },
+  { slug:"monument-zero", title:"MONUMENT ZERO", category:"Architecture / Identity", year:"2026", summary:"A digital identity system built from pressure, mass and responsive architectural typography.", services:["Identity","Motion","WebGL"], metric:"+61% qualified leads", accent:"#c7ff00", cover:"/art/monument-zero.svg", index:"02" },
+  { slug:"orbital-systems", title:"ORBITAL SYSTEMS", category:"Aerospace / Product", year:"2025", summary:"A mission interface translating complex orbital data into a cinematic product narrative.", services:["Product design","Data visualization","Engineering"], metric:"2.7× session depth", accent:"#85a8ff", cover:"/art/orbital-systems.svg", index:"03" },
+  { slug:"brutal-bloom", title:"BRUTAL BLOOM", category:"Fashion / Commerce", year:"2025", summary:"Editorial commerce where every collection mutates the interface into a new visual organism.", services:["Commerce","Campaign","Motion system"], metric:"+38% conversion", accent:"#ff89c7", cover:"/art/brutal-bloom.svg", index:"04" },
+  { slug:"echo-chamber", title:"ECHO CHAMBER", category:"Music / Digital venue", year:"2025", summary:"A spatial release platform turning sound, typography and audience behavior into one instrument.", services:["Experience design","Audio-reactive art","Development"], metric:"1.9M interactions", accent:"#00e5ff", cover:"/art/echo-chamber.svg", index:"05" },
+  { slug:"matter-language", title:"MATTER LANGUAGE", category:"Research / Publication", year:"2024", summary:"An experimental publication system examining the border between physical matter and code.", services:["Editorial","Digital identity","Interaction"], metric:"12 design awards", accent:"#ffdb3d", cover:"/art/matter-language.svg", index:"06" },
 ];
 
-export function getProject(slug: string) {
-  return projects.find((project) => project.slug === slug);
-}
+export function getProject(slug:string){ return projects.find(project=>project.slug===slug); }
