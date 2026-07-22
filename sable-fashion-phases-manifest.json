@@ -1,0 +1,75 @@
+{
+  "project": "SABLE Fashion Commerce",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Foundation & Design System",
+      "zip": "sable-fashion-phase-01.zip"
+    },
+    {
+      "phase": 2,
+      "name": "Editorial Homepage",
+      "zip": "sable-fashion-phase-02.zip"
+    },
+    {
+      "phase": 3,
+      "name": "GSAP Motion System",
+      "zip": "sable-fashion-phase-03.zip"
+    },
+    {
+      "phase": 4,
+      "name": "Shop & Collections",
+      "zip": "sable-fashion-phase-04.zip"
+    },
+    {
+      "phase": 5,
+      "name": "Product Detail Experience",
+      "zip": "sable-fashion-phase-05.zip"
+    },
+    {
+      "phase": 6,
+      "name": "Cart, Wishlist & Checkout",
+      "zip": "sable-fashion-phase-06.zip"
+    },
+    {
+      "phase": 7,
+      "name": "Lookbook, Campaigns & Journal",
+      "zip": "sable-fashion-phase-07.zip"
+    },
+    {
+      "phase": 8,
+      "name": "Customer Account",
+      "zip": "sable-fashion-phase-08.zip"
+    },
+    {
+      "phase": 9,
+      "name": "Admin Commerce Console",
+      "zip": "sable-fashion-phase-09.zip"
+    },
+    {
+      "phase": 10,
+      "name": "Content Studio & CMS Layer",
+      "zip": "sable-fashion-phase-10.zip"
+    },
+    {
+      "phase": 11,
+      "name": "Premium UX & Accessibility",
+      "zip": "sable-fashion-phase-11.zip"
+    },
+    {
+      "phase": 12,
+      "name": "Performance & SEO",
+      "zip": "sable-fashion-phase-12.zip"
+    },
+    {
+      "phase": 13,
+      "name": "Responsive Polish & QA",
+      "zip": "sable-fashion-phase-13.zip"
+    },
+    {
+      "phase": 14,
+      "name": "Production Release",
+      "zip": "sable-fashion-phase-14.zip"
+    }
+  ]
+}

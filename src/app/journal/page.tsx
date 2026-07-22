@@ -1,0 +1,4 @@
+import Image from "next/image";
+import Link from "next/link";
+import { journalEntries } from "@/data/editorial";
+export default function JournalPage(){return <main className="container-shell py-12"><p className="eyebrow">Journal</p><h1 className="display mt-6">Field notes.</h1><div className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">{journalEntries.map((entry)=><Link href={`/journal/${entry.slug}`} key={entry.slug} className="group"><div className="media-frame relative aspect-[4/3]"><Image src={entry.image} alt={entry.title} fill className="transition duration-700 group-hover:scale-[1.025]"/></div><p className="eyebrow mt-4 text-[var(--muted)]">{entry.category} / {entry.date}</p><h2 className="mt-3 text-3xl tracking-[-.04em]">{entry.title}</h2><p className="mt-3 leading-7 text-[var(--muted)]">{entry.excerpt}</p></Link>)}</div></main>}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="SABLE editorial visual">
+<rect width="1600" height="1000" fill="#c7b3a5"/>
+<path d="M0 850 C340 420 580 1020 930 560 C1150 275 1320 280 1600 80 V1000 H0Z" fill="#191919" opacity="0.88"/>
+<circle cx="1240" cy="460" r="170" fill="#783f31" opacity="0.7"/>
+<rect x="1040" y="170" width="280" height="590" rx="140" fill="#c7b3a5" opacity="0.72"/>
+<text x="65" y="90" font-family="Arial" font-size="26" fill="#191919">SABLE / CAMPAIGN-01</text>
+</svg>

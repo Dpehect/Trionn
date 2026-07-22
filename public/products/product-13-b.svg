@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="Editorial product study 13">
+<rect width="900" height="1200" fill="#c7b3a5"/>
+<rect x="170" y="150" width="580" height="900" rx="260" fill="#191919" opacity="0.93"/>
+<path d="M180 560 C320 270, 580 270, 730 560 L650 990 L260 990 Z" fill="#783f31" opacity="0.72"/>
+<circle cx="470" cy="260" r="92" fill="#c7b3a5" opacity="0.78"/>
+<path d="M170 1080 H730" stroke="#191919" stroke-width="2" opacity="0.3"/>
+<text x="55" y="1125" font-family="Arial" font-size="22" fill="#191919">SABLE / STUDY 13B</text>
+</svg>

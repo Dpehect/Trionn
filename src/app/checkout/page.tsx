@@ -1,0 +1,2 @@
+import { CheckoutForm } from "@/components/forms/checkout-form";
+export default function CheckoutPage(){return <main className="container-shell py-12"><div className="max-w-3xl"><p className="eyebrow">Secure checkout / Demo</p><h1 className="headline mt-5">Delivery and payment.</h1><p className="mt-4 text-[var(--muted)]">This phase includes a production-shaped checkout UI. Connect Shopify, Medusa or your payment provider in the service layer.</p></div><CheckoutForm/></main>}

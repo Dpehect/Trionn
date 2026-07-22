@@ -1,0 +1,9 @@
+"use client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+const schema=z.object({name:z.string().min(2,"Enter your name"),email:z.email("Enter a valid email"),topic:z.string().min(1),message:z.string().min(10,"Add a little more detail")}); type FormValues=z.infer<typeof schema>;
+export function ContactForm(){const {register,handleSubmit,formState:{errors,isSubmitting},reset}=useForm<FormValues>({resolver:zodResolver(schema),defaultValues:{topic:"General"}});const submit=async()=>{await new Promise((r)=>setTimeout(r,400));toast.success("Message prepared in demo mode");reset();};return <form onSubmit={handleSubmit(submit)} className="grid gap-5 border-t pt-6"><Field label="Name" error={errors.name?.message}><input {...register("name")} className="w-full border-b bg-transparent py-3 outline-none"/></Field><Field label="Email" error={errors.email?.message}><input type="email" {...register("email")} className="w-full border-b bg-transparent py-3 outline-none"/></Field><Field label="Topic" error={errors.topic?.message}><select {...register("topic")} className="w-full border-b bg-transparent py-3"><option>General</option><option>Order</option><option>Press</option><option>Wholesale</option></select></Field><Field label="Message" error={errors.message?.message}><textarea rows={6} {...register("message")} className="w-full resize-none border-b bg-transparent py-3 outline-none"/></Field><Button disabled={isSubmitting}>{isSubmitting?"Sending…":"Send message"}</Button></form>}
+function Field({label,error,children}:{label:string;error?:string;children:React.ReactNode}){return <label className="grid gap-1 text-sm"><span>{label}</span>{children}{error?<span className="text-xs text-[var(--accent)]">{error}</span>:null}</label>}

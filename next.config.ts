@@ -1,8 +1,10 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-   /* config options here */
-   devIndicators: false,
+  reactStrictMode: true,
+  poweredByHeader: false,
+  images: { formats: ["image/avif", "image/webp"] },
+  experimental: { optimizePackageImports: ["lucide-react", "motion"] },
 };
 
 export default nextConfig;

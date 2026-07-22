@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";
+export default function manifest(): MetadataRoute.Manifest { return { name: "SABLE Independent Clothing", short_name: "SABLE", description: "Independent clothing shaped by proportion and movement.", start_url: "/", display: "standalone", background_color: "#f3f0e9", theme_color: "#171717", icons: [{ src: "/logo-mark.svg", sizes: "64x64", type: "image/svg+xml" }] }; }
