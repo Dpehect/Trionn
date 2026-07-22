@@ -1,25 +1,17 @@
-# Trionn 3D Refactor Files
+# Root layout fix
 
-Replace the matching files in the repository root:
+Copy `app/layout.tsx` into the repository root so the final path is:
 
-- `app/page.tsx`
-- `app/globals.css`
-- `components/SmoothScroll.tsx`
-- `components/canvas/Scene.tsx`
-- `components/canvas/Garment.tsx`
-- `components/dom/Overlay.tsx`
-- `hooks/useGarmentAnimation.ts`
+```text
+app/layout.tsx
+```
 
-This refactor adds:
+The repository root must contain both:
 
-- fixed Canvas and overlay stacking
-- pointer-event isolation
-- Lenis + GSAP ticker sync
-- section-specific ScrollTrigger timelines
-- hero rotation, detail close-up and variants reset
-- hotspot visibility by section
-- improved lighting and fabric material
-- refined procedural hoodie geometry
+```text
+app/layout.tsx
+app/page.tsx
+```
 
 Then run:
 
