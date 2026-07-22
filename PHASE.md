@@ -1,12 +1,13 @@
-# Faz 20 — Case Study Engine
+# Faz 24 — Authentication & Roles
 
-- Typed block schema
-- Text block
-- Media block
-- Metric block
-- Quote block
-- Shared renderer
-- Dynamic metadata
-- Static params
-- Next-project navigation
-- Case-study data architecture ready for CMS
+- Supabase SSR client
+- Cookie-based sessions
+- Sign-in API
+- Sign-out API
+- Login form
+- Admin/editor/viewer roles
+- Permission map
+- Role guard helper
+- Unauthorized page
+- Protected proxy routes
+- Login rate limiting
