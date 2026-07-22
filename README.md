@@ -1,20 +1,26 @@
-# Root layout fix
+# TRIONN 404 Route Fix
 
-Copy `app/layout.tsx` into the repository root so the final path is:
+Upload the `app` folder directly to the repository root.
 
-```text
-app/layout.tsx
-```
-
-The repository root must contain both:
+Correct repository structure:
 
 ```text
-app/layout.tsx
-app/page.tsx
+Trionn/
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
+  components/
+  hooks/
+  store/
+  package.json
+  tsconfig.json
 ```
 
-Then run:
+Do not upload it as:
 
-```bash
-npm run build
+```text
+Trionn/trionn-404-route-fix/app/
 ```
+
+After committing, redeploy on Vercel.
