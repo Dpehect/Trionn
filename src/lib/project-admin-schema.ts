@@ -11,7 +11,7 @@ export const projectAdminSchema = z.object({
   services: z.array(z.string()).min(1),
   metric: z.string().trim().max(120).optional().or(z.literal("")),
   status: z.enum(["draft", "published", "archived"]),
-  featured: z.boolean().default(false),
+  featured: z.boolean(),
   seoTitle: z.string().trim().max(70).optional().or(z.literal("")),
   seoDescription: z.string().trim().max(160).optional().or(z.literal("")),
 });
