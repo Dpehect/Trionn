@@ -1,3 +1,34 @@
+export type TextCaseStudyBlock = {
+  type: "text";
+  eyebrow: string;
+  title: string;
+  body: string;
+};
+
+export type MetricCaseStudyBlock = {
+  type: "metric";
+  items: Array<{ label: string; value: string }>;
+};
+
+export type MediaCaseStudyBlock = {
+  type: "media";
+  title: string;
+  ratio: "16/9" | "4/3" | "1/1";
+  accent: string;
+};
+
+export type QuoteCaseStudyBlock = {
+  type: "quote";
+  quote: string;
+  attribution: string;
+};
+
+export type CaseStudyBlock =
+  | TextCaseStudyBlock
+  | MetricCaseStudyBlock
+  | MediaCaseStudyBlock
+  | QuoteCaseStudyBlock;
+
 export type Project = {
   slug: string;
   title: string;
@@ -20,4 +51,6 @@ export const projects: Project[] = [
   { slug:"matter-language", title:"MATTER LANGUAGE", category:"Research / Publication", year:"2024", summary:"An experimental publication system examining the border between physical matter and code.", services:["Editorial","Digital identity","Interaction"], metric:"12 design awards", accent:"#ffdb3d", cover:"/art/matter-language.svg", index:"06" },
 ];
 
-export function getProject(slug:string){ return projects.find(project=>project.slug===slug); }
+export function getProject(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
