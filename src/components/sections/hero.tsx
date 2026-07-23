@@ -8,10 +8,22 @@ import { ArrowDownRight, ArrowRight, Sparkles } from "lucide-react";
 import { useRef } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
 
-const ProductLoomScene = dynamic(
-  () => import("@/components/canvas/product-loom-scene").then((module) => module.ProductLoomScene),
+const LivingInterfaceScene = dynamic(
+  () => import("@/components/canvas/living-interface-scene").then((module) => module.LivingInterfaceScene),
   { ssr: false, loading: () => <div className="hero-object-fallback" /> },
 );
+
+const capabilities = [
+  { label: "Software", detail: "Custom platforms", index: 0, tone: "blue", position: "top-left" },
+  { label: "AI Systems", detail: "Agents + automation", index: 3, tone: "violet", position: "top-right" },
+  { label: "Products", detail: "SaaS experiences", index: 4, tone: "coral", position: "bottom-left" },
+  { label: "Mobile", detail: "Apps + responsive web", index: 2, tone: "lime", position: "bottom-right" },
+];
+
+function openCapability(index: number) {
+  window.dispatchEvent(new CustomEvent("softbridge:select-service", { detail: { index } }));
+  document.querySelector("#services")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -25,13 +37,14 @@ export function Hero() {
         .from("[data-hero-word]", { yPercent: 120, rotate: 2.5, duration: 1.05, stagger: 0.08 }, "-=0.35")
         .from("[data-hero-copy]", { y: 24, opacity: 0, duration: 0.75, stagger: 0.08 }, "-=0.52")
         .from("[data-trust-item]", { scale: 0.85, opacity: 0, duration: 0.55, stagger: 0.05 }, "-=0.45")
-        .from("[data-hero-canvas]", { scale: 0.78, opacity: 0, rotate: -6, duration: 1.35 }, "-=1.1");
+        .from("[data-hero-canvas]", { scale: 0.78, opacity: 0, rotate: -5, duration: 1.35 }, "-=1.1")
+        .from("[data-capability-control]", { scale: 0.78, opacity: 0, duration: 0.62, stagger: 0.07 }, "-=0.7");
 
       gsap.timeline({
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: 1.1 },
       })
         .to("[data-hero-copy-column]", { yPercent: -12, opacity: 0.35 }, 0)
-        .to("[data-hero-canvas]", { yPercent: 12, rotation: 5, scale: 0.9 }, 0)
+        .to("[data-hero-canvas]", { yPercent: 12, rotation: 4, scale: 0.92 }, 0)
         .to("[data-hero-orb]", { yPercent: 30, stagger: 0.06 }, 0);
     });
     return () => mm.revert();
@@ -75,9 +88,27 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive adaptive product loom">
-          <div className="hero-object-badge"><span /> Explore capabilities</div>
-          <ProductLoomScene />
+        <div data-hero-canvas className="hero-object-wrap living-interface-wrap" aria-label="Interactive living interface sculpture">
+          <div className="hero-object-badge"><span /> Living product system</div>
+          <LivingInterfaceScene />
+          <div className="capability-controls" aria-label="Explore capabilities">
+            {capabilities.map((capability) => (
+              <button
+                key={capability.label}
+                type="button"
+                data-capability-control
+                className={`capability-control capability-control--${capability.tone} capability-control--${capability.position}`}
+                onClick={() => openCapability(capability.index)}
+              >
+                <span className="capability-control__index">0{capability.index + 1}</span>
+                <span className="capability-control__copy">
+                  <strong>{capability.label}</strong>
+                  <small>{capability.detail}</small>
+                </span>
+                <ArrowDownRight size={15} />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
