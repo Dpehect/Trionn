@@ -1,29 +1,22 @@
-# Softbridge Professional — Phases 1–11
+# Softbridge Interactive Wayfinding Revision
 
-This cumulative package includes the technical foundation, brand system, typography, responsive navigation, final hero, advanced 3D signpost, About/trust experience, sticky services, centralized case-study data, horizontal work slider and dynamic project detail pages.
+The hero signpost has been rebuilt in React Three Fiber as a functional wayfinding interface.
 
-## Routes
-- `/`
-- `/projects`
-- `/projects/northstar-ai`
-- `/projects/aurora-commerce`
-- `/projects/sisu-mobile`
-- `/projects/helix-health`
+## Interaction
 
-## Run
-```bash
-npm install
-npm run dev
-```
+- SOFTWARE selects Custom Software Development.
+- AI SYSTEMS selects AI Automation and Agents.
+- DIGITAL PRODUCTS selects SaaS Product Development.
+- MOBILE + WEB selects Mobile Applications.
+- Clicking a panel scrolls to Services and activates the matching service.
 
-## Verify
-```bash
-npm run check
-```
+## Visual improvements
 
-## Final visual-content revision
-- Replaced generic gradient placeholders with project-specific product UI scenes.
-- Added AI operations dashboard, commerce storefront, mobile product screens and digital health workspace.
-- Expanded case studies with Discover / Prototype / Deliver process content.
-- Fixed hero headline sizing for 1280–1440px displays.
-- Reduced empty section rhythm and improved contact/careers density.
+- Single front-facing label per panel
+- Metallic outer shells and colored inset faces
+- Beveled directional ends
+- Icon badges
+- Engineered mounting collars and bolts
+- Beacon light and status module
+- Controlled pointer response instead of continuous rotation
+- Hover lift and depth feedback

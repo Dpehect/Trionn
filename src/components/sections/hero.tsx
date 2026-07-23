@@ -76,7 +76,7 @@ export function Hero() {
         </div>
 
         <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive colorful software direction signpost">
-          <div className="hero-object-badge"><span /> Interactive studio object</div>
+          <div className="hero-object-badge"><span /> Choose a capability</div>
           <SignpostScene />
         </div>
       </div>

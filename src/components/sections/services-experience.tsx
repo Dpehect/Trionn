@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,6 +24,19 @@ export function ServicesExperience() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [openMobile, setOpenMobile] = useState<number | null>(0);
+
+  useEffect(() => {
+    const handleSignpostSelection = (event: Event) => {
+      const customEvent = event as CustomEvent<{ index?: number }>;
+      const index = customEvent.detail?.index;
+      if (typeof index !== "number" || index < 0 || index >= services.length) return;
+      setActive(index);
+      setOpenMobile(index);
+    };
+
+    window.addEventListener("softbridge:select-service", handleSignpostSelection);
+    return () => window.removeEventListener("softbridge:select-service", handleSignpostSelection);
+  }, []);
 
   useGSAP(() => {
     const items = gsap.utils.toArray<HTMLElement>("[data-service-item]");
