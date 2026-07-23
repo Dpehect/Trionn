@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ArrowDownRight, ArrowRight, Sparkles } from "lucide-react";
-import { EditorialCollage } from "@/components/hero/editorial-collage";
+import { StudioCockpit } from "@/components/hero/studio-cockpit";
 import { useRef } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
 
@@ -71,9 +71,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero-canvas className="hero-object-wrap editorial-collage-wrap" aria-label="Interactive editorial product collage">
-          <div className="hero-object-badge"><span /> Interactive studio index</div>
-          <EditorialCollage />
+        <div data-hero-canvas className="hero-object-wrap studio-cockpit-wrap" aria-label="Interactive software studio cockpit">
+          <div className="hero-object-badge"><span /> Live product experience</div>
+          <StudioCockpit />
         </div>
       </div>
 
