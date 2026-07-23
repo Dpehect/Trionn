@@ -20,3 +20,10 @@ npm run dev
 ```bash
 npm run check
 ```
+
+## Final visual-content revision
+- Replaced generic gradient placeholders with project-specific product UI scenes.
+- Added AI operations dashboard, commerce storefront, mobile product screens and digital health workspace.
+- Expanded case studies with Discover / Prototype / Deliver process content.
+- Fixed hero headline sizing for 1280–1440px displays.
+- Reduced empty section rhythm and improved contact/careers density.

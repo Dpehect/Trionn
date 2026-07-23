@@ -6,6 +6,7 @@ import { ArrowUpRight, MoveHorizontal } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { caseStudies } from "@/data/case-studies";
+import { ProductVisual } from "@/components/work/product-visual";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,10 +45,7 @@ export function WorkSlider() {
       <div ref={track} className="work-track">
         {caseStudies.map((project) => (
           <Link href={`/projects/${project.slug}`} className="work-card" key={project.slug} data-cursor="view">
-            <div className="work-card__visual" style={{ background: project.gradient }}>
-              <span className="work-card__number">{project.number}</span>
-              <span className="work-card__orb"/><span className="work-card__panel"/>
-            </div>
+            <div className="work-card__visual"><ProductVisual project={project} compact /></div>
             <div className="work-card__body"><div><p>{project.industry}</p><h3>{project.title}</h3></div><ArrowUpRight size={25}/></div>
             <p className="work-card__summary">{project.summary}</p>
           </Link>
