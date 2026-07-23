@@ -24,10 +24,13 @@ function Sign({ sign }: { sign: (typeof signs)[number] }) {
         <boxGeometry args={[0.44, 0.44, 0.21]} />
         <meshPhysicalMaterial color={sign.color} roughness={0.2} clearcoat={1} clearcoatRoughness={0.12} />
       </mesh>
-      <Html transform center position={[0, 0, 0.122]} distanceFactor={6.2} style={{ pointerEvents: "none" }}>
-        <span className="sign-label">{sign.label}</span>
-      </Html>
-      <Html transform center rotation={[0, Math.PI, 0]} position={[0, 0, -0.122]} distanceFactor={6.2} style={{ pointerEvents: "none" }}>
+      <Html
+        transform
+        center
+        position={[0, 0, 0.132]}
+        distanceFactor={7.1}
+        style={{ pointerEvents: "none", userSelect: "none" }}
+      >
         <span className="sign-label">{sign.label}</span>
       </Html>
       {[-boltX, boltX].map((x) => (
@@ -45,17 +48,20 @@ function SceneObject() {
   const { pointer } = useThree();
   useFrame((state, delta) => {
     if (!group.current) return;
-    const targetY = pointer.x * 0.24 + state.clock.elapsedTime * 0.055;
-    const targetX = pointer.y * -0.08;
-    group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetY, 3.4, delta);
-    group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, targetX, 3.4, delta);
+    // Keep every label facing the camera. A full 360° spin makes DOM-backed
+    // labels bleed through the meshes and become unreadable.
+    const idle = Math.sin(state.clock.elapsedTime * 0.55) * 0.035;
+    const targetY = -0.08 + pointer.x * 0.13 + idle;
+    const targetX = pointer.y * -0.045;
+    group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetY, 4.2, delta);
+    group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, targetX, 4.2, delta);
   });
 
   const collarYs = useMemo(() => signs.map((sign) => sign.y), []);
 
   return (
     <Float speed={1.1} rotationIntensity={0.08} floatIntensity={0.18}>
-      <group ref={group} rotation={[0.02, -0.24, -0.02]} position={[0.2, -0.2, 0]}>
+      <group ref={group} rotation={[0.02, -0.08, -0.02]} position={[0.2, -0.2, 0]}>
         <mesh position={[0, -1.3, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[0.13, 0.17, 5.85, 48]} />
           <meshPhysicalMaterial color="#cfc9be" metalness={0.82} roughness={0.2} clearcoat={0.38} envMapIntensity={1.25} />
