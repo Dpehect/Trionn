@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight, ArrowUpRight, Check, Clock3, Code2, Database, Globe2,
@@ -120,6 +120,38 @@ function ProductMock() {
 export function NordicStudioPage() {
   const [activeCapability, setActiveCapability] = useState("product");
   const [formState, setFormState] = useState<"idle"|"sending"|"sent"|"error">("idle");
+
+  const handleProjectBrief = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const target = event.currentTarget;
+    setFormState("sending");
+
+    const form = new FormData(target);
+    const payload = {
+      name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
+      company: String(form.get("company") || ""),
+      service: String(form.get("service") || ""),
+      budget: String(form.get("budget") || ""),
+      timing: String(form.get("timing") || ""),
+      message: String(form.get("message") || ""),
+      confidential: form.get("confidential") === "on",
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error("Request failed");
+      setFormState("sent");
+      target.reset();
+    } catch {
+      setFormState("error");
+    }
+  };
   const [workFilter, setWorkFilter] = useState("All");
   const [menuOpen, setMenuOpen] = useState(false);
   const capability = capabilities.find(c=>c.id===activeCapability) ?? capabilities[0];
@@ -202,7 +234,7 @@ export function NordicStudioPage() {
 
     <section className="nordic-contact" id="contact">
       <div className="nordic-contact__intro"><p className="nordic-eyebrow">Start a project / 08</p><h2>Bring us the part that cannot afford to stay unclear.</h2><p>Share the problem, intended outcome and what is blocking progress. A senior team member replies within two business days.</p><div className="nordic-contact__meta"><span><Clock3/> Helsinki local time · EET/EEST</span><span><ShieldCheck/> NDA-ready conversations</span><span><Mail/> hello@softbridge.fi</span></div></div>
-      <form className="nordic-form" onSubmit={async (event)=>{event.preventDefault();setFormState("sending");const form=new FormData(event.currentTarget);const payload={name:String(form.get("name")||""),email:String(form.get("email")||""),company:String(form.get("company")||""),service:String(form.get("service")||""),budget:String(form.get("budget")||""),message:String(form.get("message")||"")};try{const response=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});if(!response.ok)throw new Error("Request failed");setFormState("sent");event.currentTarget.reset();}catch{setFormState("error");}}><label><span>Your name</span><input name="name" required placeholder="Aino Virtanen"/></label><label><span>Work email</span><input type="email" name="email" required placeholder="aino@company.com"/></label><label><span>Company or team</span><input name="company" required placeholder="Company name"/></label><label><span>What do you need help with?</span><select name="service" required defaultValue=""><option value="" disabled>Select the closest option</option><option>Product engineering</option><option>Product experience</option><option>AI systems</option><option>Platform engineering</option><option>Not sure yet</option></select></label><label><span>Indicative investment</span><select name="budget" required defaultValue=""><option value="" disabled>Select range</option><option>€20k–€40k</option><option>€40k–€80k</option><option>€80k–€150k</option><option>€150k+</option><option>Need help defining scope</option></select><small>Not a binding quote.</small></label><label><span>Preferred start</span><select name="timing" defaultValue=""><option value="" disabled>Select timing</option><option>Within 4 weeks</option><option>1–2 months</option><option>This quarter</option><option>Later this year</option></select></label><label className="nordic-form__wide"><span>What needs to change?</span><textarea name="message" required minLength={20} maxLength={2000} rows={6} placeholder="Describe the problem, who experiences it, the intended outcome and important constraints."/><small>20–2,000 characters</small></label><label className="nordic-check"><input type="checkbox" name="confidential"/><span>This project includes confidential information.</span></label><button className="nordic-button nordic-button--lime" type="submit" disabled={formState==="sending"}>{formState==="sending"?"Sending brief…":"Send project brief"} <ArrowUpRight size={17}/></button>{formState==="sent"&&<p className="nordic-form-status">Brief received. A senior team member will reply within two business days.</p>}{formState==="error"&&<p className="nordic-form-status nordic-form-status--error">The brief could not be sent. Try again or email hello@softbridge.fi.</p>}</form>
+      <form className="nordic-form" onSubmit={handleProjectBrief}><label><span>Your name</span><input name="name" required placeholder="Aino Virtanen"/></label><label><span>Work email</span><input type="email" name="email" required placeholder="aino@company.com"/></label><label><span>Company or team</span><input name="company" required placeholder="Company name"/></label><label><span>What do you need help with?</span><select name="service" required defaultValue=""><option value="" disabled>Select the closest option</option><option>Product engineering</option><option>Product experience</option><option>AI systems</option><option>Platform engineering</option><option>Not sure yet</option></select></label><label><span>Indicative investment</span><select name="budget" required defaultValue=""><option value="" disabled>Select range</option><option>€20k–€40k</option><option>€40k–€80k</option><option>€80k–€150k</option><option>€150k+</option><option>Need help defining scope</option></select><small>Not a binding quote.</small></label><label><span>Preferred start</span><select name="timing" defaultValue=""><option value="" disabled>Select timing</option><option>Within 4 weeks</option><option>1–2 months</option><option>This quarter</option><option>Later this year</option></select></label><label className="nordic-form__wide"><span>What needs to change?</span><textarea name="message" required minLength={20} maxLength={2000} rows={6} placeholder="Describe the problem, who experiences it, the intended outcome and important constraints."/><small>20–2,000 characters</small></label><label className="nordic-check"><input type="checkbox" name="confidential"/><span>This project includes confidential information.</span></label><button className="nordic-button nordic-button--lime" type="submit" disabled={formState==="sending"}>{formState==="sending"?"Sending brief…":"Send project brief"} <ArrowUpRight size={17}/></button>{formState==="sent"&&<p className="nordic-form-status">Brief received. A senior team member will reply within two business days.</p>}{formState==="error"&&<p className="nordic-form-status nordic-form-status--error">The brief could not be sent. Try again or email hello@softbridge.fi.</p>}</form>
     </section>
 
     <footer className="nordic-footer"><div><p>Softbridge</p><h2>Senior product engineering for ambitious European teams.</h2></div><nav><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#approach">Approach</a><a href="#talent">Careers</a><a href="/privacy">Privacy</a></nav><div><span><i/> Selected project conversations open</span><a href="mailto:hello@softbridge.fi">hello@softbridge.fi</a></div><small>© 2026 Softbridge. Legal entity details are disclosed in commercial documentation.</small></footer>
