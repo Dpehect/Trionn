@@ -1,16 +1,19 @@
-# Softbridge Creative — Revision A
+# Softbridge Solutions Finland — Professional Final
 
-A complete art-direction reset for Softbridge Solutions Finland.
+Complete Phase 1–14 Next.js 15 software studio website.
 
 ## Included
-- Warm light premium visual system instead of black backgrounds
-- Multi-accent palette: electric blue, violet, coral and lime
-- Fixed glass navigation
-- GSAP hero reveal and scroll-linked object movement
-- Interactive React Three Fiber signpost modeled procedurally in code
-- Metallic pole, glossy direction signs, bolts, shadows and pointer reaction
-- Responsive mobile composition and reduced-motion support
-- Colorful foundation sections for the next About, Services, Work and Careers revisions
+- Light multi-colour art direction and responsive typography
+- GSAP + ScrollTrigger + Lenis motion foundation
+- R3F/Drei signpost hero with adaptive rendering
+- About/trust, sticky services and horizontal case-study experience
+- Dynamic project archive and detail routes
+- Careers index and JobPosting detail routes
+- React Hook Form + Zod project inquiry flow
+- Creative footer, local Helsinki time and availability state
+- Organization and JobPosting structured data
+- sitemap, robots, manifest, canonical/Open Graph/Twitter metadata
+- custom 404/error/loading states and Playwright smoke coverage
 
 ## Run
 ```bash
@@ -20,7 +23,8 @@ npm run dev
 
 ## Validate
 ```bash
-npm run typecheck
-npm run lint
-npm run build
+npm run check
+npm run test:e2e
 ```
+
+Set `NEXT_PUBLIC_SITE_URL` in Vercel before production deployment. The contact endpoint validates submissions and is ready to connect to Resend, HubSpot or another CRM.
