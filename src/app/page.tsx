@@ -1,5 +1,5 @@
-import { NordicStudioPage } from "@/components/sections/nordic-studio-page";
+import { StudioSite } from '@/components/site/studio-site';
 
-export default function HomePage() {
-  return <NordicStudioPage />;
+export default function Page() {
+  return <StudioSite />;
 }

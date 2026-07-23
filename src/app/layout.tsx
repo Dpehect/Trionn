@@ -1,10 +1,29 @@
 import type { Metadata } from 'next';
-import { Geist,Geist_Mono } from 'next/font/google';
+import { Geist, Space_Grotesk } from 'next/font/google';
 import './globals.css';
-import { AppProviders } from '@/components/providers/app-providers';
-import { CustomCursor } from '@/components/motion/custom-cursor';
-import { PageTransition } from '@/components/motion/page-transition';
-const geist=Geist({subsets:['latin'],variable:'--font-geist-sans',display:'swap'});const geistMono=Geist_Mono({subsets:['latin'],variable:'--font-geist-mono',display:'swap'});
-const base=process.env.NEXT_PUBLIC_SITE_URL??'https://softbridge.fi';
-export const metadata:Metadata={metadataBase:new URL(base),title:{default:'Softbridge — Senior Product Engineering & AI Systems',template:'%s | Softbridge Solutions Finland'},description:'Independent software studio delivering senior product engineering, AI systems and scalable digital products for teams across Finland and Europe.',alternates:{canonical:'/'},openGraph:{title:'Softbridge Solutions Finland',description:'Senior product engineering, AI systems and scalable digital products for ambitious European teams.',url:base,siteName:'Softbridge Solutions Finland',locale:'en_FI',type:'website'},twitter:{card:'summary_large_image',title:'Softbridge Solutions Finland',description:'Senior product engineering, AI systems and scalable digital products for ambitious European teams.'},robots:{index:true,follow:true}};
-export default function RootLayout({children}:{children:React.ReactNode}){const organization={"@context":"https://schema.org","@type":"Organization",name:'Softbridge Solutions Finland',url:base,email:'hello@softbridge.fi',areaServed:['Finland','Nordic countries','European Union'],address:{"@type":"PostalAddress",addressLocality:'Helsinki',addressCountry:'FI'},knowsAbout:['Custom software development','AI automation','SaaS product development','Mobile applications','Product design']};return <html lang="en-FI" className={`${geist.variable} ${geistMono.variable}`}><body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organization)}}/><AppProviders><PageTransition>{children}</PageTransition><CustomCursor/></AppProviders></body></html>}
+
+const body = Geist({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
+const display = Space_Grotesk({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://softbridge.fi'),
+  title: { default: 'Softbridge — Senior Product Engineering & AI Systems', template: '%s · Softbridge' },
+  description: 'Independent product engineering studio delivering senior software teams, AI systems and scalable digital products across Helsinki, Finland and Europe.',
+  alternates: { canonical: '/' },
+  openGraph: { title: 'Softbridge — Senior teams for software that cannot fail quietly.', description: 'Senior product engineering and AI systems. Helsinki client strategy, Türkiye engineering delivery.', url: 'https://softbridge.fi', siteName: 'Softbridge', locale: 'en_FI', type: 'website' },
+  twitter: { card: 'summary_large_image', title: 'Softbridge — Senior Product Engineering', description: 'Senior software and AI delivery across Finland and Europe.' },
+  robots: { index: true, follow: true },
+};
+
+const organization = {
+  '@context': 'https://schema.org', '@type': ['Organization','ProfessionalService'], name: 'Softbridge', url: 'https://softbridge.fi', email: 'hello@softbridge.fi',
+  description: 'Independent product engineering studio with client strategy in Helsinki and senior engineering delivery in Türkiye.',
+  areaServed: ['Helsinki','Finland','Nordic countries','European Union'],
+  knowsAbout: ['Product engineering','AI systems','Product design','Cloud platforms','Software development'],
+  address: { '@type': 'PostalAddress', addressLocality: 'Helsinki', addressCountry: 'FI' },
+  hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Product engineering services', itemListElement: ['Product Engineering','Product Experience','AI Systems','Platform Engineering'].map(name => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })) }
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en-FI" className={`${body.variable} ${display.variable}`}><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}/>{children}</body></html>;
+}
