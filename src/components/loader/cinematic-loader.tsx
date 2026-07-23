@@ -24,7 +24,7 @@ export function CinematicLoader({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
   const [tokenIndex, setTokenIndex] = useState(0);
   const label = useMemo(() => loaderTokens[tokenIndex], [tokenIndex]);
-  const [scrambled, setScrambled] = useState(label);
+  const [scrambled, setScrambled] = useState<string>(label);
 
   useEffect(() => {
     const duration = 2200;
