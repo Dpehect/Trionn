@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Check, Clock3, ShieldCheck } from "lucide-react";
@@ -68,15 +67,35 @@ export default function Site() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
-    const raf = (time: number) => lenis.raf(time);
-    gsap.ticker.add(raf); gsap.ticker.lagSmoothing(0);
-    lenis.on("scroll", ScrollTrigger.update);
+
+    // Native scrolling is intentional. Artificial interpolation made wheel and
+    // trackpad input feel delayed, especially on Safari and mid-range devices.
     const ctx = gsap.context(() => {
-      gsap.from("[data-hero-line]", { yPercent: 105, opacity: 0, duration: 1, stagger: .08, ease: "power4.out" });
-      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => gsap.from(el, { y: 30, opacity: 0, duration: .75, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 84%" } }));
+      gsap.from("[data-hero-line]", {
+        yPercent: 90,
+        opacity: 0,
+        duration: 0.78,
+        stagger: 0.055,
+        ease: "power3.out",
+      });
+
+      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) =>
+        gsap.from(el, {
+          y: 20,
+          opacity: 0,
+          duration: 0.58,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            once: true,
+          },
+        }),
+      );
     }, root);
-    return () => { ctx.revert(); gsap.ticker.remove(raf); lenis.destroy(); };
+
+    ScrollTrigger.refresh();
+    return () => ctx.revert();
   }, []);
 
   async function submitBrief(event: React.FormEvent<HTMLFormElement>) {
