@@ -1,29 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ArrowDownRight, ArrowRight, Sparkles } from "lucide-react";
+import { EditorialCollage } from "@/components/hero/editorial-collage";
 import { useRef } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
-
-const LivingInterfaceScene = dynamic(
-  () => import("@/components/canvas/living-interface-scene").then((module) => module.LivingInterfaceScene),
-  { ssr: false, loading: () => <div className="hero-object-fallback" /> },
-);
-
-const capabilities = [
-  { label: "Software", detail: "Custom platforms", index: 0, tone: "blue", position: "top-left" },
-  { label: "AI Systems", detail: "Agents + automation", index: 3, tone: "violet", position: "top-right" },
-  { label: "Products", detail: "SaaS experiences", index: 4, tone: "coral", position: "bottom-left" },
-  { label: "Mobile", detail: "Apps + responsive web", index: 2, tone: "lime", position: "bottom-right" },
-];
-
-function openCapability(index: number) {
-  window.dispatchEvent(new CustomEvent("softbridge:select-service", { detail: { index } }));
-  document.querySelector("#services")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -88,27 +71,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero-canvas className="hero-object-wrap living-interface-wrap" aria-label="Interactive living interface sculpture">
-          <div className="hero-object-badge"><span /> Living product system</div>
-          <LivingInterfaceScene />
-          <div className="capability-controls" aria-label="Explore capabilities">
-            {capabilities.map((capability) => (
-              <button
-                key={capability.label}
-                type="button"
-                data-capability-control
-                className={`capability-control capability-control--${capability.tone} capability-control--${capability.position}`}
-                onClick={() => openCapability(capability.index)}
-              >
-                <span className="capability-control__index">0{capability.index + 1}</span>
-                <span className="capability-control__copy">
-                  <strong>{capability.label}</strong>
-                  <small>{capability.detail}</small>
-                </span>
-                <ArrowDownRight size={15} />
-              </button>
-            ))}
-          </div>
+        <div data-hero-canvas className="hero-object-wrap editorial-collage-wrap" aria-label="Interactive editorial product collage">
+          <div className="hero-object-badge"><span /> Interactive studio index</div>
+          <EditorialCollage />
         </div>
       </div>
 
