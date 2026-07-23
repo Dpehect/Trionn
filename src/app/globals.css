@@ -558,3 +558,49 @@ body { min-width: 320px; }
 @media(max-width:1100px){.studio-cockpit{min-height:520px}.studio-cockpit__content{grid-template-columns:190px minmax(0,1fr)}.studio-cockpit__preview,.cockpit-product,.cockpit-agents,.cockpit-launch,.cockpit-scale{min-height:310px}}
 @media(max-width:760px){.studio-cockpit{min-height:auto;border-radius:22px}.studio-cockpit__content{grid-template-columns:1fr}.studio-cockpit__summary{min-height:210px}.studio-cockpit__summary-head{margin-bottom:14px}.studio-cockpit__preview,.cockpit-product,.cockpit-agents,.cockpit-launch,.cockpit-scale{min-height:300px}.studio-cockpit__workflow{grid-template-columns:repeat(2,1fr)}.studio-cockpit__tabs button span{font-size:9px}}
 @media(max-width:480px){.studio-cockpit__topbar{padding:12px}.studio-cockpit__live{font-size:7px;padding:6px 8px}.studio-cockpit__tabs{gap:3px;padding:6px}.studio-cockpit__tabs button{height:36px;gap:4px}.studio-cockpit__tabs button span{font-size:8px}.studio-cockpit__content{padding:8px}.studio-cockpit__workflow{padding:0 8px 8px;gap:5px}.studio-cockpit__workflow>div{padding:8px 7px}.cockpit-launch{grid-template-columns:1fr;padding:12px}.cockpit-launch__phone{display:none}.cockpit-launch__dashboard{width:100%}.cockpit-agent-node{font-size:7px;padding:7px}.cockpit-product__rail{width:40px}.cockpit-editor__panel{width:105px}.studio-cockpit__identity small{display:none}}
+
+/* Cockpit badge overlap fix */
+.studio-cockpit-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: 10px;
+}
+
+.studio-cockpit-wrap > .hero-object-badge {
+  position: relative;
+  inset: auto;
+  align-self: flex-end;
+  flex: 0 0 auto;
+  max-width: calc(100% - 32px);
+  min-height: 42px;
+  margin: 0 18px 14px 0;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 32px rgba(46, 38, 27, 0.1), inset 0 1px 0 rgba(255,255,255,.95);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.studio-cockpit-wrap > .studio-cockpit {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .studio-cockpit-wrap {
+    padding-top: 0;
+  }
+
+  .studio-cockpit-wrap > .hero-object-badge {
+    align-self: flex-start;
+    max-width: calc(100% - 24px);
+    min-height: 38px;
+    margin: 0 0 10px 12px;
+    padding: 0 13px;
+    font-size: 8px;
+    letter-spacing: .11em;
+  }
+}
