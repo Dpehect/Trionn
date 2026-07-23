@@ -1,6 +1,0 @@
-"use client";
-import dynamic from "next/dynamic";
-const HeroCanvas = dynamic(() => import("@/components/canvas/hero-canvas").then((m) => m.HeroCanvas), { ssr: false });
-export function HeroStage() {
-  return <div className="hero-stage dark-mesh-stage" aria-label="Interactive translucent geometric mesh"><HeroCanvas /></div>;
-}
