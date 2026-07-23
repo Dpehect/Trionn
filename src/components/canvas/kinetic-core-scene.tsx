@@ -52,6 +52,13 @@ function OrbitalRing({ radius, tube, rotation, color, speed }: { radius: number;
 function CapabilityModule({ capability, index }: { capability: Capability; index: number }) {
   const group = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
+  const [selected, setSelected] = useState(false);
+
+  const activate = () => {
+    setSelected(true);
+    selectService(capability.serviceIndex);
+    window.setTimeout(() => setSelected(false), 1400);
+  };
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -59,31 +66,35 @@ function CapabilityModule({ capability, index }: { capability: Capability; index
     const angle = capability.angle + time * capability.speed;
     const targetX = Math.cos(angle) * capability.radius;
     const targetY = Math.sin(angle) * capability.radius * 0.58;
-    const targetZ = Math.sin(angle * 1.35) * 0.36 + (hovered ? 0.35 : 0);
+    const isEngaged = hovered || selected;
+    const targetZ = Math.sin(angle * 1.35) * 0.36 + (isEngaged ? 0.42 : 0);
 
     group.current.position.x = THREE.MathUtils.damp(group.current.position.x, targetX, 5.5, delta);
     group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 5.5, delta);
     group.current.position.z = THREE.MathUtils.damp(group.current.position.z, targetZ, 5.5, delta);
     group.current.rotation.z = THREE.MathUtils.damp(group.current.rotation.z, -angle * 0.12, 5, delta);
-    const targetScale = hovered ? 1.12 : 1;
+    const targetScale = isEngaged ? 1.14 : 1;
     group.current.scale.setScalar(THREE.MathUtils.damp(group.current.scale.x, targetScale, 8, delta));
   });
 
   return (
     <group
       ref={group}
-      onPointerEnter={(event) => {
+      onPointerOver={(event) => {
         event.stopPropagation();
         setHovered(true);
         document.body.style.cursor = "pointer";
       }}
-      onPointerLeave={() => {
+      onPointerOut={() => {
         setHovered(false);
         document.body.style.cursor = "";
       }}
+      onPointerDown={(event) => {
+        event.stopPropagation();
+      }}
       onClick={(event) => {
         event.stopPropagation();
-        selectService(capability.serviceIndex);
+        activate();
       }}
     >
       <RoundedBox args={[1.3, 0.52, 0.24]} radius={0.16} smoothness={8} castShadow>
@@ -121,7 +132,30 @@ function CapabilityModule({ capability, index }: { capability: Capability; index
         <cylinderGeometry args={[0.045, 0.045, 0.28, 24]} />
         <meshStandardMaterial color={capability.color} emissive={capability.color} emissiveIntensity={0.7} />
       </mesh>
-      <pointLight color={capability.color} intensity={hovered ? 1.2 : 0.35} distance={1.4} />
+      <pointLight color={capability.color} intensity={hovered || selected ? 1.45 : 0.35} distance={1.6} />
+      <Html
+        transform
+        center
+        position={[0, 0, 0.28]}
+        distanceFactor={7.5}
+        zIndexRange={[30, 10]}
+        style={{ pointerEvents: "auto", width: "138px", height: "58px" }}
+      >
+        <button
+          type="button"
+          className={`kinetic-module-hitbox ${hovered || selected ? "is-active" : ""}`}
+          aria-label={`Open ${capability.label} service`}
+          onPointerEnter={() => { setHovered(true); document.body.style.cursor = "pointer"; }}
+          onPointerLeave={() => { setHovered(false); document.body.style.cursor = ""; }}
+          onFocus={() => setHovered(true)}
+          onBlur={() => setHovered(false)}
+          onClick={(event) => { event.stopPropagation(); activate(); }}
+        >
+          <span>{capability.short}</span>
+          <small>Explore service</small>
+        </button>
+      </Html>
+
       <Html
         center
         position={[0, -0.48, 0]}
@@ -226,6 +260,7 @@ export function KineticCoreScene() {
   return (
     <Canvas
       dpr={[1, 1.5]}
+      style={{ pointerEvents: "auto", cursor: "grab" }}
       camera={{ position: [0, 0.1, 6.4], fov: 38 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       shadows
