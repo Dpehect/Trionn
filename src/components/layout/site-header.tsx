@@ -51,7 +51,9 @@ export function SiteHeader() {
       gsap.fromTo("[data-mobile-link]", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, delay: 0.22, ease: "power3.out" });
     } else {
       document.body.style.overflow = "";
-      gsap.to(menuRef.current, { clipPath: "circle(0% at 92% 6%)", duration: 0.55, ease: "power3.inOut", onComplete: () => gsap.set(menuRef.current, { display: "none" }) });
+      gsap.to(menuRef.current, { clipPath: "circle(0% at 92% 6%)", duration: 0.55, ease: "power3.inOut", onComplete: () => {
+          gsap.set(menuRef.current, { display: "none" });
+        } });
     }
   }, [open]);
 
