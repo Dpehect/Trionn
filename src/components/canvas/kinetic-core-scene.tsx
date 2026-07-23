@@ -99,19 +99,38 @@ function CapabilityModule({ capability, index }: { capability: Capability; index
       <RoundedBox position={[-0.43, 0, 0.14]} args={[0.34, 0.34, 0.08]} radius={0.1} smoothness={8}>
         <meshPhysicalMaterial color={capability.color} roughness={0.17} clearcoat={1} emissive={capability.color} emissiveIntensity={hovered ? 0.35 : 0.08} />
       </RoundedBox>
-      <Html transform center position={[-0.43, 0, 0.205]} distanceFactor={7.5} style={{ pointerEvents: "none" }}>
+      <Html
+        transform
+        center
+        position={[-0.43, 0, 0.205]}
+        distanceFactor={7.5}
+        style={{ pointerEvents: "none", width: "28px", height: "28px" }}
+      >
         <span className="kinetic-module-symbol">{capability.symbol}</span>
       </Html>
-      <Html transform center position={[0.22, 0, 0.205]} distanceFactor={7.5} style={{ pointerEvents: "none" }}>
-        <span className="kinetic-module-label">{capability.short}</span>
+      <Html
+        transform
+        center
+        position={[0.2, 0, 0.205]}
+        distanceFactor={7.5}
+        style={{ pointerEvents: "none", width: "62px" }}
+      >
+        <span className="kinetic-module-label" title={capability.short}>{capability.short}</span>
       </Html>
       <mesh position={[0.62, 0, 0.02]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.045, 0.045, 0.28, 24]} />
         <meshStandardMaterial color={capability.color} emissive={capability.color} emissiveIntensity={0.7} />
       </mesh>
       <pointLight color={capability.color} intensity={hovered ? 1.2 : 0.35} distance={1.4} />
-      <Html center position={[0, -0.46, 0]} distanceFactor={8} style={{ pointerEvents: "none" }}>
-        <span className={`kinetic-module-meta ${hovered ? "is-visible" : ""}`}>0{index + 1} · {capability.label}</span>
+      <Html
+        center
+        position={[0, -0.48, 0]}
+        distanceFactor={8}
+        style={{ pointerEvents: "none", width: "104px" }}
+      >
+        <span className={`kinetic-module-meta ${hovered ? "is-visible" : ""}`} title={`0${index + 1} · ${capability.label}`}>
+          0{index + 1} · {capability.label}
+        </span>
       </Html>
     </group>
   );
