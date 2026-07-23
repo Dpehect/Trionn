@@ -6,17 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "lucide-react": "^0.468.0",
-    "next": "15.5.2",
+    "next": "15.5.21",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "lenis": "^1.3.15"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
@@ -25,6 +26,12 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.5.21"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   }
 }
