@@ -1,22 +1,15 @@
-# Softbridge Interactive Wayfinding Revision
+# Softbridge Professional — Kinetic Product Reactor
 
-The hero signpost has been rebuilt in React Three Fiber as a functional wayfinding interface.
+The previous 3D signpost has been removed and replaced with an original interactive orbital product reactor.
 
 ## Interaction
+- Four orbiting capability modules represent Software, AI, Products, and Mobile.
+- Hovering lifts and illuminates each module.
+- Clicking a module scrolls to Services and selects the matching service.
+- The core and orbital system respond subtly to pointer movement and scroll choreography.
 
-- SOFTWARE selects Custom Software Development.
-- AI SYSTEMS selects AI Automation and Agents.
-- DIGITAL PRODUCTS selects SaaS Product Development.
-- MOBILE + WEB selects Mobile Applications.
-- Clicking a panel scrolls to Services and activates the matching service.
-
-## Visual improvements
-
-- Single front-facing label per panel
-- Metallic outer shells and colored inset faces
-- Beveled directional ends
-- Icon badges
-- Engineered mounting collars and bolts
-- Beacon light and status module
-- Controlled pointer response instead of continuous rotation
-- Hover lift and depth feedback
+## Performance
+- Procedural geometry only; no external GLB or texture payload.
+- Adaptive DPR range of 1–1.5.
+- Dynamically imported client-only canvas.
+- Reduced visual complexity without losing the signature 3D experience.

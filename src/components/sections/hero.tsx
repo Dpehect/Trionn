@@ -8,8 +8,8 @@ import { ArrowDownRight, ArrowRight, Sparkles } from "lucide-react";
 import { useRef } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
 
-const SignpostScene = dynamic(
-  () => import("@/components/canvas/signpost-scene").then((module) => module.SignpostScene),
+const KineticCoreScene = dynamic(
+  () => import("@/components/canvas/kinetic-core-scene").then((module) => module.KineticCoreScene),
   { ssr: false, loading: () => <div className="hero-object-fallback" /> },
 );
 
@@ -75,9 +75,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive colorful software direction signpost">
-          <div className="hero-object-badge"><span /> Choose a capability</div>
-          <SignpostScene />
+        <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive kinetic digital product reactor">
+          <div className="hero-object-badge"><span /> Explore the system</div>
+          <KineticCoreScene />
         </div>
       </div>
 
