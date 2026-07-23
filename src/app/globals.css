@@ -468,3 +468,13 @@ body { min-width: 320px; }
 @media (pointer:coarse) {
   .kinetic-module-hitbox { min-width:44px; min-height:44px; }
 }
+
+/* Adaptive Product Loom */
+.loom-label,.loom-symbol,.loom-eyebrow{display:block;max-width:100%;overflow:hidden;text-align:center;white-space:nowrap;text-overflow:ellipsis;font-family:var(--font-sans);line-height:1}
+.loom-label{font-size:12px;font-weight:800;letter-spacing:-.035em;color:#171716}
+.loom-symbol{font-size:13px;font-weight:800;color:#fff;line-height:28px}
+.loom-eyebrow{font-size:7px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:rgba(23,23,22,.52)}
+.loom-hitbox{position:relative;display:flex;width:150px;height:88px;align-items:center;justify-content:center;flex-direction:column;gap:4px;border:0;border-radius:18px;background:transparent;color:transparent;cursor:pointer;touch-action:manipulation;overflow:hidden}
+.loom-hitbox span,.loom-hitbox small{max-width:126px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;opacity:0;pointer-events:none}
+.loom-hitbox:focus-visible{outline:2px solid #5577ff;outline-offset:4px}
+@media (max-width:900px){.loom-hitbox{min-width:44px;min-height:44px}.loom-label{font-size:11px}}

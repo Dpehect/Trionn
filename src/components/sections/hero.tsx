@@ -8,8 +8,8 @@ import { ArrowDownRight, ArrowRight, Sparkles } from "lucide-react";
 import { useRef } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
 
-const KineticCoreScene = dynamic(
-  () => import("@/components/canvas/kinetic-core-scene").then((module) => module.KineticCoreScene),
+const ProductLoomScene = dynamic(
+  () => import("@/components/canvas/product-loom-scene").then((module) => module.ProductLoomScene),
   { ssr: false, loading: () => <div className="hero-object-fallback" /> },
 );
 
@@ -75,9 +75,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive kinetic digital product reactor">
-          <div className="hero-object-badge"><span /> Explore the system</div>
-          <KineticCoreScene />
+        <div data-hero-canvas className="hero-object-wrap" aria-label="Interactive adaptive product loom">
+          <div className="hero-object-badge"><span /> Explore capabilities</div>
+          <ProductLoomScene />
         </div>
       </div>
 
