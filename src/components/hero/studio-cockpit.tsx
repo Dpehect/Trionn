@@ -5,6 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   Activity,
   ArrowUpRight,
+  BarChart3,
+  BookOpen,
+  CalendarDays,
   Bot,
   Braces,
   Check,
@@ -13,9 +16,14 @@ import {
   Database,
   Gauge,
   LayoutDashboard,
+  Mail,
   Play,
   Rocket,
+  Send,
+  ShieldCheck,
   Smartphone,
+  UserRound,
+  Workflow,
   Sparkles,
   WandSparkles,
 } from "lucide-react";
@@ -120,28 +128,70 @@ function BuildPreview({ mode }: { mode: Mode }) {
 }
 
 function AgentPreview({ mode }: { mode: Mode }) {
-  const nodes = [
-    { name: "Inbox", icon: Activity, x: "6%", y: "18%" },
-    { name: "Triage agent", icon: Bot, x: "36%", y: "8%" },
-    { name: "CRM", icon: Database, x: "70%", y: "20%" },
-    { name: "Proposal", icon: WandSparkles, x: "23%", y: "63%" },
-    { name: "Approval", icon: Check, x: "61%", y: "65%" },
+  const [selected, setSelected] = useState("hub");
+  const modules = [
+    { id: "inbox", title: "Inbox", subtitle: "5 new requests", meta: "3 high priority", icon: Mail, x: "4%", y: "13%" },
+    { id: "triage", title: "Triage Agent", subtitle: "GPT-4o routing", meta: "92% confidence", icon: Bot, x: "37%", y: "5%" },
+    { id: "crm", title: "CRM Sync", subtitle: "14 records updated", meta: "2m ago", icon: Database, x: "72%", y: "14%" },
+    { id: "knowledge", title: "Knowledge Base", subtitle: "128 indexed docs", meta: "Fresh context", icon: BookOpen, x: "3%", y: "42%" },
+    { id: "client", title: "Client Record", subtitle: "Acme Corporation", meta: "Proposal stage", icon: UserRound, x: "73%", y: "43%" },
+    { id: "proposal", title: "Proposal Draft", subtitle: "AI generated v1", meta: "92% quality", icon: WandSparkles, x: "21%", y: "68%" },
+    { id: "approval", title: "Approval", subtitle: "Human review", meta: "Approved", icon: ShieldCheck, x: "57%", y: "68%" },
+    { id: "calendar", title: "Calendar", subtitle: "Discovery call", meta: "10:00 AM", icon: CalendarDays, x: "4%", y: "78%" },
+    { id: "analytics", title: "Analytics", subtitle: "98% completion", meta: "+12% this week", icon: BarChart3, x: "77%", y: "77%" },
   ];
+  const active = selected === "hub" ? { title: "Orchestration Hub", subtitle: "12 active workflows", meta: "248 actions completed" } : modules.find(module => module.id === selected)!;
+
   return (
     <div className="cockpit-agents" style={{ "--cockpit-accent": mode.color } as React.CSSProperties}>
-      <svg viewBox="0 0 100 72" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M17 24 C28 22 30 17 43 17" />
-        <path d="M54 18 C67 18 69 24 76 27" />
-        <path d="M44 25 C40 40 34 44 32 54" />
-        <path d="M50 25 C55 41 62 44 69 55" />
-        <path d="M40 61 C48 65 55 65 63 61" />
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M17 22 C31 18 34 17 46 25" />
+        <path d="M50 17 C50 22 50 23 50 28" />
+        <path d="M80 23 C68 20 63 20 55 27" />
+        <path d="M17 49 C30 49 36 47 44 43" />
+        <path d="M80 50 C68 50 64 47 56 43" />
+        <path d="M29 74 C37 67 42 61 46 55" />
+        <path d="M65 74 C59 66 56 61 53 55" />
+        <path d="M15 84 C30 82 34 75 39 67" />
+        <path d="M84 84 C71 80 66 73 61 66" />
       </svg>
-      {nodes.map(({ name, icon: Icon, x, y }, index) => (
-        <motion.div key={name} className="cockpit-agent-node" style={{ left: x, top: y }} animate={{ y: [0, index % 2 ? 4 : -4, 0] }} transition={{ duration: 3 + index * .25, repeat: Infinity, ease: "easeInOut" }}>
-          <Icon size={14} /><span>{name}</span><i />
-        </motion.div>
+
+      <button type="button" className={`cockpit-orchestration-hub ${selected === "hub" ? "is-selected" : ""}`} onClick={() => setSelected("hub")}>
+        <span className="cockpit-orchestration-hub__icon"><Workflow size={20} /></span>
+        <strong>Orchestration Hub</strong>
+        <small>AI workflow control</small>
+        <div><span><b>12</b> active</span><span><b>248</b> completed</span><span><b>98%</b> success</span></div>
+      </button>
+
+      {modules.map(({ id, title, subtitle, meta, icon: Icon, x, y }, index) => (
+        <motion.button
+          key={id}
+          type="button"
+          className={`cockpit-agent-node cockpit-agent-node--rich ${selected === id ? "is-selected" : ""}`}
+          style={{ left: x, top: y }}
+          onClick={() => setSelected(id)}
+          animate={{ y: [0, index % 2 ? 3 : -3, 0] }}
+          transition={{ duration: 3.2 + index * .16, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="cockpit-agent-node__icon"><Icon size={14} /></span>
+          <span className="cockpit-agent-node__copy"><strong>{title}</strong><small>{subtitle}</small></span>
+          <i />
+          <em>{meta}</em>
+        </motion.button>
       ))}
-      <div className="cockpit-agent-log"><span><i /> Workflow completed</span><strong>1.8s</strong></div>
+
+      <div className="cockpit-agent-detail" aria-live="polite">
+        <div><span>Selected node</span><strong>{active.title}</strong><small>{active.subtitle}</small></div>
+        <em>{active.meta}</em>
+      </div>
+
+      <div className="cockpit-agent-log">
+        <span><i /> Workflow completed<small>All steps executed successfully</small></span>
+        <div><b>12</b><small>steps</small></div>
+        <div><b>248</b><small>actions</small></div>
+        <div><b>3</b><small>approvals</small></div>
+        <strong>1.8s</strong>
+      </div>
     </div>
   );
 }
