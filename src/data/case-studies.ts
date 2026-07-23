@@ -10,7 +10,9 @@ export type CaseStudy = {
   summary: string;
   challenge: string;
   solution: string;
-  impact: { value: string; label: string }[];
+  impact: { value: string; label: string; basis: "project target" | "representative benchmark" | "verified client result" }[];
+  disclosure: string;
+  status: "Representative case study" | "Client engagement" | "Internal product study";
   gradient: string;
   accent: string;
 };
@@ -28,7 +30,9 @@ export const caseStudies: CaseStudy[] = [
     summary: "An intelligent operations platform that turns complex workflows into measurable, automated systems.",
     challenge: "Teams were losing time across disconnected tools, repetitive approvals and opaque operational data.",
     solution: "We designed a focused command center with guided automations, human review checkpoints and transparent analytics.",
-    impact: [{ value: "42%", label: "less manual coordination" }, { value: "3.1×", label: "faster task completion" }, { value: "8 wk", label: "MVP to pilot" }],
+    impact: [{ value: "42%", label: "less manual coordination", basis: "representative benchmark" }, { value: "3.1×", label: "faster task completion", basis: "project target" }, { value: "8 wk", label: "MVP to pilot", basis: "project target" }],
+    status: "Representative case study",
+    disclosure: "A representative product engagement used to demonstrate our delivery approach. Metrics are clearly labelled as targets or benchmarks, not public client claims.",
     gradient: "linear-gradient(135deg,#557cff 0%,#9368ff 48%,#ff8069 100%)",
     accent: "#557cff",
   },
@@ -44,7 +48,9 @@ export const caseStudies: CaseStudy[] = [
     summary: "A high-performance commerce ecosystem built for faster discovery, conversion and international growth.",
     challenge: "A fragmented storefront and slow editorial workflow made international launches expensive and inconsistent.",
     solution: "We created a modular commerce platform with reusable campaign blocks, localized content and edge-first delivery.",
-    impact: [{ value: "+31%", label: "conversion uplift" }, { value: "1.2s", label: "median LCP" }, { value: "6", label: "markets launched" }],
+    impact: [{ value: "+31%", label: "conversion uplift", basis: "project target" }, { value: "1.2s", label: "median LCP", basis: "representative benchmark" }, { value: "6", label: "markets launched", basis: "project target" }],
+    status: "Representative case study",
+    disclosure: "A representative commerce engagement. Outcomes are presented as delivery targets and industry benchmarks unless independently verified.",
     gradient: "linear-gradient(135deg,#ff765e 0%,#ffae6f 48%,#c8f65a 100%)",
     accent: "#ff765e",
   },
@@ -60,7 +66,9 @@ export const caseStudies: CaseStudy[] = [
     summary: "A focused mobile experience combining native interaction patterns with scalable product architecture.",
     challenge: "The early product had strong demand but onboarding friction and an architecture that could not support growth.",
     solution: "We rebuilt the experience around progressive onboarding, offline-first flows and a shared modular platform.",
-    impact: [{ value: "+56%", label: "activation rate" }, { value: "4.8", label: "store rating" }, { value: "34%", label: "lower support load" }],
+    impact: [{ value: "+56%", label: "activation rate", basis: "project target" }, { value: "4.8", label: "store rating", basis: "project target" }, { value: "34%", label: "lower support load", basis: "representative benchmark" }],
+    status: "Internal product study",
+    disclosure: "An internal mobile product study showing our product and engineering standards. Metrics are prototype targets, not public marketplace claims.",
     gradient: "linear-gradient(135deg,#946bff 0%,#5b86ff 50%,#62dfe7 100%)",
     accent: "#946bff",
   },
@@ -76,7 +84,9 @@ export const caseStudies: CaseStudy[] = [
     summary: "A secure care journey that helps patients and professionals coordinate decisions with less friction.",
     challenge: "Patients faced fragmented communication while professionals lacked a coherent view of the care journey.",
     solution: "We delivered an accessible patient portal and structured clinical workspace connected through secure APIs.",
-    impact: [{ value: "-38%", label: "missed appointments" }, { value: "AA", label: "WCAG compliance" }, { value: "27%", label: "faster case review" }],
+    impact: [{ value: "-38%", label: "missed appointments", basis: "project target" }, { value: "AA", label: "WCAG compliance", basis: "project target" }, { value: "27%", label: "faster case review", basis: "representative benchmark" }],
+    status: "Representative case study",
+    disclosure: "A representative healthcare product engagement. No patient or client data is shown; metrics are targets and sector benchmarks.",
     gradient: "linear-gradient(135deg,#caef63 0%,#82dfb0 48%,#5b86ff 100%)",
     accent: "#80c968",
   },

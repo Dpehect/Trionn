@@ -46,7 +46,7 @@ export function WorkSlider() {
         {caseStudies.map((project) => (
           <Link href={`/projects/${project.slug}`} className="work-card" key={project.slug} data-cursor="view">
             <div className="work-card__visual"><ProductVisual project={project} compact /></div>
-            <div className="work-card__body"><div><p>{project.industry}</p><h3>{project.title}</h3></div><ArrowUpRight size={25}/></div>
+            <span className="work-card__status">{project.status}</span><div className="work-card__body"><div><p>{project.industry}</p><h3>{project.title}</h3></div><ArrowUpRight size={25}/></div>
             <p className="work-card__summary">{project.summary}</p>
           </Link>
         ))}

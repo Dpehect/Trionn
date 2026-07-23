@@ -171,7 +171,7 @@ function AgentPreview({ mode }: { mode: Mode }) {
           style={{ left: x, top: y }}
           onClick={() => setSelected(id)}
           animate={{ y: [0, index % 2 ? 3 : -3, 0] }}
-          transition={{ duration: 3.2 + index * .16, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 3.2 + index * .16, repeat: 2, ease: "easeInOut" }}
         >
           <span className="cockpit-agent-node__icon"><Icon size={14} /></span>
           <span className="cockpit-agent-node__copy"><strong>{title}</strong><small>{subtitle}</small></span>

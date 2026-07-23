@@ -172,7 +172,7 @@ export function ServicesExperience() {
 
       <div className="service-list capability-catalog">
         <div className="capability-catalog__head"><span>Capability</span><span>Engagement</span><span>Signal</span></div>
-        {services.map((service,index) => <article key={service.title} data-service-item className={active===index ? "is-active" : ""} onMouseEnter={() => setActive(index)} onClick={() => setActive(index)}>
+        {services.map((service,index) => <button type="button" key={service.title} data-service-item className={active===index ? "is-active" : ""} onMouseEnter={() => setActive(index)} onClick={() => setActive(index)} aria-pressed={active===index}>
           <span className="capability-catalog__index">{String(index+1).padStart(2,"0")}</span>
           <div className="capability-catalog__main">
             <small>{service.family}</small>
@@ -182,7 +182,7 @@ export function ServicesExperience() {
           <div className="capability-catalog__engagement"><span>{service.timeline}</span><small>{service.team}</small></div>
           <strong>{service.metric}</strong>
           <ArrowRight size={19}/>
-        </article>)}
+        </button>)}
       </div>
     </div>
 

@@ -24,6 +24,15 @@ export function SiteHeader() {
   const menuRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
+
+
+  useEffect(() => {
+    const updateHash = () => setActiveHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
 
   useEffect(() => {
     let last = window.scrollY;
@@ -67,7 +76,7 @@ export function SiteHeader() {
         <nav className="creative-nav" aria-label="Main navigation">
           {links.map(([label, href]) => (
             <Magnetic key={label} strength={0.12}>
-              <Link className={pathname === href ? "is-active" : ""} href={href}>{label}</Link>
+              <Link className={(href.startsWith("/#") ? activeHash === href.slice(1) : pathname === href) ? "is-active" : ""} href={href}>{label}</Link>
             </Magnetic>
           ))}
         </nav>
