@@ -1,5 +1,2 @@
-import { StudioSite } from '@/components/site/studio-site';
-
-export default function Page() {
-  return <StudioSite />;
-}
+import Site from "@/components/Site";
+export default function HomePage() { return <Site />; }

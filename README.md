@@ -1,15 +1,29 @@
-# Softbridge Professional — Kinetic Product Reactor
+# Softbridge Quiet Studio Rebuild
 
-The previous 3D signpost has been removed and replaced with an original interactive orbital product reactor.
+A production-oriented Next.js 15 single-page studio website focused on Nordic clarity, senior delivery and evidence-led conversion.
 
-## Interaction
-- Four orbiting capability modules represent Software, AI, Products, and Mobile.
-- Hovering lifts and illuminates each module.
-- Clicking a module scrolls to Services and selects the matching service.
-- The core and orbital system respond subtly to pointer movement and scroll choreography.
+## Run
 
-## Performance
-- Procedural geometry only; no external GLB or texture payload.
-- Adaptive DPR range of 1–1.5.
-- Dynamically imported client-only canvas.
-- Reduced visual complexity without losing the signature 3D experience.
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+## 3D decision
+
+No Three.js scene is included. The two-hub delivery model is a business concept, not a visual spectacle. Typography, structured UI and restrained motion communicate it more credibly and with lower performance cost. R3F should only be introduced later if a real interactive product or architectural model becomes part of the sales story.
+
+## Motion ownership
+
+- GSAP + ScrollTrigger: initial hero sequence and section reveals.
+- Framer Motion: capability state transitions, Delivery OS state changes and magnetic CTA movement.
+- Lenis: smooth scrolling, synchronized with ScrollTrigger.
+
+## SEO/GEO
+
+Includes Organization, ProfessionalService, Service, FAQPage and BreadcrumbList JSON-LD; canonical metadata; Open Graph; robots; sitemap; Helsinki/Finland/Europe entity language; and direct FAQ answers designed for search and AI retrieval.
+
+## Important production note
+
+The contact API validates requests and returns success but does not yet deliver email. Connect it to Resend, Postmark, SendGrid or a CRM webhook before launch. Replace availability and experience figures only with verifiable values.
