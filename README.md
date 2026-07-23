@@ -37,3 +37,7 @@ npm run build
 ```
 
 React and React DOM are intentionally pinned to the same version. Playwright is included as a development dependency because `playwright.config.ts` is type-checked by Next.js production builds.
+
+## Route fix
+
+The project now includes a dedicated `/projects` page. The home-page work section remains available at `/#work`.
