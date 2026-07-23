@@ -36,3 +36,7 @@ npm run test:e2e
 - 13–14: SEO, sitemap/robots/manifest, system states, tests, performance and Vercel hardening
 
 Replace demo project content and visual assets with your own licensed material before publishing.
+
+## Revision 05 final package
+
+This directory contains the complete project through Revision 05. The homepage, signpost framing, Projects index and responsive composition received a final reference-calibration pass. See `REVISION-05.md`.

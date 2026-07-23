@@ -6,113 +6,52 @@ import { useRef, useState } from "react";
 import * as THREE from "three";
 import { usePointerMotion } from "@/hooks/use-pointer-motion";
 
-const METAL = new THREE.MeshStandardMaterial({ color: "#76736d", metalness: 0.82, roughness: 0.3 });
-const DARK_METAL = new THREE.MeshStandardMaterial({ color: "#252525", metalness: 0.68, roughness: 0.38 });
+const silver = new THREE.MeshStandardMaterial({ color: "#d8d4d1", metalness: .72, roughness: .24 });
+const chrome = new THREE.MeshStandardMaterial({ color: "#3b3b3b", metalness: .92, roughness: .18 });
+const black = new THREE.MeshStandardMaterial({ color: "#151515", metalness: .58, roughness: .28 });
 
-type DirectionSignProps = {
-  color: string;
-  label: string;
-  position: [number, number, number];
-  rotation?: [number, number, number];
-  align?: "left" | "right";
-};
-
-function DirectionSign({ color, label, position, rotation = [0, 0, 0], align = "left" }: DirectionSignProps) {
-  return (
-    <group position={position} rotation={rotation}>
-      <RoundedBox args={[2.25, 0.63, 0.12]} radius={0.08} smoothness={5}>
-        <meshStandardMaterial color={color} roughness={0.48} />
-      </RoundedBox>
-      <mesh position={[align === "left" ? -1.23 : 1.23, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
-        <boxGeometry args={[0.46, 0.46, 0.12]} />
-        <meshStandardMaterial color={color} roughness={0.48} />
-      </mesh>
-      <Html position={[0, 0, 0.075]} transform center distanceFactor={5.8} style={{ pointerEvents: "none" }}>
-        <span className="sign-label">{label.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
-      </Html>
-    </group>
-  );
+function Clamp({ y }: { y: number }) {
+  return <group position={[0,y,0]}><mesh material={chrome}><torusGeometry args={[.255,.035,12,48]}/></mesh><mesh rotation={[0,0,Math.PI/2]} position={[.28,0,0]} material={black}><boxGeometry args={[.07,.18,.09]}/></mesh></group>;
 }
 
-function TrafficLight() {
-  const colors = ["#9f3026", "#463c19", "#183c27"];
-  return (
-    <group position={[0.12, 0.08, 0.34]} rotation={[0, -0.14, 0]}>
-      <RoundedBox args={[0.62, 1.62, 0.55]} radius={0.22} smoothness={5} material={DARK_METAL} />
-      {colors.map((color, index) => (
-        <group key={color} position={[0, 0.5 - index * 0.5, 0.32]}>
-          <mesh>
-            <cylinderGeometry args={[0.205, 0.205, 0.08, 32]} />
-            <meshStandardMaterial color="#121212" roughness={0.48} />
-          </mesh>
-          <mesh position={[0, 0, 0.055]} rotation={[Math.PI / 2, 0, 0]}>
-            <circleGeometry args={[0.15, 32]} />
-            <meshStandardMaterial color={color} emissive={index === 0 ? color : "#000000"} emissiveIntensity={index === 0 ? 0.55 : 0} />
-          </mesh>
-        </group>
-      ))}
-    </group>
-  );
+function Board({ position, rotation=[0,0,0], size=[2.35,.58,.12], color, children, arrow=false }: { position:[number,number,number]; rotation?:[number,number,number]; size?:[number,number,number]; color:string; children:React.ReactNode; arrow?:boolean }) {
+  return <group position={position} rotation={rotation}>
+    <RoundedBox args={size} radius={.055} smoothness={5}><meshStandardMaterial color={color} roughness={.38}/></RoundedBox>
+    {arrow && <mesh position={[-size[0]/2-.18,0,0]} rotation={[0,0,Math.PI/4]}><boxGeometry args={[.37,.37,size[2]]}/><meshStandardMaterial color={color}/></mesh>}
+    <Html transform center position={[0,0,.071]} distanceFactor={5.1} style={{pointerEvents:"none"}}><div className="road-board-label">{children}</div></Html>
+  </group>;
+}
+
+function TrafficLight({ position, rotation=[0,0,0] }: { position:[number,number,number]; rotation?:[number,number,number] }) {
+  return <group position={position} rotation={rotation}>
+    <mesh position={[0,.95,-.08]} material={chrome}><cylinderGeometry args={[.055,.055,1.15,16]}/></mesh>
+    <RoundedBox args={[.62,1.5,.52]} radius={.14} smoothness={5} material={black}/>
+    {[.48,0,-.48].map((y,i)=><group key={y} position={[0,y,.29]}><mesh rotation={[Math.PI/2,0,0]}><cylinderGeometry args={[.205,.205,.09,32]}/><meshStandardMaterial color="#232323"/></mesh><mesh position={[0,0,.052]}><circleGeometry args={[.145,32]}/><meshStandardMaterial color={["#a53c32","#8d7925","#2c6848"][i]} emissive={i===1?"#8d7925":"#000"} emissiveIntensity={i===1?.35:0}/></mesh></group>)}
+  </group>;
+}
+
+function RoundSign() {
+  return <group position={[-.56,.62,.18]} rotation={[0,.08,-.02]}>
+    <mesh><cylinderGeometry args={[1.02,1.02,.11,64]}/><meshStandardMaterial color="#b7d7dc" roughness={.35}/></mesh>
+    <mesh position={[0,0,.061]}><ringGeometry args={[.94,1.02,64]}/><meshStandardMaterial color="#242424"/></mesh>
+    <Html transform center position={[0,0,.078]} distanceFactor={4.8} style={{pointerEvents:"none"}}><div className="round-sign-art"><span className="round-sign-face">◎◎</span><b>CREATIVE<br/>DEVELOPER</b><small>PORTFOLIO 2026</small></div></Html>
+  </group>;
 }
 
 export function SignpostModel() {
-  const group = useRef<THREE.Group>(null);
-  const pointer = usePointerMotion();
-  const [dragging, setDragging] = useState(false);
-  const dragX = useRef(0);
-
-  useFrame((state, delta) => {
-    if (!group.current) return;
-    const targetY = pointer.current.x * 0.15 + dragX.current;
-    const targetX = pointer.current.y * 0.045 - 0.04;
-    group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetY, 4.5, delta);
-    group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, targetX, 4.5, delta);
-    group.current.position.y = Math.sin(state.clock.elapsedTime * 0.7) * 0.025;
-  });
-
-  const onPointerMove = (event: ThreeEvent<PointerEvent>) => {
-    if (!dragging) return;
-    dragX.current += event.movementX * 0.0035;
-  };
-
-  return (
-    <group
-      ref={group}
-      rotation={[-0.05, -0.18, -0.055]}
-      scale={1.08}
-      onPointerDown={(event) => {
-        event.stopPropagation();
-        setDragging(true);
-        document.body.style.cursor = "grabbing";
-      }}
-      onPointerUp={() => {
-        setDragging(false);
-        document.body.style.cursor = "grab";
-      }}
-      onPointerOut={() => {
-        setDragging(false);
-        document.body.style.cursor = "default";
-      }}
-      onPointerMove={onPointerMove}
-    >
-      <mesh position={[0, -1.1, 0]} material={METAL}>
-        <cylinderGeometry args={[0.115, 0.14, 5.65, 32]} />
-      </mesh>
-      <mesh position={[0, 1.78, 0]} material={METAL}>
-        <sphereGeometry args={[0.18, 28, 28]} />
-      </mesh>
-      <mesh position={[0, 1.42, 0]} material={DARK_METAL}>
-        <torusGeometry args={[0.18, 0.045, 16, 40]} />
-      </mesh>
-
-      <DirectionSign color="#efc83d" label={"SELECTED\nWORK"} position={[-1.08, 1.05, 0.06]} rotation={[0.02, 0.12, 0]} align="left" />
-      <DirectionSign color="#72a3c5" label={"AVAILABLE\n2026"} position={[1.08, 0.44, -0.02]} rotation={[-0.01, -0.15, 0]} align="right" />
-      <DirectionSign color="#db5a3f" label={"ABOUT\nPROFILE"} position={[-0.88, -0.34, -0.13]} rotation={[0.02, 0.22, 0]} align="left" />
-
-      <TrafficLight />
-      <mesh position={[0, -2.72, 0]} material={DARK_METAL}>
-        <cylinderGeometry args={[0.36, 0.46, 0.18, 32]} />
-      </mesh>
-    </group>
-  );
+  const group=useRef<THREE.Group>(null); const pointer=usePointerMotion(); const [drag,setDrag]=useState(false); const dragY=useRef(0);
+  useFrame((state,delta)=>{if(!group.current)return; const ty=-.19+pointer.current.x*.105+dragY.current; const tx=-.025+pointer.current.y*.018; group.current.rotation.y=THREE.MathUtils.damp(group.current.rotation.y,ty,4,delta); group.current.rotation.x=THREE.MathUtils.damp(group.current.rotation.x,tx,4,delta); group.current.position.y=Math.sin(state.clock.elapsedTime*.55)*.018;});
+  const move=(e:ThreeEvent<PointerEvent>)=>{if(drag)dragY.current+=e.movementX*.0025};
+  return <group ref={group} scale={1.18} rotation={[-.025,-.19,-.012]} position={[.08,-.08,0]} onPointerDown={e=>{e.stopPropagation();setDrag(true)}} onPointerUp={()=>setDrag(false)} onPointerOut={()=>setDrag(false)} onPointerMove={move}>
+    <mesh position={[0,-.55,0]} material={silver}><cylinderGeometry args={[.205,.24,7.2,48]}/></mesh>
+    <Clamp y={2.08}/><Clamp y={.92}/><Clamp y={-.42}/>
+    <mesh position={[0,2.66,0]} material={chrome}><torusGeometry args={[.255,.035,12,48]}/></mesh>
+    <Board position={[-1.05,2.35,.05]} rotation={[0,.06,.015]} color="#f3d620" arrow><span>CREATIVE DEVELOPER</span></Board>
+    <Board position={[-1.08,1.52,.18]} rotation={[0,.1,-.01]} size={[1.72,.82,.11]} color="#ffffff" arrow><span className="jp">コンタクト</span><em>CONTACT</em></Board>
+    <RoundSign/>
+    <Board position={[-1.18,-.72,.08]} rotation={[0,.08,.01]} size={[2.7,.48,.1]} color="#1741bc" arrow><span>PROJECTS ARCHIVE / PROJECTS</span></Board>
+    <Board position={[1.08,-1.48,-.12]} rotation={[0,-.2,-.02]} size={[2.12,.42,.1]} color="#1741bc"><span>ABOUT / PROFILE →</span></Board>
+    <TrafficLight position={[.58,-.36,.15]} rotation={[0,-.12,0]}/>
+    <mesh position={[.46,1.38,-.02]} material={chrome}><torusGeometry args={[.65,.055,16,64]}/></mesh>
+  </group>;
 }
