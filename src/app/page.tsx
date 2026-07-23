@@ -1,13 +1,5 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { Hero } from "@/components/sections/hero";
-import { FoundationSections } from "@/components/sections/foundation-sections";
+import { NordicStudioPage } from "@/components/sections/nordic-studio-page";
 
 export default function HomePage() {
-  return (
-    <main>
-      <SiteHeader />
-      <Hero />
-      <FoundationSections />
-    </main>
-  );
+  return <NordicStudioPage />;
 }
