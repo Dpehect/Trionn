@@ -1,0 +1,10 @@
+import type { Metadata } from 'next';
+import { Geist,Geist_Mono } from 'next/font/google';
+import './globals.css';
+import { AppProviders } from '@/components/providers/app-providers';
+import { CustomCursor } from '@/components/motion/custom-cursor';
+import { PageTransition } from '@/components/motion/page-transition';
+const geist=Geist({subsets:['latin'],variable:'--font-geist-sans',display:'swap'});const geistMono=Geist_Mono({subsets:['latin'],variable:'--font-geist-mono',display:'swap'});
+const base=process.env.NEXT_PUBLIC_SITE_URL??'https://softbridge.fi';
+export const metadata:Metadata={metadataBase:new URL(base),title:{default:'Softbridge Solutions Finland — Software, AI & Digital Products',template:'%s | Softbridge Solutions Finland'},description:'Premium software studio in Helsinki building custom software, AI automation, SaaS products and high-performance digital experiences.',alternates:{canonical:'/'},openGraph:{title:'Softbridge Solutions Finland',description:'Software, AI automation and premium digital products from Helsinki.',url:base,siteName:'Softbridge Solutions Finland',locale:'en_FI',type:'website'},twitter:{card:'summary_large_image',title:'Softbridge Solutions Finland',description:'Software, AI automation and premium digital products from Helsinki.'},robots:{index:true,follow:true}};
+export default function RootLayout({children}:{children:React.ReactNode}){const organization={"@context":"https://schema.org","@type":"Organization",name:'Softbridge Solutions Finland',url:base,email:'hello@softbridge.fi',areaServed:['Finland','Nordic countries','European Union'],address:{"@type":"PostalAddress",addressLocality:'Helsinki',addressCountry:'FI'},knowsAbout:['Custom software development','AI automation','SaaS product development','Mobile applications','Product design']};return <html lang="en-FI" className={`${geist.variable} ${geistMono.variable}`}><body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organization)}}/><AppProviders><PageTransition>{children}</PageTransition><CustomCursor/></AppProviders></body></html>}

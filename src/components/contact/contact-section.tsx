@@ -1,0 +1,2 @@
+import { ContactForm } from './contact-form';
+export function ContactSection(){return <section id="contact" className="contact-section section-shell"><div className="contact-intro"><p className="section-eyebrow">Start a project / Q3 availability</p><h2 className="display-section">Bring us the difficult part.</h2><p>Share the context. We will respond with the clearest next step, not a generic sales deck.</p></div><ContactForm/></section>}
