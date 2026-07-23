@@ -32,7 +32,7 @@ function Sign({ sign }: { sign: (typeof signs)[number] }) {
       </Html>
       {[-boltX, boltX].map((x) => (
         <group key={x}>
-          <mesh position={[x, 0, 0.132]} castShadow><cylinderGeometry args={[0.055, 0.055, 0.026, 24]} rotation={[Math.PI / 2, 0, 0]} /><meshStandardMaterial color="#34312c" metalness={0.9} roughness={0.16} /></mesh>
+          <mesh position={[x, 0, 0.132]} rotation={[Math.PI / 2, 0, 0]} castShadow><cylinderGeometry args={[0.055, 0.055, 0.026, 24]} /><meshStandardMaterial color="#34312c" metalness={0.9} roughness={0.16} /></mesh>
           <mesh position={[x, 0, -0.132]} rotation={[Math.PI / 2, 0, 0]} castShadow><cylinderGeometry args={[0.055, 0.055, 0.026, 24]} /><meshStandardMaterial color="#34312c" metalness={0.9} roughness={0.16} /></mesh>
         </group>
       ))}
