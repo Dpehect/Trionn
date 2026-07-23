@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Globe2, Layers3, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Clock3, Globe2, Layers3, MapPin, ShieldCheck, Users2, Video } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,15 +58,58 @@ export function AboutTrust() {
             <div><p className="section-eyebrow">Delivery model</p><h3>Finland meets Türkiye.</h3></div>
             <Globe2 size={26} />
           </div>
-          <div className="delivery-map" aria-label="Distributed delivery between Helsinki and Türkiye">
-            <span className="delivery-map__grid" />
-            <span className="delivery-map__route" />
-            <span className="delivery-map__node delivery-map__node--helsinki"><i />Helsinki</span>
-            <span className="delivery-map__node delivery-map__node--turkiye"><i />Türkiye</span>
-            <span className="delivery-map__pulse delivery-map__pulse--one" />
-            <span className="delivery-map__pulse delivery-map__pulse--two" />
+          <div className="delivery-system" aria-label="Softbridge distributed delivery operating model">
+            <div className="delivery-system__topline">
+              <span><i /> Live operating model</span>
+              <strong>One team · two hubs</strong>
+            </div>
+
+            <div className="delivery-hubs">
+              <article className="delivery-hub delivery-hub--finland">
+                <div className="delivery-hub__icon"><MapPin size={18}/></div>
+                <div>
+                  <p>Finland hub</p>
+                  <h4>Client strategy</h4>
+                  <span>Discovery, product direction, stakeholder alignment and Nordic market proximity.</span>
+                </div>
+                <b>Helsinki</b>
+              </article>
+
+              <div className="delivery-bridge" aria-hidden="true">
+                <span className="delivery-bridge__line" />
+                <span className="delivery-bridge__packet delivery-bridge__packet--one" />
+                <span className="delivery-bridge__packet delivery-bridge__packet--two" />
+                <div><Video size={15}/><span>Daily overlap</span></div>
+              </div>
+
+              <article className="delivery-hub delivery-hub--turkiye">
+                <div className="delivery-hub__icon"><Users2 size={18}/></div>
+                <div>
+                  <p>Engineering hub</p>
+                  <h4>Senior delivery</h4>
+                  <span>Product design, full-stack engineering, AI automation, QA and continuous delivery.</span>
+                </div>
+                <b>Türkiye</b>
+              </article>
+            </div>
+
+            <div className="delivery-flow">
+              {["Shape", "Design", "Build", "Validate", "Release"].map((step, index) => (
+                <div key={step} className="delivery-flow__step">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{step}</strong>
+                  {index < 4 && <ArrowRight size={15} aria-hidden="true"/>}
+                </div>
+              ))}
+            </div>
+
+            <div className="delivery-metrics">
+              <div><Clock3 size={17}/><span><strong>4h+</strong> daily collaboration window</span></div>
+              <div><CheckCircle2 size={17}/><span><strong>1</strong> shared backlog and release cadence</span></div>
+              <div><ShieldCheck size={17}/><span><strong>Senior-led</strong> delivery from discovery to launch</span></div>
+            </div>
           </div>
-          <p>Strategy and client proximity in Finland, paired with a senior cross-border product and engineering team.</p>
+          <p>Strategy and client proximity in Finland, paired with a senior cross-border product and engineering team operating through one backlog, one roadmap and one quality standard.</p>
         </article>
 
         <div className="about-trust__principles">
