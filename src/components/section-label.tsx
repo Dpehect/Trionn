@@ -1,1 +1,0 @@
-export function SectionLabel({index,label}:{index:string;label:string}){return <div className="flex gap-3 items-center eyebrow text-muted"><span>{index}</span><span className="h-px w-9 bg-line"/><span>{label}</span></div>}
