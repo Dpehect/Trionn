@@ -1,1 +1,14 @@
-export const siteConfig = { name: "Softbridge Solutions", description: "Finland-focused digital agency creating high-performance websites, digital products and AI-enabled systems.", url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://softbridge.fi", email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@softbridge.fi", nav: [{label:"Work",href:"#work"},{label:"Services",href:"#services"},{label:"Approach",href:"#approach"},{label:"About",href:"#about"}] } as const;
+export const siteConfig = {
+  name: "Softbridge Solutions",
+  description: "Finland-focused digital product, web and AI agency.",
+  url: "https://softbridge.fi",
+  email: "hello@softbridge.fi",
+  nav: [
+    { label: "Work", href: "/work" },
+    { label: "Services", href: "/services" },
+    { label: "Process", href: "/process" },
+    { label: "About", href: "/about" },
+    { label: "Insights", href: "/insights" },
+    { label: "Contact", href: "/contact" },
+  ],
+} as const;

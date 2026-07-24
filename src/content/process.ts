@@ -1,0 +1,7 @@
+export const processSteps = [
+  { number: "01", title: "Discover", duration: "1–2 weeks", summary: "We align the business problem, audience, constraints and measurable outcome before touching the interface.", deliverables: ["Stakeholder interviews", "Market and competitor scan", "Opportunity map", "Project brief"] },
+  { number: "02", title: "Define", duration: "1 week", summary: "Research becomes a focused product strategy, information architecture and delivery roadmap.", deliverables: ["Experience principles", "Content architecture", "Technical plan", "Success metrics"] },
+  { number: "03", title: "Design", duration: "2–4 weeks", summary: "We create a distinctive visual system and validate the critical journeys through high-fidelity prototypes.", deliverables: ["Creative direction", "Design system", "Responsive prototypes", "Motion language"] },
+  { number: "04", title: "Develop", duration: "3–8 weeks", summary: "Design and engineering work as one team, protecting the concept while meeting accessibility and performance targets.", deliverables: ["Production application", "CMS integration", "Quality assurance", "Team handover"] },
+  { number: "05", title: "Grow", duration: "Ongoing", summary: "After launch, evidence replaces assumptions. We improve conversion, content and product performance through measured iterations.", deliverables: ["Analytics review", "Experiment backlog", "SEO improvements", "Product iterations"] },
+] as const;

@@ -1,2 +1,10 @@
-import { Hero } from "@/components/sections/hero"; import { Manifesto } from "@/components/sections/manifesto"; import { Services } from "@/components/sections/services"; import { WorkPreview } from "@/components/sections/work-preview"; import { Approach } from "@/components/sections/approach"; import { FinlandStatement } from "@/components/sections/finland-statement";
-export default function Home(){return <main><Hero/><Manifesto/><Services/><WorkPreview/><Approach/><FinlandStatement/></main>}
+import { Hero } from "@/components/sections/hero";
+import { Manifesto } from "@/components/sections/manifesto";
+import { CinematicStory } from "@/components/sections/cinematic-story";
+import { ServiceShowcase } from "@/components/sections/service-showcase";
+import { CaseStudyShowcase } from "@/components/sections/case-study-showcase";
+import { FinlandMarket } from "@/components/sections/finland-market";
+import { ProcessTimeline } from "@/components/sections/process-timeline";
+import { TrustGrid } from "@/components/sections/trust-grid";
+import { FinlandStatement } from "@/components/sections/finland-statement";
+export default function Home(){return <main><Hero/><Manifesto/><CinematicStory/><ServiceShowcase/><CaseStudyShowcase/><FinlandMarket/><ProcessTimeline compact/><TrustGrid/><FinlandStatement/></main>}

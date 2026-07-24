@@ -1,0 +1,3 @@
+import type { Metadata } from "next";import { PageHero } from "@/components/ui/page-hero";import { ProcessTimeline } from "@/components/sections/process-timeline";import { TrustGrid } from "@/components/sections/trust-grid";
+export const metadata:Metadata={title:"Process",description:"How Softbridge Solutions takes digital products from discovery to measurable growth."};
+export default function ProcessPage(){return <main><PageHero eyebrow="Process / 01–05" title="A clear route through ambitious work." description="Our process reduces uncertainty early, keeps decisions visible and protects quality from first workshop to post-launch iteration."/><ProcessTimeline/><TrustGrid/></main>}

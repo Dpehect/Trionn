@@ -1,0 +1,13 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site";
+const updated = "24 July 2026";
+export const metadata: Metadata = { title: "Privacy Policy", description: "How Softbridge Solutions handles project enquiries and website data." };
+const sections = [
+  ["Data controller", `Before launch, replace this paragraph with the legal name, Finnish business ID and registered address of the entity operating ${siteConfig.name}. Contact: ${siteConfig.email}.`],
+  ["Project enquiries", "The contact form collects name, email, company, project category, indicative budget, launch window and the project description you submit. The purpose is to evaluate and respond to the enquiry. The lawful basis should be documented as steps requested before entering a contract or legitimate interest, depending on the final legal review."],
+  ["Processors and transfers", "The production setup can use Vercel for hosting and Resend for email delivery. Confirm the selected service regions, data processing agreements and any international transfer safeguards before launch."],
+  ["Retention", "Define a documented retention period before publication. A practical starting policy is to delete unsuccessful project enquiries after 12 months and retain contractual communications only as required for legal, accounting and delivery obligations."],
+  ["Your rights", "Depending on applicable law, individuals may request access, correction, deletion, restriction, portability or objection. They may also lodge a complaint with the relevant supervisory authority."],
+  ["Security", "The application uses server-side validation, spam controls, restricted browser permissions and encrypted transport in production. No internet service can guarantee absolute security."],
+] as const;
+export default function PrivacyPage(){return <main className="pb-32 pt-40 md:pt-52"><article className="container-shell grid gap-12 lg:grid-cols-[.5fr_1fr]"><header><p className="eyebrow text-black/45">Legal</p><h1 className="mt-7 text-6xl font-semibold tracking-[-.06em] md:text-8xl">Privacy Policy</h1><p className="mt-5 text-sm text-black/45">Last updated {updated}</p><p className="mt-8 max-w-sm rounded-2xl bg-aurora/25 p-4 text-sm leading-relaxed">Pre-launch legal draft. It must be reviewed against the company’s actual registration, vendors and operating practices.</p></header><div className="max-w-3xl space-y-12 text-lg leading-8 text-black/65">{sections.map(([title,body])=><section key={title}><h2 className="text-3xl font-semibold tracking-[-.04em] text-black">{title}</h2><p className="mt-5">{body}</p></section>)}</div></article></main>}
