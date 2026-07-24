@@ -36,48 +36,81 @@ export function LayeredHomepage() {
     const video = casesVideo.current;
     if (!video) return;
 
+    let frameRequest = 0;
+    let targetTime = 0;
+    let renderedTime = 0;
+    let active = false;
+
+    const renderFrame = () => {
+      if (!active) return;
+      renderedTime += (targetTime - renderedTime) * 0.2;
+      if (Math.abs(video.currentTime - renderedTime) > 0.008) {
+        video.currentTime = renderedTime;
+      }
+      frameRequest = requestAnimationFrame(renderFrame);
+    };
+
     const setupVideoScrub = () => {
       const duration = Math.max(video.duration || 0, 0.1);
       video.pause();
       video.currentTime = 0.001;
+      renderedTime = 0.001;
 
-      ScrollTrigger.create({
+      const trigger = ScrollTrigger.create({
         trigger: ".selected-cases-video",
         start: "top top",
         end: "bottom bottom",
-        scrub: 2.4,
-        onEnter: () => document.documentElement.classList.add("cases-active"),
-        onEnterBack: () => document.documentElement.classList.add("cases-active"),
-        onLeave: () => document.documentElement.classList.remove("cases-active"),
-        onLeaveBack: () => document.documentElement.classList.remove("cases-active"),
+        scrub: 0.7,
+        onEnter: () => {
+          active = true;
+          cancelAnimationFrame(frameRequest);
+          frameRequest = requestAnimationFrame(renderFrame);
+        },
+        onEnterBack: () => {
+          active = true;
+          cancelAnimationFrame(frameRequest);
+          frameRequest = requestAnimationFrame(renderFrame);
+        },
+        onLeave: () => {
+          active = false;
+          cancelAnimationFrame(frameRequest);
+        },
+        onLeaveBack: () => {
+          active = false;
+          cancelAnimationFrame(frameRequest);
+        },
         onUpdate: (self) => {
-          const easedProgress = gsap.parseEase("power1.inOut")(self.progress);
-          const target = Math.min(duration - 0.02, Math.max(0.001, easedProgress * duration));
-          if (Math.abs(video.currentTime - target) > 0.012) {
-            gsap.to(video, {
-              currentTime: target,
-              duration: 0.42,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          }
+          // Slightly compressed mapping removes dead scroll time between case groups.
+          const p = gsap.utils.clamp(0, 1, self.progress);
+          const compact = p < 0.08
+            ? p * 1.35
+            : p < 0.82
+              ? 0.108 + (p - 0.08) * 1.08
+              : 0.907 + (p - 0.82) * 0.515;
+          targetTime = Math.min(duration - 0.02, Math.max(0.001, compact * duration));
         },
       });
+
       ScrollTrigger.refresh();
+      return () => trigger.kill();
     };
 
-    if (video.readyState >= 1) setupVideoScrub();
-    else video.addEventListener("loadedmetadata", setupVideoScrub, { once: true });
+    let cleanupTrigger: (() => void) | undefined;
+    if (video.readyState >= 1) cleanupTrigger = setupVideoScrub();
+    else {
+      const onMetadata = () => { cleanupTrigger = setupVideoScrub(); };
+      video.addEventListener("loadedmetadata", onMetadata, { once: true });
+    }
+
+    return () => {
+      active = false;
+      cancelAnimationFrame(frameRequest);
+      cleanupTrigger?.();
+    };
   }, { scope: root });
 
   return (
     <main ref={root} className="site-shell">
-      <header className="topbar">
-        <a className="brand" href="#top" aria-label="Ana sayfa">LAYER/01</a>
-        <nav aria-label="Ana navigasyon"><a href="#work">Work</a><a href="#cases">Cases</a><a href="#contact">Contact</a></nav>
-        <a className="contact-pill" href="#contact">Start a project <ArrowUpRight size={14} /></a>
-      </header>
-
       <section id="top" className="intro">
         <p>Independent digital studio</p>
         <h1>Transforming ideas<br />into performance</h1>
@@ -102,12 +135,14 @@ export function LayeredHomepage() {
           <video
             ref={casesVideo}
             className="selected-cases-video__media"
-            src="/media/selected-cases-scroll.mp4"
+            src="/media/selected-cases-scroll-optimized.mp4"
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-label="Selected Cases animated showcase"
           />
+          <div className="selected-cases-video__header-mask selected-cases-video__header-mask--deck" aria-hidden="true" />
+          <div className="selected-cases-video__header-mask selected-cases-video__header-mask--nav" aria-hidden="true" />
         </div>
       </section>
 
