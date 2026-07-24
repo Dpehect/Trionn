@@ -1,0 +1,4 @@
+"use client";
+import { useRef } from "react";import { useGSAP } from "@gsap/react";import gsap from "gsap";import { SplitText } from "gsap/SplitText";import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(SplitText,ScrollTrigger);
+export function SplitHeading({children,className="",as="h2"}:{children:string;className?:string;as?:"h1"|"h2"|"h3"}){const ref=useRef<HTMLHeadingElement>(null);const Tag=as;useGSAP(()=>{if(!ref.current||matchMedia("(prefers-reduced-motion: reduce)").matches)return;const split=SplitText.create(ref.current,{type:"lines",linesClass:"split-line"});gsap.set(split.lines,{yPercent:110});gsap.to(split.lines,{yPercent:0,duration:1.25,stagger:.08,ease:"power4.out",scrollTrigger:{trigger:ref.current,start:"top 88%",once:true}});return()=>split.revert();},{scope:ref});return <Tag ref={ref} className={`${className} overflow-hidden`}>{children}</Tag>}

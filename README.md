@@ -1,55 +1,28 @@
-# Softbridge Solutions — Finland
+# Softbridge — Helsinki Product Engineering Studio
 
-A production-oriented agency website built around editorial art direction, purposeful motion and a restrained Nordic visual system.
+Production-oriented Next.js 15 website built from a clean slate.
 
-## Design position
-
-This edition deliberately removes ornamental 3D, floating gradient objects, glassmorphism, excessive pills, generic AI imagery and demo-style effects. The experience relies on typography, layout rhythm, real interface compositions, strong case-study hierarchy and motion with a clear narrative function.
-
-## Stack
-
-- Next.js 16 App Router
-- React 19 + TypeScript
-- Tailwind CSS 4
-- GSAP + ScrollTrigger
-- Lenis smooth scrolling
-- Motion for the full-screen navigation
-- Route handlers for project enquiries
-
-## Main routes
-
-- `/`
-- `/work` and `/work/[slug]`
-- `/services` and `/services/[slug]`
-- `/about`
-- `/process`
-- `/insights` and `/insights/[slug]`
-- `/careers`
-- `/contact`
-- Legal and accessibility routes
-
-## Run locally
-
+## Run
 ```bash
 npm install
 npm run dev
-```
-
-Quality checks:
-
-```bash
 npm run typecheck
-npm run lint
 npm run build
 ```
 
-## Contact delivery
+## Direction
+- No 3D. The story does not require it.
+- GSAP: scroll-linked typography, line reveals, page transitions and sequencing.
+- Framer Motion: navigation, filtering and small layout transitions.
+- Lenis: smooth wheel interpolation, disabled by reduced-motion preferences.
 
-Copy `.env.example` to `.env.local`. Add Resend credentials for production email delivery. Without them, development submissions use the documented fallback behavior.
+## Content integrity
+Work is labelled Verified, Anonymised or Representative. Replace sample claims only with substantiated client evidence.
 
-## Pre-launch requirements
-
-Replace conceptual case studies with approved client work, verify every company claim, review legal documents with qualified counsel, add final licensed imagery/video only where it improves the narrative, and run keyboard, screen-reader, responsive and reduced-motion tests.
-
-## Cinematic Motion Revision
-The current revision replaces the earlier mostly editorial scroll experience with a coordinated cinematic motion system. See `MOTION-AUDIT.md` for the audit and implementation map.
+## Launch tasks
+1. Confirm legal entity and postal address.
+2. Review privacy notice with Finnish/EU counsel.
+3. Connect the contact route to an approved email/CRM provider.
+4. Replace Cal.com placeholder.
+5. Add real case-study evidence and permissions.
+6. Run Lighthouse, axe, keyboard and screen-reader QA.

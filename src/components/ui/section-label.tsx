@@ -1,1 +1,0 @@
-export function SectionLabel({index,label,invert=false}:{index:string;label:string;invert?:boolean}){return <div className={`flex items-center justify-between border-t pt-3 ${invert?"border-white/20 text-white/70":"hairline text-black/60"}`}><span className="font-mono text-[10px]">{index}</span><span className="eyebrow">{label}</span></div>}

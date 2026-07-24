@@ -1,0 +1,2 @@
+import type { Config } from "tailwindcss";
+export default { content:["./src/**/*.{js,ts,jsx,tsx,mdx}"], theme:{extend:{colors:{ink:"#11120f",paper:"#f5f4ef",line:"#d8d7cf",signal:"#d6ff3f",muted:"#74756f"},fontFamily:{sans:["var(--font-sans)","Arial","sans-serif"],mono:["var(--font-mono)","monospace"]}}},plugins:[]} satisfies Config;
