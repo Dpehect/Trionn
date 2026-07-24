@@ -13,22 +13,22 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const layers = [
   {
-    eyebrow: "01 / AI SOFTWARE",
-    title: "Artificial Intelligence for Real Business",
-    body: "AI agents, automation systems and intelligent software designed for measurable operational impact across Finland, the Nordics and Europe.",
-    visual: "ring",
+    eyebrow: "01 / AI ENGINEERING",
+    title: "AI Software Development",
+    body: "Business-focused AI agents, intelligent automation and custom machine-learning systems for companies operating across Finland, the Nordics and Europe.",
+    visual: "ai",
   },
   {
-    eyebrow: "02 / DIGITAL PRODUCTS",
-    title: "Enterprise Platforms Built to Scale",
-    body: "Cloud-native web applications, SaaS products and internal platforms engineered for reliability, speed and long-term growth.",
-    visual: "fan",
+    eyebrow: "02 / ENTERPRISE PLATFORMS",
+    title: "Scalable Software Systems",
+    body: "Cloud-native SaaS products, internal business platforms and enterprise applications engineered for security, reliability and long-term growth.",
+    visual: "enterprise",
   },
   {
-    eyebrow: "03 / ENGINEERING",
-    title: "Product Engineering Without Compromise",
-    body: "Strategy, UX systems and full-stack development combined into one delivery model for ambitious European companies.",
-    visual: "map",
+    eyebrow: "03 / DIGITAL PRODUCTS",
+    title: "Web and Mobile Products",
+    body: "High-performance web applications, mobile products and design systems that combine clear user experience with production-grade engineering.",
+    visual: "products",
   },
 ] as const;
 
@@ -252,109 +252,13 @@ export function LayeredHomepage() {
   return (
     <main ref={root} className="site-shell">
       <section className="intro">
-        <div className="intro__aurora intro__aurora--one" aria-hidden="true" />
-        <div className="intro__aurora intro__aurora--two" aria-hidden="true" />
-        <div className="intro__grid" aria-hidden="true" />
-
-        <div className="intro__topline">
-          <span>SOFTBRIDGE SOLUTIONS</span>
-          <span>Finland Office / Serving Europe</span>
-        </div>
-
-        <div className="intro__content">
-          <p className="intro__eyebrow">
-            Software, artificial intelligence and digital products
-          </p>
-
-          <h1>
-            Engineering
-            <br />
-            the next generation
-            <br />
-            of digital products.
-          </h1>
-
-          <p className="intro__description">
-            SoftBridge Solutions develops AI-powered software, enterprise
-            platforms, cloud applications and digital products for companies
-            across Europe. Our Finland office enables closer collaboration with
-            Nordic businesses while our global engineering team delivers
-            scalable technology solutions.
-          </p>
-
-          <div className="intro__actions">
-            <a href="#work" className="intro__action intro__action--primary">
-              Explore Services
-            </a>
-            <a href="#cases" className="intro__action">
-              Selected Cases
-            </a>
-          </div>
-        </div>
-
-        <div className="intro__visual" aria-label="SoftBridge Solutions digital product capabilities">
-          <div className="intro-dashboard">
-            <div className="intro-dashboard__header">
-              <span>SOFTBRIDGE AI OPERATIONS</span>
-              <strong>LIVE</strong>
-            </div>
-
-            <div className="intro-dashboard__metrics">
-              <article>
-                <span>AI Workflows</span>
-                <strong>48</strong>
-              </article>
-              <article>
-                <span>Cloud Systems</span>
-                <strong>99.9%</strong>
-              </article>
-              <article>
-                <span>EU Markets</span>
-                <strong>12</strong>
-              </article>
-            </div>
-
-            <div className="intro-dashboard__main">
-              <div className="intro-dashboard__chart">
-                <span>Product performance</span>
-                <svg viewBox="0 0 600 220" role="img" aria-label="Digital product performance growth chart">
-                  <path
-                    d="M15 190 C90 165, 110 175, 170 130 S275 135, 330 92 S430 78, 585 28"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M15 190 C90 165, 110 175, 170 130 S275 135, 330 92 S430 78, 585 28 L585 215 L15 215 Z"
-                    fill="currentColor"
-                    opacity=".08"
-                  />
-                </svg>
-              </div>
-
-              <div className="intro-dashboard__phone">
-                <div className="intro-dashboard__phone-screen">
-                  <span>AI Assistant</span>
-                  <strong>Ready</strong>
-                  <small>Nordic operations</small>
-                </div>
-              </div>
-            </div>
-
-            <div className="intro-dashboard__chips">
-              <span>AI Software Development</span>
-              <span>Enterprise Platforms</span>
-              <span>Cloud Engineering</span>
-              <span>Mobile Products</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="intro__footer">
-          <span>Scroll to explore</span>
-          <span>Finland · Nordics · Europe</span>
-        </div>
+        <p>SoftBridge Solutions · Finland Office</p>
+        <h1>
+          Software, AI
+          <br />
+          and digital products
+        </h1>
+        <span>Scroll to explore</span>
       </section>
 
       <section className="layer-stack" aria-label="Layered content">
@@ -377,20 +281,80 @@ export function LayeredHomepage() {
               className={`layer-visual visual-${layer.visual}`}
               aria-hidden="true"
             >
-              {layer.visual === "ring" && <div className="metal-ring" />}
-              {layer.visual === "fan" && (
-                <div className="fan-shape">
-                  {Array.from({ length: 11 }).map((_, item) => (
-                    <span
-                      key={item}
-                      style={{ transform: `rotate(${item * 8 - 40}deg)` }}
-                    />
-                  ))}
+              {layer.visual === "ai" && (
+                <div className="softbridge-visual softbridge-visual--ai">
+                  <div className="softbridge-ui">
+                    <header>
+                      <span>AI OPERATIONS</span>
+                      <strong>LIVE</strong>
+                    </header>
+                    <div className="softbridge-ui__metrics">
+                      <article><small>AI Agents</small><b>24</b></article>
+                      <article><small>Automations</small><b>86%</b></article>
+                      <article><small>Active Flows</small><b>48</b></article>
+                    </div>
+                    <div className="softbridge-ui__graph">
+                      <span>Automation performance</span>
+                      <svg viewBox="0 0 600 230">
+                        <path d="M12 198 C90 180 118 166 170 130 S265 145 330 94 S440 80 588 26" />
+                      </svg>
+                    </div>
+                    <div className="softbridge-ui__chips">
+                      <span>AI Agents</span><span>LLM Workflows</span><span>Automation</span>
+                    </div>
+                  </div>
                 </div>
               )}
-              {layer.visual === "map" && (
-                <div className="map-grid">
-                  <div className="map-orb" />
+
+              {layer.visual === "enterprise" && (
+                <div className="softbridge-visual softbridge-visual--enterprise">
+                  <div className="enterprise-shell">
+                    <aside>
+                      <strong>SOFTBRIDGE</strong>
+                      <span>Overview</span>
+                      <span>Operations</span>
+                      <span>Analytics</span>
+                      <span>Infrastructure</span>
+                    </aside>
+                    <main>
+                      <header>
+                        <div><small>Enterprise platform</small><b>System overview</b></div>
+                        <em>99.99% uptime</em>
+                      </header>
+                      <div className="enterprise-shell__cards">
+                        <article><small>Cloud services</small><b>32</b></article>
+                        <article><small>EU regions</small><b>12</b></article>
+                      </div>
+                      <div className="enterprise-shell__network">
+                        {Array.from({ length: 7 }).map((_, item) => (
+                          <i key={item} style={{ left: `${10 + item * 13}%`, top: `${25 + (item % 3) * 23}%` }} />
+                        ))}
+                      </div>
+                    </main>
+                  </div>
+                </div>
+              )}
+
+              {layer.visual === "products" && (
+                <div className="softbridge-visual softbridge-visual--products">
+                  <div className="product-browser">
+                    <header><span /><span /><span /><b>Digital Product System</b></header>
+                    <div className="product-browser__body">
+                      <div className="product-browser__copy">
+                        <small>WEB · MOBILE · UX</small>
+                        <strong>One product.<br />Every screen.</strong>
+                        <p>Responsive interfaces built for clarity, speed and scale.</p>
+                      </div>
+                      <div className="product-browser__device">
+                        <div className="product-browser__screen">
+                          <span>Nordic Platform</span>
+                          <b>Ready</b>
+                          <small>Mobile experience</small>
+                        </div>
+                      </div>
+                    </div>
+                    <footer><span>Next.js</span><span>React</span><span>Mobile</span><span>Design Systems</span></footer>
+                  </div>
                 </div>
               )}
             </div>

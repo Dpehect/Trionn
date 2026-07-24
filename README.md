@@ -1,21 +1,19 @@
-# SoftBridge Solutions Finland — First Section Refresh
+# SoftBridge Solutions Finland — Layer Content Refresh
 
-## What changed
-- Replaced the generic first-section copy with Finland/Nordics/Europe-focused
-  SoftBridge Solutions messaging.
-- Added a premium AI, cloud, enterprise and mobile product dashboard composition.
-- Added service and Selected Cases CTAs.
-- Updated the three layered cards with AI software, digital product and engineering content.
-- Updated page title and description metadata.
+## Fixed
+- Removed the newly added dashboard hero completely.
+- Restored the original compact intro.
+- Kept the original layered scroll experience and every GSAP timing value.
+- Changed only the three layer texts and visual compositions.
 
-## What did not change
-- GSAP setup
-- ScrollTrigger configuration
-- Layer reveal timing
-- Layer card scrub values
-- Text reveal timing
-- Existing first-section animation logic
-- Selected Cases and later sections
+## New layer content
+1. AI Software Development
+2. Scalable Enterprise Software Systems
+3. Web and Mobile Digital Products
+
+## Animation safety
+The existing `.layer-card`, `.layer-copy` and `.layer-visual` hooks remain unchanged.
+No ScrollTrigger start/end, scrub, ease or reveal logic was modified.
 
 ## Run
 ```bash
