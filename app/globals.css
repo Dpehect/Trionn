@@ -749,3 +749,84 @@
 .service-scene--data .service-scene__canvas{background:linear-gradient(145deg,#152234,#21344c)}.service-scene--data .service-scene__panel{background:rgba(255,255,255,.07)}.service-scene--data .service-scene__panel--main strong,.service-scene--data .service-scene__panel--main span{color:#edf4f8}
 .service-scene--transform .service-scene__orb{width:80%;right:-26%;top:-40%;background:conic-gradient(from 30deg,rgba(85,104,224,.32),rgba(49,178,164,.18),rgba(236,117,75,.22),rgba(85,104,224,.32));filter:blur(28px)}
 @media(max-width:800px){.intro{padding-inline:22px}.intro-office{right:22px;left:22px;top:110px}.intro-scroll{left:22px}.service-scene{width:100%;min-width:0}}
+
+
+/* Eight-layer stacking fix: every sticky panel must be fully opaque */
+.layer-stack {
+  isolation: isolate;
+}
+
+.layer-card {
+  isolation: isolate;
+  background-clip: padding-box;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.layer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: inherit;
+  pointer-events: none;
+}
+
+.layer-card--1 {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(112, 93, 255, .15), transparent 30%),
+    #e7edf0;
+}
+
+.layer-card--2 {
+  background:
+    radial-gradient(circle at 76% 24%, rgba(69, 158, 183, .13), transparent 31%),
+    #dce5e9;
+}
+
+.layer-card--3 {
+  background:
+    radial-gradient(circle at 82% 20%, rgba(73, 125, 224, .15), transparent 30%),
+    #d8e3ed;
+}
+
+.layer-card--4 {
+  background:
+    radial-gradient(circle at 80% 22%, rgba(120, 92, 232, .14), transparent 30%),
+    #eceaf4;
+}
+
+.layer-card--5 {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(53, 154, 202, .14), transparent 31%),
+    #dcebf1;
+}
+
+.layer-card--6 {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(218, 106, 163, .12), transparent 30%),
+    #eee8f0;
+}
+
+.layer-card--7 {
+  background:
+    radial-gradient(circle at 79% 20%, rgba(66, 173, 132, .13), transparent 31%),
+    #dce9e4;
+}
+
+.layer-card--8 {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(230, 126, 72, .13), transparent 31%),
+    #eee6df;
+}
+
+/* Prevent copy from a covered layer visually leaking through during clip transitions */
+.layer-card .layer-copy,
+.layer-card .layer-visual {
+  position: relative;
+  z-index: 2;
+}
+
+.layer-card[style*="z-index"] {
+  contain: paint;
+}
