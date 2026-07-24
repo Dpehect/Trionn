@@ -1,16 +1,15 @@
-# Trionn — Selected Cases Slot Motion
+# Trionn — Third Section Orbit Collage
 
-Bu sürümde ilk bölümün eski animasyonları korunmuştur.
+## Added as section 3
+- Sticky full-screen dark stage
+- Animated metallic central core
+- Nine floating interface/product panels
+- Separate GSAP timeline and parallax depth per panel
+- Moving technical grid background
+- Responsive mobile composition
+- Existing first and Selected Cases sections preserved
 
-Selected Cases:
-- 9 kartın her biri ayrı GSAP timeline kullanır.
-- Her kartın giriş yönü, rotation, scale ve scrub süresi farklıdır.
-- Kart gövdesi, medya maskesi, görsel, kategori, başlık ve ok ayrı sırayla açılır.
-- Görsellerde bağımsız parallax devam hareketi bulunur.
-- Masaüstünde 3 sütun, tablette 2 sütun, mobilde 1 sütun korunur.
-
-## Çalıştırma
-
+## Run
 ```bash
 npm install
 npm run dev

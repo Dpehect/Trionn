@@ -42,6 +42,18 @@ const cases = [
   { name: "KOHLER", category: "Product design", image: "/cases/kohler.jpg" },
 ] as const;
 
+const orbitPanels = [
+  { image: "/cases/brinc.jpg", className: "orbit-panel--1", depth: 1.15 },
+  { image: "/cases/span.jpg", className: "orbit-panel--2", depth: 0.82 },
+  { image: "/cases/sonos.jpg", className: "orbit-panel--3", depth: 1.28 },
+  { image: "/cases/formlabs.jpg", className: "orbit-panel--4", depth: 0.92 },
+  { image: "/cases/aoi.jpg", className: "orbit-panel--5", depth: 1.38 },
+  { image: "/cases/super73.jpg", className: "orbit-panel--6", depth: 0.76 },
+  { image: "/cases/square.jpg", className: "orbit-panel--7", depth: 1.22 },
+  { image: "/cases/stryker.jpg", className: "orbit-panel--8", depth: 0.88 },
+  { image: "/cases/kohler.jpg", className: "orbit-panel--9", depth: 1.34 },
+] as const;
+
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
 
@@ -338,6 +350,125 @@ export function LayeredHomepage() {
           }
         );
       });
+
+      const orbitTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".orbit-showcase",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.35,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      orbitTimeline
+        .fromTo(
+          ".orbit-core",
+          { scale: 0.78, rotate: -8, opacity: 0.35 },
+          { scale: 1.08, rotate: 16, opacity: 1, duration: 0.52, ease: "power2.out" },
+          0
+        )
+        .to(
+          ".orbit-core",
+          { scale: 0.92, rotate: 28, duration: 0.48, ease: "power1.inOut" },
+          0.52
+        )
+        .fromTo(
+          ".orbit-copy",
+          { y: 42, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.28, ease: "power3.out" },
+          0.04
+        )
+        .to(
+          ".orbit-copy",
+          { y: -26, opacity: 0.72, duration: 0.35, ease: "power1.inOut" },
+          0.65
+        );
+
+      gsap.utils.toArray<HTMLElement>(".orbit-panel").forEach((panel, index) => {
+        const image = panel.querySelector<HTMLElement>(".orbit-panel__image");
+        const depth = Number(panel.dataset.depth ?? 1);
+        const direction = index % 2 === 0 ? 1 : -1;
+        const row = Math.floor(index / 3);
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".orbit-showcase",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.5 + index * 0.09,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        timeline
+          .fromTo(
+            panel,
+            {
+              yPercent: 105 + row * 22,
+              xPercent: direction * (14 + index * 1.7),
+              rotate: direction * (5 + index * 0.45),
+              rotateX: 7 + index * 0.35,
+              scale: 0.74 + (index % 3) * 0.035,
+              opacity: 0,
+              filter: "blur(7px)",
+            },
+            {
+              yPercent: -10 - index * 2.4 * depth,
+              xPercent: direction * -4 * depth,
+              rotate: direction * -1.4,
+              rotateX: 0,
+              scale: 1,
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 0.56,
+              ease: "power3.out",
+            },
+            index * 0.035
+          )
+          .to(
+            panel,
+            {
+              yPercent: -118 - index * 6.5 * depth,
+              xPercent: direction * (10 + index * 1.2) * depth,
+              rotate: direction * (4 + index * 0.65),
+              scale: 0.9 + (index % 2) * 0.04,
+              opacity: index < 7 ? 0.78 : 1,
+              duration: 0.44,
+              ease: "power1.inOut",
+            },
+            0.56
+          );
+
+        if (image) {
+          gsap.fromTo(
+            image,
+            { scale: 1.18, yPercent: 8 },
+            {
+              scale: 1.02,
+              yPercent: -10 * depth,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".orbit-showcase",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 2 + index * 0.08,
+              },
+            }
+          );
+        }
+      });
+
+      gsap.to(".orbit-grid", {
+        backgroundPosition: "0px 120px",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".orbit-showcase",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.4,
+        },
+      });
     },
     { scope: root }
   );
@@ -423,6 +554,60 @@ export function LayeredHomepage() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="orbit-showcase" aria-label="Interactive product ecosystem">
+        <div className="orbit-showcase__sticky">
+          <div className="orbit-grid" aria-hidden="true" />
+
+          <div className="orbit-copy">
+            <span>03 / DIGITAL ECOSYSTEMS</span>
+            <p>
+              Product partners for ambitious digital platforms. From strategy
+              and design systems to scalable development, every layer moves as
+              one connected experience.
+            </p>
+          </div>
+
+          <div className="orbit-core" aria-hidden="true">
+            <div className="orbit-core__shell" />
+            <div className="orbit-core__glow" />
+          </div>
+
+          <div className="orbit-panels">
+            {orbitPanels.map((panel, index) => (
+              <article
+                className={`orbit-panel ${panel.className}`}
+                data-depth={panel.depth}
+                key={panel.image}
+              >
+                <Image
+                  className="orbit-panel__image"
+                  src={panel.image}
+                  alt=""
+                  fill
+                  sizes="32vw"
+                />
+                <div className="orbit-panel__ui">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>
+                    {index % 3 === 0
+                      ? "Product System"
+                      : index % 3 === 1
+                        ? "Interface Layer"
+                        : "Digital Platform"}
+                  </strong>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="orbit-index" aria-hidden="true">
+            <span>9 Projects</span>
+            <span>24/7 Systems</span>
+            <span>One Ecosystem</span>
+          </div>
         </div>
       </section>
 
