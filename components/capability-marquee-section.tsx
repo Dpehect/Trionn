@@ -8,46 +8,48 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const rowOne = [
-  { label: "AI Automation", tone: "orange" },
-  { label: "Custom Software" },
-  { label: "Cloud Platforms" },
-  { label: "Enterprise Systems" },
-  { label: "Product Strategy" },
-  { label: "AI Automation", tone: "orange" },
-  { label: "Custom Software" },
-  { label: "Cloud Platforms" },
-  { label: "Enterprise Systems" },
-  { label: "Product Strategy" },
+  { label: "AI Software Development Finland", tone: "orange" },
+  { label: "Custom Software Development" },
+  { label: "Enterprise AI Solutions" },
+  { label: "Web Application Development" },
+  { label: "Cloud Application Development" },
+  { label: "AI Agents for Business" },
+  { label: "AI Software Development Finland", tone: "orange" },
+  { label: "Custom Software Development" },
+  { label: "Enterprise AI Solutions" },
+  { label: "Web Application Development" },
+  { label: "Cloud Application Development" },
+  { label: "AI Agents for Business" },
 ];
 
 const rowTwo = [
-  { label: "Healthcare" },
-  { label: "SaaS" },
-  { label: "Technology" },
-  { label: "Real Estate", tone: "lime" },
-  { label: "Automotive" },
-  { label: "Manufacturing" },
-  { label: "Healthcare" },
-  { label: "SaaS" },
-  { label: "Technology" },
-  { label: "Real Estate", tone: "lime" },
-  { label: "Automotive" },
-  { label: "Manufacturing" },
+  { label: "Software Company in Finland", tone: "blue" },
+  { label: "Nordic Digital Product Partner" },
+  { label: "SaaS Product Development" },
+  { label: "Mobile App Development" },
+  { label: "Next.js Development Services" },
+  { label: "React Development Company" },
+  { label: "Software Company in Finland", tone: "blue" },
+  { label: "Nordic Digital Product Partner" },
+  { label: "SaaS Product Development" },
+  { label: "Mobile App Development" },
+  { label: "Next.js Development Services" },
+  { label: "React Development Company" },
 ];
 
 const rowThree = [
-  { label: "Web Applications" },
-  { label: "Mobile Products" },
-  { label: "UX Engineering" },
-  { label: "Data & Analytics", tone: "violet" },
-  { label: "Nordic Expansion" },
-  { label: "Digital Transformation" },
-  { label: "Web Applications" },
-  { label: "Mobile Products" },
-  { label: "UX Engineering" },
-  { label: "Data & Analytics", tone: "violet" },
-  { label: "Nordic Expansion" },
-  { label: "Digital Transformation" },
+  { label: "Manufacturing AI Solutions" },
+  { label: "Logistics Software Development" },
+  { label: "Healthcare Software Solutions" },
+  { label: "Retail AI & Automation", tone: "lime" },
+  { label: "Education Technology Platforms" },
+  { label: "Digital Transformation Europe" },
+  { label: "Manufacturing AI Solutions" },
+  { label: "Logistics Software Development" },
+  { label: "Healthcare Software Solutions" },
+  { label: "Retail AI & Automation", tone: "lime" },
+  { label: "Education Technology Platforms" },
+  { label: "Digital Transformation Europe" },
 ];
 
 function PillRow({
@@ -58,7 +60,7 @@ function PillRow({
   className: string;
 }) {
   return (
-    <div className={`capability-row ${className}`} aria-hidden="true">
+    <div className={`capability-row ${className}`}>
       <div className="capability-row__track">
         {items.map((item, index) => (
           <span
@@ -83,47 +85,17 @@ export function CapabilityMarqueeSection() {
       const section = root.current;
       if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.25,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      timeline
-        .fromTo(
-          ".capability-row--one .capability-row__track",
-          { xPercent: -8 },
-          { xPercent: -34, duration: 1, ease: "none" },
-          0,
-        )
-        .fromTo(
-          ".capability-row--two .capability-row__track",
-          { xPercent: -38 },
-          { xPercent: -10, duration: 1, ease: "none" },
-          0,
-        )
-        .fromTo(
-          ".capability-row--three .capability-row__track",
-          { xPercent: -14 },
-          { xPercent: -42, duration: 1, ease: "none" },
-          0,
-        );
-
       gsap.fromTo(
         ".capability-section__header",
-        { y: 28, opacity: 0 },
+        { y: 24, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
-            end: "top 38%",
+            start: "top 82%",
+            end: "top 42%",
             scrub: 1,
           },
         },
@@ -133,21 +105,41 @@ export function CapabilityMarqueeSection() {
         ".capability-row",
         {
           opacity: 0,
-          y: 30,
+          y: 28,
         },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.08,
+          stagger: 0.09,
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 74%",
-            end: "top 24%",
-            scrub: 1.15,
+            start: "top 76%",
+            end: "top 30%",
+            scrub: 1.05,
           },
         },
       );
+
+      gsap.to(".capability-aurora--one", {
+        xPercent: 8,
+        yPercent: -6,
+        rotate: 10,
+        duration: 12,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".capability-aurora--two", {
+        xPercent: -9,
+        yPercent: 8,
+        rotate: -8,
+        duration: 15,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
     },
     { scope: root },
   );
@@ -157,14 +149,24 @@ export function CapabilityMarqueeSection() {
       ref={root}
       id="industries"
       className="capability-section"
-      aria-label="SoftBridge Solutions capabilities and industries"
+      aria-labelledby="capability-title"
     >
       <div className="capability-section__sticky">
+        <div className="capability-aurora capability-aurora--one" aria-hidden="true" />
+        <div className="capability-aurora capability-aurora--two" aria-hidden="true" />
+
         <header className="capability-section__header">
-          <span>04 / CAPABILITIES & INDUSTRIES</span>
+          <div>
+            <span>04 / SOFTWARE, AI & DIGITAL PRODUCTS</span>
+            <h2 id="capability-title">
+              Technology capabilities for Finland, the Nordics and Europe.
+            </h2>
+          </div>
+
           <p>
-            Technology, products and sector expertise for companies building
-            across Finland and Europe.
+            SoftBridge Solutions supports companies with AI engineering,
+            custom software, cloud platforms, web applications, mobile
+            products and scalable digital systems.
           </p>
         </header>
 
@@ -174,9 +176,9 @@ export function CapabilityMarqueeSection() {
           <PillRow items={rowThree} className="capability-row--three" />
         </div>
 
-        <div className="capability-section__footer" aria-hidden="true">
-          <span>SOFTBRIDGE SOLUTIONS</span>
-          <span>FINLAND OFFICE / EUROPEAN DELIVERY</span>
+        <div className="capability-section__footer">
+          <span>SOFTBRIDGE SOLUTIONS / FINLAND OFFICE</span>
+          <span>AI · WEB · MOBILE · CLOUD · SAAS · AUTOMATION</span>
         </div>
       </div>
     </section>

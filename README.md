@@ -1,13 +1,16 @@
-# SoftBridge Solutions Finland — Fourth Section
+# SoftBridge Solutions Finland — Auto Marquee SEO/GEO Edition
 
-## Added
-- New fourth section based on the supplied moving pill-row reference.
-- Three horizontal rows with alternating scroll directions.
-- SoftBridge capabilities, services and industry expertise.
-- Orange, lime and violet highlighted pills.
-- Sticky full-screen section with stable scroll-scrubbed motion.
-- Removed the entire Let's Talk closing section.
-- Preserved the first three sections.
+## Fourth section changes
+- Replaced the black background with a light Nordic gradient.
+- Increased pill size substantially.
+- Rows now move continuously on their own with CSS animation.
+- Alternating movement directions are preserved.
+- Hovering pauses a row.
+- Added SEO/GEO-focused phrases based on SoftBridge Solutions' actual services:
+  AI software development, custom software, enterprise AI, web applications,
+  cloud applications, SaaS, mobile apps, Next.js, React and industry solutions.
+- Added regional context for Finland, the Nordics and Europe.
+- Updated page title and description metadata.
 
 ## Run
 ```bash
