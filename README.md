@@ -1,15 +1,12 @@
-# Trionn — Brand Statement Section
+# SoftBridge Solutions Finland — Third Section
 
-Üçüncü bölüm tamamen silinip referans videoya göre yeniden kuruldu.
-
-## Yeni üçüncü bölüm
-- Siyah, tam ekran sticky sahne
-- Trionn'a özel marka anlatımı
-- Scroll ile sırayla açılan kelimeler
-- Mor, pembe, mavi, turuncu ve yeşil vurgu kelimeleri
-- Bölüm sonunda aşağıdan gelen büyük Work başlığı
-- Mobil responsive tipografi
-- İlk iki bölüm korunmuştur
+## Changes
+- Removed the large Work transition entirely.
+- Replaced Trionn branding with SoftBridge Solutions.
+- Rewrote the third-section copy for the Finland branch and European market.
+- Added Finland Studio / European Digital Partner labels.
+- Preserved the scroll-highlighted word animation.
+- Preserved the first two sections.
 
 ## Run
 ```bash

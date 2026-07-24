@@ -405,40 +405,10 @@ a { color: inherit; text-decoration: none; }
 .brand-word.accent--orange { --accent-color: #ff7a2f; }
 .brand-word.accent--green { --accent-color: #42d66b; }
 
-.brand-work {
-  position: absolute;
-  z-index: 25;
-  left: 50%;
-  bottom: -1.2vw;
-  transform: translateX(-50%);
-  width: min(92vw, 1500px);
-  text-align: center;
-  will-change: transform, opacity;
-}
-.brand-work__label {
-  display: block;
-  margin-bottom: 6px;
-  color: rgba(255,255,255,.44);
-  font-size: 8px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-.brand-work h2 {
-  margin: 0;
-  font-size: clamp(92px, 15vw, 260px);
-  line-height: .72;
-  letter-spacing: -.075em;
-  font-weight: 500;
-}
-.brand-work__line {
-  display: block;
-  width: 100%;
-  height: 1px;
-  margin-top: 20px;
-  background: rgba(255,255,255,.24);
-  transform: scaleX(0);
-  transform-origin: center;
-}
+
+
+
+
 .brand-statement__index {
   position: absolute;
   z-index: 30;
@@ -469,13 +439,6 @@ a { color: inherit; text-decoration: none; }
     font-size: clamp(28px, 7.8vw, 52px);
     line-height: 1.02;
   }
-  .brand-work {
-    bottom: 0;
-    width: calc(100vw - 36px);
-  }
-  .brand-work h2 {
-    font-size: clamp(90px, 24vw, 180px);
-  }
   .brand-statement__index {
     right: 18px;
     bottom: 18px;
@@ -490,9 +453,6 @@ a { color: inherit; text-decoration: none; }
     font-size: clamp(27px, 8.8vw, 45px);
     letter-spacing: -.045em;
   }
-  .brand-work h2 {
-    font-size: clamp(86px, 27vw, 150px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -502,5 +462,41 @@ a { color: inherit; text-decoration: none; }
   .brand-word {
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+
+.brand-statement__signature {
+  position: absolute;
+  z-index: 28;
+  left: 2.2vw;
+  bottom: 2.2vw;
+  display: grid;
+  gap: 5px;
+  will-change: transform, opacity;
+}
+.brand-statement__signature span {
+  color: rgba(255,255,255,.4);
+  font-size: 8px;
+  letter-spacing: .17em;
+}
+.brand-statement__signature strong {
+  color: rgba(255,255,255,.82);
+  font-size: clamp(18px, 1.5vw, 28px);
+  line-height: 1;
+  letter-spacing: -.035em;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .brand-statement__signature {
+    left: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-statement__signature strong {
+    font-size: 18px;
   }
 }

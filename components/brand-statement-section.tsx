@@ -8,42 +8,63 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const words = [
-  { text: "Trionn", className: "accent accent--violet" },
+  { text: "SoftBridge", className: "accent accent--violet" },
+  { text: "Solutions", className: "accent accent--violet" },
   { text: "is", className: "" },
   { text: "a", className: "" },
+  { text: "Finland-based", className: "accent accent--blue" },
+  { text: "software", className: "" },
+  { text: "and", className: "" },
+  { text: "AI", className: "accent accent--pink" },
+  { text: "engineering", className: "accent accent--green" },
+  { text: "company", className: "" },
+  { text: "building", className: "" },
+  { text: "modern", className: "" },
   { text: "digital", className: "" },
-  { text: "product", className: "" },
-  { text: "studio", className: "" },
-  { text: "that", className: "" },
-  { text: "turns", className: "" },
+  { text: "products", className: "" },
+  { text: "for", className: "" },
   { text: "ambitious", className: "" },
-  { text: "ideas", className: "" },
-  { text: "into", className: "" },
-  { text: "distinctive", className: "" },
-  { text: "brands,", className: "accent accent--pink" },
-  { text: "high-performing", className: "" },
-  { text: "websites", className: "accent accent--blue" },
-  { text: "and", className: "" },
-  { text: "scalable", className: "" },
-  { text: "digital", className: "" },
-  { text: "systems.", className: "accent accent--orange" },
-  { text: "Through", className: "" },
+  { text: "businesses", className: "" },
+  { text: "across", className: "" },
+  { text: "Europe.", className: "accent accent--orange" },
+  { text: "We", className: "" },
+  { text: "combine", className: "" },
   { text: "strategy,", className: "" },
-  { text: "design", className: "" },
+  { text: "product", className: "" },
+  { text: "design,", className: "" },
+  { text: "full-stack", className: "" },
+  { text: "development", className: "" },
   { text: "and", className: "" },
-  { text: "precise", className: "" },
-  { text: "engineering,", className: "accent accent--green" },
-  { text: "every", className: "" },
-  { text: "experience", className: "" },
-  { text: "is", className: "" },
-  { text: "built", className: "" },
+  { text: "artificial", className: "" },
+  { text: "intelligence", className: "accent accent--pink" },
   { text: "to", className: "" },
-  { text: "move", className: "" },
-  { text: "with", className: "" },
-  { text: "clarity,", className: "" },
-  { text: "purpose", className: "" },
+  { text: "create", className: "" },
+  { text: "fast,", className: "" },
+  { text: "scalable", className: "accent accent--blue" },
   { text: "and", className: "" },
-  { text: "performance.", className: "" },
+  { text: "reliable", className: "" },
+  { text: "digital", className: "" },
+  { text: "experiences.", className: "" },
+  { text: "From", className: "" },
+  { text: "startup", className: "" },
+  { text: "MVPs", className: "" },
+  { text: "to", className: "" },
+  { text: "enterprise", className: "" },
+  { text: "platforms,", className: "" },
+  { text: "every", className: "" },
+  { text: "solution", className: "" },
+  { text: "is", className: "" },
+  { text: "engineered", className: "" },
+  { text: "for", className: "" },
+  { text: "long-term", className: "" },
+  { text: "growth,", className: "accent accent--green" },
+  { text: "measurable", className: "" },
+  { text: "business", className: "" },
+  { text: "impact", className: "" },
+  { text: "and", className: "" },
+  { text: "exceptional", className: "" },
+  { text: "user", className: "" },
+  { text: "experience.", className: "" },
 ] as const;
 
 export function BrandStatementSection() {
@@ -58,8 +79,8 @@ export function BrandStatementSection() {
       const accentElements = gsap.utils.toArray<HTMLElement>(".brand-word.accent", section);
 
       gsap.set(wordElements, {
-        opacity: 0.22,
-        y: 18,
+        opacity: 0.2,
+        y: 16,
       });
 
       const master = gsap.timeline({
@@ -67,7 +88,7 @@ export function BrandStatementSection() {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.25,
+          scrub: 1.3,
           invalidateOnRefresh: true,
         },
       });
@@ -78,9 +99,9 @@ export function BrandStatementSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.48,
+            duration: 0.68,
             stagger: {
-              each: 0.018,
+              each: 0.012,
               from: "start",
             },
             ease: "power2.out",
@@ -91,45 +112,37 @@ export function BrandStatementSection() {
           accentElements,
           {
             color: "var(--accent-color)",
-            textShadow: "0 0 22px color-mix(in srgb, var(--accent-color) 28%, transparent)",
-            duration: 0.32,
-            stagger: 0.1,
+            textShadow:
+              "0 0 22px color-mix(in srgb, var(--accent-color) 26%, transparent)",
+            duration: 0.34,
+            stagger: 0.08,
             ease: "power2.out",
           },
-          0.12,
+          0.1,
         )
         .to(
           ".brand-statement__inner",
           {
-            yPercent: -8,
-            scale: 0.985,
-            duration: 0.28,
+            yPercent: -3,
+            scale: 0.99,
+            duration: 0.24,
             ease: "power1.inOut",
           },
-          0.72,
+          0.76,
         )
         .fromTo(
-          ".brand-work",
+          ".brand-statement__signature",
           {
-            yPercent: 120,
+            y: 24,
             opacity: 0,
           },
           {
-            yPercent: 0,
+            y: 0,
             opacity: 1,
-            duration: 0.28,
+            duration: 0.22,
             ease: "power3.out",
           },
-          0.72,
-        )
-        .to(
-          ".brand-work__line",
-          {
-            scaleX: 1,
-            duration: 0.18,
-            ease: "power2.out",
-          },
-          0.81,
+          0.76,
         );
 
       gsap.fromTo(
@@ -152,13 +165,17 @@ export function BrandStatementSection() {
   );
 
   return (
-    <section ref={root} className="brand-statement" aria-label="About Trionn">
+    <section
+      ref={root}
+      className="brand-statement"
+      aria-label="About SoftBridge Solutions Finland"
+    >
       <div className="brand-statement__sticky">
         <div className="brand-statement__noise" aria-hidden="true" />
 
         <div className="brand-statement__eyebrow">
-          <span>03 / ABOUT TRIONN</span>
-          <span>Independent digital product studio</span>
+          <span>03 / SOFTBRIDGE SOLUTIONS</span>
+          <span>Finland Studio / European Digital Partner</span>
         </div>
 
         <div className="brand-statement__inner">
@@ -174,15 +191,14 @@ export function BrandStatementSection() {
           </p>
         </div>
 
-        <div className="brand-work" aria-hidden="true">
-          <span className="brand-work__label">Selected projects</span>
-          <h2>Work</h2>
-          <span className="brand-work__line" />
+        <div className="brand-statement__signature" aria-hidden="true">
+          <span>FINLAND STUDIO</span>
+          <strong>SOFTBRIDGE SOLUTIONS</strong>
         </div>
 
         <div className="brand-statement__index" aria-hidden="true">
-          <span>TRI / 03</span>
-          <span>Scroll to reveal</span>
+          <span>FIN / 03</span>
+          <span>EU DIGITAL PARTNER</span>
         </div>
       </div>
     </section>
