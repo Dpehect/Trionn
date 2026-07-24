@@ -1177,3 +1177,83 @@
     transform: scale(1.08) !important;
   }
 }
+
+
+/* Restore the original overlapping sticky-layer behaviour */
+.layer-stack {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.layer-stack::after {
+  display: none !important;
+}
+
+.layer-card {
+  position: sticky !important;
+  top: 70px !important;
+  height: calc(100svh - 70px) !important;
+  min-height: 630px;
+  margin: 0 3vw !important;
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* The image is atmospheric background, so the layer itself is one-column again */
+.layer-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: center;
+  gap: 0 !important;
+  padding: clamp(58px, 7vw, 112px) !important;
+}
+
+.layer-copy {
+  width: min(680px, 64vw);
+  max-width: 680px;
+  padding: clamp(24px, 3vw, 48px);
+  border-radius: 26px;
+  background: rgba(239, 241, 238, .28);
+  backdrop-filter: blur(3px);
+}
+
+.layer-visual,
+.layer-visual--image {
+  display: none !important;
+}
+
+/* Each following card covers the previous one rather than appearing as a separate block */
+.layer-card--1 { z-index: 1; }
+.layer-card--2 { z-index: 2; }
+.layer-card--3 { z-index: 3; }
+.layer-card--4 { z-index: 4; }
+
+@supports (height: 100dvh) {
+  .layer-card {
+    height: calc(100dvh - 70px) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .layer-card {
+    top: 0 !important;
+    height: 100svh !important;
+    min-height: 700px;
+    margin: 0 !important;
+    padding: 54px 22px 30px !important;
+  }
+
+  .layer-copy {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+
+  @supports (height: 100dvh) {
+    .layer-card {
+      height: 100dvh !important;
+    }
+  }
+}
