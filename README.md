@@ -1,13 +1,15 @@
-# Trionn — True Orbit Third Section
+# Trionn — Professional Orbit Revision
 
-Üçüncü bölüm baştan yazıldı:
+Üçüncü bölüm profesyonel seviyeye yaklaştırıldı:
 
-- Kartlar gerçek CSS 3D halkasına dizilir.
-- Tüm halka kürenin çevresinde scroll ile döner.
-- Öndeki kartlar büyür ve netleşir.
-- Arkaya geçen kartlar küçülür, kararır ve bulanıklaşır.
-- Küre merkezde sabit kalır.
-- İlk iki bölüm değiştirilmemiştir.
+- Kartlar artık kameraya dönük kalır.
+- Yatay + dikey eliptik yörüngede çekirdeği sarar.
+- Öndeki kartlar çekirdeğin önünden, arkadakiler arkasından geçer.
+- Derinlik, scale, blur, brightness ve z-index gerçek zamanlı hesaplanır.
+- Orbit sahnesi ekranın merkezine taşındı.
+- Scroll hareketi tüm bölüm boyunca dengeli dağıtıldı.
+- Teknik halo, eksen çizgileri, vignette ve merkez etiketi eklendi.
+- İlk iki bölüm korunmuştur.
 
 ## Çalıştırma
 

@@ -352,116 +352,154 @@ export function LayeredHomepage() {
       });
 
       const orbitSection = document.querySelector<HTMLElement>(".orbit-showcase");
-      const orbitRing = document.querySelector<HTMLElement>(".orbit-ring");
+      const orbitStage = document.querySelector<HTMLElement>(".orbit-stage");
+      const orbitCore = document.querySelector<HTMLElement>(".orbit-core");
       const orbitCards = gsap.utils.toArray<HTMLElement>(".orbit-card");
 
-      if (orbitSection && orbitRing && orbitCards.length) {
-        const updateDepth = () => {
-          const ringRotation = Number(gsap.getProperty(orbitRing, "rotationY")) || 0;
+      if (orbitSection && orbitStage && orbitCore && orbitCards.length) {
+        const cardCount = orbitCards.length;
+        const setters = orbitCards.map((card) => ({
+          x: gsap.quickSetter(card, "x", "px"),
+          y: gsap.quickSetter(card, "y", "px"),
+          scale: gsap.quickSetter(card, "scale"),
+          rotationY: gsap.quickSetter(card, "rotationY", "deg"),
+          rotationZ: gsap.quickSetter(card, "rotationZ", "deg"),
+          opacity: gsap.quickSetter(card, "opacity"),
+          filter: gsap.quickSetter(card, "filter"),
+        }));
+
+        let targetProgress = 0;
+        let renderedProgress = 0;
+        let animationFrame = 0;
+        let active = false;
+
+        const renderOrbit = () => {
+          renderedProgress += (targetProgress - renderedProgress) * 0.105;
+
+          const width = orbitStage.clientWidth;
+          const height = orbitStage.clientHeight;
+          const radiusX = Math.min(width * 0.405, 620);
+          const radiusY = Math.min(height * 0.245, 190);
+          const travel = renderedProgress * Math.PI * 3.15;
+          const stageBreath = Math.sin(renderedProgress * Math.PI) * 0.035;
 
           orbitCards.forEach((card, index) => {
-            const angle = index * (360 / orbitCards.length) + ringRotation;
-            const radians = (angle * Math.PI) / 180;
-            const depth = Math.cos(radians);
-            const side = Math.sin(radians);
+            const baseAngle = (index / cardCount) * Math.PI * 2 - Math.PI / 2;
+            const angle = baseAngle + travel;
+            const depth = Math.sin(angle);
+            const side = Math.cos(angle);
+            const frontness = (depth + 1) / 2;
 
-            gsap.set(card, {
-              zIndex: Math.round((depth + 1) * 100),
-              opacity: gsap.utils.mapRange(-1, 1, 0.2, 1, depth),
-              filter: `brightness(${gsap.utils.mapRange(-1, 1, 0.34, 1, depth)}) blur(${gsap.utils.mapRange(-1, 1, 2.4, 0, depth)}px)`,
-              scale: gsap.utils.mapRange(-1, 1, 0.66, 1.08, depth),
-              rotateZ: side * 1.8,
-              pointerEvents: depth > 0.15 ? "auto" : "none",
-            });
+            const x = side * radiusX;
+            const y = depth * radiusY + Math.cos(angle * 2) * 12;
+            const scale = 0.67 + frontness * 0.43 + stageBreath;
+            const opacity = 0.22 + frontness * 0.78;
+            const blur = (1 - frontness) * 2.2;
+            const brightness = 0.38 + frontness * 0.72;
+            const yaw = side * -11;
+            const roll = side * 2.1;
+
+            setters[index].x(x);
+            setters[index].y(y);
+            setters[index].scale(scale);
+            setters[index].rotationY(yaw);
+            setters[index].rotationZ(roll);
+            setters[index].opacity(opacity);
+            setters[index].filter(`brightness(${brightness}) blur(${blur}px)`);
+
+            card.style.zIndex = depth > 0
+              ? String(300 + Math.round(frontness * 100))
+              : String(50 + Math.round(frontness * 40));
+            card.style.pointerEvents = frontness > 0.72 ? "auto" : "none";
           });
+
+          const coreScale = 1 + Math.sin(renderedProgress * Math.PI * 2) * 0.018;
+          gsap.set(orbitCore, {
+            scale: coreScale,
+            rotate: renderedProgress * 18 - 9,
+          });
+
+          if (active || Math.abs(targetProgress - renderedProgress) > 0.0005) {
+            animationFrame = requestAnimationFrame(renderOrbit);
+          } else {
+            animationFrame = 0;
+          }
+        };
+
+        const startRender = () => {
+          active = true;
+          if (!animationFrame) animationFrame = requestAnimationFrame(renderOrbit);
+        };
+
+        const stopRender = () => {
+          active = false;
         };
 
         gsap.set(orbitCards, {
-          opacity: 0,
-          scale: 0.72,
+          xPercent: -50,
+          yPercent: -50,
+          transformOrigin: "50% 50%",
+          transformPerspective: 1400,
+        });
+
+        const orbitTrigger = ScrollTrigger.create({
+          trigger: orbitSection,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.15,
+          invalidateOnRefresh: true,
+          onEnter: startRender,
+          onEnterBack: startRender,
+          onLeave: stopRender,
+          onLeaveBack: stopRender,
+          onUpdate: (self) => {
+            targetProgress = self.progress;
+            startRender();
+          },
+          onRefresh: () => {
+            targetProgress = orbitTrigger.progress;
+            renderedProgress = targetProgress;
+            startRender();
+          },
         });
 
         gsap.fromTo(
-          ".orbit-core",
-          {
-            scale: 0.62,
-            rotate: -12,
-            opacity: 0,
-          },
+          orbitStage,
+          { scale: 0.84, opacity: 0, yPercent: 7 },
           {
             scale: 1,
-            rotate: 0,
             opacity: 1,
-            duration: 1,
+            yPercent: 0,
             ease: "power3.out",
             scrollTrigger: {
               trigger: orbitSection,
               start: "top 82%",
               end: "top 18%",
-              scrub: 1.1,
+              scrub: 1.15,
             },
           }
         );
 
-        orbitCards.forEach((card, index) => {
-          gsap.to(card, {
+        gsap.fromTo(
+          orbitCore,
+          { scale: 0.72, opacity: 0, filter: "blur(12px)" },
+          {
+            scale: 1,
             opacity: 1,
-            duration: 0.8,
+            filter: "blur(0px)",
             ease: "power3.out",
             scrollTrigger: {
               trigger: orbitSection,
-              start: `top ${92 - index * 2}%`,
-              end: `top ${48 - index * 1.2}%`,
-              scrub: 1.25 + index * 0.07,
-            },
-          });
-        });
-
-        gsap.fromTo(
-          orbitRing,
-          {
-            rotationY: -68,
-            rotationX: 8,
-            rotationZ: -2.5,
-          },
-          {
-            rotationY: 246,
-            rotationX: -6,
-            rotationZ: 3.5,
-            ease: "none",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top top",
-              end: "bottom bottom",
-              scrub: 1.35,
-              onUpdate: updateDepth,
-              onRefresh: updateDepth,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          ".orbit-stage",
-          {
-            scale: 0.86,
-            yPercent: 6,
-          },
-          {
-            scale: 1.08,
-            yPercent: -4,
-            ease: "none",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top top",
-              end: "bottom bottom",
-              scrub: 1.7,
+              start: "top 78%",
+              end: "top 22%",
+              scrub: 1.05,
             },
           }
         );
 
         gsap.fromTo(
           ".orbit-copy",
-          { y: 42, opacity: 0 },
+          { y: 46, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -469,14 +507,14 @@ export function LayeredHomepage() {
             scrollTrigger: {
               trigger: orbitSection,
               start: "top 72%",
-              end: "top 28%",
+              end: "top 30%",
               scrub: 1,
             },
           }
         );
 
         gsap.to(".orbit-grid", {
-          backgroundPosition: "0px 120px",
+          backgroundPosition: "0px 145px",
           ease: "none",
           scrollTrigger: {
             trigger: orbitSection,
@@ -486,7 +524,39 @@ export function LayeredHomepage() {
           },
         });
 
-        updateDepth();
+        gsap.to(".orbit-halo--outer", {
+          rotate: 28,
+          scale: 1.05,
+          ease: "none",
+          scrollTrigger: {
+            trigger: orbitSection,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.8,
+          },
+        });
+
+        gsap.to(".orbit-halo--inner", {
+          rotate: -34,
+          scale: 0.96,
+          ease: "none",
+          scrollTrigger: {
+            trigger: orbitSection,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.6,
+          },
+        });
+
+        renderedProgress = 0;
+        targetProgress = 0;
+        startRender();
+
+        return () => {
+          active = false;
+          cancelAnimationFrame(animationFrame);
+          orbitTrigger.kill();
+        };
       }
     },
     { scope: root }
@@ -590,47 +660,48 @@ export function LayeredHomepage() {
           </div>
 
           <div className="orbit-stage">
+            <div className="orbit-halo orbit-halo--outer" aria-hidden="true" />
+            <div className="orbit-halo orbit-halo--inner" aria-hidden="true" />
+            <div className="orbit-axis orbit-axis--horizontal" aria-hidden="true" />
+            <div className="orbit-axis orbit-axis--vertical" aria-hidden="true" />
+
             <div className="orbit-core" aria-hidden="true">
               <div className="orbit-core__shell" />
+              <div className="orbit-core__ring orbit-core__ring--one" />
+              <div className="orbit-core__ring orbit-core__ring--two" />
               <div className="orbit-core__glow" />
             </div>
 
             <div className="orbit-ring" aria-label="Orbiting project gallery">
-              {orbitPanels.map((panel, index) => {
-                const angle = index * (360 / orbitPanels.length);
-
-                return (
-                  <article
-                    className="orbit-card"
-                    key={panel.image}
-                    style={
-                      {
-                        "--orbit-angle": `${angle}deg`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div className="orbit-card__surface">
-                      <Image
-                        className="orbit-card__image"
-                        src={panel.image}
-                        alt=""
-                        fill
-                        sizes="28vw"
-                      />
-                      <div className="orbit-card__ui">
-                        <span>{String(index + 1).padStart(2, "0")}</span>
-                        <strong>
-                          {index % 3 === 0
-                            ? "Product System"
-                            : index % 3 === 1
-                              ? "Interface Layer"
-                              : "Digital Platform"}
-                        </strong>
-                      </div>
+              {orbitPanels.map((panel, index) => (
+                <article className="orbit-card" key={panel.image}>
+                  <div className="orbit-card__surface">
+                    <Image
+                      className="orbit-card__image"
+                      src={panel.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 44vw, 22vw"
+                    />
+                    <div className="orbit-card__shade" aria-hidden="true" />
+                    <div className="orbit-card__ui">
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <strong>
+                        {index % 3 === 0
+                          ? "Product System"
+                          : index % 3 === 1
+                            ? "Interface Layer"
+                            : "Digital Platform"}
+                      </strong>
                     </div>
-                  </article>
-                );
-              })}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="orbit-center-label" aria-hidden="true">
+              <span>CONNECTED</span>
+              <strong>ECOSYSTEM</strong>
             </div>
           </div>
 
