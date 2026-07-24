@@ -31,7 +31,7 @@ export function OutcomesStage() {
 
   return (
     <section ref={root} className="relative overflow-hidden bg-cream py-16 md:py-28">
-      <div className="absolute inset-x-0 top-0 h-[45%] bg-[url('/art/hero-office.svg')] bg-cover bg-center opacity-90" />
+      <div className="absolute inset-x-0 top-0 h-[45%] bg-[url('/art/hero-collaboration.svg')] bg-cover bg-center opacity-90" />
       <div className="absolute inset-x-0 top-0 h-[45%] bg-forest/30" />
       <div className="container-site relative z-10 pt-12 md:pt-24">
         <p className="eyebrow text-white">What changes when delivery is integrated</p>

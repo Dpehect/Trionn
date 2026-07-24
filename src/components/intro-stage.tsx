@@ -12,52 +12,29 @@ export function IntroStage() {
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
-
-    const media = gsap.matchMedia();
-    media.add("(min-width: 768px)", () => {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: root.current,
-          start: "top top",
-          end: "+=125%",
-          pin: true,
-          scrub: 1,
-        },
-      })
-        .fromTo("[data-intro-circle]", { scale: 0.68, rotate: -24 }, { scale: 1.65, rotate: 18, ease: "none" }, 0)
-        .fromTo("[data-intro-image]", { clipPath: "inset(18% 18% 18% 18% round 2rem)" }, { clipPath: "inset(0% 0% 0% 0% round 2.5rem)", ease: "none" }, 0)
-        .fromTo("[data-intro-copy]", { y: 60, opacity: 0 }, { y: 0, opacity: 1, ease: "none" }, 0.2);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.fromTo("[data-intro-visual]", { clipPath: "inset(10% 10% 10% 10% round 2rem)", y: 60 }, {
+      clipPath: "inset(0% 0% 0% 0% round 2.5rem)", y: 0, duration: 1.15, ease: "power4.out",
+      scrollTrigger: { trigger: root.current, start: "top 72%" },
     });
-
-    return () => media.revert();
+    gsap.fromTo("[data-intro-copy]", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: root.current, start: "top 68%" } });
   }, { scope: root });
 
   return (
-    <section ref={root} className="relative min-h-screen overflow-hidden bg-lavender py-20 md:grid md:place-items-center md:py-0">
-      <div data-intro-circle className="absolute -left-[14vw] top-[12%] size-[54vw] min-h-[480px] min-w-[480px] rounded-full border-[5.5rem] border-forest border-r-transparent md:border-[8rem]" aria-hidden="true" />
-      <div className="container-site relative z-10 grid items-center gap-10 md:grid-cols-[1.08fr_.92fr]">
-        <div data-intro-image className="relative min-h-[480px] overflow-hidden rounded-stage stage-shadow md:min-h-[650px]">
-          <Image src="/art/studio-scene.svg" alt="Softbridge Helsinki and Türkiye integrated delivery model" fill className="object-cover" />
+    <section ref={root} className="section-space bg-mint">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]">
+        <div data-intro-visual className="relative min-h-[520px] overflow-hidden rounded-stage border border-forest/10 bg-white stage-shadow md:min-h-[680px]">
+          <Image src="/art/studio-people.svg" alt="Two senior specialists collaborating in one shared delivery model" fill className="object-cover" />
         </div>
-        <div data-intro-copy className="md:pl-10">
-          <p className="eyebrow text-forest/55">One operating model</p>
+        <div data-intro-copy className="lg:pl-8">
+          <p className="eyebrow text-forest/50">One operating model</p>
           <h2 className="heading-xl mt-6 max-w-[10ch]">One team, without the hand-off.</h2>
-          <p className="body-lg mt-7 max-w-xl text-forest/72">
-            Helsinki keeps strategy and product decisions close. Türkiye extends senior design, software and AI delivery. The same people preserve context from framing to production.
-          </p>
-          <dl className="mt-10 border-t border-forest/20">
-            {[
-              ["Helsinki", "Client strategy, stakeholder alignment, product direction"],
-              ["Türkiye", "Senior product design, engineering, AI and platform delivery"],
-              ["Shared", "One backlog, standards, decision record and accountability"],
-            ].map(([term, detail]) => (
-              <div key={term} className="grid grid-cols-[95px_1fr] gap-4 border-b border-forest/20 py-4">
-                <dt className="eyebrow pt-1">{term}</dt><dd className="text-forest/66">{detail}</dd>
-              </div>
+          <p className="body-lg mt-7 max-w-xl text-forest/70">Helsinki keeps strategy and product decisions close. Türkiye extends senior design, software and AI delivery. Context stays with the same team from framing to production.</p>
+          <div className="mt-10 grid gap-3">
+            {["Client strategy stays close", "Senior delivery stays accountable", "One backlog keeps trade-offs visible"].map((item) => (
+              <div key={item} className="rounded-2xl border border-forest/15 bg-white/65 px-5 py-4 font-bold">{item}</div>
             ))}
-          </dl>
+          </div>
           <Link href="/studio" className="link-line mt-8">See how the studio works ↗</Link>
         </div>
       </div>

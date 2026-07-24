@@ -13,70 +13,53 @@ export function Hero() {
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
     timeline
-      .fromTo("[data-hero-kicker]", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 })
-      .fromTo("[data-hero-line]", { yPercent: 115 }, { yPercent: 0, duration: 1.05, stagger: 0.09 }, "-=0.4")
-      .fromTo("[data-hero-copy]", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.65")
-      .fromTo("[data-hero-actions]", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, "-=0.55");
+      .fromTo("[data-hero-kicker]", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 })
+      .fromTo("[data-hero-line]", { yPercent: 118 }, { yPercent: 0, duration: 1, stagger: 0.08 }, "-=0.3")
+      .fromTo("[data-hero-copy]", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.55")
+      .fromTo("[data-hero-actions]", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.45")
+      .fromTo("[data-hero-visual]", { scale: 0.94, opacity: 0, y: 45 }, { scale: 1, opacity: 1, y: 0, duration: 1 }, "-=0.8");
 
-    gsap.to("[data-hero-art]", {
-      yPercent: 12,
-      scale: 1.08,
+    gsap.to("[data-hero-visual]", {
+      yPercent: 8,
+      rotate: 1.5,
       ease: "none",
       scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
-    });
-
-    gsap.to("[data-bridge-mark]", {
-      rotate: 18,
-      xPercent: 11,
-      ease: "none",
-      scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: 1 },
-    });
-
-    gsap.to("[data-hero-content]", {
-      yPercent: -12,
-      opacity: 0.12,
-      ease: "none",
-      scrollTrigger: { trigger: root.current, start: "45% top", end: "bottom top", scrub: true },
     });
   }, { scope: root });
 
   return (
-    <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-forest text-white noise">
-      <div data-hero-art className="absolute inset-0 scale-[1.02]">
-        <Image src="/art/hero-office.svg" alt="Softbridge product operating system interface" fill priority className="object-cover" />
-      </div>
-      <div className="hero-vignette absolute inset-0" />
-      <div data-bridge-mark className="bridge-mark -left-[21vw] top-[18%] md:-left-[13vw] md:top-[8%]" aria-hidden="true" />
-
-      <div data-hero-content className="container-site relative z-10 flex min-h-[100svh] flex-col justify-end pb-8 pt-32 md:pb-12">
-        <div className="mx-auto w-full max-w-[1220px] text-center">
-          <p data-hero-kicker className="eyebrow mx-auto mb-6 w-fit rounded-full bg-white/88 px-4 py-2 text-forest backdrop-blur">
-            Helsinki strategy · Türkiye delivery
-          </p>
-
-          <h1 className="display-xl text-lime">
+    <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-lavender pt-28 text-forest md:pt-32">
+      <div className="absolute -right-24 top-12 size-72 rounded-full bg-lime/70 blur-3xl" aria-hidden="true" />
+      <div className="container-site relative z-10 grid min-h-[calc(100svh-7rem)] items-center gap-12 pb-10 lg:grid-cols-[.82fr_1.18fr] lg:gap-16">
+        <div className="max-w-3xl">
+          <p data-hero-kicker className="eyebrow mb-7 text-forest/55">Helsinki strategy · Türkiye delivery</p>
+          <h1 className="display-xl max-w-[8.2ch] text-forest">
             <span className="word-mask block"><span data-hero-line>Software that</span></span>
-            <span className="word-mask block"><span data-hero-line>works better.</span></span>
+            <span className="word-mask block"><span data-hero-line className="highlight-lime">works better.</span></span>
           </h1>
-
-          <p data-hero-copy className="body-lg mx-auto mt-7 max-w-2xl text-white/82">
+          <p data-hero-copy className="body-lg mt-8 max-w-xl text-forest/70">
             One integrated senior team for product, experience, AI and platform delivery. One backlog. Clarity before code.
           </p>
-
-          <div data-hero-actions className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/services" className="magnetic-button button-lime">Explore our capabilities <ArrowUpRight size={16} /></Link>
-            <Link href="/studio" className="magnetic-button border border-white/50 bg-white/10 text-white backdrop-blur">Understand the model</Link>
+          <div data-hero-actions className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link href="/contact" className="magnetic-button button-lime">Start a project <ArrowUpRight size={16} /></Link>
+            <Link href="/work" className="magnetic-button border border-forest/35 bg-white/45 text-forest">See selected work</Link>
+          </div>
+          <div className="mt-12 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-forest/50">
+            <ArrowDownRight size={14} /> Scroll to follow the system
           </div>
         </div>
 
-        <div className="mt-12 flex items-end justify-between border-t border-white/25 pt-5 text-xs text-white/65">
-          <span>Independent product engineering studio</span>
-          <span className="flex items-center gap-2"><ArrowDownRight size={14} /> Scroll to follow the system</span>
+        <div data-hero-visual className="relative min-h-[520px] overflow-hidden rounded-stage border border-forest/10 bg-white/50 stage-shadow md:min-h-[650px]">
+          <Image src="/art/hero-collaboration.svg" alt="Two senior product practitioners collaborating around a software interface" fill priority className="object-cover" />
+          <div className="absolute bottom-5 left-5 right-5 grid gap-3 sm:grid-cols-3">
+            {["One team", "One backlog", "Visible decisions"].map((item) => (
+              <div key={item} className="rounded-2xl border border-forest/10 bg-white/90 px-4 py-3 text-sm font-bold backdrop-blur">{item}</div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -329,3 +329,49 @@ button {
     linear-gradient(90deg, rgba(3, 18, 14, 0.42), transparent 48%, rgba(3, 18, 14, 0.2));
 }
 .stage-shadow { box-shadow: 0 28px 70px rgba(6, 30, 23, 0.18); }
+
+/* Premium pastel studio refresh */
+:root {
+  --forest: #0a3b2b;
+  --lime: #c6ff4a;
+  --cream: #f6f1e8;
+  --lavender: #e8e2f4;
+  --mint: #d8e8dd;
+  --sky: #dbe8f4;
+  --coral: #e9c8bf;
+  --ochre: #d9c7a4;
+}
+
+body {
+  font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.display-xl,
+.display-lg,
+.heading-xl,
+.heading-lg,
+.heading-md {
+  font-family: "Arial Nova", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.highlight-lime {
+  display: inline;
+  padding: 0 0.08em;
+  color: var(--forest);
+  background: linear-gradient(transparent 55%, var(--lime) 55%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.capability-card {
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1), box-shadow 320ms ease;
+}
+
+.capability-card:hover {
+  transform: translateY(-8px) scale(1.008);
+  box-shadow: 0 28px 70px rgba(10, 59, 43, 0.14);
+}
+
+@media (max-width: 767px) {
+  .highlight-lime { background: linear-gradient(transparent 62%, var(--lime) 62%); }
+}
