@@ -1,14 +1,21 @@
-# SoftBridge Solutions Finland — SEO/GEO Selected Cases
+# SoftBridge Solutions Finland — First Section Refresh
 
-## Selected Cases updates
-- Replaced generic product imagery with nine service-specific concept visuals.
-- Added AI software, SaaS, healthcare, logistics, manufacturing, cloud,
-  mobile, retail automation and digital transformation themes.
-- Used descriptive regional alt text for Finland, Nordics and Europe.
-- Added semantic CreativeWork markup to each case.
-- Added visible contextual copy beneath the Selected Cases heading.
-- Images are clearly presented as concept cases, not fabricated client work.
-- Preserved all existing animations and the three-column layout.
+## What changed
+- Replaced the generic first-section copy with Finland/Nordics/Europe-focused
+  SoftBridge Solutions messaging.
+- Added a premium AI, cloud, enterprise and mobile product dashboard composition.
+- Added service and Selected Cases CTAs.
+- Updated the three layered cards with AI software, digital product and engineering content.
+- Updated page title and description metadata.
+
+## What did not change
+- GSAP setup
+- ScrollTrigger configuration
+- Layer reveal timing
+- Layer card scrub values
+- Text reveal timing
+- Existing first-section animation logic
+- Selected Cases and later sections
 
 ## Run
 ```bash
