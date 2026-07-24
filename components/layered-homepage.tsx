@@ -456,8 +456,8 @@ export function LayeredHomepage() {
             targetProgress = self.progress;
             startRender();
           },
-          onRefresh: () => {
-            targetProgress = orbitTrigger.progress;
+          onRefresh: (self) => {
+            targetProgress = self.progress;
             renderedProgress = targetProgress;
             startRender();
           },

@@ -1,15 +1,13 @@
-# Trionn — Professional Orbit Revision
+# Trionn — Professional Orbit Runtime Fix
 
-Üçüncü bölüm profesyonel seviyeye yaklaştırıldı:
+Düzeltilen kritik hata:
 
-- Kartlar artık kameraya dönük kalır.
-- Yatay + dikey eliptik yörüngede çekirdeği sarar.
-- Öndeki kartlar çekirdeğin önünden, arkadakiler arkasından geçer.
-- Derinlik, scale, blur, brightness ve z-index gerçek zamanlı hesaplanır.
-- Orbit sahnesi ekranın merkezine taşındı.
-- Scroll hareketi tüm bölüm boyunca dengeli dağıtıldı.
-- Teknik halo, eksen çizgileri, vignette ve merkez etiketi eklendi.
-- İlk iki bölüm korunmuştur.
+- `ScrollTrigger.create()` kurulurken `onRefresh` callback'i henüz initialize edilmemiş
+  `orbitTrigger` değişkenine erişiyordu.
+- Bu durum tarayıcıda `ReferenceError` oluşturarak Vercel üzerinde
+  “Application error: a client-side exception has occurred” ekranına neden oluyordu.
+- `onRefresh` artık callback'in kendi `self.progress` değerini kullanıyor.
+- Tasarım ve animasyon ayarları değiştirilmedi.
 
 ## Çalıştırma
 
@@ -17,3 +15,7 @@
 npm install
 npm run dev
 ```
+
+## Vercel
+
+Bu ZIP içindeki proje dosyalarını mevcut repoya ekleyip yeniden deploy et.
