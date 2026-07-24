@@ -1,0 +1,3 @@
+"use client";
+import { useEffect } from "react";import Lenis from "lenis";import { gsap } from "gsap";import { ScrollTrigger } from "gsap/ScrollTrigger";
+export function SmoothScroll(){useEffect(()=>{if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;gsap.registerPlugin(ScrollTrigger);const lenis=new Lenis({duration:1.05,smoothWheel:true});const raf=(t:number)=>lenis.raf(t*1000);gsap.ticker.add(raf);lenis.on("scroll",ScrollTrigger.update);gsap.ticker.lagSmoothing(0);return()=>{gsap.ticker.remove(raf);lenis.destroy()};},[]);return null;}

@@ -1,0 +1,3 @@
+"use client";
+import { usePathname } from "next/navigation";import { useEffect,useRef } from "react";import gsap from "gsap";
+export function PageTransition(){const path=usePathname();const ref=useRef<HTMLDivElement>(null);useEffect(()=>{if(!ref.current||matchMedia("(prefers-reduced-motion: reduce)").matches)return;gsap.timeline().set(ref.current,{display:"grid"}).fromTo("[data-panel]",{scaleY:1,transformOrigin:"top"},{scaleY:0,duration:.65,stagger:.06,ease:"power4.inOut"}).set(ref.current,{display:"none"});},[path]);return <div ref={ref} aria-hidden className="fixed inset-0 z-[100] hidden grid-cols-3 pointer-events-none">{[0,1,2].map(i=><div data-panel key={i} className="bg-ink"/>)}</div>}

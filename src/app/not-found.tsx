@@ -1,0 +1,1 @@
+import Link from "next/link";export default function NotFound(){return <section className="min-h-screen grid place-items-center"><div className="text-center"><p className="eyebrow text-muted">404</p><h1 className="headline mt-5">Nothing useful here.</h1><Link className="link-arrow mt-8" href="/">Return home <span>↗</span></Link></div></section>}
