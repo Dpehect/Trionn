@@ -29,12 +29,8 @@ const layers = [
   },
 ] as const;
 
-const VIDEO_START_RATIO = 0.115;
-
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
-  const casesVideo = useRef<HTMLVideoElement>(null);
-  const casesIntro = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -99,109 +95,22 @@ export function LayeredHomepage() {
         );
       });
 
-      const video = casesVideo.current;
-      const intro = casesIntro.current;
-      if (!video || !intro) return;
-
-      let animationFrame = 0;
-      let targetTime = 0;
-      let renderedTime = 0;
-      let active = false;
-      let trigger: ScrollTrigger | undefined;
-
-      const renderFrame = () => {
-        if (!active) return;
-
-        renderedTime += (targetTime - renderedTime) * 0.16;
-
-        if (Math.abs(video.currentTime - renderedTime) > 0.012) {
-          video.currentTime = renderedTime;
-        }
-
-        animationFrame = requestAnimationFrame(renderFrame);
-      };
-
-      const startRendering = () => {
-        active = true;
-        cancelAnimationFrame(animationFrame);
-        animationFrame = requestAnimationFrame(renderFrame);
-      };
-
-      const stopRendering = () => {
-        active = false;
-        cancelAnimationFrame(animationFrame);
-      };
-
-      const setupVideoScrub = () => {
-        const duration = Math.max(video.duration || 0, 0.1);
-        const videoStart = duration * VIDEO_START_RATIO;
-        const usableDuration = Math.max(duration - videoStart - 0.02, 0.1);
-
-        video.pause();
-        video.currentTime = videoStart;
-        renderedTime = videoStart;
-        targetTime = videoStart;
-
-        trigger = ScrollTrigger.create({
-          trigger: ".selected-cases-video",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.15,
-          invalidateOnRefresh: true,
-          onEnter: startRendering,
-          onEnterBack: startRendering,
-          onLeave: stopRendering,
-          onLeaveBack: stopRendering,
-          onUpdate: (self) => {
-            const progress = gsap.utils.clamp(0, 1, self.progress);
-
-            // İlk sahnede yalnızca “Selected Cases” görünür.
-            const introOpacity = gsap.utils.clamp(
-              0,
-              1,
-              1 - progress / 0.075,
-            );
-            const introScale = gsap.utils.mapRange(
-              0,
-              0.075,
-              1,
-              0.975,
-              Math.min(progress, 0.075),
-            );
-
-            gsap.set(intro, {
-              autoAlpha: introOpacity,
-              scale: introScale,
-              pointerEvents: progress < 0.075 ? "auto" : "none",
-            });
-
-            // Videonun HOBRO / deck / filtreli giriş kısmını tamamen atlar.
-            const videoProgress = gsap.utils.clamp(
-              0,
-              1,
-              (progress - 0.055) / 0.945,
-            );
-
-            targetTime = videoStart + videoProgress * usableDuration;
+      gsap.fromTo(
+        ".selected-cases__title",
+        { yPercent: 70, opacity: 0, scale: 0.94 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".selected-cases",
+            start: "top 78%",
+            end: "top 28%",
+            scrub: 1.5,
           },
-        });
-
-        ScrollTrigger.refresh();
-      };
-
-      if (video.readyState >= 1) {
-        setupVideoScrub();
-      } else {
-        video.addEventListener("loadedmetadata", setupVideoScrub, {
-          once: true,
-        });
-      }
-
-      return () => {
-        stopRendering();
-        trigger?.kill();
-        video.removeEventListener("loadedmetadata", setupVideoScrub);
-      };
+        },
+      );
     },
     { scope: root },
   );
@@ -218,11 +127,7 @@ export function LayeredHomepage() {
         <span>Scroll to explore</span>
       </section>
 
-      <section
-        id="work"
-        className="layer-stack"
-        aria-label="Katmanlı içerik alanı"
-      >
+      <section id="work" className="layer-stack" aria-label="Katmanlı içerik alanı">
         {layers.map((layer, index) => (
           <article
             className={`layer-card layer-card--${index + 1}`}
@@ -238,10 +143,7 @@ export function LayeredHomepage() {
               </a>
             </div>
 
-            <div
-              className={`layer-visual visual-${layer.visual}`}
-              aria-hidden="true"
-            >
+            <div className={`layer-visual visual-${layer.visual}`} aria-hidden="true">
               {layer.visual === "ring" && <div className="metal-ring" />}
 
               {layer.visual === "fan" && (
@@ -249,9 +151,7 @@ export function LayeredHomepage() {
                   {Array.from({ length: 11 }).map((_, item) => (
                     <span
                       key={item}
-                      style={{
-                        transform: `rotate(${item * 8 - 40}deg)`,
-                      }}
+                      style={{ transform: `rotate(${item * 8 - 40}deg)` }}
                     />
                   ))}
                 </div>
@@ -278,30 +178,11 @@ export function LayeredHomepage() {
         ))}
       </section>
 
-      <section
-        id="cases"
-        className="selected-cases-video"
-        aria-label="Selected Cases scroll experience"
-      >
-        <div className="selected-cases-video__sticky">
-          <video
-            ref={casesVideo}
-            className="selected-cases-video__media"
-            src="/media/selected-cases-scroll-optimized.mp4"
-            muted
-            playsInline
-            preload="auto"
-            aria-label="Selected Cases animated showcase"
-          />
-
-          <div
-            ref={casesIntro}
-            className="selected-cases-video__intro"
-            aria-hidden="true"
-          >
-            <h2>Selected Cases</h2>
-          </div>
-        </div>
+      {/* Layer 2: Video ve videoya gömülü tüm HOBRO/filtre içeriği kaldırıldı. */}
+      <section id="cases" className="selected-cases" aria-labelledby="selected-cases-title">
+        <h2 id="selected-cases-title" className="selected-cases__title">
+          Selected Cases
+        </h2>
       </section>
 
       <section id="contact" className="closing">
