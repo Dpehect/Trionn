@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -30,11 +31,16 @@ const layers = [
 ] as const;
 
 const cases = [
-  { name: "Aether", type: "Digital identity", size: "large" },
-  { name: "Noema", type: "Product experience", size: "small" },
-  { name: "Forma", type: "Commerce platform", size: "medium" },
-  { name: "Solace", type: "Campaign system", size: "tall" },
-];
+  { name: "BRINC", category: "Product design, branding", image: "/cases/brinc.jpg" },
+  { name: "SPAN", category: "Product design, branding", image: "/cases/span.jpg" },
+  { name: "SONOS", category: "Product design", image: "/cases/sonos.jpg" },
+  { name: "FORMLABS", category: "Product design", image: "/cases/formlabs.jpg" },
+  { name: "AOI", category: "Product design, branding", image: "/cases/aoi.jpg" },
+  { name: "SUPER73", category: "Product design", image: "/cases/super73.jpg" },
+  { name: "SQUARE", category: "Hardware design, branding", image: "/cases/square.jpg" },
+  { name: "STRYKER", category: "Product design", image: "/cases/stryker.jpg" },
+  { name: "KOHLER", category: "Product design", image: "/cases/kohler.jpg" },
+] as const;
 
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
@@ -81,42 +87,68 @@ export function LayeredHomepage() {
 
       gsap.fromTo(
         ".selected-cases__title",
-        { yPercent: 45, opacity: 0, letterSpacing: "-0.08em" },
+        { yPercent: 38, opacity: 0, filter: "blur(10px)" },
         {
           yPercent: 0,
           opacity: 1,
-          letterSpacing: "-0.06em",
+          filter: "blur(0px)",
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".selected-cases",
-            start: "top 78%",
-            end: "top 28%",
-            scrub: 1.2,
+            start: "top 82%",
+            end: "top 32%",
+            scrub: 1.35,
           },
         }
       );
 
       gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
+        const image = card.querySelector(".case-card__image");
+        const row = Math.floor(index / 3);
+        const column = index % 3;
+
         gsap.fromTo(
           card,
           {
-            y: 130 + index * 18,
+            y: 100 + row * 28,
+            x: column === 0 ? -18 : column === 2 ? 18 : 0,
             opacity: 0,
-            scale: 0.965,
+            scale: 0.96,
+            rotateX: 4,
           },
           {
             y: 0,
+            x: 0,
             opacity: 1,
             scale: 1,
-            ease: "power2.out",
+            rotateX: 0,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: card,
               start: "top 94%",
-              end: "top 56%",
-              scrub: 1.1,
+              end: "top 62%",
+              scrub: 1.15,
             },
           }
         );
+
+        if (image) {
+          gsap.fromTo(
+            image,
+            { scale: 1.12, yPercent: 6 },
+            {
+              scale: 1,
+              yPercent: -3,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.3,
+              },
+            }
+          );
+        }
       });
     },
     { scope: root }
@@ -160,9 +192,7 @@ export function LayeredHomepage() {
                   {Array.from({ length: 11 }).map((_, item) => (
                     <span
                       key={item}
-                      style={{
-                        transform: `rotate(${item * 8 - 40}deg)`,
-                      }}
+                      style={{ transform: `rotate(${item * 8 - 40}deg)` }}
                     />
                   ))}
                 </div>
@@ -183,24 +213,32 @@ export function LayeredHomepage() {
         </header>
 
         <div className="selected-cases__gallery">
-          {cases.map((item, index) => (
-            <article
-              className={`case-card case-card--${item.size}`}
-              key={item.name}
-            >
-              <div className={`case-card__visual case-card__visual--${index + 1}`}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </div>
-              <div className="case-card__meta">
-                <h3>{item.name}</h3>
-                <p>{item.type}</p>
-              </div>
+          {cases.map((item) => (
+            <article className="case-card" key={item.name}>
+              <a href="#contact" className="case-card__link">
+                <div className="case-card__media">
+                  <Image
+                    className="case-card__image"
+                    src={item.image}
+                    alt={`${item.name} project`}
+                    fill
+                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="case-card__meta">
+                  <div>
+                    <p>{item.category}</p>
+                    <h3>{item.name}</h3>
+                  </div>
+                  <ArrowUpRight size={20} strokeWidth={1.4} />
+                </div>
+              </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="closing">
+      <section id="contact" className="closing">
         <p>Have a project?</p>
         <h2>Let&apos;s talk.</h2>
       </section>

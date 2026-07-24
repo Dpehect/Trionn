@@ -142,78 +142,86 @@ a { color: inherit; text-decoration: none; }
   background: radial-gradient(circle at 38% 40%, #7c909b 0 2%, #415663 15%, #1b2c37 58%, #0c171e 100%);
 }
 
+
 .selected-cases {
-  min-height: 260svh;
-  padding: 15vh 4vw 20vh;
-  background: #fff;
+  padding: clamp(110px, 13vw, 210px) 5vw clamp(120px, 14vw, 220px);
+  background: #f6f5f2;
+  perspective: 1400px;
 }
 .selected-cases__header {
-  min-height: 72svh;
+  min-height: 42svh;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .selected-cases__title {
   margin: 0;
-  font-size: clamp(68px, 10vw, 190px);
+  font-size: clamp(68px, 9vw, 164px);
   line-height: .86;
-  letter-spacing: -.06em;
+  letter-spacing: -.065em;
   font-weight: 500;
-  text-align: center;
 }
 .selected-cases__gallery {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 2vw;
-  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.5vw, 28px);
 }
-.case-card { margin: 0; }
-.case-card--large { grid-column: 1 / span 7; }
-.case-card--small { grid-column: 9 / span 4; margin-top: 16vw; }
-.case-card--medium { grid-column: 2 / span 5; margin-top: 3vw; }
-.case-card--tall { grid-column: 8 / span 5; margin-top: 10vw; }
-.case-card__visual {
-  position: relative;
+.case-card {
+  min-width: 0;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+.case-card__link {
+  display: block;
+  border: 1px solid rgba(17, 24, 32, .12);
+  border-radius: 11px;
   overflow: hidden;
-  min-height: 360px;
-  aspect-ratio: 1.3;
-  background: #dfe4e7;
+  background: #fff;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
 }
-.case-card--small .case-card__visual { aspect-ratio: .86; }
-.case-card--tall .case-card__visual { aspect-ratio: .78; }
-.case-card__visual span {
-  position: absolute;
-  top: 20px;
-  left: 22px;
-  font-size: 11px;
-  letter-spacing: .12em;
+.case-card__link:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 55px rgba(17, 24, 32, .12);
 }
-.case-card__visual--1 {
-  background: radial-gradient(circle at 70% 30%, #dce9ef, #8298a5 35%, #182630 100%);
+.case-card__media {
+  position: relative;
+  aspect-ratio: 1.68 / 1;
+  overflow: hidden;
+  background: #161616;
 }
-.case-card__visual--2 {
-  background: linear-gradient(145deg, #efe9df, #b97a65 52%, #3c2925);
-}
-.case-card__visual--3 {
-  background: linear-gradient(125deg, #d8ded5, #5e7467 50%, #17251e);
-}
-.case-card__visual--4 {
-  background: radial-gradient(circle at 35% 30%, #e3ddcf, #8c7a67 38%, #231d19);
+.case-card__image {
+  object-fit: cover;
+  will-change: transform;
 }
 .case-card__meta {
+  min-height: 92px;
+  padding: 15px 17px 16px;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 20px;
-  padding-top: 12px;
 }
-.case-card__meta h3,
 .case-card__meta p {
+  margin: 0 0 8px;
+  color: #61666b;
+  font-size: 9px;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.case-card__meta h3 {
   margin: 0;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: clamp(15px, 1.25vw, 21px);
+  line-height: 1;
+  letter-spacing: -.025em;
+  font-weight: 500;
 }
-.case-card__meta p {
-  color: #68717a;
+.case-card__meta svg {
+  flex: 0 0 auto;
+  margin-bottom: 1px;
+  transition: transform .35s ease;
+}
+.case-card__link:hover .case-card__meta svg {
+  transform: translate(3px, -3px);
 }
 
 .closing {
@@ -236,6 +244,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.06em;
 }
 
+@media (max-width: 1050px) {
+  .selected-cases__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 800px) {
   .intro { padding-inline: 22px; }
   .intro p { right: 22px; left: 22px; top: 110px; }
@@ -252,25 +266,20 @@ a { color: inherit; text-decoration: none; }
   .layer-visual { min-height: 290px; height: 38vh; }
 
   .selected-cases {
-    min-height: auto;
-    padding: 12vh 20px 14vh;
+    padding: 90px 18px 110px;
   }
-  .selected-cases__header { min-height: 58svh; }
+  .selected-cases__header {
+    min-height: 38svh;
+  }
   .selected-cases__title {
-    font-size: clamp(58px, 18vw, 94px);
+    font-size: clamp(56px, 17vw, 92px);
   }
   .selected-cases__gallery {
-    display: block;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
-  .case-card,
-  .case-card--small,
-  .case-card--medium,
-  .case-card--tall {
-    margin: 0 0 28px;
-  }
-  .case-card__visual {
-    min-height: 300px;
-    aspect-ratio: 1.05;
+  .case-card__meta {
+    min-height: 82px;
   }
 }
 
