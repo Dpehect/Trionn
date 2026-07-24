@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { BrandStatementSection } from "./brand-statement-section";
+import { CapabilityMarqueeSection } from "./capability-marquee-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -255,7 +256,7 @@ export function LayeredHomepage() {
         <div className="selected-cases__gallery">
           {cases.map((item) => (
             <article className="case-card" key={item.name}>
-              <a href="#contact" className="case-card__link">
+              <a href="#industries" className="case-card__link">
                 <div className="case-card__media">
                   <Image
                     className="case-card__image"
@@ -280,10 +281,7 @@ export function LayeredHomepage() {
 
       <BrandStatementSection />
 
-      <section id="contact" className="closing">
-        <p>Have a project?</p>
-        <h2>Let&apos;s talk.</h2>
-      </section>
+      <CapabilityMarqueeSection />
     </main>
   );
 }

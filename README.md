@@ -1,13 +1,13 @@
-# SoftBridge Solutions Finland — Character Reveal Edition
+# SoftBridge Solutions Finland — Fourth Section
 
-## Changes
-- Third-section copy now reveals letter by letter instead of word by word.
-- Accent phrases color character by character after appearing.
-- Removed all end-of-section translate/scale animations from the text container.
-- Locked the sticky section to exactly 100svh.
-- Added layout containment to prevent jump, reflow or visual shift at the end.
-- Preserved the colorful Nordic aurora background.
-- Preserved the first two sections.
+## Added
+- New fourth section based on the supplied moving pill-row reference.
+- Three horizontal rows with alternating scroll directions.
+- SoftBridge capabilities, services and industry expertise.
+- Orange, lime and violet highlighted pills.
+- Sticky full-screen section with stable scroll-scrubbed motion.
+- Removed the entire Let's Talk closing section.
+- Preserved the first three sections.
 
 ## Run
 ```bash
