@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import { SpiralOrbitSection } from "@/components/spiral-orbit-section";
+import { HelixGallerySection } from "./helix-gallery-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -104,88 +104,24 @@ export function LayeredHomepage() {
       );
 
       const caseMotion = [
-        {
-          card: { x: -170, y: 190, rotate: -2.4, rotateX: 7, scale: 0.9 },
-          image: { xPercent: -9, yPercent: 10, scale: 1.22, rotate: -0.8 },
-          start: "top 108%",
-          end: "top 40%",
-          scrub: 3.55,
-        },
-        {
-          card: { x: 0, y: 245, rotate: 0.5, rotateX: 9, scale: 0.885 },
-          image: { xPercent: 0, yPercent: 13, scale: 1.25, rotate: 0.4 },
-          start: "top 112%",
-          end: "top 42%",
-          scrub: 3.8,
-        },
-        {
-          card: { x: 175, y: 175, rotate: 2.5, rotateX: 6, scale: 0.91 },
-          image: { xPercent: 9, yPercent: 9, scale: 1.2, rotate: 0.9 },
-          start: "top 107%",
-          end: "top 39%",
-          scrub: 3.65,
-        },
-        {
-          card: { x: -125, y: 225, rotate: 1.4, rotateX: 8, scale: 0.89 },
-          image: { xPercent: -7, yPercent: 12, scale: 1.24, rotate: 0.5 },
-          start: "top 111%",
-          end: "top 41%",
-          scrub: 3.95,
-        },
-        {
-          card: { x: 20, y: 275, rotate: -1.1, rotateX: 10, scale: 0.875 },
-          image: { xPercent: 2, yPercent: 15, scale: 1.27, rotate: -0.5 },
-          start: "top 115%",
-          end: "top 43%",
-          scrub: 4.15,
-        },
-        {
-          card: { x: 145, y: 215, rotate: -1.8, rotateX: 7, scale: 0.895 },
-          image: { xPercent: 8, yPercent: 11, scale: 1.23, rotate: -0.7 },
-          start: "top 110%",
-          end: "top 40%",
-          scrub: 4.0,
-        },
-        {
-          card: { x: -185, y: 220, rotate: -2.6, rotateX: 9, scale: 0.88 },
-          image: { xPercent: -10, yPercent: 13, scale: 1.26, rotate: -1 },
-          start: "top 113%",
-          end: "top 42%",
-          scrub: 4.25,
-        },
-        {
-          card: { x: 0, y: 295, rotate: 0.9, rotateX: 11, scale: 0.865 },
-          image: { xPercent: 0, yPercent: 16, scale: 1.29, rotate: 0.4 },
-          start: "top 117%",
-          end: "top 44%",
-          scrub: 4.45,
-        },
-        {
-          card: { x: 190, y: 205, rotate: 2.3, rotateX: 8, scale: 0.89 },
-          image: { xPercent: 10, yPercent: 12, scale: 1.24, rotate: 0.9 },
-          start: "top 112%",
-          end: "top 41%",
-          scrub: 4.2,
-        },
+        { x: -115, y: 145, rotate: -1.6, scale: 0.945, start: "top 112%", end: "top 46%", scrub: 2.8 },
+        { x: 0, y: 195, rotate: 0.8, scale: 0.935, start: "top 116%", end: "top 48%", scrub: 3.0 },
+        { x: 120, y: 135, rotate: 1.7, scale: 0.95, start: "top 111%", end: "top 45%", scrub: 2.9 },
+        { x: -95, y: 180, rotate: 1.0, scale: 0.94, start: "top 114%", end: "top 47%", scrub: 3.15 },
+        { x: 18, y: 220, rotate: -0.9, scale: 0.93, start: "top 118%", end: "top 49%", scrub: 3.35 },
+        { x: 105, y: 170, rotate: -1.2, scale: 0.945, start: "top 115%", end: "top 47%", scrub: 3.1 },
+        { x: -125, y: 175, rotate: -1.7, scale: 0.935, start: "top 116%", end: "top 48%", scrub: 3.4 },
+        { x: 0, y: 235, rotate: 0.9, scale: 0.925, start: "top 120%", end: "top 50%", scrub: 3.55 },
+        { x: 130, y: 160, rotate: 1.5, scale: 0.94, start: "top 117%", end: "top 48%", scrub: 3.3 },
       ] as const;
 
       gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
         const image = card.querySelector<HTMLElement>(".case-card__image");
-        const media = card.querySelector<HTMLElement>(".case-card__media");
         const meta = card.querySelector<HTMLElement>(".case-card__meta");
-        const category = card.querySelector<HTMLElement>(".case-card__meta p");
-        const title = card.querySelector<HTMLElement>(".case-card__meta h3");
-        const arrow = card.querySelector<SVGElement>(".case-card__meta svg");
         const motion = caseMotion[index];
 
-        if (!image || !media || !meta || !category || !title || !arrow) {
-          return;
-        }
-
         const timeline = gsap.timeline({
-          defaults: {
-            overwrite: "auto",
-          },
+          defaults: { overwrite: "auto" },
           scrollTrigger: {
             trigger: card,
             start: motion.start,
@@ -199,19 +135,13 @@ export function LayeredHomepage() {
           .fromTo(
             card,
             {
-              x: motion.card.x,
-              y: motion.card.y,
+              x: motion.x,
+              y: motion.y,
               opacity: 0,
-              scale: motion.card.scale,
-              rotate: motion.card.rotate,
-              rotateX: motion.card.rotateX,
-              filter: "blur(9px)",
-              transformOrigin:
-                index % 3 === 0
-                  ? "left bottom"
-                  : index % 3 === 2
-                    ? "right bottom"
-                    : "center bottom",
+              scale: motion.scale,
+              rotate: motion.rotate,
+              filter: "blur(10px)",
+              transformOrigin: index % 3 === 0 ? "left center" : index % 3 === 2 ? "right center" : "center center",
             },
             {
               x: 0,
@@ -219,125 +149,46 @@ export function LayeredHomepage() {
               opacity: 1,
               scale: 1,
               rotate: 0,
-              rotateX: 0,
               filter: "blur(0px)",
-              duration: 0.72,
-              ease: "power3.out",
+              duration: 0.9,
+              ease: "power2.out",
             },
             0
           )
           .fromTo(
-            media,
-            {
-              clipPath: "inset(8% 5% 12% 5% round 18px)",
-            },
-            {
-              clipPath: "inset(0% 0% 0% 0% round 0px)",
-              duration: 0.68,
-              ease: "power2.inOut",
-            },
-            0.06
-          )
-          .fromTo(
             image,
             {
-              xPercent: motion.image.xPercent,
-              yPercent: motion.image.yPercent,
-              scale: motion.image.scale,
-              rotate: motion.image.rotate,
+              scale: 1.2,
+              xPercent: index % 3 === 0 ? -5 : index % 3 === 2 ? 5 : 0,
+              yPercent: 8 + (index % 2) * 3,
             },
             {
+              scale: 1.04,
               xPercent: 0,
               yPercent: 0,
-              scale: 1.045,
-              rotate: 0,
               duration: 0.82,
-              ease: "power3.out",
+              ease: "power2.out",
             },
             0.03
           )
           .fromTo(
             meta,
-            {
-              y: 34,
-              opacity: 0,
-            },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.42,
-              ease: "power2.out",
-            },
-            0.38
-          )
-          .fromTo(
-            category,
-            {
-              y: 13,
-              opacity: 0,
-              letterSpacing: "0.16em",
-            },
-            {
-              y: 0,
-              opacity: 1,
-              letterSpacing: "0.08em",
-              duration: 0.26,
-              ease: "power2.out",
-            },
-            0.45
-          )
-          .fromTo(
-            title,
-            {
-              y: 20,
-              opacity: 0,
-            },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.3,
-              ease: "power3.out",
-            },
-            0.52
-          )
-          .fromTo(
-            arrow,
-            {
-              x: -12,
-              y: 12,
-              opacity: 0,
-              rotate: -18,
-            },
-            {
-              x: 0,
-              y: 0,
-              opacity: 1,
-              rotate: 0,
-              duration: 0.28,
-              ease: "back.out(1.7)",
-            },
-            0.59
+            { y: 28, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.48, ease: "power2.out" },
+            0.42
           );
 
-        gsap.fromTo(
-          image,
-          {
-            yPercent: 0,
-            scale: 1.045,
+        gsap.to(image, {
+          yPercent: -5 - (index % 3) * 1.5,
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            end: "bottom 4%",
+            scrub: 2.45 + index * 0.08,
           },
-          {
-            yPercent: -7 - (index % 3) * 1.25,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 74%",
-              end: "bottom 5%",
-              scrub: 2.6 + index * 0.11,
-              invalidateOnRefresh: true,
-            },
-          }
-        );
+        });
       });
     },
     { scope: root }
@@ -427,7 +278,7 @@ export function LayeredHomepage() {
         </div>
       </section>
 
-      <SpiralOrbitSection />
+      <HelixGallerySection />
 
       <section id="contact" className="closing">
         <p>Have a project?</p>

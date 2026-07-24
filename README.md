@@ -1,17 +1,18 @@
-# Trionn — Horizontal Spiral Orbit
+# Trionn — Clean Horizontal Helix
 
-Third section rebuilt from scratch:
+Bu sürüm üçüncü bölümü hiç içermeyen temiz projeden oluşturuldu.
 
-- One continuous horizontal 3D helix wraps around the central metallic object.
-- Cards keep fixed positions along the helix axis.
-- Scrolling rotates the helix phase horizontally.
-- Front cards pass in front of the core; back cards pass behind it.
-- Depth controls scale, blur, brightness, opacity and z-index.
-- First and Selected Cases sections remain unchanged.
+- Eski orbit, vortex ve spiral kodları yoktur.
+- Yeni üçüncü bölüm ayrı `HelixGallerySection` bileşenidir.
+- 18 kart tek, kesintisiz yatay 3D sarmala dizilir.
+- Sarmal scroll ile yatay olarak döner.
+- Ön kartlar merkez objenin önünden, arka kartlar arkasından geçer.
+- İlk iki bölüm korunmuştur.
 
 ## Run
 
 ```bash
 npm install
+npm run build
 npm run dev
 ```

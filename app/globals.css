@@ -318,114 +318,91 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-/* Slot-style Selected Cases choreography */
-.case-card {
-  perspective: 1100px;
-  transform-origin: center bottom;
-}
-.case-card__media {
-  transform: translateZ(0);
-  will-change: clip-path;
-}
-.case-card__meta p,
-.case-card__meta h3,
-.case-card__meta svg {
-  backface-visibility: hidden;
-  will-change: transform, opacity;
-}
-.case-card__link:hover {
-  transform: translateY(-11px) scale(1.008);
-  box-shadow: 0 30px 68px rgba(17, 24, 32, .14);
-}
-.case-card__link:hover .case-card__image {
-  transform: scale(1.035);
-}
-
-/* Section 03 — horizontal helix orbit */
-.spiral-orbit {
+/* Section 03 — clean horizontal helix implementation */
+.helix-section {
   position: relative;
-  height: 610vh;
+  height: 620vh;
   color: #f4f4ef;
   background: #030303;
 }
-.spiral-orbit__sticky {
+.helix-sticky {
   position: sticky;
   top: 0;
   height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.065), transparent 25%),
-    radial-gradient(circle at center, #101010 0%, #060606 48%, #020202 100%);
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.07), transparent 24%),
+    radial-gradient(circle at center, #111 0%, #060606 50%, #020202 100%);
 }
-.spiral-orbit__sticky::after {
+.helix-sticky::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 950;
+  z-index: 900;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 15%, transparent 83%, rgba(0,0,0,.54)),
-    radial-gradient(ellipse at center, transparent 44%, rgba(0,0,0,.62) 100%);
+    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 14%, transparent 84%, rgba(0,0,0,.55)),
+    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.65) 100%);
 }
-.spiral-grid {
+.helix-grid {
   position: absolute;
-  inset: -150px;
+  inset: -160px;
   z-index: -5;
-  opacity: .2;
+  opacity: .19;
   background-image:
     linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, #000 15%, rgba(0,0,0,.68) 58%, transparent 94%);
+  mask-image: radial-gradient(ellipse at center, #000 16%, rgba(0,0,0,.68) 60%, transparent 95%);
 }
-.spiral-copy {
+.helix-copy {
   position: absolute;
-  z-index: 980;
+  z-index: 950;
   left: 2.2vw;
   bottom: 2.2vw;
-  width: min(390px, 31vw);
+  width: min(380px, 30vw);
 }
-.spiral-copy span {
+.helix-copy span {
   display: block;
   margin-bottom: 12px;
-  color: rgba(255,255,255,.44);
+  color: rgba(255,255,255,.43);
   font-size: 8px;
   letter-spacing: .18em;
 }
-.spiral-copy p {
+.helix-copy p {
   margin: 0;
   color: rgba(255,255,255,.73);
   font-size: clamp(11px, .8vw, 14px);
   line-height: 1.48;
 }
-.spiral-stage {
+.helix-stage {
   position: absolute;
   left: 50%;
   top: 49%;
-  width: min(96vw, 1580px);
-  height: min(78vh, 820px);
+  width: min(112vw, 1800px);
+  height: min(82vh, 860px);
   transform: translate(-50%, -50%);
   perspective: 1600px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
-.spiral-cards {
+.helix-cards {
   position: absolute;
   inset: 0;
   z-index: 100;
   transform-style: preserve-3d;
 }
-.spiral-card {
+.helix-card {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(178px, 17vw, 286px);
+  width: clamp(150px, 14vw, 230px);
   aspect-ratio: 1.36;
   transform-style: preserve-3d;
   will-change: transform, opacity, filter;
 }
-.spiral-card__surface {
+.helix-card__surface {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -433,127 +410,109 @@ a { color: inherit; text-decoration: none; }
   border-radius: 4px;
   background: #111;
   box-shadow:
-    0 32px 84px rgba(0,0,0,.8),
+    0 32px 80px rgba(0,0,0,.82),
     inset 0 1px rgba(255,255,255,.08);
 }
-.spiral-card__image {
+.helix-card__image {
   object-fit: cover;
   filter: contrast(1.08);
   transform: scale(1.035);
 }
-.spiral-card__shade {
+.helix-card__shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255,255,255,.025), transparent 24%),
-    linear-gradient(to top, rgba(0,0,0,.9), transparent 52%);
+    linear-gradient(to bottom, rgba(255,255,255,.03), transparent 24%),
+    linear-gradient(to top, rgba(0,0,0,.9), transparent 50%);
 }
-.spiral-card__meta {
+.helix-card__meta {
   position: absolute;
   inset: auto 0 0;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
-  gap: 12px;
-  padding: 10px 11px;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 9px 10px;
   color: rgba(255,255,255,.88);
-}
-.spiral-card__meta > span {
-  color: rgba(255,255,255,.48);
   font-size: 7px;
-  letter-spacing: .12em;
+  letter-spacing: .1em;
 }
-.spiral-card__meta div {
-  display: grid;
-  gap: 3px;
-  text-align: right;
+.helix-card__meta span {
+  color: rgba(255,255,255,.46);
 }
-.spiral-card__meta small {
-  color: rgba(255,255,255,.48);
-  font-size: 6px;
-  letter-spacing: .12em;
-}
-.spiral-card__meta strong {
+.helix-card__meta strong {
   font-size: 8px;
-  letter-spacing: .08em;
   font-weight: 500;
 }
-.spiral-core {
+.helix-core {
   position: absolute;
   z-index: 360;
   left: 50%;
   top: 50%;
-  width: clamp(260px, 30vw, 470px);
+  width: clamp(270px, 31vw, 485px);
   aspect-ratio: .92;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  filter: drop-shadow(0 62px 115px rgba(0,0,0,.84));
+  filter: drop-shadow(0 65px 120px rgba(0,0,0,.85));
   will-change: transform;
 }
-.spiral-core__body {
+.helix-core__shell {
   position: absolute;
   inset: 3% 7%;
   border-radius: 38% 62% 55% 45% / 43% 37% 63% 57%;
   background:
     radial-gradient(circle at 66% 24%, rgba(255,255,255,.98), transparent 5%),
     radial-gradient(circle at 31% 72%, rgba(255,255,255,.2), transparent 20%),
-    conic-gradient(from 205deg, #070707, #c4c4c4, #252525, #f2f2f2, #111, #888, #080808);
+    conic-gradient(from 205deg, #070707, #c5c5c5, #252525, #f3f3f3, #111, #898989, #080808);
   box-shadow:
     inset 38px -46px 76px rgba(0,0,0,.8),
     inset -25px 31px 50px rgba(255,255,255,.32);
   transform: rotate(-7deg);
 }
-.spiral-core__ring {
+.helix-core__ring {
   position: absolute;
   border: 1px solid rgba(255,255,255,.17);
   border-radius: 50%;
   mix-blend-mode: screen;
 }
-.spiral-core__ring--one {
+.helix-core__ring--a {
   inset: 22% 25% 31% 19%;
   transform: rotate(28deg);
 }
-.spiral-core__ring--two {
+.helix-core__ring--b {
   inset: 32% 16% 18% 34%;
   transform: rotate(-37deg);
 }
-.spiral-core__glow {
+.helix-core__glow {
   position: absolute;
   inset: 24%;
   border-radius: 50%;
   background: rgba(255,255,255,.14);
   filter: blur(45px);
 }
-.spiral-axis {
+.helix-track {
   position: absolute;
-  z-index: 55;
+  z-index: 54;
   left: 4%;
   right: 4%;
   top: 50%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12) 22%, rgba(255,255,255,.12) 78%, transparent);
-}
-.spiral-guide {
-  position: absolute;
-  z-index: 54;
-  left: 7%;
-  right: 7%;
-  top: 50%;
-  height: 47%;
   transform: translateY(-50%);
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.07);
   border-radius: 50%;
   pointer-events: none;
 }
-.spiral-guide--one { transform: translateY(-50%) rotate(-4deg); }
-.spiral-guide--two {
-  height: 35%;
-  left: 14%;
-  right: 14%;
-  border-color: rgba(255,255,255,.055);
-  transform: translateY(-50%) rotate(5deg);
+.helix-track--outer {
+  height: 58%;
+  transform: translateY(-50%) rotate(-3deg);
 }
-.spiral-core-label {
+.helix-track--inner {
+  left: 12%;
+  right: 12%;
+  height: 40%;
+  border-color: rgba(255,255,255,.045);
+  transform: translateY(-50%) rotate(4deg);
+}
+.helix-label {
   position: absolute;
   z-index: 390;
   left: 50%;
@@ -565,19 +524,19 @@ a { color: inherit; text-decoration: none; }
   mix-blend-mode: difference;
   pointer-events: none;
 }
-.spiral-core-label span {
-  color: rgba(255,255,255,.62);
+.helix-label span {
+  color: rgba(255,255,255,.6);
   font-size: 6px;
   letter-spacing: .28em;
 }
-.spiral-core-label strong {
+.helix-label strong {
   font-size: 9px;
   letter-spacing: .17em;
   font-weight: 500;
 }
-.spiral-index {
+.helix-index {
   position: absolute;
-  z-index: 980;
+  z-index: 950;
   right: 2.2vw;
   bottom: 2.2vw;
   display: grid;
@@ -587,19 +546,19 @@ a { color: inherit; text-decoration: none; }
   text-align: right;
 }
 @media (max-width: 900px) {
-  .spiral-orbit { height: 500vh; }
-  .spiral-stage { width: 132vw; height: 70vh; }
-  .spiral-core { width: 47vw; }
-  .spiral-card { width: clamp(145px, 34vw, 225px); }
-  .spiral-copy { left: 18px; bottom: 20px; width: min(70vw, 320px); }
-  .spiral-index { right: 18px; bottom: 20px; }
+  .helix-section { height: 520vh; }
+  .helix-stage { width: 155vw; height: 70vh; }
+  .helix-core { width: 48vw; }
+  .helix-card { width: clamp(120px, 29vw, 190px); }
+  .helix-copy { left: 18px; bottom: 20px; width: min(70vw, 320px); }
+  .helix-index { right: 18px; bottom: 20px; }
 }
 @media (max-width: 600px) {
-  .spiral-stage { width: 165vw; height: 64vh; }
-  .spiral-core { width: 60vw; }
-  .spiral-card { width: 42vw; }
-  .spiral-copy p { display: none; }
+  .helix-stage { width: 205vw; height: 65vh; }
+  .helix-core { width: 61vw; }
+  .helix-card { width: 35vw; }
+  .helix-copy p { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .spiral-orbit { height: 100svh; }
+  .helix-section { height: 100svh; }
 }
