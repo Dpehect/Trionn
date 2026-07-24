@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import { HelixGallerySection } from "./helix-gallery-section";
+import { BrandStatementSection } from "./brand-statement-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -278,7 +278,7 @@ export function LayeredHomepage() {
         </div>
       </section>
 
-      <HelixGallerySection />
+      <BrandStatementSection />
 
       <section id="contact" className="closing">
         <p>Have a project?</p>

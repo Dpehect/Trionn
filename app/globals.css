@@ -318,247 +318,189 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-/* Section 03 — clean horizontal helix implementation */
-.helix-section {
+
+
+/* Section 03 — scroll-highlighted Trionn brand statement */
+.brand-statement {
   position: relative;
-  height: 620vh;
-  color: #f4f4ef;
+  height: 360vh;
   background: #030303;
+  color: #f4f4f1;
 }
-.helix-sticky {
+.brand-statement__sticky {
   position: sticky;
   top: 0;
-  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.07), transparent 24%),
-    radial-gradient(circle at center, #111 0%, #060606 50%, #020202 100%);
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,.035), transparent 28%),
+    #030303;
 }
-.helix-sticky::after {
+.brand-statement__sticky::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 900;
+  z-index: 20;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 14%, transparent 84%, rgba(0,0,0,.55)),
-    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.65) 100%);
+    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 18%, transparent 80%, rgba(0,0,0,.48)),
+    radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.6) 100%);
 }
-.helix-grid {
+.brand-statement__noise {
   position: absolute;
-  inset: -160px;
-  z-index: -5;
-  opacity: .19;
+  inset: 0;
+  z-index: -1;
+  opacity: .045;
+  pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, #000 16%, rgba(0,0,0,.68) 60%, transparent 95%);
+    repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,.38) 0 1px, transparent 1px 3px);
+  background-size: 5px 5px;
+  mix-blend-mode: soft-light;
 }
-.helix-copy {
+.brand-statement__eyebrow {
   position: absolute;
-  z-index: 950;
+  z-index: 30;
+  top: 24px;
   left: 2.2vw;
-  bottom: 2.2vw;
-  width: min(380px, 30vw);
-}
-.helix-copy span {
-  display: block;
-  margin-bottom: 12px;
-  color: rgba(255,255,255,.43);
-  font-size: 8px;
-  letter-spacing: .18em;
-}
-.helix-copy p {
-  margin: 0;
-  color: rgba(255,255,255,.73);
-  font-size: clamp(11px, .8vw, 14px);
-  line-height: 1.48;
-}
-.helix-stage {
-  position: absolute;
-  left: 50%;
-  top: 49%;
-  width: min(112vw, 1800px);
-  height: min(82vh, 860px);
-  transform: translate(-50%, -50%);
-  perspective: 1600px;
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
-}
-.helix-cards {
-  position: absolute;
-  inset: 0;
-  z-index: 100;
-  transform-style: preserve-3d;
-}
-.helix-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(150px, 14vw, 230px);
-  aspect-ratio: 1.36;
-  transform-style: preserve-3d;
-  will-change: transform, opacity, filter;
-}
-.helix-card__surface {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 4px;
-  background: #111;
-  box-shadow:
-    0 32px 80px rgba(0,0,0,.82),
-    inset 0 1px rgba(255,255,255,.08);
-}
-.helix-card__image {
-  object-fit: cover;
-  filter: contrast(1.08);
-  transform: scale(1.035);
-}
-.helix-card__shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(255,255,255,.03), transparent 24%),
-    linear-gradient(to top, rgba(0,0,0,.9), transparent 50%);
-}
-.helix-card__meta {
-  position: absolute;
-  inset: auto 0 0;
+  right: 2.2vw;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 10px;
-  padding: 9px 10px;
-  color: rgba(255,255,255,.88);
-  font-size: 7px;
-  letter-spacing: .1em;
-}
-.helix-card__meta span {
-  color: rgba(255,255,255,.46);
-}
-.helix-card__meta strong {
+  gap: 20px;
+  color: rgba(255,255,255,.44);
   font-size: 8px;
-  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
-.helix-core {
+.brand-statement__inner {
   position: absolute;
-  z-index: 360;
-  left: 50%;
-  top: 50%;
-  width: clamp(270px, 31vw, 485px);
-  aspect-ratio: .92;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: drop-shadow(0 65px 120px rgba(0,0,0,.85));
-  will-change: transform;
-}
-.helix-core__shell {
-  position: absolute;
-  inset: 3% 7%;
-  border-radius: 38% 62% 55% 45% / 43% 37% 63% 57%;
-  background:
-    radial-gradient(circle at 66% 24%, rgba(255,255,255,.98), transparent 5%),
-    radial-gradient(circle at 31% 72%, rgba(255,255,255,.2), transparent 20%),
-    conic-gradient(from 205deg, #070707, #c5c5c5, #252525, #f3f3f3, #111, #898989, #080808);
-  box-shadow:
-    inset 38px -46px 76px rgba(0,0,0,.8),
-    inset -25px 31px 50px rgba(255,255,255,.32);
-  transform: rotate(-7deg);
-}
-.helix-core__ring {
-  position: absolute;
-  border: 1px solid rgba(255,255,255,.17);
-  border-radius: 50%;
-  mix-blend-mode: screen;
-}
-.helix-core__ring--a {
-  inset: 22% 25% 31% 19%;
-  transform: rotate(28deg);
-}
-.helix-core__ring--b {
-  inset: 32% 16% 18% 34%;
-  transform: rotate(-37deg);
-}
-.helix-core__glow {
-  position: absolute;
-  inset: 24%;
-  border-radius: 50%;
-  background: rgba(255,255,255,.14);
-  filter: blur(45px);
-}
-.helix-track {
-  position: absolute;
-  z-index: 54;
-  left: 4%;
-  right: 4%;
+  z-index: 10;
+  left: 2.2vw;
+  right: 2.2vw;
   top: 50%;
   transform: translateY(-50%);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 50%;
-  pointer-events: none;
+  will-change: transform;
 }
-.helix-track--outer {
-  height: 58%;
-  transform: translateY(-50%) rotate(-3deg);
+.brand-statement__copy {
+  margin: 0;
+  max-width: 96vw;
+  font-size: clamp(30px, 4.15vw, 78px);
+  line-height: .99;
+  letter-spacing: -.052em;
+  font-weight: 500;
+  text-wrap: balance;
 }
-.helix-track--inner {
-  left: 12%;
-  right: 12%;
-  height: 40%;
-  border-color: rgba(255,255,255,.045);
-  transform: translateY(-50%) rotate(4deg);
+.brand-word {
+  display: inline-block;
+  margin-right: .18em;
+  color: rgba(244,244,241,.88);
+  will-change: transform, opacity, color, text-shadow;
 }
-.helix-label {
+.brand-word.accent {
+  --accent-color: #ffffff;
+}
+.brand-word.accent--violet { --accent-color: #aa4bff; }
+.brand-word.accent--pink { --accent-color: #ff3ea5; }
+.brand-word.accent--blue { --accent-color: #4f6fff; }
+.brand-word.accent--orange { --accent-color: #ff7a2f; }
+.brand-word.accent--green { --accent-color: #42d66b; }
+
+.brand-work {
   position: absolute;
-  z-index: 390;
+  z-index: 25;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  gap: 3px;
+  bottom: -1.2vw;
+  transform: translateX(-50%);
+  width: min(92vw, 1500px);
   text-align: center;
-  mix-blend-mode: difference;
-  pointer-events: none;
+  will-change: transform, opacity;
 }
-.helix-label span {
-  color: rgba(255,255,255,.6);
-  font-size: 6px;
-  letter-spacing: .28em;
+.brand-work__label {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,.44);
+  font-size: 8px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
-.helix-label strong {
-  font-size: 9px;
-  letter-spacing: .17em;
+.brand-work h2 {
+  margin: 0;
+  font-size: clamp(92px, 15vw, 260px);
+  line-height: .72;
+  letter-spacing: -.075em;
   font-weight: 500;
 }
-.helix-index {
+.brand-work__line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  background: rgba(255,255,255,.24);
+  transform: scaleX(0);
+  transform-origin: center;
+}
+.brand-statement__index {
   position: absolute;
-  z-index: 950;
+  z-index: 30;
   right: 2.2vw;
   bottom: 2.2vw;
   display: grid;
   gap: 5px;
-  color: rgba(255,255,255,.42);
+  color: rgba(255,255,255,.38);
   font-size: 8px;
   text-align: right;
+  text-transform: uppercase;
 }
+
 @media (max-width: 900px) {
-  .helix-section { height: 520vh; }
-  .helix-stage { width: 155vw; height: 70vh; }
-  .helix-core { width: 48vw; }
-  .helix-card { width: clamp(120px, 29vw, 190px); }
-  .helix-copy { left: 18px; bottom: 20px; width: min(70vw, 320px); }
-  .helix-index { right: 18px; bottom: 20px; }
+  .brand-statement {
+    height: 320vh;
+  }
+  .brand-statement__eyebrow {
+    left: 18px;
+    right: 18px;
+  }
+  .brand-statement__inner {
+    left: 18px;
+    right: 18px;
+  }
+  .brand-statement__copy {
+    max-width: none;
+    font-size: clamp(28px, 7.8vw, 52px);
+    line-height: 1.02;
+  }
+  .brand-work {
+    bottom: 0;
+    width: calc(100vw - 36px);
+  }
+  .brand-work h2 {
+    font-size: clamp(90px, 24vw, 180px);
+  }
+  .brand-statement__index {
+    right: 18px;
+    bottom: 18px;
+  }
 }
+
 @media (max-width: 600px) {
-  .helix-stage { width: 205vw; height: 65vh; }
-  .helix-core { width: 61vw; }
-  .helix-card { width: 35vw; }
-  .helix-copy p { display: none; }
+  .brand-statement__eyebrow span:last-child {
+    display: none;
+  }
+  .brand-statement__copy {
+    font-size: clamp(27px, 8.8vw, 45px);
+    letter-spacing: -.045em;
+  }
+  .brand-work h2 {
+    font-size: clamp(86px, 27vw, 150px);
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .helix-section { height: 100svh; }
+  .brand-statement {
+    height: 100svh;
+  }
+  .brand-word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

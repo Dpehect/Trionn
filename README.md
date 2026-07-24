@@ -1,16 +1,17 @@
-# Trionn — Clean Horizontal Helix
+# Trionn — Brand Statement Section
 
-Bu sürüm üçüncü bölümü hiç içermeyen temiz projeden oluşturuldu.
+Üçüncü bölüm tamamen silinip referans videoya göre yeniden kuruldu.
 
-- Eski orbit, vortex ve spiral kodları yoktur.
-- Yeni üçüncü bölüm ayrı `HelixGallerySection` bileşenidir.
-- 18 kart tek, kesintisiz yatay 3D sarmala dizilir.
-- Sarmal scroll ile yatay olarak döner.
-- Ön kartlar merkez objenin önünden, arka kartlar arkasından geçer.
-- İlk iki bölüm korunmuştur.
+## Yeni üçüncü bölüm
+- Siyah, tam ekran sticky sahne
+- Trionn'a özel marka anlatımı
+- Scroll ile sırayla açılan kelimeler
+- Mor, pembe, mavi, turuncu ve yeşil vurgu kelimeleri
+- Bölüm sonunda aşağıdan gelen büyük Work başlığı
+- Mobil responsive tipografi
+- İlk iki bölüm korunmuştur
 
 ## Run
-
 ```bash
 npm install
 npm run build
