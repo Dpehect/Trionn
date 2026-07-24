@@ -1,15 +1,16 @@
-# Trionn — Third Section Orbit Collage
+# Trionn — True Orbit Third Section
 
-## Added as section 3
-- Sticky full-screen dark stage
-- Animated metallic central core
-- Nine floating interface/product panels
-- Separate GSAP timeline and parallax depth per panel
-- Moving technical grid background
-- Responsive mobile composition
-- Existing first and Selected Cases sections preserved
+Üçüncü bölüm baştan yazıldı:
 
-## Run
+- Kartlar gerçek CSS 3D halkasına dizilir.
+- Tüm halka kürenin çevresinde scroll ile döner.
+- Öndeki kartlar büyür ve netleşir.
+- Arkaya geçen kartlar küçülür, kararır ve bulanıklaşır.
+- Küre merkezde sabit kalır.
+- İlk iki bölüm değiştirilmemiştir.
+
+## Çalıştırma
+
 ```bash
 npm install
 npm run dev
