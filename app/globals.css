@@ -1,7 +1,6 @@
 :root {
-  --ink: #14202a;
+  --ink: #111820;
   --muted: #65717c;
-  --line: rgba(20, 32, 42, 0.14);
   --paper: #f7f8f8;
 }
 
@@ -14,8 +13,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 a { color: inherit; text-decoration: none; }
-
 .site-shell { overflow: clip; }
+
 .intro {
   min-height: 100svh;
   padding: 150px 7vw 70px;
@@ -23,9 +22,29 @@ a { color: inherit; text-decoration: none; }
   align-content: center;
   position: relative;
 }
-.intro p { position: absolute; top: 120px; right: 7vw; max-width: 280px; color: var(--muted); font-size: 13px; }
-.intro h1 { margin: 0; font-size: clamp(58px, 8.5vw, 146px); line-height: .88; letter-spacing: -.065em; font-weight: 520; }
-.intro span { position: absolute; bottom: 36px; left: 7vw; font-size: 11px; text-transform: uppercase; letter-spacing: .13em; }
+.intro p {
+  position: absolute;
+  top: 120px;
+  right: 7vw;
+  max-width: 280px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.intro h1 {
+  margin: 0;
+  font-size: clamp(58px, 8.5vw, 146px);
+  line-height: .88;
+  letter-spacing: -.065em;
+  font-weight: 520;
+}
+.intro span {
+  position: absolute;
+  bottom: 36px;
+  left: 7vw;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
 
 .layer-stack { position: relative; }
 .layer-card {
@@ -47,10 +66,37 @@ a { color: inherit; text-decoration: none; }
 .layer-card--2 { background: #dce5e9; }
 .layer-card--3 { background: #ced9de; }
 .layer-copy { position: relative; z-index: 2; max-width: 540px; }
-.eyebrow { display: block; margin-bottom: 28px; font-size: 10px; letter-spacing: .17em; color: #60717e; }
-.layer-copy h2 { margin: 0 0 22px; max-width: 760px; font-size: clamp(44px, 5.5vw, 94px); line-height: .93; letter-spacing: -.055em; font-weight: 520; }
-.layer-copy p { margin: 0 0 30px; max-width: 470px; color: #53626d; font-size: clamp(14px, 1.2vw, 18px); line-height: 1.65; }
-.text-link { display: inline-flex; align-items: center; gap: 9px; padding-bottom: 7px; border-bottom: 1px solid currentColor; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+.eyebrow {
+  display: block;
+  margin-bottom: 28px;
+  font-size: 10px;
+  letter-spacing: .17em;
+  color: #60717e;
+}
+.layer-copy h2 {
+  margin: 0 0 22px;
+  font-size: clamp(44px, 5.5vw, 94px);
+  line-height: .93;
+  letter-spacing: -.055em;
+  font-weight: 520;
+}
+.layer-copy p {
+  margin: 0 0 30px;
+  max-width: 470px;
+  color: #53626d;
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.65;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
 .layer-visual { position: relative; height: min(68vh, 720px); min-height: 420px; }
 
 .visual-ring { display: grid; place-items: center; }
@@ -62,9 +108,7 @@ a { color: inherit; text-decoration: none; }
     radial-gradient(circle at center, transparent 0 42%, #182630 43% 55%, transparent 56%),
     repeating-conic-gradient(from 10deg, #1d2d38 0 2deg, #647681 2.5deg 3.5deg, #111c24 4deg 6deg);
   box-shadow: inset 0 0 70px rgba(255,255,255,.18), 0 45px 70px rgba(24,38,48,.18);
-  transform: translateX(12%);
 }
-
 .fan-shape { position: absolute; inset: 4% -10% 0 0; }
 .fan-shape span {
   position: absolute;
@@ -76,9 +120,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 60% 60% 18% 18%;
   background: linear-gradient(90deg, #13222c, #6b7a84 48%, #172731);
   border: 1px solid rgba(255,255,255,.26);
-  box-shadow: 0 22px 45px rgba(18,33,43,.16);
 }
-
 .map-grid {
   position: absolute;
   inset: 0;
@@ -98,41 +140,80 @@ a { color: inherit; text-decoration: none; }
   top: 7%;
   border-radius: 50%;
   background: radial-gradient(circle at 38% 40%, #7c909b 0 2%, #415663 15%, #1b2c37 58%, #0c171e 100%);
-  box-shadow: inset 25px 10px 70px rgba(255,255,255,.1);
-}
-.map-grid span {
-  position: absolute;
-  z-index: 2;
-  padding: 9px 14px;
-  min-width: 135px;
-  background: rgba(102,126,140,.68);
-  color: #e6edf0;
-  font-size: 9px;
-  letter-spacing: .12em;
-  backdrop-filter: blur(8px);
 }
 
-/* Layer 2 — yalnızca Selected Cases */
 .selected-cases {
-  position: relative;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  padding: 8vw 5vw;
-  background: #ffffff;
-  border-top: 1px solid rgba(20, 32, 42, 0.08);
+  min-height: 260svh;
+  padding: 15vh 4vw 20vh;
+  background: #fff;
 }
-
+.selected-cases__header {
+  min-height: 72svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .selected-cases__title {
   margin: 0;
-  color: #111111;
-  font-size: clamp(64px, 12.5vw, 220px);
+  font-size: clamp(68px, 10vw, 190px);
+  line-height: .86;
+  letter-spacing: -.06em;
   font-weight: 500;
-  line-height: 0.82;
-  letter-spacing: -0.075em;
-  white-space: nowrap;
-  will-change: transform, opacity;
+  text-align: center;
+}
+.selected-cases__gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2vw;
+  align-items: start;
+}
+.case-card { margin: 0; }
+.case-card--large { grid-column: 1 / span 7; }
+.case-card--small { grid-column: 9 / span 4; margin-top: 16vw; }
+.case-card--medium { grid-column: 2 / span 5; margin-top: 3vw; }
+.case-card--tall { grid-column: 8 / span 5; margin-top: 10vw; }
+.case-card__visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+  aspect-ratio: 1.3;
+  background: #dfe4e7;
+}
+.case-card--small .case-card__visual { aspect-ratio: .86; }
+.case-card--tall .case-card__visual { aspect-ratio: .78; }
+.case-card__visual span {
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+.case-card__visual--1 {
+  background: radial-gradient(circle at 70% 30%, #dce9ef, #8298a5 35%, #182630 100%);
+}
+.case-card__visual--2 {
+  background: linear-gradient(145deg, #efe9df, #b97a65 52%, #3c2925);
+}
+.case-card__visual--3 {
+  background: linear-gradient(125deg, #d8ded5, #5e7467 50%, #17251e);
+}
+.case-card__visual--4 {
+  background: radial-gradient(circle at 35% 30%, #e3ddcf, #8c7a67 38%, #231d19);
+}
+.case-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 12px;
+}
+.case-card__meta h3,
+.case-card__meta p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+}
+.case-card__meta p {
+  color: #68717a;
 }
 
 .closing {
@@ -143,38 +224,53 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   background: #f7f8f8;
 }
-.closing p { text-transform: uppercase; letter-spacing: .15em; font-size: 10px; color: var(--muted); }
-.closing h2 { margin: 12px 0 0; font-size: clamp(48px, 7vw, 110px); letter-spacing: -.06em; }
+.closing p {
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: 10px;
+  color: var(--muted);
+}
+.closing h2 {
+  margin: 12px 0 0;
+  font-size: clamp(48px, 8vw, 130px);
+  letter-spacing: -.06em;
+}
 
 @media (max-width: 800px) {
   .intro { padding-inline: 22px; }
   .intro p { right: 22px; left: 22px; top: 110px; }
   .layer-card {
-    top: 62px;
-    height: calc(100svh - 62px);
+    top: 0;
+    height: 100svh;
     min-height: 720px;
     margin: 0;
     padding: 48px 22px 26px;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    gap: 10px;
   }
   .layer-copy h2 { font-size: clamp(42px, 13vw, 64px); }
-  .layer-copy p { font-size: 14px; line-height: 1.5; }
   .layer-visual { min-height: 290px; height: 38vh; }
-  .metal-ring { width: 88vw; transform: translate(18%, 8%); }
-  .fan-shape { inset: -4% -20% -8% 0; }
-  .map-grid { inset: 0 -24px -30px 20px; }
 
   .selected-cases {
-    min-height: 82svh;
-    padding-inline: 18px;
+    min-height: auto;
+    padding: 12vh 20px 14vh;
   }
+  .selected-cases__header { min-height: 58svh; }
   .selected-cases__title {
-    font-size: clamp(52px, 17vw, 104px);
-    white-space: normal;
-    text-align: center;
-    line-height: 0.9;
+    font-size: clamp(58px, 18vw, 94px);
+  }
+  .selected-cases__gallery {
+    display: block;
+  }
+  .case-card,
+  .case-card--small,
+  .case-card--medium,
+  .case-card--tall {
+    margin: 0 0 28px;
+  }
+  .case-card__visual {
+    min-height: 300px;
+    aspect-ratio: 1.05;
   }
 }
 

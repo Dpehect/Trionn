@@ -29,14 +29,19 @@ const layers = [
   },
 ] as const;
 
+const cases = [
+  { name: "Aether", type: "Digital identity", size: "large" },
+  { name: "Noema", type: "Product experience", size: "small" },
+  { name: "Forma", type: "Commerce platform", size: "medium" },
+  { name: "Solace", type: "Campaign system", size: "tall" },
+];
+
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      const cards = gsap.utils.toArray<HTMLElement>(".layer-card");
-
-      cards.forEach((card, index) => {
+      gsap.utils.toArray<HTMLElement>(".layer-card").forEach((card, index) => {
         gsap.fromTo(
           card,
           {
@@ -54,7 +59,7 @@ export function LayeredHomepage() {
               end: "top top",
               scrub: true,
             },
-          },
+          }
         );
 
         gsap.fromTo(
@@ -66,58 +71,60 @@ export function LayeredHomepage() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 75%",
-              end: "top 28%",
-              scrub: 0.8,
+              start: "top 76%",
+              end: "top 30%",
+              scrub: 0.9,
             },
-          },
-        );
-
-        gsap.fromTo(
-          card.querySelector(".layer-visual"),
-          {
-            yPercent: 18,
-            rotate: index === 1 ? -8 : 0,
-            scale: 0.92,
-          },
-          {
-            yPercent: 0,
-            rotate: 0,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          },
+          }
         );
       });
 
       gsap.fromTo(
         ".selected-cases__title",
-        { yPercent: 70, opacity: 0, scale: 0.94 },
+        { yPercent: 45, opacity: 0, letterSpacing: "-0.08em" },
         {
           yPercent: 0,
           opacity: 1,
-          scale: 1,
+          letterSpacing: "-0.06em",
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".selected-cases",
             start: "top 78%",
             end: "top 28%",
-            scrub: 1.5,
+            scrub: 1.2,
           },
-        },
+        }
       );
+
+      gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            y: 130 + index * 18,
+            opacity: 0,
+            scale: 0.965,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 94%",
+              end: "top 56%",
+              scrub: 1.1,
+            },
+          }
+        );
+      });
     },
-    { scope: root },
+    { scope: root }
   );
 
   return (
     <main ref={root} className="site-shell">
-      <section id="top" className="intro">
+      <section className="intro">
         <p>Independent digital studio</p>
         <h1>
           Transforming ideas
@@ -127,7 +134,7 @@ export function LayeredHomepage() {
         <span>Scroll to explore</span>
       </section>
 
-      <section id="work" className="layer-stack" aria-label="Katmanlı içerik alanı">
+      <section className="layer-stack" aria-label="Layered content">
         {layers.map((layer, index) => (
           <article
             className={`layer-card layer-card--${index + 1}`}
@@ -143,34 +150,26 @@ export function LayeredHomepage() {
               </a>
             </div>
 
-            <div className={`layer-visual visual-${layer.visual}`} aria-hidden="true">
+            <div
+              className={`layer-visual visual-${layer.visual}`}
+              aria-hidden="true"
+            >
               {layer.visual === "ring" && <div className="metal-ring" />}
-
               {layer.visual === "fan" && (
                 <div className="fan-shape">
                   {Array.from({ length: 11 }).map((_, item) => (
                     <span
                       key={item}
-                      style={{ transform: `rotate(${item * 8 - 40}deg)` }}
+                      style={{
+                        transform: `rotate(${item * 8 - 40}deg)`,
+                      }}
                     />
                   ))}
                 </div>
               )}
-
               {layer.visual === "map" && (
                 <div className="map-grid">
                   <div className="map-orb" />
-                  {Array.from({ length: 5 }).map((_, item) => (
-                    <span
-                      key={item}
-                      style={{
-                        top: `${18 + item * 13}%`,
-                        right: `${8 + item * 7}%`,
-                      }}
-                    >
-                      NODE 0{item + 1}
-                    </span>
-                  ))}
                 </div>
               )}
             </div>
@@ -178,16 +177,32 @@ export function LayeredHomepage() {
         ))}
       </section>
 
-      {/* Layer 2: Video ve videoya gömülü tüm HOBRO/filtre içeriği kaldırıldı. */}
-      <section id="cases" className="selected-cases" aria-labelledby="selected-cases-title">
-        <h2 id="selected-cases-title" className="selected-cases__title">
-          Selected Cases
-        </h2>
+      <section id="cases" className="selected-cases">
+        <header className="selected-cases__header">
+          <h2 className="selected-cases__title">Selected Cases</h2>
+        </header>
+
+        <div className="selected-cases__gallery">
+          {cases.map((item, index) => (
+            <article
+              className={`case-card case-card--${item.size}`}
+              key={item.name}
+            >
+              <div className={`case-card__visual case-card__visual--${index + 1}`}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div className="case-card__meta">
+                <h3>{item.name}</h3>
+                <p>{item.type}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="contact" className="closing">
-        <p>Next layer</p>
-        <h2>Ready for the next part.</h2>
+      <section className="closing">
+        <p>Have a project?</p>
+        <h2>Let&apos;s talk.</h2>
       </section>
     </main>
   );
