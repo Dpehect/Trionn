@@ -29,7 +29,7 @@ export function ProjectEnquiryForm() {
     }
   }
 
-  return <form onSubmit={handleSubmit} className="rounded-[2rem] border hairline bg-white p-5 sm:p-8" noValidate>
+  return <form onSubmit={handleSubmit} className="border hairline bg-white p-5 sm:p-8" noValidate>
     <div className="grid gap-5 sm:grid-cols-2">
       <Field label="Name" error={errors.name}><input className={fieldClass} name="name" autoComplete="name" placeholder="Your name" required /></Field>
       <Field label="Work email" error={errors.email}><input className={fieldClass} name="email" type="email" autoComplete="email" placeholder="you@company.com" required /></Field>
@@ -42,11 +42,11 @@ export function ProjectEnquiryForm() {
     <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="max-w-md text-sm leading-relaxed text-black/50">By submitting, you agree that we may use these details to respond to your enquiry. No marketing list is created.</p>
-      <button disabled={status === "loading"} className="inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-ink px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60">
+      <button disabled={status === "loading"} className="inline-flex min-h-13 items-center justify-center gap-3 bg-ink px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60">
         {status === "loading" ? <LoaderCircle className="animate-spin" size={18}/> : status === "success" ? <Check size={18}/> : <ArrowRight size={18}/>} {status === "loading" ? "Sending" : "Send enquiry"}
       </button>
     </div>
-    <div aria-live="polite" className={`mt-5 rounded-2xl px-4 py-3 text-sm ${status === "success" ? "bg-aurora/25" : status === "error" ? "bg-red-50 text-red-800" : "hidden"}`}>{message}</div>
+    <div aria-live="polite" className={`mt-5 border-l-2 px-4 py-3 text-sm ${status === "success" ? "bg-aurora/25" : status === "error" ? "bg-red-50 text-red-800" : "hidden"}`}>{message}</div>
   </form>;
 }
 

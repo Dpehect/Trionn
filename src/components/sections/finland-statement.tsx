@@ -1,1 +1,22 @@
-export function FinlandStatement(){return <section id="finland" className="px-4 pb-4"><div className="relative min-h-[78svh] overflow-hidden rounded-[2rem] bg-baltic text-white"><div className="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_25%_20%,#a6ff8f_0,transparent_27%),radial-gradient(circle_at_75%_75%,#72c6b2_0,transparent_28%)]"/><div className="container-shell relative flex min-h-[78svh] flex-col justify-between py-10"><div className="flex justify-between"><p className="eyebrow">Built for Finland</p><p className="font-mono text-[10px]">60.1699° N / 24.9384° E</p></div><div><h2 className="max-w-6xl text-[clamp(3.8rem,10vw,10rem)] font-semibold leading-[.82] tracking-[-.075em]">Local insight.<br/>Global standard.</h2><p className="mt-8 max-w-md text-sm leading-relaxed text-white/70">A Finland-focused agency approach grounded in clarity, reliability and long-term digital value.</p></div></div></div></section>}
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+export function FinlandStatement() {
+  return (
+    <section id="finland" className="bg-signal py-20 text-foreground md:py-28">
+      <div className="container-shell">
+        <div className="grid gap-12 border-b border-black/25 pb-10 md:grid-cols-[1fr_auto] md:items-start">
+          <p className="eyebrow">Finland-focused / globally capable</p>
+          <p className="index-number">60.1699° N / 24.9384° E</p>
+        </div>
+        <div className="grid gap-12 py-16 lg:grid-cols-[1.35fr_.65fr] lg:items-end">
+          <h2 className="text-balance text-[clamp(4rem,10vw,11rem)] font-medium leading-[.76] tracking-[-.08em]">LOCAL CONTEXT.<br/>WORLD-CLASS EXECUTION.</h2>
+          <div className="lg:pb-5">
+            <p className="max-w-md text-lg leading-relaxed">Built for companies that value Finnish clarity, dependable delivery and digital work with a distinct point of view.</p>
+            <Link href="/contact" className="group mt-8 inline-flex items-center gap-3 border-b border-black pb-2 text-sm font-semibold">Discuss a project <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"/></Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

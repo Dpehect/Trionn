@@ -1,13 +1,32 @@
-# Softbridge Solutions Finland
+# Softbridge Solutions — Finland
 
-A production-oriented, cinematic agency website built with Next.js App Router, React, TypeScript, Tailwind CSS, GSAP and Lenis. The visual direction combines Nordic clarity with editorial motion without copying the Zentry reference.
+A production-oriented agency website built around editorial art direction, purposeful motion and a restrained Nordic visual system.
 
-## Included phases
+## Design position
 
-- **01–04:** strategy foundation, architecture, design system, navigation and site shell
-- **05–08:** cinematic storytelling, services, dynamic case studies and Finland market positioning
-- **09–11:** agency process, trust system and full inner-page architecture
-- **12–14:** qualified lead form, API delivery, SEO, accessibility, privacy controls, security and deployment readiness
+This edition deliberately removes ornamental 3D, floating gradient objects, glassmorphism, excessive pills, generic AI imagery and demo-style effects. The experience relies on typography, layout rhythm, real interface compositions, strong case-study hierarchy and motion with a clear narrative function.
+
+## Stack
+
+- Next.js 16 App Router
+- React 19 + TypeScript
+- Tailwind CSS 4
+- GSAP + ScrollTrigger
+- Lenis smooth scrolling
+- Motion for the full-screen navigation
+- Route handlers for project enquiries
+
+## Main routes
+
+- `/`
+- `/work` and `/work/[slug]`
+- `/services` and `/services/[slug]`
+- `/about`
+- `/process`
+- `/insights` and `/insights/[slug]`
+- `/careers`
+- `/contact`
+- Legal and accessibility routes
 
 ## Run locally
 
@@ -24,10 +43,10 @@ npm run lint
 npm run build
 ```
 
-## Email configuration
+## Contact delivery
 
-Copy `.env.example` to `.env.local`. The contact route sends through the Resend REST API when all required variables are set. In development, a valid submission is logged when email variables are absent. Production deliberately returns a clear configuration error instead of pretending the message was delivered.
+Copy `.env.example` to `.env.local`. Add Resend credentials for production email delivery. Without them, development submissions use the documented fallback behavior.
 
-## Important launch work
+## Pre-launch requirements
 
-This package uses conceptual portfolio content and pre-launch legal drafts. Replace or verify all claims, company registration details, project metrics, domain details and legal text before public launch. See `docs/PRODUCTION-CHECKLIST.md`.
+Replace conceptual case studies with approved client work, verify every company claim, review legal documents with qualified counsel, add final licensed imagery/video only where it improves the narrative, and run keyboard, screen-reader, responsive and reduced-motion tests.
