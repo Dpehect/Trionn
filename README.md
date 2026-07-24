@@ -1,6 +1,14 @@
-# Layered Homepage
+# Layered Homepage — Phase 02
 
-Videodaki sticky + üst üste binen katmanlı ana sayfa davranışının ilk uygulaması.
+Bu sürüm iki videodaki ana sayfa akışını tek projede birleştirir.
+
+- Sticky ve clip-path tabanlı katmanlı ilk bölüm
+- Tam ekran marka/logo geçişi
+- Parallax arka planlı koyu mimari bölüm
+- Üç sütunlu içerik kartları
+- Harita, lokasyon noktaları ve istatistiklerden oluşan açık renkli “Proof” bölümü
+- GSAP ScrollTrigger animasyonları
+- Responsive mobil düzen ve reduced-motion desteği
 
 ## Çalıştırma
 
@@ -8,11 +16,3 @@ Videodaki sticky + üst üste binen katmanlı ana sayfa davranışının ilk uyg
 npm install
 npm run dev
 ```
-
-Tarayıcı: http://localhost:3000
-
-## Ana dosyalar
-
-- `components/layered-homepage.tsx`: Katmanlar ve GSAP ScrollTrigger hareketleri
-- `app/globals.css`: Sticky kart yapısı, responsive tasarım ve geometrik görseller
-- `app/page.tsx`: Ana sayfa

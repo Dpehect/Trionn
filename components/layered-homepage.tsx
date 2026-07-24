@@ -88,6 +88,88 @@ export function LayeredHomepage() {
           }
         );
       });
+
+      gsap.fromTo(
+        ".brand-reveal__mark",
+        { scale: 0.42, opacity: 0, y: 70 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".brand-reveal",
+            start: "top 75%",
+            end: "center center",
+            scrub: 0.8,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".architecture-panel__surface",
+        { scale: 1.12, yPercent: 8 },
+        {
+          scale: 1,
+          yPercent: -4,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".architecture-panel",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".architecture-card",
+        { y: 55, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".architecture-grid",
+            start: "top 78%",
+            end: "top 42%",
+            scrub: 0.7,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".proof-map",
+        { xPercent: -8, opacity: 0.35 },
+        {
+          xPercent: 0,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".proof-section",
+            start: "top 80%",
+            end: "center center",
+            scrub: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".proof-copy",
+        { x: 80, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".proof-section",
+            start: "top 72%",
+            end: "center 55%",
+            scrub: 0.8,
+          },
+        }
+      );
     },
     { scope: root }
   );
@@ -158,9 +240,68 @@ export function LayeredHomepage() {
         ))}
       </section>
 
+      <section className="brand-reveal" aria-label="Marka geçişi">
+        <div className="brand-reveal__cloud brand-reveal__cloud--left" />
+        <div className="brand-reveal__cloud brand-reveal__cloud--right" />
+        <div className="brand-reveal__mark" aria-hidden="true">
+          <div className="wolf-shield"><span /></div>
+          <strong>TERAWULF</strong>
+        </div>
+      </section>
+
+      <section className="architecture-panel" aria-label="Power infrastructure">
+        <div className="architecture-panel__surface" aria-hidden="true">
+          <div className="facility-lines" />
+          <div className="facility-block facility-block--one" />
+          <div className="facility-block facility-block--two" />
+          <div className="facility-block facility-block--three" />
+        </div>
+        <div className="architecture-panel__veil" />
+        <div className="architecture-content">
+          <span className="eyebrow eyebrow--light">ARCHITECTED FOR A</span>
+          <h2>Power-Constrained Future</h2>
+          <div className="architecture-grid">
+            <article className="architecture-card">
+              <h3>Built Beyond Limits</h3>
+              <p>Purpose-built systems engineered for demanding workloads, evolving infrastructure and long-term operational resilience.</p>
+              <a href="#proof">Our expertise <ArrowUpRight size={13} /></a>
+            </article>
+            <article className="architecture-card">
+              <h3>Power Behind Progress</h3>
+              <p>Reliable energy architecture connects every stage of delivery, from site planning through continuous operation.</p>
+              <a href="#proof">Our power platform <ArrowUpRight size={13} /></a>
+            </article>
+            <article className="architecture-card">
+              <h3>Asset-Backed Platform</h3>
+              <p>Physical infrastructure, strategic locations and disciplined execution create a scalable operating advantage.</p>
+              <a href="#proof">View our portfolio <ArrowUpRight size={13} /></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="proof" className="proof-section">
+        <div className="proof-map" aria-hidden="true">
+          <div className="usa-shape" />
+          <span className="proof-node proof-node--1"><i />01</span>
+          <span className="proof-node proof-node--2"><i />02</span>
+          <span className="proof-node proof-node--3"><i />03</span>
+        </div>
+        <div className="proof-copy">
+          <span className="eyebrow">EXECUTION AT SCALE</span>
+          <h2>The Proof is in<br />the Execution</h2>
+          <p>Credibility is earned through delivery. Our platform combines secure sites, resilient infrastructure and disciplined capital deployment to turn ambitious plans into operating assets.</p>
+          <div className="proof-stats">
+            <span><b>3.0 GW</b> controlled</span>
+            <span><b>300 MW</b> contracted</span>
+            <span><b>5</b> prime locations</span>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="closing">
-        <p>Next section placeholder</p>
-        <h2>Katman yapısı hazır.</h2>
+        <p>Continue building below</p>
+        <h2>Next section.</h2>
       </section>
     </main>
   );
