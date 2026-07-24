@@ -316,3 +316,27 @@ a { color: inherit; text-decoration: none; }
 .case-card {
   contain: layout paint style;
 }
+
+
+/* Slot-style Selected Cases choreography */
+.case-card {
+  perspective: 1100px;
+  transform-origin: center bottom;
+}
+.case-card__media {
+  transform: translateZ(0);
+  will-change: clip-path;
+}
+.case-card__meta p,
+.case-card__meta h3,
+.case-card__meta svg {
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+.case-card__link:hover {
+  transform: translateY(-11px) scale(1.008);
+  box-shadow: 0 30px 68px rgba(17, 24, 32, .14);
+}
+.case-card__link:hover .case-card__image {
+  transform: scale(1.035);
+}

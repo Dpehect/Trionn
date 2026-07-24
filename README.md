@@ -1,13 +1,16 @@
-# Trionn — First Section Restored
+# Trionn — Selected Cases Slot Motion
 
-Bu sürümde yalnızca ilk bölüm düzeltildi:
+Bu sürümde ilk bölümün eski animasyonları korunmuştur.
 
-- Layer kartlarının eski hızlı ve temiz reveal zamanlaması geri getirildi.
-- İlk bölüm metin animasyonlarının eski scrub değeri geri getirildi.
-- Selected Cases bölümündeki yavaş ve bağımsız kart timeline'ları korundu.
-- Tasarım, görseller ve üç sütunlu yapı değiştirilmedi.
+Selected Cases:
+- 9 kartın her biri ayrı GSAP timeline kullanır.
+- Her kartın giriş yönü, rotation, scale ve scrub süresi farklıdır.
+- Kart gövdesi, medya maskesi, görsel, kategori, başlık ve ok ayrı sırayla açılır.
+- Görsellerde bağımsız parallax devam hareketi bulunur.
+- Masaüstünde 3 sütun, tablette 2 sütun, mobilde 1 sütun korunur.
 
 ## Çalıştırma
+
 ```bash
 npm install
 npm run dev
