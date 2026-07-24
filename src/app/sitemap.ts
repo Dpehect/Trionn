@@ -1,1 +1,11 @@
-import { site } from "@/lib/site";import { work } from "@/lib/data";export default function sitemap(){const routes=["","/services/digital-products","/work","/approach","/careers","/contact","/privacy","/accessibility"];return [...routes.map(r=>({url:site.url+r,lastModified:new Date(),changeFrequency:"monthly" as const,priority:r===""?1:.7})),...work.map(w=>({url:`${site.url}/work/${w.slug}`,lastModified:new Date(),changeFrequency:"yearly" as const,priority:.6}))]}
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return ["", "/services", "/work", "/studio", "/contact"].map((path) => ({
+    url: `${site.url}${path}`,
+    lastModified: new Date(),
+    changeFrequency: path === "" ? "weekly" : "monthly",
+    priority: path === "" ? 1 : 0.8,
+  }));
+}

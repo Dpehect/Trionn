@@ -1,41 +1,42 @@
-# Softbridge — Helsinki Product Engineering Studio
+# Softbridge — Motion-led studio website
 
-Production-oriented Next.js 15 website built from a clean slate.
+A complete Next.js 15 website rebuilt from the interaction language shown in the supplied screen recording, adapted to Softbridge with original copy and original visual assets.
+
+## Stack
+- Next.js 15 App Router
+- React 19 + TypeScript
+- Tailwind CSS
+- GSAP + ScrollTrigger
+- Framer Motion
+- Lenis
 
 ## Run
 ```bash
 npm install
-npm run dev
 npm run typecheck
+npm run lint
 npm run build
+npm run dev
 ```
 
-## Direction
-- No 3D. The story does not require it.
-- GSAP: scroll-linked typography, line reveals, page transitions and sequencing.
-- Framer Motion: navigation, filtering and small layout transitions.
-- Lenis: smooth wheel interpolation, disabled by reduced-motion preferences.
+## Pages
+- `/`
+- `/services`
+- `/work`
+- `/studio`
+- `/contact`
 
-## Content integrity
-Work is labelled Verified, Anonymised or Representative. Replace sample claims only with substantiated client evidence.
+## Motion system
+- branded preloader
+- scroll-aware floating navigation
+- split hero reveal
+- parallax hero scene
+- pinned expanding studio stage
+- card masks and section wipes
+- infinite context marquee
+- animated engagement estimator
+- testimonial carousel
+- accordion FAQ
+- page-entry transition
 
-## Launch tasks
-1. Confirm legal entity and postal address.
-2. Review privacy notice with Finnish/EU counsel.
-3. Connect the contact route to an approved email/CRM provider.
-4. Replace Cal.com placeholder.
-5. Add real case-study evidence and permissions.
-6. Run Lighthouse, axe, keyboard and screen-reader QA.
-
-## Content depth update
-
-This version adds decision-grade content across the studio site:
-
-- capability signals, deliverables and risks
-- three clear engagement models
-- delivery outputs at every phase
-- operating trust and commercial transparency practices
-- full case-study narratives with evidence notes
-- deeper contact and talent-network expectations
-
-The content remains intentionally concise. Depth is created through structure and specificity rather than marketing volume.
+All artwork under `public/art` is original SVG artwork created for this project.

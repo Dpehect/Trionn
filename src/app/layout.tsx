@@ -1,4 +1,82 @@
-import type { Metadata } from "next";import { Geist,Geist_Mono } from "next/font/google";import "./globals.css";import { SiteHeader } from "@/components/site-header";import { SiteFooter } from "@/components/site-footer";import { SmoothScroll } from "@/components/motion/smooth-scroll";import { PageTransition } from "@/components/motion/page-transition";import { JsonLd } from "@/components/json-ld";import { site } from "@/lib/site";
-const sans=Geist({subsets:["latin"],variable:"--font-sans"});const mono=Geist_Mono({subsets:["latin"],variable:"--font-mono"});
-export const metadata:Metadata={metadataBase:new URL(site.url),title:{default:"Softbridge — Product engineering studio Helsinki",template:"%s — Softbridge"},description:site.description,keywords:site.keywords,alternates:{canonical:"/"},openGraph:{type:"website",locale:"en_FI",siteName:"Softbridge",title:"Softbridge — Senior teams for software that has to work",description:site.description,url:site.url,images:[{url:"/og.svg",width:1200,height:630,alt:"Softbridge product engineering studio"}]},twitter:{card:"summary_large_image",title:"Softbridge",description:site.description,images:["/og.svg"]},robots:{index:true,follow:true}};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en" className={`${sans.variable} ${mono.variable}`}><body><a href="#main" className="fixed left-3 top-3 z-[200] -translate-y-20 bg-ink text-paper p-3 focus:translate-y-0">Skip to content</a><JsonLd/><SmoothScroll/><PageTransition/><SiteHeader/><main id="main">{children}</main><SiteFooter/></body></html>}
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { MotionShell } from "@/components/motion-shell";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Softbridge — Senior product engineering",
+    template: "%s — Softbridge",
+  },
+  description: site.description,
+  keywords: [
+    "product engineering studio Helsinki",
+    "software development Finland",
+    "AI product studio Helsinki",
+    "senior software team Europe",
+    "digital product development",
+  ],
+  alternates: { canonical: "/" },
+  icons: { icon: "/logo-mark.svg" },
+  manifest: "/manifest.webmanifest",
+  openGraph: {
+    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "Softbridge — software that works better" }],
+    title: "Softbridge — Senior product engineering",
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#062a1f",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name,
+        url: site.url,
+        email: site.email,
+        description: site.description,
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${site.url}/#service`,
+        name: site.name,
+        url: site.url,
+        areaServed: ["Helsinki", "Finland", "Nordic countries", "Europe"],
+        serviceType: ["Product engineering", "Software development", "AI systems", "Product design"],
+        provider: { "@id": `${site.url}/#organization` },
+      },
+    ],
+  };
+
+  return (
+    <html lang="en">
+      <body>
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <MotionShell>
+          <SiteHeader />
+          <main id="main-content">{children}</main>
+          <SiteFooter />
+        </MotionShell>
+      </body>
+    </html>
+  );
+}

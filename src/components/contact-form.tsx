@@ -1,2 +1,47 @@
-"use client";import { useState } from "react";
-export function ContactForm(){const [status,setStatus]=useState("");async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setStatus("Sending…");const body=Object.fromEntries(new FormData(e.currentTarget));const r=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});setStatus(r.ok?"Thank you. We will reply within two working days.":"Something went wrong. Email hello@softbridge.fi instead.");if(r.ok)e.currentTarget.reset()}const field="w-full border-b border-line bg-transparent py-4 outline-none focus:border-ink";return <form onSubmit={submit} className="grid md:grid-cols-2 gap-x-8 gap-y-5"><label className="block">Name<input required name="name" className={field}/></label><label className="block">Work email<input required type="email" name="email" className={field}/></label><label className="block">Company<input name="company" className={field}/></label><label className="block">Budget<select name="budget" className={field}><option>€25k–€50k</option><option>€50k–€100k</option><option>€100k+</option><option>Not defined</option></select></label><label className="md:col-span-2 block">What needs to change?<textarea required name="brief" rows={5} className={field}/></label><input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden"/><div className="md:col-span-2 flex flex-wrap gap-5 items-center"><button className="bg-ink text-paper px-7 py-4 focus-ring" type="submit">Send project brief</button><p aria-live="polite" className="text-sm text-muted">{status}</p></div></form>}
+"use client";
+
+import { useState } from "react";
+
+export function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("sending");
+    const form = new FormData(event.currentTarget);
+    const payload = Object.fromEntries(form.entries());
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("Request failed");
+      event.currentTarget.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <form onSubmit={submit} className="rounded-stage bg-white p-6 md:p-10">
+      <div className="grid gap-x-8 md:grid-cols-2">
+        <label><span className="eyebrow text-forest/45">Name</span><input required name="name" className="form-field" autoComplete="name" /></label>
+        <label><span className="eyebrow text-forest/45">Work email</span><input required type="email" name="email" className="form-field" autoComplete="email" /></label>
+        <label><span className="eyebrow text-forest/45">Company</span><input name="company" className="form-field" autoComplete="organization" /></label>
+        <label><span className="eyebrow text-forest/45">Budget range</span><select name="budget" className="form-field" defaultValue=""><option value="" disabled>Select</option><option>€25k–€60k</option><option>€60k–€150k</option><option>€150k+</option><option>Not defined</option></select></label>
+      </div>
+      <label className="mt-8 block"><span className="eyebrow text-forest/45">What decision or delivery problem needs attention?</span><textarea required name="brief" className="form-field min-h-36 resize-y" /></label>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+      <button type="submit" disabled={status === "sending"} className="magnetic-button button-dark mt-8 min-w-44">
+        {status === "sending" ? "Sending…" : "Send project brief"}
+      </button>
+      <p className="mt-4 text-sm text-forest/55" aria-live="polite">
+        {status === "sent" && "Thank you. We will reply with a useful next step."}
+        {status === "error" && "The form could not be sent. Email hello@softbridge.fi instead."}
+      </p>
+    </form>
+  );
+}
