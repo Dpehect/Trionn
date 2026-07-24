@@ -529,7 +529,6 @@ export function LayeredHomepage() {
           cancelAnimationFrame(raf);
           vortexTrigger.kill();
         };
-      };
       }
     },
     { scope: root }
