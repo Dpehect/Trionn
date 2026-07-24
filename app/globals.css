@@ -291,3 +291,14 @@ a { color: inherit; text-decoration: none; }
     transition-duration: .01ms !important;
   }
 }
+
+/* Per-case independent GSAP timeline performance */
+.case-card,
+.case-card__image,
+.case-card__meta {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.case-card {
+  contain: layout paint style;
+}
