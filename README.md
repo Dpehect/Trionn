@@ -26,3 +26,16 @@ Work is labelled Verified, Anonymised or Representative. Replace sample claims o
 4. Replace Cal.com placeholder.
 5. Add real case-study evidence and permissions.
 6. Run Lighthouse, axe, keyboard and screen-reader QA.
+
+## Content depth update
+
+This version adds decision-grade content across the studio site:
+
+- capability signals, deliverables and risks
+- three clear engagement models
+- delivery outputs at every phase
+- operating trust and commercial transparency practices
+- full case-study narratives with evidence notes
+- deeper contact and talent-network expectations
+
+The content remains intentionally concise. Depth is created through structure and specificity rather than marketing volume.
