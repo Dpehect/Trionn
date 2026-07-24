@@ -910,3 +910,132 @@
     }
   }
 }
+
+
+/* Spacious first-section composition */
+.layer-card {
+  padding: clamp(56px, 7.5vw, 124px) clamp(48px, 7vw, 112px);
+  grid-template-columns: minmax(320px, .9fr) minmax(460px, 1.1fr);
+  gap: clamp(70px, 8vw, 150px);
+}
+
+.layer-copy {
+  max-width: 620px;
+  padding-right: clamp(10px, 2vw, 34px);
+}
+
+.layer-copy .eyebrow {
+  margin-bottom: 34px;
+}
+
+.layer-copy h2 {
+  max-width: 590px;
+  margin-bottom: 30px;
+  line-height: .95;
+}
+
+.layer-copy p {
+  max-width: 520px;
+  margin-bottom: 38px;
+  line-height: 1.72;
+}
+
+.layer-visual--image {
+  padding-left: clamp(12px, 2vw, 38px);
+}
+
+.layer-image-frame {
+  width: min(43vw, 700px);
+  min-width: 470px;
+  aspect-ratio: 1.28;
+  border-radius: 26px;
+}
+
+.layer-image-frame__caption {
+  top: 28px;
+  left: 30px;
+  right: 30px;
+}
+
+.layer-image-frame__meta {
+  left: 30px;
+  right: 30px;
+  bottom: 26px;
+}
+
+.layer-image-frame__overlay {
+  background:
+    linear-gradient(to bottom, rgba(6, 10, 13, .06), transparent 32%),
+    linear-gradient(to top, rgba(5, 9, 12, .52), transparent 52%),
+    radial-gradient(circle at center, transparent 58%, rgba(0,0,0,.13) 100%);
+}
+
+.layer-image {
+  transform: scale(1.015);
+}
+
+.layer-card:hover .layer-image {
+  transform: scale(1.045);
+}
+
+@media (max-width: 1100px) {
+  .layer-card {
+    grid-template-columns: minmax(280px, .9fr) minmax(380px, 1.1fr);
+    gap: 54px;
+    padding-inline: 44px;
+  }
+
+  .layer-image-frame {
+    min-width: 390px;
+  }
+}
+
+@media (max-width: 800px) {
+  .layer-card {
+    padding: 56px 22px 30px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 34px;
+  }
+
+  .layer-copy {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .layer-copy .eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .layer-copy h2 {
+    margin-bottom: 20px;
+  }
+
+  .layer-copy p {
+    margin-bottom: 24px;
+    line-height: 1.58;
+  }
+
+  .layer-visual--image {
+    padding-left: 0;
+  }
+
+  .layer-image-frame {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1.32;
+    border-radius: 22px;
+  }
+
+  .layer-image-frame__caption {
+    top: 18px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .layer-image-frame__meta {
+    left: 20px;
+    right: 20px;
+    bottom: 18px;
+  }
+}

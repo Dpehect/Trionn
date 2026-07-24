@@ -1,13 +1,13 @@
-# SoftBridge Solutions Finland — Four Layer Images
+# SoftBridge Solutions Finland — Spacious Layer Composition
 
-The four uploaded images were added to the first layered section in the supplied order:
-
-1. AI & Automation — AI processor image
-2. Software Systems — source-code image
-3. Digital Products — laptop and application interface image
-4. European Delivery — European Union flag image
-
-The original sticky GSAP layer animation and timing values were preserved.
+## Updated
+- Increased the distance between layer copy and image cards.
+- Added more internal padding around text and visuals.
+- Reduced image dominance slightly for a calmer composition.
+- Improved heading, paragraph and eyebrow spacing.
+- Softened image crop and hover zoom.
+- Preserved the original layer animation logic.
+- Slightly increased scrub values for a calmer scroll feel.
 
 ## Run
 ```bash
