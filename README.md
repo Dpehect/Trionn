@@ -1,11 +1,11 @@
-# SoftBridge Solutions Finland — Third Section
+# SoftBridge Solutions Finland — Colorful Third Section
 
 ## Changes
-- Removed the large Work transition entirely.
-- Replaced Trionn branding with SoftBridge Solutions.
-- Rewrote the third-section copy for the Finland branch and European market.
-- Added Finland Studio / European Digital Partner labels.
-- Preserved the scroll-highlighted word animation.
+- Replaced the dark third section with a colorful, light Nordic visual language.
+- Added soft aurora-inspired violet, pink, blue, orange and green gradients.
+- Updated copy to clarify that SoftBridge Solutions is the main company and this page represents its Finland office.
+- Kept the scroll-highlighted word animation.
+- Removed the Work transition.
 - Preserved the first two sections.
 
 ## Run

@@ -320,12 +320,14 @@ a { color: inherit; text-decoration: none; }
 
 
 
-/* Section 03 — scroll-highlighted Trionn brand statement */
+
+
+/* Section 03 — colorful Finland office brand statement */
 .brand-statement {
   position: relative;
   height: 360vh;
-  background: #030303;
-  color: #f4f4f1;
+  color: #1d2330;
+  background: #eef4ff;
 }
 .brand-statement__sticky {
   position: sticky;
@@ -334,8 +336,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 42%, rgba(255,255,255,.035), transparent 28%),
-    #030303;
+    linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff3ea 100%);
 }
 .brand-statement__sticky::after {
   content: "";
@@ -344,19 +345,54 @@ a { color: inherit; text-decoration: none; }
   z-index: 20;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 18%, transparent 80%, rgba(0,0,0,.48)),
-    radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.6) 100%);
+    linear-gradient(to bottom, rgba(255,255,255,.26), transparent 18%, transparent 80%, rgba(255,255,255,.28)),
+    radial-gradient(ellipse at center, transparent 54%, rgba(91,103,160,.11) 100%);
 }
 .brand-statement__noise {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 3;
   opacity: .045;
   pointer-events: none;
   background-image:
-    repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,.38) 0 1px, transparent 1px 3px);
+    repeating-radial-gradient(circle at 20% 30%, rgba(30,38,58,.42) 0 1px, transparent 1px 3px);
   background-size: 5px 5px;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
+}
+.brand-aurora {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: .78;
+  pointer-events: none;
+  will-change: transform;
+}
+.brand-aurora--one {
+  width: min(48vw, 760px);
+  aspect-ratio: 1.7;
+  left: -8vw;
+  top: 8vh;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(111,78,255,.52), rgba(111,78,255,.08) 60%, transparent 72%);
+  transform: rotate(-16deg);
+}
+.brand-aurora--two {
+  width: min(44vw, 700px);
+  aspect-ratio: 1.5;
+  right: -8vw;
+  top: 20vh;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,105,180,.42), rgba(255,105,180,.08) 62%, transparent 74%);
+  transform: rotate(18deg);
+}
+.brand-aurora--three {
+  width: min(55vw, 860px);
+  aspect-ratio: 2;
+  left: 26vw;
+  bottom: -10vh;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(71,193,154,.34), rgba(71,193,154,.06) 62%, transparent 74%);
 }
 .brand-statement__eyebrow {
   position: absolute;
@@ -367,7 +403,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: rgba(255,255,255,.44);
+  color: rgba(29,35,48,.52);
   font-size: 8px;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -384,31 +420,48 @@ a { color: inherit; text-decoration: none; }
 .brand-statement__copy {
   margin: 0;
   max-width: 96vw;
-  font-size: clamp(30px, 4.15vw, 78px);
-  line-height: .99;
-  letter-spacing: -.052em;
+  font-size: clamp(30px, 4.05vw, 76px);
+  line-height: 1;
+  letter-spacing: -.05em;
   font-weight: 500;
   text-wrap: balance;
 }
 .brand-word {
   display: inline-block;
   margin-right: .18em;
-  color: rgba(244,244,241,.88);
+  color: rgba(29,35,48,.88);
   will-change: transform, opacity, color, text-shadow;
 }
 .brand-word.accent {
   --accent-color: #ffffff;
 }
-.brand-word.accent--violet { --accent-color: #aa4bff; }
-.brand-word.accent--pink { --accent-color: #ff3ea5; }
-.brand-word.accent--blue { --accent-color: #4f6fff; }
-.brand-word.accent--orange { --accent-color: #ff7a2f; }
-.brand-word.accent--green { --accent-color: #42d66b; }
+.brand-word.accent--violet { --accent-color: #7356e8; }
+.brand-word.accent--pink { --accent-color: #e44c9f; }
+.brand-word.accent--blue { --accent-color: #3769d9; }
+.brand-word.accent--orange { --accent-color: #e06f2f; }
+.brand-word.accent--green { --accent-color: #2c9e74; }
 
-
-
-
-
+.brand-statement__signature {
+  position: absolute;
+  z-index: 28;
+  left: 2.2vw;
+  bottom: 2.2vw;
+  display: grid;
+  gap: 5px;
+  will-change: transform, opacity;
+}
+.brand-statement__signature span {
+  color: rgba(29,35,48,.46);
+  font-size: 8px;
+  letter-spacing: .17em;
+}
+.brand-statement__signature strong {
+  color: rgba(29,35,48,.9);
+  font-size: clamp(18px, 1.5vw, 28px);
+  line-height: 1;
+  letter-spacing: -.035em;
+  font-weight: 500;
+}
 .brand-statement__index {
   position: absolute;
   z-index: 30;
@@ -416,7 +469,7 @@ a { color: inherit; text-decoration: none; }
   bottom: 2.2vw;
   display: grid;
   gap: 5px;
-  color: rgba(255,255,255,.38);
+  color: rgba(29,35,48,.46);
   font-size: 8px;
   text-align: right;
   text-transform: uppercase;
@@ -436,12 +489,28 @@ a { color: inherit; text-decoration: none; }
   }
   .brand-statement__copy {
     max-width: none;
-    font-size: clamp(28px, 7.8vw, 52px);
+    font-size: clamp(28px, 7.5vw, 50px);
     line-height: 1.02;
+  }
+  .brand-statement__signature {
+    left: 18px;
+    bottom: 18px;
   }
   .brand-statement__index {
     right: 18px;
     bottom: 18px;
+  }
+  .brand-aurora--one {
+    width: 80vw;
+    left: -28vw;
+  }
+  .brand-aurora--two {
+    width: 76vw;
+    right: -30vw;
+  }
+  .brand-aurora--three {
+    width: 92vw;
+    left: 12vw;
   }
 }
 
@@ -450,8 +519,14 @@ a { color: inherit; text-decoration: none; }
     display: none;
   }
   .brand-statement__copy {
-    font-size: clamp(27px, 8.8vw, 45px);
-    letter-spacing: -.045em;
+    font-size: clamp(27px, 8.5vw, 44px);
+    letter-spacing: -.043em;
+  }
+  .brand-statement__signature strong {
+    font-size: 18px;
+  }
+  .brand-statement__index span:first-child {
+    display: none;
   }
 }
 
@@ -462,41 +537,5 @@ a { color: inherit; text-decoration: none; }
   .brand-word {
     opacity: 1 !important;
     transform: none !important;
-  }
-}
-
-
-.brand-statement__signature {
-  position: absolute;
-  z-index: 28;
-  left: 2.2vw;
-  bottom: 2.2vw;
-  display: grid;
-  gap: 5px;
-  will-change: transform, opacity;
-}
-.brand-statement__signature span {
-  color: rgba(255,255,255,.4);
-  font-size: 8px;
-  letter-spacing: .17em;
-}
-.brand-statement__signature strong {
-  color: rgba(255,255,255,.82);
-  font-size: clamp(18px, 1.5vw, 28px);
-  line-height: 1;
-  letter-spacing: -.035em;
-  font-weight: 500;
-}
-
-@media (max-width: 900px) {
-  .brand-statement__signature {
-    left: 18px;
-    bottom: 18px;
-  }
-}
-
-@media (max-width: 600px) {
-  .brand-statement__signature strong {
-    font-size: 18px;
   }
 }
