@@ -183,7 +183,7 @@ a { color: inherit; text-decoration: none; }
 /* Layer 02 — exact scroll-scrubbed Selected Cases reconstruction */
 .selected-cases-video {
   position: relative;
-  height: 640vh;
+  height: 980vh;
   background: #fff;
 }
 .selected-cases-video__sticky {
@@ -211,7 +211,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 900px) {
-  .selected-cases-video { height: 560vh; }
+  .selected-cases-video { height: 780vh; }
   .selected-cases-video__media {
     object-fit: contain;
     background: #fff;

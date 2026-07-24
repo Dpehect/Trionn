@@ -45,14 +45,22 @@ export function LayeredHomepage() {
         trigger: ".selected-cases-video",
         start: "top top",
         end: "bottom bottom",
-        scrub: true,
+        scrub: 2.4,
         onEnter: () => document.documentElement.classList.add("cases-active"),
         onEnterBack: () => document.documentElement.classList.add("cases-active"),
         onLeave: () => document.documentElement.classList.remove("cases-active"),
         onLeaveBack: () => document.documentElement.classList.remove("cases-active"),
         onUpdate: (self) => {
-          const target = Math.min(duration - 0.02, Math.max(0.001, self.progress * duration));
-          if (Math.abs(video.currentTime - target) > 0.018) video.currentTime = target;
+          const easedProgress = gsap.parseEase("power1.inOut")(self.progress);
+          const target = Math.min(duration - 0.02, Math.max(0.001, easedProgress * duration));
+          if (Math.abs(video.currentTime - target) > 0.012) {
+            gsap.to(video, {
+              currentTime: target,
+              duration: 0.42,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          }
         },
       });
       ScrollTrigger.refresh();

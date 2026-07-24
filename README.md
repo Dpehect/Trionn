@@ -22,3 +22,9 @@ npm run dev
 
 ## Layer 02 update
 Fresh Drop / BRINC Drones opening scene removed. Selected Cases now begins directly with the title and project cards.
+
+
+## Layer 02 refinement
+- Initial BRINC Drones strip removed from the media sequence.
+- Scroll distance increased for a slower, weightier progression.
+- Video scrubbing now uses eased progress and temporal smoothing instead of direct linear seeking.
