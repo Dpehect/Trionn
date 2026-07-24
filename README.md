@@ -1,11 +1,12 @@
-# SoftBridge Solutions Finland — Colorful Third Section
+# SoftBridge Solutions Finland — Character Reveal Edition
 
 ## Changes
-- Replaced the dark third section with a colorful, light Nordic visual language.
-- Added soft aurora-inspired violet, pink, blue, orange and green gradients.
-- Updated copy to clarify that SoftBridge Solutions is the main company and this page represents its Finland office.
-- Kept the scroll-highlighted word animation.
-- Removed the Work transition.
+- Third-section copy now reveals letter by letter instead of word by word.
+- Accent phrases color character by character after appearing.
+- Removed all end-of-section translate/scale animations from the text container.
+- Locked the sticky section to exactly 100svh.
+- Added layout containment to prevent jump, reflow or visual shift at the end.
+- Preserved the colorful Nordic aurora background.
 - Preserved the first two sections.
 
 ## Run
