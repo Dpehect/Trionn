@@ -1,13 +1,14 @@
-# Layered Homepage — Phase 02 Corrected
+# Layered Homepage — Layer 02 Selected Cases
 
-Bu sürümde ikinci videodaki geçiş yeniden kurulmuştur.
+Önceki Layer 2 (logo-mask, koyu tesis ve harita bölümleri) tamamen kaldırıldı.
 
-- Logo ayrı bir sayfa olarak kaybolmaz.
-- Scroll sırasında logo büyür.
-- Koyu mimari bölüm önce logonun içinden görünür.
-- Logo viewport sınırlarını aştığında alttaki bölüm tamamen açılır.
-- Geçiş GSAP timeline + SVG mask ile scroll'a bağlıdır.
-- Önceki katmanlı ana sayfa ve sonraki harita bölümü korunmuştur.
+Yeni Layer 2:
+- Videodaki gibi geniş beyaz editorial alan
+- “Selected Cases” giriş başlığı
+- Farklı ölçü ve yatay konumlarda 13 proje kartı
+- Scroll ile kart reveal ve görsel parallax hareketleri
+- Bölüm sonunda büyük “Got Project? / LET’S TALK” sahnesi
+- Mobilde iki kolon ve geniş kart ritmi
 
 ## Çalıştırma
 

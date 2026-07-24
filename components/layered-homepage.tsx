@@ -9,344 +9,117 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const layers = [
-  {
-    eyebrow: "01 / EXPERTISE",
-    title: "Our Expertise",
-    body: "We turn complex systems into clear, high-performance digital experiences built for modern brands.",
-    visual: "ring",
-  },
-  {
-    eyebrow: "02 / INFRASTRUCTURE",
-    title: "Compute Infrastructure at Scale",
-    body: "A modular digital foundation that remains responsive, efficient and visually controlled at every breakpoint.",
-    visual: "fan",
-  },
-  {
-    eyebrow: "03 / STRATEGY",
-    title: "Strategic Sites",
-    body: "Editorial structure, precise interaction design and cinematic transitions combined in one scalable system.",
-    visual: "map",
-  },
+  { eyebrow: "01 / EXPERTISE", title: "Our Expertise", body: "We turn complex systems into clear, high-performance digital experiences built for modern brands.", visual: "ring" },
+  { eyebrow: "02 / INFRASTRUCTURE", title: "Compute Infrastructure at Scale", body: "A modular digital foundation that remains responsive, efficient and visually controlled at every breakpoint.", visual: "fan" },
+  { eyebrow: "03 / STRATEGY", title: "Strategic Sites", body: "Editorial structure, precise interaction design and cinematic transitions combined in one scalable system.", visual: "map" },
+] as const;
+
+const cases = [
+  { title: "Health Platform", meta: "Digital Product", visual: "people", size: "wide" },
+  { title: "Lumen", meta: "Brand Experience", visual: "city", size: "small" },
+  { title: "Connected", meta: "Mobile Campaign", visual: "phone", size: "medium" },
+  { title: "Commerce Lab", meta: "E-commerce", visual: "commerce", size: "small" },
+  { title: "Aesop", meta: "Launch Film", visual: "stage", size: "wide" },
+  { title: "Super Interconnect", meta: "Interactive Web", visual: "circuit", size: "large" },
+  { title: "Object Coach", meta: "Product Story", visual: "travel", size: "medium" },
+  { title: "Drift", meta: "Identity System", visual: "symbol", size: "small" },
+  { title: "Caviar", meta: "Motion Identity", visual: "caviar", size: "wide" },
+  { title: "Meeting Room", meta: "Digital Service", visual: "meeting", size: "small" },
+  { title: "Orbital", meta: "Interactive Film", visual: "orbital", size: "medium" },
+  { title: "Scan Smart", meta: "Retail Campaign", visual: "scan", size: "wide" },
+  { title: "NFT / 008", meta: "Web3 Experience", visual: "nft", size: "medium" },
 ] as const;
 
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const cards = gsap.utils.toArray<HTMLElement>(".layer-card");
-
-      cards.forEach((card, index) => {
-        const content = card.querySelector(".layer-copy");
-        const visual = card.querySelector(".layer-visual");
-
-        gsap.fromTo(
-          card,
-          { clipPath: index === 0 ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)" },
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          content,
-          { y: 72, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 75%",
-              end: "top 28%",
-              scrub: 0.8,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          visual,
-          { yPercent: 18, rotate: index === 1 ? -8 : 0, scale: 0.92 },
-          {
-            yPercent: 0,
-            rotate: 0,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
+  useGSAP(() => {
+    const cards = gsap.utils.toArray<HTMLElement>(".layer-card");
+    cards.forEach((card, index) => {
+      gsap.fromTo(card,
+        { clipPath: index === 0 ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "top top", scrub: true } }
+      );
+      gsap.fromTo(card.querySelector(".layer-copy"), { y: 72, opacity: 0 }, {
+        y: 0, opacity: 1, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 75%", end: "top 28%", scrub: .8 }
       });
-
-      const revealTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".logo-reveal",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.65,
-          invalidateOnRefresh: true,
-        },
+      gsap.fromTo(card.querySelector(".layer-visual"), { yPercent: 18, rotate: index === 1 ? -8 : 0, scale: .92 }, {
+        yPercent: 0, rotate: 0, scale: 1, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true }
       });
+    });
 
-      revealTimeline
-        .fromTo(
-          ".logo-reveal__mask-group, .logo-reveal__visible-group",
-          { scale: 0.62, transformOrigin: "50% 50%" },
-          { scale: 1, duration: 0.22, ease: "power2.out" }
-        )
-        .to(
-          ".logo-reveal__visible",
-          { opacity: 0, duration: 0.08, ease: "none" },
-          0.2
-        )
-        .to(
-          ".logo-reveal__mask-group",
-          { scale: 15, duration: 0.68, ease: "power2.inOut" },
-          0.22
-        )
-        .to(
-          ".logo-reveal__cover",
-          { opacity: 0, duration: 0.12, ease: "none" },
-          0.86
-        )
-        .fromTo(
-          ".architecture-content",
-          { opacity: 0.28, y: 48 },
-          { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" },
-          0.6
-        );
+    gsap.fromTo(".cases-heading", { y: 70, opacity: 0 }, {
+      y: 0, opacity: 1, ease: "power3.out", scrollTrigger: { trigger: ".selected-cases", start: "top 76%", end: "top 32%", scrub: .7 }
+    });
 
-      gsap.fromTo(
-        ".architecture-panel__surface",
-        { scale: 1.1, yPercent: 5 },
-        {
-          scale: 1,
-          yPercent: -3,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".logo-reveal",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        }
-      );
+    gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
+      const media = card.querySelector(".case-card__visual");
+      gsap.fromTo(card, { y: 90 + (index % 3) * 24, opacity: 0, scale: .96 }, {
+        y: 0, opacity: 1, scale: 1, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 94%", end: "top 58%", scrub: .7 }
+      });
+      gsap.fromTo(media, { yPercent: -7, scale: 1.08 }, {
+        yPercent: 7, scale: 1, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true }
+      });
+    });
 
-      gsap.fromTo(
-        ".architecture-card",
-        { y: 34, opacity: 0.25 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".logo-reveal",
-            start: "55% top",
-            end: "88% bottom",
-            scrub: 0.6,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".proof-map",
-        { xPercent: -8, opacity: 0.35 },
-        {
-          xPercent: 0,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".proof-section",
-            start: "top 80%",
-            end: "center center",
-            scrub: true,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".proof-copy",
-        { x: 80, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".proof-section",
-            start: "top 72%",
-            end: "center 55%",
-            scrub: 0.8,
-          },
-        }
-      );
-    },
-    { scope: root }
-  );
+    gsap.fromTo(".project-cta__label", { y: 50, opacity: 0 }, {
+      y: 0, opacity: 1, ease: "power3.out", scrollTrigger: { trigger: ".project-cta", start: "top 78%", end: "top 48%", scrub: .6 }
+    });
+    gsap.fromTo(".project-cta__marquee", { xPercent: -12, opacity: 0 }, {
+      xPercent: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: ".project-cta", start: "top 72%", end: "center 48%", scrub: .8 }
+    });
+  }, { scope: root });
 
   return (
     <main ref={root} className="site-shell">
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="Ana sayfa">
-          LAYER/01
-        </a>
-        <nav aria-label="Ana navigasyon">
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#about">About</a>
-        </nav>
-        <a className="contact-pill" href="#contact">
-          Start a project <ArrowUpRight size={14} />
-        </a>
+        <a className="brand" href="#top" aria-label="Ana sayfa">LAYER/01</a>
+        <nav aria-label="Ana navigasyon"><a href="#work">Work</a><a href="#cases">Cases</a><a href="#contact">Contact</a></nav>
+        <a className="contact-pill" href="#contact">Start a project <ArrowUpRight size={14} /></a>
       </header>
 
       <section id="top" className="intro">
         <p>Independent digital studio</p>
-        <h1>
-          Transforming ideas
-          <br />
-          into performance
-        </h1>
+        <h1>Transforming ideas<br />into performance</h1>
         <span>Scroll to explore</span>
       </section>
 
       <section id="work" className="layer-stack" aria-label="Katmanlı içerik alanı">
         {layers.map((layer, index) => (
-          <article
-            className={`layer-card layer-card--${index + 1}`}
-            key={layer.title}
-            style={{ zIndex: index + 1 }}
-          >
-            <div className="layer-copy">
-              <span className="eyebrow">{layer.eyebrow}</span>
-              <h2>{layer.title}</h2>
-              <p>{layer.body}</p>
-              <a href="#contact" className="text-link">
-                Discover more <ArrowUpRight size={15} />
-              </a>
-            </div>
-
+          <article className={`layer-card layer-card--${index + 1}`} key={layer.title} style={{ zIndex: index + 1 }}>
+            <div className="layer-copy"><span className="eyebrow">{layer.eyebrow}</span><h2>{layer.title}</h2><p>{layer.body}</p><a href="#cases" className="text-link">Discover more <ArrowUpRight size={15} /></a></div>
             <div className={`layer-visual visual-${layer.visual}`} aria-hidden="true">
               {layer.visual === "ring" && <div className="metal-ring" />}
-              {layer.visual === "fan" && (
-                <div className="fan-shape">
-                  {Array.from({ length: 11 }).map((_, item) => (
-                    <span key={item} style={{ transform: `rotate(${item * 8 - 40}deg)` }} />
-                  ))}
-                </div>
-              )}
-              {layer.visual === "map" && (
-                <div className="map-grid">
-                  <div className="map-orb" />
-                  {Array.from({ length: 5 }).map((_, item) => (
-                    <span key={item} style={{ top: `${18 + item * 13}%`, right: `${8 + item * 7}%` }}>
-                      NODE 0{item + 1}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {layer.visual === "fan" && <div className="fan-shape">{Array.from({ length: 11 }).map((_, item) => <span key={item} style={{ transform: `rotate(${item * 8 - 40}deg)` }} />)}</div>}
+              {layer.visual === "map" && <div className="map-grid"><div className="map-orb" />{Array.from({ length: 5 }).map((_, item) => <span key={item} style={{ top: `${18 + item * 13}%`, right: `${8 + item * 7}%` }}>NODE 0{item + 1}</span>)}</div>}
             </div>
           </article>
         ))}
       </section>
 
-      <section className="logo-reveal" aria-label="Logo üzerinden bölüm geçişi">
-        <div className="logo-reveal__sticky">
-          <div className="architecture-panel" aria-label="Power infrastructure">
-            <div className="architecture-panel__surface" aria-hidden="true">
-              <div className="facility-lines" />
-              <div className="facility-block facility-block--one" />
-              <div className="facility-block facility-block--two" />
-              <div className="facility-block facility-block--three" />
-            </div>
-            <div className="architecture-panel__veil" />
-            <div className="architecture-content">
-              <span className="eyebrow eyebrow--light">WHY TERAWULF</span>
-              <div className="architecture-heading-row">
-                <h2>Architected for a<br />Power-Constrained Future</h2>
-                <p>Built to secure, control and scale the energy infrastructure required for the next generation of digital growth.</p>
-              </div>
-              <div className="architecture-grid">
-                <article className="architecture-card">
-                  <h3>Built Beyond Limits</h3>
-                  <p>Purpose-built systems engineered for demanding workloads, evolving infrastructure and long-term operational resilience.</p>
-                  <a href="#proof">Our strategy <ArrowUpRight size={13} /></a>
-                </article>
-                <article className="architecture-card">
-                  <h3>Power Behind Progress</h3>
-                  <p>Reliable energy architecture connects every stage of delivery, from site planning through continuous operation.</p>
-                  <a href="#proof">Our power platform <ArrowUpRight size={13} /></a>
-                </article>
-                <article className="architecture-card">
-                  <h3>Asset-Backed Platform</h3>
-                  <p>Physical infrastructure, strategic locations and disciplined execution create a scalable operating advantage.</p>
-                  <a href="#proof">View our portfolio <ArrowUpRight size={13} /></a>
-                </article>
-              </div>
-            </div>
-          </div>
+      <section id="cases" className="selected-cases">
+        <div className="cases-heading">
+          <div className="cases-index"><span>Selected (13)</span><span>Cases / 2024—26</span></div>
+          <h2>Selected Cases</h2>
+        </div>
 
-          <svg className="logo-reveal__cover" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <defs>
-              <mask id="terawulf-reveal-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
-                <rect width="1600" height="900" fill="white" />
-                <g className="logo-reveal__mask-group" transform="translate(800 450)">
-                  <g transform="translate(-260 -205)">
-                    <path d="M260 12 L390 77 L420 220 L375 340 L260 405 L145 340 L100 220 L130 77 Z" fill="black" />
-                    <path d="M158 172 L229 166 L279 126 L306 174 L370 144 L338 205 L363 240 L309 232 L278 307 L250 239 L181 224 Z" fill="white" />
-                  </g>
-                  <text x="0" y="292" textAnchor="middle" fill="black" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="112" letterSpacing="-4">TERAWULF</text>
-                </g>
-              </mask>
-            </defs>
-            <rect className="logo-reveal__cover-rect" width="1600" height="900" fill="#fbfcfc" mask="url(#terawulf-reveal-mask)" />
-          </svg>
-
-          <svg className="logo-reveal__visible" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g className="logo-reveal__visible-group" transform="translate(800 450)" fill="#3d566d">
-              <g transform="translate(-260 -205)">
-                <path d="M260 12 L390 77 L420 220 L375 340 L260 405 L145 340 L100 220 L130 77 Z" />
-                <path d="M158 172 L229 166 L279 126 L306 174 L370 144 L338 205 L363 240 L309 232 L278 307 L250 239 L181 224 Z" fill="#fbfcfc" />
-              </g>
-              <text x="0" y="292" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="112" letterSpacing="-4">TERAWULF</text>
-            </g>
-          </svg>
+        <div className="cases-grid">
+          {cases.map((item, index) => (
+            <article className={`case-card case-card--${index + 1} case-card--${item.size}`} key={item.title}>
+              <div className={`case-card__visual visual-case--${item.visual}`} aria-hidden="true"><i /><b /></div>
+              <div className="case-card__caption"><span>{item.title}</span><small>{item.meta}</small></div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="proof" className="proof-section">
-        <div className="proof-map" aria-hidden="true">
-          <div className="usa-shape" />
-          <span className="proof-node proof-node--1"><i />01</span>
-          <span className="proof-node proof-node--2"><i />02</span>
-          <span className="proof-node proof-node--3"><i />03</span>
+      <section id="contact" className="project-cta">
+        <p className="project-cta__label">Got Project?</p>
+        <div className="project-cta__marquee" aria-label="Let's talk">
+          <span className="waves">((((</span><strong>LET&apos;S TALK</strong><span className="waves">))))</span>
+          <a href="mailto:hello@example.com">Start <ArrowUpRight size={14} /></a>
         </div>
-        <div className="proof-copy">
-          <span className="eyebrow">EXECUTION AT SCALE</span>
-          <h2>The Proof is in<br />the Execution</h2>
-          <p>Credibility is earned through delivery. Our platform combines secure sites, resilient infrastructure and disciplined capital deployment to turn ambitious plans into operating assets.</p>
-          <div className="proof-stats">
-            <span><b>3.0 GW</b> controlled</span>
-            <span><b>300 MW</b> contracted</span>
-            <span><b>5</b> prime locations</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="closing">
-        <p>Continue building below</p>
-        <h2>Next section.</h2>
       </section>
     </main>
   );
