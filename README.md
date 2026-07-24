@@ -18,3 +18,7 @@ videodakiyle aynı görünür. Layer 1 korunmuştur.
 npm install
 npm run dev
 ```
+
+
+## Layer 02 update
+Fresh Drop / BRINC Drones opening scene removed. Selected Cases now begins directly with the title and project cards.
