@@ -1,35 +1,4 @@
-import type { Metadata } from "next";
-import { Geist, Manrope } from "next/font/google";
-import "./globals.css";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://softbridge.fi"),
-  title: "Softbridge — Product Engineering Studio in Helsinki",
-  description: "Senior product engineering, AI systems and scalable software for ambitious teams in Finland and Europe. Helsinki strategy, Türkiye engineering delivery.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "Softbridge — Senior Product Engineering",
-    description: "Independent product engineering studio serving Finland and Europe.",
-    url: "https://softbridge.fi",
-    siteName: "Softbridge",
-    locale: "en_FI",
-    type: "website"
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Softbridge — Senior Product Engineering",
-    description: "Senior teams for software that has to work."
-  },
-  robots: { index: true, follow: true }
-};
-
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en-FI" className={`${geist.variable} ${manrope.variable}`}>
-      <body>{children}</body>
-    </html>
-  );
-}
+import type { Metadata } from "next"; import { Geist, Geist_Mono } from "next/font/google"; import "./globals.css"; import { siteConfig } from "@/lib/site"; import { SiteShell } from "@/components/layout/site-shell";
+const geist=Geist({subsets:["latin"],variable:"--font-geist-sans"}); const mono=Geist_Mono({subsets:["latin"],variable:"--font-geist-mono"});
+export const metadata: Metadata={metadataBase:new URL(siteConfig.url),title:{default:"Softbridge Solutions — Digital Agency Finland",template:"%s — Softbridge Solutions"},description:siteConfig.description,openGraph:{title:"Softbridge Solutions",description:siteConfig.description,type:"website",locale:"en_FI",images:["/og-softbridge.svg"]},icons:{icon:"/softbridge-mark.svg"},robots:{index:true,follow:true}};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en" className={`${geist.variable} ${mono.variable}`}><body className="antialiased"><SiteShell>{children}</SiteShell></body></html>}

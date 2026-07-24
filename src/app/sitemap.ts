@@ -1,4 +1,1 @@
-import type { MetadataRoute } from "next";
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: "https://softbridge.fi", lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
-}
+import type { MetadataRoute } from "next"; import { siteConfig } from "@/lib/site"; export default function sitemap():MetadataRoute.Sitemap{return [{url:siteConfig.url,lastModified:new Date(),changeFrequency:"weekly",priority:1}]}

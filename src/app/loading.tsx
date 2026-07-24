@@ -1,0 +1,1 @@
+export default function Loading(){return <div className="grid min-h-screen place-items-center bg-[#0c1412] text-[#f4f5ef]"><p className="eyebrow animate-pulse">Softbridge / Loading</p></div>}

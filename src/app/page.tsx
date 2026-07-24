@@ -1,2 +1,2 @@
-import Site from "@/components/Site";
-export default function HomePage() { return <Site />; }
+import { Hero } from "@/components/sections/hero"; import { Manifesto } from "@/components/sections/manifesto"; import { Services } from "@/components/sections/services"; import { WorkPreview } from "@/components/sections/work-preview"; import { Approach } from "@/components/sections/approach"; import { FinlandStatement } from "@/components/sections/finland-statement";
+export default function Home(){return <main><Hero/><Manifesto/><Services/><WorkPreview/><Approach/><FinlandStatement/></main>}
