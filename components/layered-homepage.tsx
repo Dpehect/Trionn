@@ -89,34 +89,55 @@ export function LayeredHomepage() {
         );
       });
 
-      gsap.fromTo(
-        ".brand-reveal__mark",
-        { scale: 0.42, opacity: 0, y: 70 },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".brand-reveal",
-            start: "top 75%",
-            end: "center center",
-            scrub: 0.8,
-          },
-        }
-      );
+      const revealTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".logo-reveal",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.65,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      revealTimeline
+        .fromTo(
+          ".logo-reveal__mask-group, .logo-reveal__visible-group",
+          { scale: 0.62, transformOrigin: "50% 50%" },
+          { scale: 1, duration: 0.22, ease: "power2.out" }
+        )
+        .to(
+          ".logo-reveal__visible",
+          { opacity: 0, duration: 0.08, ease: "none" },
+          0.2
+        )
+        .to(
+          ".logo-reveal__mask-group",
+          { scale: 15, duration: 0.68, ease: "power2.inOut" },
+          0.22
+        )
+        .to(
+          ".logo-reveal__cover",
+          { opacity: 0, duration: 0.12, ease: "none" },
+          0.86
+        )
+        .fromTo(
+          ".architecture-content",
+          { opacity: 0.28, y: 48 },
+          { opacity: 1, y: 0, duration: 0.34, ease: "power2.out" },
+          0.6
+        );
 
       gsap.fromTo(
         ".architecture-panel__surface",
-        { scale: 1.12, yPercent: 8 },
+        { scale: 1.1, yPercent: 5 },
         {
           scale: 1,
-          yPercent: -4,
+          yPercent: -3,
           ease: "none",
           scrollTrigger: {
-            trigger: ".architecture-panel",
-            start: "top bottom",
-            end: "bottom top",
+            trigger: ".logo-reveal",
+            start: "top top",
+            end: "bottom bottom",
             scrub: true,
           },
         }
@@ -124,17 +145,17 @@ export function LayeredHomepage() {
 
       gsap.fromTo(
         ".architecture-card",
-        { y: 55, opacity: 0 },
+        { y: 34, opacity: 0.25 },
         {
           y: 0,
           opacity: 1,
-          stagger: 0.12,
-          ease: "power3.out",
+          stagger: 0.08,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: ".architecture-grid",
-            start: "top 78%",
-            end: "top 42%",
-            scrub: 0.7,
+            trigger: ".logo-reveal",
+            start: "55% top",
+            end: "88% bottom",
+            scrub: 0.6,
           },
         }
       );
@@ -240,43 +261,67 @@ export function LayeredHomepage() {
         ))}
       </section>
 
-      <section className="brand-reveal" aria-label="Marka geçişi">
-        <div className="brand-reveal__cloud brand-reveal__cloud--left" />
-        <div className="brand-reveal__cloud brand-reveal__cloud--right" />
-        <div className="brand-reveal__mark" aria-hidden="true">
-          <div className="wolf-shield"><span /></div>
-          <strong>TERAWULF</strong>
-        </div>
-      </section>
-
-      <section className="architecture-panel" aria-label="Power infrastructure">
-        <div className="architecture-panel__surface" aria-hidden="true">
-          <div className="facility-lines" />
-          <div className="facility-block facility-block--one" />
-          <div className="facility-block facility-block--two" />
-          <div className="facility-block facility-block--three" />
-        </div>
-        <div className="architecture-panel__veil" />
-        <div className="architecture-content">
-          <span className="eyebrow eyebrow--light">ARCHITECTED FOR A</span>
-          <h2>Power-Constrained Future</h2>
-          <div className="architecture-grid">
-            <article className="architecture-card">
-              <h3>Built Beyond Limits</h3>
-              <p>Purpose-built systems engineered for demanding workloads, evolving infrastructure and long-term operational resilience.</p>
-              <a href="#proof">Our expertise <ArrowUpRight size={13} /></a>
-            </article>
-            <article className="architecture-card">
-              <h3>Power Behind Progress</h3>
-              <p>Reliable energy architecture connects every stage of delivery, from site planning through continuous operation.</p>
-              <a href="#proof">Our power platform <ArrowUpRight size={13} /></a>
-            </article>
-            <article className="architecture-card">
-              <h3>Asset-Backed Platform</h3>
-              <p>Physical infrastructure, strategic locations and disciplined execution create a scalable operating advantage.</p>
-              <a href="#proof">View our portfolio <ArrowUpRight size={13} /></a>
-            </article>
+      <section className="logo-reveal" aria-label="Logo üzerinden bölüm geçişi">
+        <div className="logo-reveal__sticky">
+          <div className="architecture-panel" aria-label="Power infrastructure">
+            <div className="architecture-panel__surface" aria-hidden="true">
+              <div className="facility-lines" />
+              <div className="facility-block facility-block--one" />
+              <div className="facility-block facility-block--two" />
+              <div className="facility-block facility-block--three" />
+            </div>
+            <div className="architecture-panel__veil" />
+            <div className="architecture-content">
+              <span className="eyebrow eyebrow--light">WHY TERAWULF</span>
+              <div className="architecture-heading-row">
+                <h2>Architected for a<br />Power-Constrained Future</h2>
+                <p>Built to secure, control and scale the energy infrastructure required for the next generation of digital growth.</p>
+              </div>
+              <div className="architecture-grid">
+                <article className="architecture-card">
+                  <h3>Built Beyond Limits</h3>
+                  <p>Purpose-built systems engineered for demanding workloads, evolving infrastructure and long-term operational resilience.</p>
+                  <a href="#proof">Our strategy <ArrowUpRight size={13} /></a>
+                </article>
+                <article className="architecture-card">
+                  <h3>Power Behind Progress</h3>
+                  <p>Reliable energy architecture connects every stage of delivery, from site planning through continuous operation.</p>
+                  <a href="#proof">Our power platform <ArrowUpRight size={13} /></a>
+                </article>
+                <article className="architecture-card">
+                  <h3>Asset-Backed Platform</h3>
+                  <p>Physical infrastructure, strategic locations and disciplined execution create a scalable operating advantage.</p>
+                  <a href="#proof">View our portfolio <ArrowUpRight size={13} /></a>
+                </article>
+              </div>
+            </div>
           </div>
+
+          <svg className="logo-reveal__cover" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <mask id="terawulf-reveal-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+                <rect width="1600" height="900" fill="white" />
+                <g className="logo-reveal__mask-group" transform="translate(800 450)">
+                  <g transform="translate(-260 -205)">
+                    <path d="M260 12 L390 77 L420 220 L375 340 L260 405 L145 340 L100 220 L130 77 Z" fill="black" />
+                    <path d="M158 172 L229 166 L279 126 L306 174 L370 144 L338 205 L363 240 L309 232 L278 307 L250 239 L181 224 Z" fill="white" />
+                  </g>
+                  <text x="0" y="292" textAnchor="middle" fill="black" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="112" letterSpacing="-4">TERAWULF</text>
+                </g>
+              </mask>
+            </defs>
+            <rect className="logo-reveal__cover-rect" width="1600" height="900" fill="#fbfcfc" mask="url(#terawulf-reveal-mask)" />
+          </svg>
+
+          <svg className="logo-reveal__visible" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g className="logo-reveal__visible-group" transform="translate(800 450)" fill="#3d566d">
+              <g transform="translate(-260 -205)">
+                <path d="M260 12 L390 77 L420 220 L375 340 L260 405 L145 340 L100 220 L130 77 Z" />
+                <path d="M158 172 L229 166 L279 126 L306 174 L370 144 L338 205 L363 240 L309 232 L278 307 L250 239 L181 224 Z" fill="#fbfcfc" />
+              </g>
+              <text x="0" y="292" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="700" fontSize="112" letterSpacing="-4">TERAWULF</text>
+            </g>
+          </svg>
         </div>
       </section>
 
