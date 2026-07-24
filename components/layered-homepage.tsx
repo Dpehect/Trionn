@@ -12,24 +12,14 @@ import { CapabilityMarqueeSection } from "./capability-marquee-section";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const layers = [
-  {
-    eyebrow: "01 / AI ENGINEERING",
-    title: "AI Software Development",
-    body: "Business-focused AI agents, intelligent automation and custom machine-learning systems for companies operating across Finland, the Nordics and Europe.",
-    visual: "ai",
-  },
-  {
-    eyebrow: "02 / ENTERPRISE PLATFORMS",
-    title: "Scalable Software Systems",
-    body: "Cloud-native SaaS products, internal business platforms and enterprise applications engineered for security, reliability and long-term growth.",
-    visual: "enterprise",
-  },
-  {
-    eyebrow: "03 / DIGITAL PRODUCTS",
-    title: "Web and Mobile Products",
-    body: "High-performance web applications, mobile products and design systems that combine clear user experience with production-grade engineering.",
-    visual: "products",
-  },
+  { eyebrow: "01 / AI ENGINEERING", title: "AI Software Development", body: "Business-focused AI agents, intelligent automation and custom machine-learning systems for companies across Finland, the Nordics and Europe.", visual: "ai" },
+  { eyebrow: "02 / ENTERPRISE SOFTWARE", title: "Scalable Software Systems", body: "Cloud-native SaaS products, internal business platforms and enterprise applications engineered for security, reliability and long-term growth.", visual: "enterprise" },
+  { eyebrow: "03 / CLOUD ENGINEERING", title: "Cloud Platforms at Scale", body: "Resilient cloud architecture, distributed services and production infrastructure designed for fast-growing digital businesses.", visual: "cloud" },
+  { eyebrow: "04 / WEB APPLICATIONS", title: "High-Performance Web Products", body: "Modern Next.js and React applications built for speed, accessibility, search visibility and exceptional user experience.", visual: "web" },
+  { eyebrow: "05 / MOBILE PRODUCTS", title: "Mobile Experiences That Perform", body: "Cross-platform and native mobile products engineered for reliability, clarity and seamless everyday use.", visual: "mobile" },
+  { eyebrow: "06 / DESIGN SYSTEMS", title: "Interfaces Built as Systems", body: "Scalable UI foundations, accessible components and motion systems that keep complex products consistent across every screen.", visual: "design" },
+  { eyebrow: "07 / DATA & ANALYTICS", title: "Data Products for Better Decisions", body: "Operational dashboards, business intelligence and predictive analytics that turn complex information into clear actions.", visual: "data" },
+  { eyebrow: "08 / DIGITAL TRANSFORMATION", title: "From Strategy to Scalable Delivery", body: "End-to-end product engineering for companies modernizing operations, launching platforms and expanding across European markets.", visual: "transform" },
 ] as const;
 
 const cases = [
@@ -103,6 +93,34 @@ export function LayeredHomepage() {
 
   useGSAP(
     () => {
+      const introTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+      introTimeline
+        .fromTo(".intro-office", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.8 }, 0.1)
+        .fromTo(".intro-title__line > span", { yPercent: 115, rotate: 1.5 }, { yPercent: 0, rotate: 0, duration: 1.1, stagger: 0.12 }, 0.18)
+        .fromTo(".intro-scroll", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7 }, 0.82);
+
+      gsap.to(".intro-title", {
+        yPercent: -7,
+        scale: 0.985,
+        ease: "none",
+        scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: 1.1 },
+      });
+      gsap.to(".intro-office", {
+        yPercent: -75,
+        opacity: 0.25,
+        ease: "none",
+        scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: 1 },
+      });
+      gsap.to(".intro-aurora--one", {
+        xPercent: 13, yPercent: -9, rotate: 10, ease: "none",
+        scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: 1.4 },
+      });
+      gsap.to(".intro-aurora--two", {
+        xPercent: -11, yPercent: 12, rotate: -9, ease: "none",
+        scrollTrigger: { trigger: ".intro", start: "top top", end: "bottom top", scrub: 1.6 },
+      });
+      gsap.to(".intro-scroll i", { scaleX: 1, repeat: -1, yoyo: true, duration: 1.15, ease: "sine.inOut" });
+
       gsap.utils.toArray<HTMLElement>(".layer-card").forEach((card, index) => {
         gsap.fromTo(
           card,
@@ -252,13 +270,15 @@ export function LayeredHomepage() {
   return (
     <main ref={root} className="site-shell">
       <section className="intro">
-        <p>SoftBridge Solutions · Finland Office</p>
-        <h1>
-          Software, AI
-          <br />
-          and digital products
+        <div className="intro-aurora intro-aurora--one" aria-hidden="true" />
+        <div className="intro-aurora intro-aurora--two" aria-hidden="true" />
+        <div className="intro-grid" aria-hidden="true" />
+        <p className="intro-office">SoftBridge Solutions · Finland Office</p>
+        <h1 className="intro-title" aria-label="Software, AI and digital products">
+          <span className="intro-title__line"><span>Software, AI</span></span>
+          <span className="intro-title__line"><span>and digital products</span></span>
         </h1>
-        <span>Scroll to explore</span>
+        <div className="intro-scroll"><span>Scroll to explore</span><i aria-hidden="true" /></div>
       </section>
 
       <section className="layer-stack" aria-label="Layered content">
@@ -277,86 +297,29 @@ export function LayeredHomepage() {
               </a>
             </div>
 
-            <div
-              className={`layer-visual visual-${layer.visual}`}
-              aria-hidden="true"
-            >
-              {layer.visual === "ai" && (
-                <div className="softbridge-visual softbridge-visual--ai">
-                  <div className="softbridge-ui">
-                    <header>
-                      <span>AI OPERATIONS</span>
-                      <strong>LIVE</strong>
-                    </header>
-                    <div className="softbridge-ui__metrics">
-                      <article><small>AI Agents</small><b>24</b></article>
-                      <article><small>Automations</small><b>86%</b></article>
-                      <article><small>Active Flows</small><b>48</b></article>
-                    </div>
-                    <div className="softbridge-ui__graph">
-                      <span>Automation performance</span>
-                      <svg viewBox="0 0 600 230">
-                        <path d="M12 198 C90 180 118 166 170 130 S265 145 330 94 S440 80 588 26" />
-                      </svg>
-                    </div>
-                    <div className="softbridge-ui__chips">
-                      <span>AI Agents</span><span>LLM Workflows</span><span>Automation</span>
-                    </div>
+            <div className={`layer-visual visual-${layer.visual}`} aria-hidden="true">
+              <div className={`service-scene service-scene--${layer.visual}`}>
+                <div className="service-scene__label">{layer.eyebrow}</div>
+                <div className="service-scene__canvas">
+                  <div className="service-scene__orb" />
+                  <div className="service-scene__panel service-scene__panel--main">
+                    <small>{layer.title}</small>
+                    <strong>{["24","99.9%","12","98","4.9","48","87%","EU"][index]}</strong>
+                    <span>{["AI agents","Platform uptime","Cloud regions","Performance score","App rating","Components","Forecast accuracy","European delivery"][index]}</span>
+                  </div>
+                  <div className="service-scene__panel service-scene__panel--side">
+                    <i /><i /><i /><i />
+                  </div>
+                  <div className="service-scene__line">
+                    {Array.from({ length: 8 }).map((_, item) => <i key={item} style={{ height: `${28 + ((item * 17 + index * 9) % 62)}%` }} />)}
+                  </div>
+                  <div className="service-scene__chips">
+                    <span>{["LLM","SaaS","AWS","Next.js","Flutter","UI Kit","BI","Strategy"][index]}</span>
+                    <span>{["Automation","Security","Edge","React","iOS","A11y","Data","Delivery"][index]}</span>
+                    <span>{["Agents","Scale","API","SEO","Android","Motion","AI","Growth"][index]}</span>
                   </div>
                 </div>
-              )}
-
-              {layer.visual === "enterprise" && (
-                <div className="softbridge-visual softbridge-visual--enterprise">
-                  <div className="enterprise-shell">
-                    <aside>
-                      <strong>SOFTBRIDGE</strong>
-                      <span>Overview</span>
-                      <span>Operations</span>
-                      <span>Analytics</span>
-                      <span>Infrastructure</span>
-                    </aside>
-                    <main>
-                      <header>
-                        <div><small>Enterprise platform</small><b>System overview</b></div>
-                        <em>99.99% uptime</em>
-                      </header>
-                      <div className="enterprise-shell__cards">
-                        <article><small>Cloud services</small><b>32</b></article>
-                        <article><small>EU regions</small><b>12</b></article>
-                      </div>
-                      <div className="enterprise-shell__network">
-                        {Array.from({ length: 7 }).map((_, item) => (
-                          <i key={item} style={{ left: `${10 + item * 13}%`, top: `${25 + (item % 3) * 23}%` }} />
-                        ))}
-                      </div>
-                    </main>
-                  </div>
-                </div>
-              )}
-
-              {layer.visual === "products" && (
-                <div className="softbridge-visual softbridge-visual--products">
-                  <div className="product-browser">
-                    <header><span /><span /><span /><b>Digital Product System</b></header>
-                    <div className="product-browser__body">
-                      <div className="product-browser__copy">
-                        <small>WEB · MOBILE · UX</small>
-                        <strong>One product.<br />Every screen.</strong>
-                        <p>Responsive interfaces built for clarity, speed and scale.</p>
-                      </div>
-                      <div className="product-browser__device">
-                        <div className="product-browser__screen">
-                          <span>Nordic Platform</span>
-                          <b>Ready</b>
-                          <small>Mobile experience</small>
-                        </div>
-                      </div>
-                    </div>
-                    <footer><span>Next.js</span><span>React</span><span>Mobile</span><span>Design Systems</span></footer>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
           </article>
         ))}

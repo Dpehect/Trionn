@@ -1,23 +1,11 @@
-# SoftBridge Solutions Finland — Layer Content Refresh
+# SoftBridge Solutions Finland — 8 Layer Animated Intro
 
-## Fixed
-- Removed the newly added dashboard hero completely.
-- Restored the original compact intro.
-- Kept the original layered scroll experience and every GSAP timing value.
-- Changed only the three layer texts and visual compositions.
+- First layered section expanded from 3 to 8 layers.
+- Existing layer ScrollTrigger timings remain unchanged.
+- Intro now has masked line reveal, parallax, moving auroras and an animated scroll indicator.
+- All later sections remain included.
 
-## New layer content
-1. AI Software Development
-2. Scalable Enterprise Software Systems
-3. Web and Mobile Digital Products
-
-## Animation safety
-The existing `.layer-card`, `.layer-copy` and `.layer-visual` hooks remain unchanged.
-No ScrollTrigger start/end, scrub, ease or reveal logic was modified.
-
-## Run
-```bash
+Run:
 npm install
 npm run build
 npm run dev
-```
