@@ -48,7 +48,7 @@ export function Hero() {
   return (
     <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-forest text-white noise">
       <div data-hero-art className="absolute inset-0 scale-[1.02]">
-        <Image src="/art/hero-office.svg" alt="Abstract product team working together" fill priority className="object-cover" />
+        <Image src="/art/hero-office.svg" alt="Softbridge product operating system interface" fill priority className="object-cover" />
       </div>
       <div className="hero-vignette absolute inset-0" />
       <div data-bridge-mark className="bridge-mark -left-[21vw] top-[18%] md:-left-[13vw] md:top-[8%]" aria-hidden="true" />

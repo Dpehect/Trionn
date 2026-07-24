@@ -71,7 +71,7 @@ export const cases = [
       "A role-aware platform replaced spreadsheet-led coordination across dispatch, field operations and finance.",
     result: "Pilot teams moved dispatch preparation from hours to minutes.",
     art: "/art/work-ops.svg",
-    color: "bg-mint",
+    color: "bg-[#c9ddd0]",
   },
   {
     slug: "knowledge-workflow",
@@ -82,7 +82,7 @@ export const cases = [
       "A reference architecture connected approved source material, citations, permissions and human review.",
     result: "Every generated answer remains traceable to an approved source.",
     art: "/art/work-ai.svg",
-    color: "bg-lavender",
+    color: "bg-[#e5e1ed]",
   },
   {
     slug: "commerce-foundation",
@@ -93,7 +93,7 @@ export const cases = [
       "A shared storefront system aligned content, components, releases and market variation.",
     result: "Repeated frontend implementation was replaced by reusable product patterns.",
     art: "/art/work-commerce.svg",
-    color: "bg-[#fff0ec]",
+    color: "bg-[#eadbd5]",
   },
 ];
 

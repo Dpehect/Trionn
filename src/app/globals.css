@@ -4,13 +4,13 @@
 
 :root {
   --forest: #062a1f;
-  --lime: #dfff3f;
-  --cream: #f4f0e6;
-  --lavender: #efe9ff;
-  --coral: #f0442e;
-  --ochre: #9d7a1e;
-  --mint: #c9f7d5;
-  --sky: #dbeeff;
+  --lime: #d8ff4f;
+  --cream: #f3f1eb;
+  --lavender: #e5e1ed;
+  --coral: #d85a43;
+  --ochre: #8b7442;
+  --mint: #c9ddd0;
+  --sky: #dbe4e8;
   --ink: #0a2018;
   --line: rgba(6, 42, 31, 0.18);
   --header-height: 70px;
@@ -321,3 +321,11 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Professional visual refinement */
+.hero-vignette {
+  background:
+    linear-gradient(180deg, rgba(3, 18, 14, 0.08) 0%, rgba(3, 18, 14, 0.32) 64%, rgba(3, 18, 14, 0.78) 100%),
+    linear-gradient(90deg, rgba(3, 18, 14, 0.42), transparent 48%, rgba(3, 18, 14, 0.2));
+}
+.stage-shadow { box-shadow: 0 28px 70px rgba(6, 30, 23, 0.18); }

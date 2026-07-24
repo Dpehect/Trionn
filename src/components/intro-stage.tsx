@@ -39,7 +39,7 @@ export function IntroStage() {
       <div data-intro-circle className="absolute -left-[14vw] top-[12%] size-[54vw] min-h-[480px] min-w-[480px] rounded-full border-[5.5rem] border-forest border-r-transparent md:border-[8rem]" aria-hidden="true" />
       <div className="container-site relative z-10 grid items-center gap-10 md:grid-cols-[1.08fr_.92fr]">
         <div data-intro-image className="relative min-h-[480px] overflow-hidden rounded-stage stage-shadow md:min-h-[650px]">
-          <Image src="/art/studio-scene.svg" alt="Abstract Softbridge studio collaboration" fill className="object-cover" />
+          <Image src="/art/studio-scene.svg" alt="Softbridge Helsinki and Türkiye integrated delivery model" fill className="object-cover" />
         </div>
         <div data-intro-copy className="md:pl-10">
           <p className="eyebrow text-forest/55">One operating model</p>

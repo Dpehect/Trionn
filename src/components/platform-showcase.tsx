@@ -44,7 +44,7 @@ export function PlatformShowcase() {
               <Link href="/services" className="magnetic-button button-lime mt-9">Explore platform delivery</Link>
             </div>
             <div className="relative min-h-[470px] overflow-hidden rounded-[2rem] md:min-h-[620px]">
-              <Image data-platform-image src="/art/platform-ui.svg" alt="Abstract software platform interface" fill className="object-cover will-change-transform" />
+              <Image data-platform-image src="/art/platform-ui.svg" alt="Production platform health and observability interface" fill className="object-cover will-change-transform" />
             </div>
           </div>
         </div>
