@@ -12,14 +12,30 @@ import { CapabilityMarqueeSection } from "./capability-marquee-section";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const layers = [
-  { eyebrow: "01 / AI ENGINEERING", title: "AI Software Development", body: "Business-focused AI agents, intelligent automation and custom machine-learning systems for companies across Finland, the Nordics and Europe.", visual: "ai" },
-  { eyebrow: "02 / ENTERPRISE SOFTWARE", title: "Scalable Software Systems", body: "Cloud-native SaaS products, internal business platforms and enterprise applications engineered for security, reliability and long-term growth.", visual: "enterprise" },
-  { eyebrow: "03 / CLOUD ENGINEERING", title: "Cloud Platforms at Scale", body: "Resilient cloud architecture, distributed services and production infrastructure designed for fast-growing digital businesses.", visual: "cloud" },
-  { eyebrow: "04 / WEB APPLICATIONS", title: "High-Performance Web Products", body: "Modern Next.js and React applications built for speed, accessibility, search visibility and exceptional user experience.", visual: "web" },
-  { eyebrow: "05 / MOBILE PRODUCTS", title: "Mobile Experiences That Perform", body: "Cross-platform and native mobile products engineered for reliability, clarity and seamless everyday use.", visual: "mobile" },
-  { eyebrow: "06 / DESIGN SYSTEMS", title: "Interfaces Built as Systems", body: "Scalable UI foundations, accessible components and motion systems that keep complex products consistent across every screen.", visual: "design" },
-  { eyebrow: "07 / DATA & ANALYTICS", title: "Data Products for Better Decisions", body: "Operational dashboards, business intelligence and predictive analytics that turn complex information into clear actions.", visual: "data" },
-  { eyebrow: "08 / DIGITAL TRANSFORMATION", title: "From Strategy to Scalable Delivery", body: "End-to-end product engineering for companies modernizing operations, launching platforms and expanding across European markets.", visual: "transform" },
+  {
+    eyebrow: "01 / AI & AUTOMATION",
+    title: "Intelligence Built Into the Product",
+    body: "AI agents, workflow automation and intelligent software designed around measurable business outcomes.",
+    accent: "AI",
+  },
+  {
+    eyebrow: "02 / SOFTWARE SYSTEMS",
+    title: "Software That Scales With the Business",
+    body: "Cloud-native platforms, internal systems and digital infrastructure engineered for reliability and long-term growth.",
+    accent: "SYSTEMS",
+  },
+  {
+    eyebrow: "03 / DIGITAL PRODUCTS",
+    title: "Clear Experiences Across Every Screen",
+    body: "High-performance web and mobile products shaped by strong UX, accessible interfaces and production-grade engineering.",
+    accent: "PRODUCTS",
+  },
+  {
+    eyebrow: "04 / EUROPEAN DELIVERY",
+    title: "Global Engineering, Closer Nordic Collaboration",
+    body: "SoftBridge Solutions combines global delivery capability with a Finland-focused presence for companies across the Nordics and Europe.",
+    accent: "EUROPE",
+  },
 ] as const;
 
 const cases = [
@@ -273,12 +289,18 @@ export function LayeredHomepage() {
         <div className="intro-aurora intro-aurora--one" aria-hidden="true" />
         <div className="intro-aurora intro-aurora--two" aria-hidden="true" />
         <div className="intro-grid" aria-hidden="true" />
+
         <p className="intro-office">SoftBridge Solutions · Finland Office</p>
+
         <h1 className="intro-title" aria-label="Software, AI and digital products">
           <span className="intro-title__line"><span>Software, AI</span></span>
           <span className="intro-title__line"><span>and digital products</span></span>
         </h1>
-        <div className="intro-scroll"><span>Scroll to explore</span><i aria-hidden="true" /></div>
+
+        <div className="intro-scroll">
+          <span>Scroll to explore</span>
+          <i aria-hidden="true" />
+        </div>
       </section>
 
       <section className="layer-stack" aria-label="Layered content">
@@ -297,27 +319,37 @@ export function LayeredHomepage() {
               </a>
             </div>
 
-            <div className={`layer-visual visual-${layer.visual}`} aria-hidden="true">
-              <div className={`service-scene service-scene--${layer.visual}`}>
-                <div className="service-scene__label">{layer.eyebrow}</div>
-                <div className="service-scene__canvas">
-                  <div className="service-scene__orb" />
-                  <div className="service-scene__panel service-scene__panel--main">
-                    <small>{layer.title}</small>
-                    <strong>{["24","99.9%","12","98","4.9","48","87%","EU"][index]}</strong>
-                    <span>{["AI agents","Platform uptime","Cloud regions","Performance score","App rating","Components","Forecast accuracy","European delivery"][index]}</span>
-                  </div>
-                  <div className="service-scene__panel service-scene__panel--side">
-                    <i /><i /><i /><i />
-                  </div>
-                  <div className="service-scene__line">
-                    {Array.from({ length: 8 }).map((_, item) => <i key={item} style={{ height: `${28 + ((item * 17 + index * 9) % 62)}%` }} />)}
-                  </div>
-                  <div className="service-scene__chips">
-                    <span>{["LLM","SaaS","AWS","Next.js","Flutter","UI Kit","BI","Strategy"][index]}</span>
-                    <span>{["Automation","Security","Edge","React","iOS","A11y","Data","Delivery"][index]}</span>
-                    <span>{["Agents","Scale","API","SEO","Android","Motion","AI","Growth"][index]}</span>
-                  </div>
+            <div className="layer-visual layer-visual--textual" aria-hidden="true">
+              <div className="kinetic-field">
+                <span className="kinetic-field__index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="kinetic-field__word">
+                  {layer.accent}
+                </div>
+
+                <div className="kinetic-field__rings">
+                  <i />
+                  <i />
+                  <i />
+                </div>
+
+                <div className="kinetic-field__lines">
+                  {Array.from({ length: 7 }).map((_, item) => (
+                    <span
+                      key={item}
+                      style={{
+                        width: `${32 + item * 9}%`,
+                        transform: `translateY(${item * 18}px)`,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="kinetic-field__meta">
+                  <span>SOFTBRIDGE SOLUTIONS</span>
+                  <span>FINLAND / EUROPE</span>
                 </div>
               </div>
             </div>
