@@ -50,3 +50,6 @@ Copy `.env.example` to `.env.local`. Add Resend credentials for production email
 ## Pre-launch requirements
 
 Replace conceptual case studies with approved client work, verify every company claim, review legal documents with qualified counsel, add final licensed imagery/video only where it improves the narrative, and run keyboard, screen-reader, responsive and reduced-motion tests.
+
+## Cinematic Motion Revision
+The current revision replaces the earlier mostly editorial scroll experience with a coordinated cinematic motion system. See `MOTION-AUDIT.md` for the audit and implementation map.

@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Manifesto } from "@/components/sections/manifesto";
+import { KineticMarquee } from "@/components/motion/kinetic-marquee";
 import { CinematicStory } from "@/components/sections/cinematic-story";
 import { ServiceShowcase } from "@/components/sections/service-showcase";
 import { CaseStudyShowcase } from "@/components/sections/case-study-showcase";
@@ -7,4 +8,4 @@ import { FinlandMarket } from "@/components/sections/finland-market";
 import { ProcessTimeline } from "@/components/sections/process-timeline";
 import { TrustGrid } from "@/components/sections/trust-grid";
 import { FinlandStatement } from "@/components/sections/finland-statement";
-export default function Home(){return <main><Hero/><Manifesto/><CinematicStory/><ServiceShowcase/><CaseStudyShowcase/><FinlandMarket/><ProcessTimeline compact/><TrustGrid/><FinlandStatement/></main>}
+export default function Home(){return <main><Hero/><Manifesto/><KineticMarquee/><CinematicStory/><ServiceShowcase/><CaseStudyShowcase/><FinlandMarket/><ProcessTimeline compact/><TrustGrid/><FinlandStatement/></main>}

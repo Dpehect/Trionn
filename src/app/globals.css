@@ -64,3 +64,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Cinematic motion system */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+[data-kinetic-title], [data-project-visual], [data-hero-stage] { will-change: transform; }
+@media (pointer: fine) { body { cursor: none; } a, button, input, textarea, select { cursor: none; } }
