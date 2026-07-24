@@ -1,16 +1,14 @@
-# SoftBridge Solutions Finland — Auto Marquee SEO/GEO Edition
+# SoftBridge Solutions Finland — SEO/GEO Selected Cases
 
-## Fourth section changes
-- Replaced the black background with a light Nordic gradient.
-- Increased pill size substantially.
-- Rows now move continuously on their own with CSS animation.
-- Alternating movement directions are preserved.
-- Hovering pauses a row.
-- Added SEO/GEO-focused phrases based on SoftBridge Solutions' actual services:
-  AI software development, custom software, enterprise AI, web applications,
-  cloud applications, SaaS, mobile apps, Next.js, React and industry solutions.
-- Added regional context for Finland, the Nordics and Europe.
-- Updated page title and description metadata.
+## Selected Cases updates
+- Replaced generic product imagery with nine service-specific concept visuals.
+- Added AI software, SaaS, healthcare, logistics, manufacturing, cloud,
+  mobile, retail automation and digital transformation themes.
+- Used descriptive regional alt text for Finland, Nordics and Europe.
+- Added semantic CreativeWork markup to each case.
+- Added visible contextual copy beneath the Selected Cases heading.
+- Images are clearly presented as concept cases, not fabricated client work.
+- Preserved all existing animations and the three-column layout.
 
 ## Run
 ```bash

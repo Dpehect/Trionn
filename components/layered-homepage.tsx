@@ -33,15 +33,69 @@ const layers = [
 ] as const;
 
 const cases = [
-  { name: "BRINC", category: "Product design, branding", image: "/cases/brinc.jpg" },
-  { name: "SPAN", category: "Product design, branding", image: "/cases/span.jpg" },
-  { name: "SONOS", category: "Product design", image: "/cases/sonos.jpg" },
-  { name: "FORMLABS", category: "Product design", image: "/cases/formlabs.jpg" },
-  { name: "AOI", category: "Product design, branding", image: "/cases/aoi.jpg" },
-  { name: "SUPER73", category: "Product design", image: "/cases/super73.jpg" },
-  { name: "SQUARE", category: "Hardware design, branding", image: "/cases/square.jpg" },
-  { name: "STRYKER", category: "Product design", image: "/cases/stryker.jpg" },
-  { name: "KOHLER", category: "Product design", image: "/cases/kohler.jpg" },
+  {
+    name: "AI Software Development",
+    category: "AI engineering · Finland & Europe",
+    image: "/cases-seo/ai-software-development-finland.webp",
+    alt: "AI software development dashboard concept for Finnish and European businesses by SoftBridge Solutions",
+    slug: "ai-software-development-finland",
+  },
+  {
+    name: "Enterprise SaaS Platform",
+    category: "SaaS product development · Nordics",
+    image: "/cases-seo/enterprise-saas-platform.webp",
+    alt: "Enterprise SaaS analytics platform concept for Nordic companies by SoftBridge Solutions",
+    slug: "enterprise-saas-platform",
+  },
+  {
+    name: "Healthcare Software",
+    category: "Digital health platform · Nordics",
+    image: "/cases-seo/healthcare-software-nordics.webp",
+    alt: "Healthcare software platform concept for Nordic clinics and health organizations",
+    slug: "healthcare-software-nordics",
+  },
+  {
+    name: "Logistics Platform",
+    category: "Fleet and logistics software · Europe",
+    image: "/cases-seo/logistics-software-europe.webp",
+    alt: "Logistics and fleet management software dashboard concept for European operations",
+    slug: "logistics-software-europe",
+  },
+  {
+    name: "Manufacturing AI",
+    category: "Predictive maintenance · Industry 4.0",
+    image: "/cases-seo/manufacturing-ai-solutions.webp",
+    alt: "Manufacturing AI and predictive maintenance dashboard concept for European factories",
+    slug: "manufacturing-ai-solutions",
+  },
+  {
+    name: "Cloud Applications",
+    category: "Cloud-native software · Europe",
+    image: "/cases-seo/cloud-application-development.webp",
+    alt: "Cloud application architecture and observability platform concept by SoftBridge Solutions",
+    slug: "cloud-application-development",
+  },
+  {
+    name: "Mobile Product",
+    category: "iOS and Android development · Finland",
+    image: "/cases-seo/mobile-app-development-finland.webp",
+    alt: "Mobile app development concept for Finnish businesses by SoftBridge Solutions",
+    slug: "mobile-app-development-finland",
+  },
+  {
+    name: "Retail AI Automation",
+    category: "Commerce intelligence · Europe",
+    image: "/cases-seo/retail-ai-automation.webp",
+    alt: "Retail AI automation and commerce analytics dashboard concept for European brands",
+    slug: "retail-ai-automation",
+  },
+  {
+    name: "Digital Transformation",
+    category: "Enterprise modernization · Nordics",
+    image: "/cases-seo/digital-transformation-platform.webp",
+    alt: "Digital transformation platform concept for Nordic enterprise organizations",
+    slug: "digital-transformation-platform",
+  },
 ] as const;
 
 export function LayeredHomepage() {
@@ -250,26 +304,35 @@ export function LayeredHomepage() {
 
       <section id="cases" className="selected-cases">
         <header className="selected-cases__header">
-          <h2 className="selected-cases__title">Selected Cases</h2>
+          <div>
+            <span className="selected-cases__eyebrow">Selected digital product capabilities</span>
+            <h2 className="selected-cases__title">Selected Cases</h2>
+            <p className="selected-cases__intro">
+              AI software, SaaS, healthcare, logistics, manufacturing, cloud and mobile product concepts for Finland, the Nordics and Europe.
+            </p>
+          </div>
         </header>
 
         <div className="selected-cases__gallery">
           {cases.map((item) => (
-            <article className="case-card" key={item.name}>
-              <a href="#industries" className="case-card__link">
+            <article className="case-card" key={item.name} itemScope itemType="https://schema.org/CreativeWork">
+              <a id={item.slug} href="#industries" className="case-card__link" itemProp="url">
                 <div className="case-card__media">
                   <Image
                     className="case-card__image"
                     src={item.image}
-                    alt={`${item.name} project`}
+                    alt={item.alt}
                     fill
                     sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                    itemProp="image"
                   />
                 </div>
                 <div className="case-card__meta">
                   <div>
                     <p>{item.category}</p>
-                    <h3>{item.name}</h3>
+                    <h3 itemProp="name">{item.name}</h3>
+                    <meta itemProp="description" content={item.category} />
+                    <meta itemProp="url" content={`#${item.slug}`} />
                   </div>
                   <ArrowUpRight size={20} strokeWidth={1.4} />
                 </div>
