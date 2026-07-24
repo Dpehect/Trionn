@@ -341,255 +341,265 @@ a { color: inherit; text-decoration: none; }
   transform: scale(1.035);
 }
 
-
-
-
-
-/* Third section — reference-matched layered vortex */
-.orbit-showcase {
+/* Section 03 — horizontal helix orbit */
+.spiral-orbit {
   position: relative;
-  height: 620vh;
-  background: #050505;
-  color: #f4f4f0;
+  height: 610vh;
+  color: #f4f4ef;
+  background: #030303;
 }
-.orbit-showcase__sticky {
+.spiral-orbit__sticky {
   position: sticky;
   top: 0;
   height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 46%, rgba(255,255,255,.045), transparent 25%),
-    radial-gradient(circle at 50% 50%, #101010 0%, #060606 50%, #020202 100%);
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.065), transparent 25%),
+    radial-gradient(circle at center, #101010 0%, #060606 48%, #020202 100%);
 }
-.orbit-showcase__sticky::after {
+.spiral-orbit__sticky::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 900;
+  z-index: 950;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 14%, transparent 82%, rgba(0,0,0,.48)),
-    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.62) 100%);
+    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 15%, transparent 83%, rgba(0,0,0,.54)),
+    radial-gradient(ellipse at center, transparent 44%, rgba(0,0,0,.62) 100%);
 }
-.vortex-grid {
+.spiral-grid {
   position: absolute;
-  inset: -140px;
+  inset: -150px;
   z-index: -5;
   opacity: .2;
   background-image:
-    linear-gradient(rgba(255,255,255,.038) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.038) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(ellipse at center, #000 18%, rgba(0,0,0,.66) 58%, transparent 94%);
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 15%, rgba(0,0,0,.68) 58%, transparent 94%);
 }
-.vortex-nav {
+.spiral-copy {
   position: absolute;
-  z-index: 960;
-  top: 14px;
-  left: 16px;
-  display: flex;
-  gap: 15px;
-  color: rgba(255,255,255,.65);
-  font-size: 8px;
-  letter-spacing: .04em;
+  z-index: 980;
+  left: 2.2vw;
+  bottom: 2.2vw;
+  width: min(390px, 31vw);
 }
-.vortex-copy {
-  position: absolute;
-  z-index: 960;
-  left: 2vw;
-  bottom: 2vw;
-  width: min(380px, 30vw);
-}
-.vortex-copy span {
+.spiral-copy span {
   display: block;
   margin-bottom: 12px;
-  color: rgba(255,255,255,.43);
+  color: rgba(255,255,255,.44);
   font-size: 8px;
-  letter-spacing: .17em;
+  letter-spacing: .18em;
 }
-.vortex-copy p {
+.spiral-copy p {
   margin: 0;
   color: rgba(255,255,255,.73);
-  font-size: clamp(11px, .78vw, 14px);
+  font-size: clamp(11px, .8vw, 14px);
   line-height: 1.48;
 }
-.vortex-stage {
+.spiral-stage {
   position: absolute;
   left: 50%;
   top: 49%;
-  width: min(88vw, 1380px);
-  height: min(88vh, 900px);
+  width: min(96vw, 1580px);
+  height: min(78vh, 820px);
   transform: translate(-50%, -50%);
   perspective: 1600px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
-.vortex-cards {
+.spiral-cards {
   position: absolute;
   inset: 0;
   z-index: 100;
   transform-style: preserve-3d;
 }
-.vortex-card {
+.spiral-card {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(195px, 18.5vw, 305px);
-  aspect-ratio: 1.32;
+  width: clamp(178px, 17vw, 286px);
+  aspect-ratio: 1.36;
   transform-style: preserve-3d;
   will-change: transform, opacity, filter;
 }
-.vortex-card__surface {
+.spiral-card__surface {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 4px;
   background: #111;
   box-shadow:
-    0 30px 78px rgba(0,0,0,.78),
+    0 32px 84px rgba(0,0,0,.8),
     inset 0 1px rgba(255,255,255,.08);
 }
-.vortex-card__image {
+.spiral-card__image {
   object-fit: cover;
-  filter: saturate(.6) contrast(1.08);
-  transform: scale(1.03);
+  filter: contrast(1.08);
+  transform: scale(1.035);
 }
-.vortex-card__overlay {
+.spiral-card__shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255,255,255,.025), transparent 22%),
-    linear-gradient(to top, rgba(0,0,0,.84), transparent 46%);
+    linear-gradient(to bottom, rgba(255,255,255,.025), transparent 24%),
+    linear-gradient(to top, rgba(0,0,0,.9), transparent 52%);
 }
-.vortex-card__ui {
+.spiral-card__meta {
   position: absolute;
   inset: auto 0 0;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
   padding: 10px 11px;
-  color: rgba(255,255,255,.84);
+  color: rgba(255,255,255,.88);
+}
+.spiral-card__meta > span {
+  color: rgba(255,255,255,.48);
   font-size: 7px;
-  letter-spacing: .105em;
-  text-transform: uppercase;
+  letter-spacing: .12em;
 }
-.vortex-card__ui span {
-  color: rgba(255,255,255,.46);
+.spiral-card__meta div {
+  display: grid;
+  gap: 3px;
+  text-align: right;
 }
-.vortex-card__ui strong {
+.spiral-card__meta small {
+  color: rgba(255,255,255,.48);
+  font-size: 6px;
+  letter-spacing: .12em;
+}
+.spiral-card__meta strong {
+  font-size: 8px;
+  letter-spacing: .08em;
   font-weight: 500;
 }
-.vortex-core {
+.spiral-core {
   position: absolute;
-  z-index: 300;
+  z-index: 360;
   left: 50%;
   top: 50%;
-  width: clamp(280px, 33vw, 515px);
-  aspect-ratio: .86;
+  width: clamp(260px, 30vw, 470px);
+  aspect-ratio: .92;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  filter: drop-shadow(0 60px 110px rgba(0,0,0,.82));
-  will-change: transform, opacity, filter;
+  filter: drop-shadow(0 62px 115px rgba(0,0,0,.84));
+  will-change: transform;
 }
-.vortex-core__shell {
+.spiral-core__body {
   position: absolute;
-  inset: 4% 7%;
-  border-radius: 34% 66% 57% 43% / 44% 35% 65% 56%;
+  inset: 3% 7%;
+  border-radius: 38% 62% 55% 45% / 43% 37% 63% 57%;
   background:
-    radial-gradient(circle at 64% 24%, rgba(255,255,255,.96), transparent 5%),
-    radial-gradient(circle at 30% 72%, rgba(255,255,255,.2), transparent 18%),
-    conic-gradient(from 210deg, #080808, #bcbcbc, #232323, #efefef, #151515, #808080, #070707);
+    radial-gradient(circle at 66% 24%, rgba(255,255,255,.98), transparent 5%),
+    radial-gradient(circle at 31% 72%, rgba(255,255,255,.2), transparent 20%),
+    conic-gradient(from 205deg, #070707, #c4c4c4, #252525, #f2f2f2, #111, #888, #080808);
   box-shadow:
-    inset 36px -44px 72px rgba(0,0,0,.78),
-    inset -24px 30px 48px rgba(255,255,255,.32);
-  transform: rotate(-8deg);
+    inset 38px -46px 76px rgba(0,0,0,.8),
+    inset -25px 31px 50px rgba(255,255,255,.32);
+  transform: rotate(-7deg);
 }
-.vortex-core__fold {
+.spiral-core__ring {
   position: absolute;
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.17);
   border-radius: 50%;
   mix-blend-mode: screen;
 }
-.vortex-core__fold--one {
-  inset: 20% 25% 31% 18%;
+.spiral-core__ring--one {
+  inset: 22% 25% 31% 19%;
   transform: rotate(28deg);
 }
-.vortex-core__fold--two {
-  inset: 32% 14% 15% 33%;
-  transform: rotate(-34deg);
+.spiral-core__ring--two {
+  inset: 32% 16% 18% 34%;
+  transform: rotate(-37deg);
 }
-.vortex-core__fold--three {
-  inset: 24% 39% 26% 29%;
-  transform: rotate(72deg);
-}
-.vortex-core__glow {
+.spiral-core__glow {
   position: absolute;
-  inset: 25%;
+  inset: 24%;
   border-radius: 50%;
-  background: rgba(255,255,255,.15);
-  filter: blur(44px);
+  background: rgba(255,255,255,.14);
+  filter: blur(45px);
 }
-.vortex-index {
+.spiral-axis {
   position: absolute;
-  z-index: 960;
-  right: 2vw;
-  bottom: 2vw;
+  z-index: 55;
+  left: 4%;
+  right: 4%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12) 22%, rgba(255,255,255,.12) 78%, transparent);
+}
+.spiral-guide {
+  position: absolute;
+  z-index: 54;
+  left: 7%;
+  right: 7%;
+  top: 50%;
+  height: 47%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.spiral-guide--one { transform: translateY(-50%) rotate(-4deg); }
+.spiral-guide--two {
+  height: 35%;
+  left: 14%;
+  right: 14%;
+  border-color: rgba(255,255,255,.055);
+  transform: translateY(-50%) rotate(5deg);
+}
+.spiral-core-label {
+  position: absolute;
+  z-index: 390;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 3px;
+  text-align: center;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+.spiral-core-label span {
+  color: rgba(255,255,255,.62);
+  font-size: 6px;
+  letter-spacing: .28em;
+}
+.spiral-core-label strong {
+  font-size: 9px;
+  letter-spacing: .17em;
+  font-weight: 500;
+}
+.spiral-index {
+  position: absolute;
+  z-index: 980;
+  right: 2.2vw;
+  bottom: 2.2vw;
   display: grid;
   gap: 5px;
   color: rgba(255,255,255,.42);
   font-size: 8px;
   text-align: right;
 }
-
 @media (max-width: 900px) {
-  .orbit-showcase {
-    height: 520vh;
-  }
-  .vortex-stage {
-    width: 118vw;
-    height: 76vh;
-  }
-  .vortex-core {
-    width: 46vw;
-  }
-  .vortex-card {
-    width: clamp(155px, 38vw, 235px);
-  }
-  .vortex-copy {
-    left: 18px;
-    bottom: 20px;
-    width: min(70vw, 320px);
-  }
-  .vortex-index {
-    right: 18px;
-    bottom: 20px;
-  }
+  .spiral-orbit { height: 500vh; }
+  .spiral-stage { width: 132vw; height: 70vh; }
+  .spiral-core { width: 47vw; }
+  .spiral-card { width: clamp(145px, 34vw, 225px); }
+  .spiral-copy { left: 18px; bottom: 20px; width: min(70vw, 320px); }
+  .spiral-index { right: 18px; bottom: 20px; }
 }
-
 @media (max-width: 600px) {
-  .vortex-stage {
-    width: 146vw;
-    height: 70vh;
-  }
-  .vortex-core {
-    width: 59vw;
-  }
-  .vortex-card {
-    width: 45vw;
-  }
-  .vortex-copy p {
-    display: none;
-  }
-  .vortex-nav {
-    gap: 10px;
-    font-size: 7px;
-  }
+  .spiral-stage { width: 165vw; height: 64vh; }
+  .spiral-core { width: 60vw; }
+  .spiral-card { width: 42vw; }
+  .spiral-copy p { display: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .orbit-showcase {
-    height: 100svh;
-  }
+  .spiral-orbit { height: 100svh; }
 }

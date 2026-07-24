@@ -1,16 +1,15 @@
-# Trionn — Reference Vortex Third Section
+# Trionn — Horizontal Spiral Orbit
 
-Üçüncü bölüm ikinci referans videoya göre baştan düzenlendi:
+Third section rebuilt from scratch:
 
-- Düzenli carousel kaldırıldı.
-- Kartlar merkez objenin çevresinde dikey 3D girdap/helis oluşturur.
-- Kartlar scroll boyunca yukarı akar ve önden/arkadan dolanır.
-- Merkezde organik metalik obje bulunur.
-- Ön kartlar büyür ve netleşir, arka kartlar küçülür ve kararır.
-- Referanstaki siyah grid, minimal nav ve alt bilgi düzeni eklendi.
-- İlk iki bölüm korunmuştur.
+- One continuous horizontal 3D helix wraps around the central metallic object.
+- Cards keep fixed positions along the helix axis.
+- Scrolling rotates the helix phase horizontally.
+- Front cards pass in front of the core; back cards pass behind it.
+- Depth controls scale, blur, brightness, opacity and z-index.
+- First and Selected Cases sections remain unchanged.
 
-## Çalıştırma
+## Run
 
 ```bash
 npm install

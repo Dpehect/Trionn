@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { SpiralOrbitSection } from "@/components/spiral-orbit-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -40,18 +41,6 @@ const cases = [
   { name: "SQUARE", category: "Hardware design, branding", image: "/cases/square.jpg" },
   { name: "STRYKER", category: "Product design", image: "/cases/stryker.jpg" },
   { name: "KOHLER", category: "Product design", image: "/cases/kohler.jpg" },
-] as const;
-
-const orbitPanels = [
-  { image: "/cases/brinc.jpg", className: "orbit-panel--1", depth: 1.15 },
-  { image: "/cases/span.jpg", className: "orbit-panel--2", depth: 0.82 },
-  { image: "/cases/sonos.jpg", className: "orbit-panel--3", depth: 1.28 },
-  { image: "/cases/formlabs.jpg", className: "orbit-panel--4", depth: 0.92 },
-  { image: "/cases/aoi.jpg", className: "orbit-panel--5", depth: 1.38 },
-  { image: "/cases/super73.jpg", className: "orbit-panel--6", depth: 0.76 },
-  { image: "/cases/square.jpg", className: "orbit-panel--7", depth: 1.22 },
-  { image: "/cases/stryker.jpg", className: "orbit-panel--8", depth: 0.88 },
-  { image: "/cases/kohler.jpg", className: "orbit-panel--9", depth: 1.34 },
 ] as const;
 
 export function LayeredHomepage() {
@@ -350,186 +339,6 @@ export function LayeredHomepage() {
           }
         );
       });
-
-      const orbitSection = document.querySelector<HTMLElement>(".orbit-showcase");
-      const vortexStage = document.querySelector<HTMLElement>(".vortex-stage");
-      const vortexCore = document.querySelector<HTMLElement>(".vortex-core");
-      const vortexCards = gsap.utils.toArray<HTMLElement>(".vortex-card");
-
-      if (orbitSection && vortexStage && vortexCore && vortexCards.length) {
-        const cardCount = vortexCards.length;
-        let targetProgress = 0;
-        let renderedProgress = 0;
-        let raf = 0;
-        let active = false;
-
-        const cardSetters = vortexCards.map((card) => ({
-          x: gsap.quickSetter(card, "x", "px"),
-          y: gsap.quickSetter(card, "y", "px"),
-          scale: gsap.quickSetter(card, "scale"),
-          rotate: gsap.quickSetter(card, "rotation", "deg"),
-          rotateY: gsap.quickSetter(card, "rotationY", "deg"),
-          opacity: gsap.quickSetter(card, "opacity"),
-          filter: gsap.quickSetter(card, "filter"),
-        }));
-
-        const renderVortex = () => {
-          renderedProgress += (targetProgress - renderedProgress) * 0.095;
-
-          const width = vortexStage.clientWidth;
-          const height = vortexStage.clientHeight;
-          const radiusX = Math.min(width * 0.255, 395);
-          const verticalSpan = Math.min(height * 0.86, 720);
-          const turns = Math.PI * 2.6;
-          const scrollAngle = renderedProgress * Math.PI * 2.1;
-
-          vortexCards.forEach((card, index) => {
-            const normalized = index / Math.max(cardCount - 1, 1);
-            const angle = normalized * turns + scrollAngle;
-            const depth = Math.sin(angle);
-            const side = Math.cos(angle);
-            const frontness = (depth + 1) / 2;
-
-            const localShift = ((renderedProgress * 1.28 + normalized) % 1.38) - 0.18;
-            const y = (0.5 - localShift) * verticalSpan;
-            const x = side * radiusX * (0.72 + frontness * 0.3);
-            const scale = 0.58 + frontness * 0.56;
-            const opacity = 0.16 + frontness * 0.84;
-            const blur = (1 - frontness) * 3.1;
-            const brightness = 0.3 + frontness * 0.86;
-            const yaw = side * -10;
-            const roll = side * 3.4;
-
-            cardSetters[index].x(x);
-            cardSetters[index].y(y);
-            cardSetters[index].scale(scale);
-            cardSetters[index].rotate(roll);
-            cardSetters[index].rotateY(yaw);
-            cardSetters[index].opacity(opacity);
-            cardSetters[index].filter(`brightness(${brightness}) blur(${blur}px)`);
-
-            card.style.zIndex = depth > 0
-              ? String(420 + Math.round(frontness * 120))
-              : String(80 + Math.round(frontness * 50));
-            card.style.pointerEvents = frontness > 0.72 ? "auto" : "none";
-          });
-
-          gsap.set(vortexCore, {
-            rotate: -11 + renderedProgress * 24,
-            scale: 1 + Math.sin(renderedProgress * Math.PI * 3) * 0.018,
-          });
-
-          if (active || Math.abs(targetProgress - renderedProgress) > 0.0006) {
-            raf = requestAnimationFrame(renderVortex);
-          } else {
-            raf = 0;
-          }
-        };
-
-        const ensureRender = () => {
-          active = true;
-          if (!raf) raf = requestAnimationFrame(renderVortex);
-        };
-
-        gsap.set(vortexCards, {
-          xPercent: -50,
-          yPercent: -50,
-          transformOrigin: "50% 50%",
-          transformPerspective: 1500,
-        });
-
-        const vortexTrigger = ScrollTrigger.create({
-          trigger: orbitSection,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.15,
-          invalidateOnRefresh: true,
-          onEnter: ensureRender,
-          onEnterBack: ensureRender,
-          onLeave: () => { active = false; },
-          onLeaveBack: () => { active = false; },
-          onUpdate: (self) => {
-            targetProgress = self.progress;
-            ensureRender();
-          },
-          onRefresh: (self) => {
-            targetProgress = self.progress;
-            renderedProgress = self.progress;
-            ensureRender();
-          },
-        });
-
-        gsap.fromTo(
-          vortexStage,
-          { scale: 0.78, opacity: 0, yPercent: 8 },
-          {
-            scale: 1,
-            opacity: 1,
-            yPercent: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top 84%",
-              end: "top 18%",
-              scrub: 1.05,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          vortexCore,
-          { opacity: 0, scale: 0.72, filter: "blur(14px)" },
-          {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)",
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top 80%",
-              end: "top 24%",
-              scrub: 1.1,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          ".vortex-copy",
-          { y: 42, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top 74%",
-              end: "top 30%",
-              scrub: 1,
-            },
-          }
-        );
-
-        gsap.to(".vortex-grid", {
-          backgroundPosition: "0px 150px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: orbitSection,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.5,
-          },
-        });
-
-        renderedProgress = 0;
-        targetProgress = 0;
-        ensureRender();
-
-        return () => {
-          active = false;
-          cancelAnimationFrame(raf);
-          vortexTrigger.kill();
-        };
-      }
     },
     { scope: root }
   );
@@ -618,70 +427,7 @@ export function LayeredHomepage() {
         </div>
       </section>
 
-      <section className="orbit-showcase" aria-label="Layered product vortex">
-        <div className="orbit-showcase__sticky">
-          <div className="vortex-grid" aria-hidden="true" />
-
-          <nav className="vortex-nav" aria-hidden="true">
-            <span>Approach</span>
-            <span>Work</span>
-            <span>About</span>
-            <span>Pricing</span>
-            <span>Contact</span>
-          </nav>
-
-          <div className="vortex-copy">
-            <span>03 / PRODUCT ECOSYSTEM</span>
-            <p>
-              Product partners for AI-first platforms. From concept systems to
-              launch-ready experiences, every interface layer moves as one
-              connected whole.
-            </p>
-          </div>
-
-          <div className="vortex-stage">
-            <div className="vortex-core" aria-hidden="true">
-              <div className="vortex-core__shell" />
-              <div className="vortex-core__fold vortex-core__fold--one" />
-              <div className="vortex-core__fold vortex-core__fold--two" />
-              <div className="vortex-core__fold vortex-core__fold--three" />
-              <div className="vortex-core__glow" />
-            </div>
-
-            <div className="vortex-cards">
-              {orbitPanels.map((panel, index) => (
-                <article className="vortex-card" key={panel.image}>
-                  <div className="vortex-card__surface">
-                    <Image
-                      className="vortex-card__image"
-                      src={panel.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 700px) 48vw, 22vw"
-                    />
-                    <div className="vortex-card__overlay" aria-hidden="true" />
-                    <div className="vortex-card__ui">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <strong>
-                        {index % 3 === 0
-                          ? "Product System"
-                          : index % 3 === 1
-                            ? "Interface Layer"
-                            : "AI Platform"}
-                      </strong>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="vortex-index" aria-hidden="true">
-            <span>03 / 09</span>
-            <span>Scroll to orbit</span>
-          </div>
-        </div>
-      </section>
+      <SpiralOrbitSection />
 
       <section id="contact" className="closing">
         <p>Have a project?</p>
