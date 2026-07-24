@@ -1,15 +1,18 @@
-# Softbridge Studio
+# Layered Homepage
 
-A complete Next.js 15 product engineering studio site adapted from the uploaded video structure.
+Videodaki sticky + üst üste binen katmanlı ana sayfa davranışının ilk uygulaması.
 
-## Run
+## Çalıştırma
 
 ```bash
 npm install
-npm run build
 npm run dev
 ```
 
-## Important
+Tarayıcı: http://localhost:3000
 
-Replace the complete repository contents with this project. Do not place the project inside another folder.
+## Ana dosyalar
+
+- `components/layered-homepage.tsx`: Katmanlar ve GSAP ScrollTrigger hareketleri
+- `app/globals.css`: Sticky kart yapısı, responsive tasarım ve geometrik görseller
+- `app/page.tsx`: Ana sayfa
