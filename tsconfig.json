@@ -35,8 +35,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "softbridge-reference-rebuild",
-    "**/softbridge-reference-rebuild/**"
+    "node_modules"
   ]
 }

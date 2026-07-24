@@ -1,26 +1,10 @@
 import type { Config } from "tailwindcss";
-
-const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  theme: {
-    extend: {
-      colors: {
-        forest: "#062a1f",
-        lime: "#d8ff4f",
-        cream: "#f3f1eb",
-        lavender: "#e5e1ed",
-        coral: "#d85a43",
-        ochre: "#8b7442",
-        mint: "#c9ddd0",
-        sky: "#dbe4e8",
-        ink: "#0a2018",
-      },
-      borderRadius: {
-        mega: "2.25rem",
-      },
-    },
-  },
-  plugins: [],
-};
-
-export default config;
+export default {
+  content:["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  theme:{extend:{
+    colors:{ink:"#133634",rose:"#dc0d49",paper:"#f8f6fb",lav:"#f0efff",blue:"#dfeefe",mint:"#e9f5ef"},
+    fontFamily:{sans:["Arial","Helvetica","sans-serif"]},
+    boxShadow:{soft:"0 24px 70px rgba(19,54,52,.12)"}
+  }},
+  plugins:[]
+} satisfies Config;
