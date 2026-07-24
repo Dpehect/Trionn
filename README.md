@@ -1,15 +1,15 @@
-# Trionn Selected Cases — 3 Column Edition
+# Trionn — Grounded Motion Edition
 
-## Run
+Bu sürümde:
+- Layer geçişleri daha uzun scroll aralığına yayıldı.
+- Metin reveal hareketleri ağırlaştırıldı.
+- Selected Cases başlığı daha yavaş açılıyor.
+- Her case bağımsız timeline ile 2.8–3.55 scrub aralığında ilerliyor.
+- Görsel parallax daha sakin ve oturaklı.
+- Hover geçişleri sert değil, daha yumuşak.
+
+## Çalıştırma
 ```bash
 npm install
 npm run dev
 ```
-
-Selected Cases changes:
-- 3 cards per row on desktop
-- 2 cards per row on tablet
-- 1 card per row on mobile
-- Smaller portfolio cards
-- GSAP scrub reveal, depth, image parallax
-- Lightweight hover interactions

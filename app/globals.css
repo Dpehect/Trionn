@@ -176,7 +176,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 11px;
   overflow: hidden;
   background: #fff;
-  transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+  transition: transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s ease;
 }
 .case-card__link:hover {
   transform: translateY(-7px);
@@ -218,7 +218,7 @@ a { color: inherit; text-decoration: none; }
 .case-card__meta svg {
   flex: 0 0 auto;
   margin-bottom: 1px;
-  transition: transform .35s ease;
+  transition: transform .6s cubic-bezier(.16,1,.3,1);
 }
 .case-card__link:hover .case-card__meta svg {
   transform: translate(3px, -3px);
@@ -298,6 +298,20 @@ a { color: inherit; text-decoration: none; }
 .case-card__meta {
   backface-visibility: hidden;
   transform: translateZ(0);
+}
+.case-card {
+  contain: layout paint style;
+}
+
+/* Grounded motion tuning */
+.layer-card,
+.layer-copy,
+.selected-cases__title,
+.case-card,
+.case-card__image,
+.case-card__meta {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 .case-card {
   contain: layout paint style;

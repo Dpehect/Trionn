@@ -61,9 +61,9 @@ export function LayeredHomepage() {
             ease: "none",
             scrollTrigger: {
               trigger: card,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
+              start: "top 108%",
+              end: "top 12%",
+              scrub: 1.8,
             },
           }
         );
@@ -77,9 +77,9 @@ export function LayeredHomepage() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 76%",
-              end: "top 30%",
-              scrub: 0.9,
+              start: "top 88%",
+              end: "top 24%",
+              scrub: 1.65,
             },
           }
         );
@@ -95,23 +95,23 @@ export function LayeredHomepage() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".selected-cases",
-            start: "top 82%",
-            end: "top 32%",
-            scrub: 1.35,
+            start: "top 94%",
+            end: "top 24%",
+            scrub: 2.25,
           },
         }
       );
 
       const caseMotion = [
-        { x: -150, y: 120, rotate: -2.5, scale: 0.92, start: "top 98%", end: "top 58%", scrub: 1.8 },
-        { x: 0, y: 180, rotate: 1.2, scale: 0.9, start: "top 102%", end: "top 60%", scrub: 2.0 },
-        { x: 165, y: 105, rotate: 2.8, scale: 0.93, start: "top 97%", end: "top 56%", scrub: 1.9 },
-        { x: -110, y: 165, rotate: 1.8, scale: 0.91, start: "top 99%", end: "top 57%", scrub: 2.1 },
-        { x: 30, y: 220, rotate: -1.6, scale: 0.89, start: "top 103%", end: "top 61%", scrub: 2.2 },
-        { x: 130, y: 150, rotate: -2.2, scale: 0.92, start: "top 100%", end: "top 58%", scrub: 2.0 },
-        { x: -170, y: 145, rotate: -2.8, scale: 0.9, start: "top 102%", end: "top 60%", scrub: 2.3 },
-        { x: 0, y: 235, rotate: 1.5, scale: 0.88, start: "top 105%", end: "top 62%", scrub: 2.4 },
-        { x: 175, y: 130, rotate: 2.6, scale: 0.91, start: "top 101%", end: "top 59%", scrub: 2.2 },
+        { x: -115, y: 145, rotate: -1.6, scale: 0.945, start: "top 112%", end: "top 46%", scrub: 2.8 },
+        { x: 0, y: 195, rotate: 0.8, scale: 0.935, start: "top 116%", end: "top 48%", scrub: 3.0 },
+        { x: 120, y: 135, rotate: 1.7, scale: 0.95, start: "top 111%", end: "top 45%", scrub: 2.9 },
+        { x: -95, y: 180, rotate: 1.0, scale: 0.94, start: "top 114%", end: "top 47%", scrub: 3.15 },
+        { x: 18, y: 220, rotate: -0.9, scale: 0.93, start: "top 118%", end: "top 49%", scrub: 3.35 },
+        { x: 105, y: 170, rotate: -1.2, scale: 0.945, start: "top 115%", end: "top 47%", scrub: 3.1 },
+        { x: -125, y: 175, rotate: -1.7, scale: 0.935, start: "top 116%", end: "top 48%", scrub: 3.4 },
+        { x: 0, y: 235, rotate: 0.9, scale: 0.925, start: "top 120%", end: "top 50%", scrub: 3.55 },
+        { x: 130, y: 160, rotate: 1.5, scale: 0.94, start: "top 117%", end: "top 48%", scrub: 3.3 },
       ] as const;
 
       gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
@@ -149,8 +149,8 @@ export function LayeredHomepage() {
               scale: 1,
               rotate: 0,
               filter: "blur(0px)",
-              duration: 0.72,
-              ease: "power3.out",
+              duration: 0.9,
+              ease: "power2.out",
             },
             0
           )
@@ -173,8 +173,8 @@ export function LayeredHomepage() {
           .fromTo(
             meta,
             { y: 28, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.42, ease: "power2.out" },
-            0.34
+            { y: 0, opacity: 1, duration: 0.48, ease: "power2.out" },
+            0.42
           );
 
         gsap.to(image, {
@@ -183,9 +183,9 @@ export function LayeredHomepage() {
           ease: "none",
           scrollTrigger: {
             trigger: card,
-            start: "top 72%",
-            end: "bottom 12%",
-            scrub: 1.6 + index * 0.06,
+            start: "top 88%",
+            end: "bottom 4%",
+            scrub: 2.45 + index * 0.08,
           },
         });
       });
