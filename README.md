@@ -1,13 +1,18 @@
-# SoftBridge Solutions Finland — Spacious Layer Composition
+# SoftBridge Solutions Finland — Final First Section
 
-## Updated
-- Increased the distance between layer copy and image cards.
-- Added more internal padding around text and visuals.
-- Reduced image dominance slightly for a calmer composition.
-- Improved heading, paragraph and eyebrow spacing.
-- Softened image crop and hover zoom.
-- Preserved the original layer animation logic.
-- Slightly increased scrub values for a calmer scroll feel.
+## Finalized
+- Four layered service panels
+- Uploaded visuals used as transparent full-panel backgrounds
+- Matte grayscale treatment
+- Strong readability gradient
+- Very subtle independent image parallax
+- Responsive mobile overlay
+- Original layer reveal animation preserved
+- Final-layer hold spacer preserved
+
+## Parallax
+Each background moves approximately 7–9% vertically across its scroll range.
+The motion uses a separate ScrollTrigger and does not alter the card reveal timing.
 
 ## Run
 ```bash

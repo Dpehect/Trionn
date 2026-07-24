@@ -183,6 +183,31 @@ export function LayeredHomepage() {
         );
       });
 
+      gsap.utils.toArray<HTMLElement>(".layer-card").forEach((card, index) => {
+        const background = card.querySelector<HTMLElement>(".layer-background");
+        if (!background) return;
+
+        gsap.fromTo(
+          background,
+          {
+            yPercent: index % 2 === 0 ? -4 : -2,
+            scale: 1.08,
+          },
+          {
+            yPercent: index % 2 === 0 ? 5 : 4,
+            scale: 1.12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.6,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      });
+
       gsap.fromTo(
         ".selected-cases__title",
         { yPercent: 38, opacity: 0, filter: "blur(10px)" },
@@ -318,6 +343,11 @@ export function LayeredHomepage() {
             key={layer.title}
             style={{ zIndex: index + 1 }}
           >
+            <div
+              className="layer-background"
+              style={{ backgroundImage: `url(${layer.image})` }}
+              aria-hidden="true"
+            />
             <div className="layer-copy">
               <span className="eyebrow">{layer.eyebrow}</span>
               <h2>{layer.title}</h2>

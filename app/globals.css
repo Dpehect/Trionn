@@ -1039,3 +1039,141 @@
     bottom: 18px;
   }
 }
+
+/* Background image treatment for first section */
+.layer-card{position:relative;overflow:hidden}
+.layer-card::before{
+ content:"";
+ position:absolute;inset:0;
+ background-size:cover;
+ background-position:center;
+ transform:scale(1.08);
+ opacity:.18;
+ filter:grayscale(.35) saturate(.45) blur(2px);
+ z-index:0;
+}
+.layer-card--1::before{background-image:url('/layer-images/ai-automation.jpg')}
+.layer-card--2::before{background-image:url('/layer-images/software-systems.jpg')}
+.layer-card--3::before{background-image:url('/layer-images/digital-products.jpg')}
+.layer-card--4::before{background-image:url('/layer-images/european-delivery.jpg')}
+
+.layer-card::after{
+ content:"";
+ position:absolute;inset:0;
+ background:
+ linear-gradient(90deg,
+ rgba(242,243,241,.94) 0%,
+ rgba(242,243,241,.82) 42%,
+ rgba(242,243,241,.58) 70%,
+ rgba(242,243,241,.35) 100%);
+ z-index:1;
+ pointer-events:none;
+}
+.layer-copy,.layer-visual{position:relative;z-index:2}
+.layer-visual--image{display:none;}
+
+
+/* Final first-section background image system */
+.layer-card::before {
+  display: none !important;
+}
+
+.layer-background {
+  position: absolute;
+  inset: -6%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: .2;
+  filter: grayscale(.38) saturate(.42) contrast(1.02) blur(1.5px);
+  transform: scale(1.08);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.layer-card--1 .layer-background {
+  background-position: 50% 52%;
+  opacity: .21;
+}
+
+.layer-card--2 .layer-background {
+  background-position: 46% 50%;
+  opacity: .18;
+}
+
+.layer-card--3 .layer-background {
+  background-position: 50% 54%;
+  opacity: .2;
+}
+
+.layer-card--4 .layer-background {
+  background-position: 50% 48%;
+  opacity: .17;
+}
+
+.layer-card::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(240, 242, 239, .96) 0%,
+      rgba(240, 242, 239, .9) 32%,
+      rgba(240, 242, 239, .7) 58%,
+      rgba(240, 242, 239, .44) 78%,
+      rgba(240, 242, 239, .28) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,.08),
+      transparent 30%,
+      rgba(26,32,36,.04)
+    );
+  z-index: 1;
+}
+
+.layer-copy {
+  max-width: 650px;
+  padding: clamp(28px, 3vw, 54px);
+  border-radius: 24px;
+  background: rgba(238, 240, 237, .22);
+  backdrop-filter: blur(2px);
+}
+
+.layer-copy h2 {
+  text-wrap: balance;
+}
+
+.layer-copy p {
+  color: #4e585f;
+}
+
+.layer-visual--image {
+  display: none !important;
+}
+
+@media (max-width: 800px) {
+  .layer-background {
+    inset: -8%;
+    opacity: .16;
+  }
+
+  .layer-card::after {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(240,242,239,.94) 0%,
+        rgba(240,242,239,.82) 48%,
+        rgba(240,242,239,.58) 100%
+      );
+  }
+
+  .layer-copy {
+    padding: 24px 20px;
+    background: rgba(238,240,237,.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer-background {
+    transform: scale(1.08) !important;
+  }
+}
