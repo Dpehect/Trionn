@@ -1,13 +1,14 @@
-# Trionn — Professional Orbit Runtime Fix
+# Trionn — Reference Vortex Third Section
 
-Düzeltilen kritik hata:
+Üçüncü bölüm ikinci referans videoya göre baştan düzenlendi:
 
-- `ScrollTrigger.create()` kurulurken `onRefresh` callback'i henüz initialize edilmemiş
-  `orbitTrigger` değişkenine erişiyordu.
-- Bu durum tarayıcıda `ReferenceError` oluşturarak Vercel üzerinde
-  “Application error: a client-side exception has occurred” ekranına neden oluyordu.
-- `onRefresh` artık callback'in kendi `self.progress` değerini kullanıyor.
-- Tasarım ve animasyon ayarları değiştirilmedi.
+- Düzenli carousel kaldırıldı.
+- Kartlar merkez objenin çevresinde dikey 3D girdap/helis oluşturur.
+- Kartlar scroll boyunca yukarı akar ve önden/arkadan dolanır.
+- Merkezde organik metalik obje bulunur.
+- Ön kartlar büyür ve netleşir, arka kartlar küçülür ve kararır.
+- Referanstaki siyah grid, minimal nav ve alt bilgi düzeni eklendi.
+- İlk iki bölüm korunmuştur.
 
 ## Çalıştırma
 
@@ -15,7 +16,3 @@ Düzeltilen kritik hata:
 npm install
 npm run dev
 ```
-
-## Vercel
-
-Bu ZIP içindeki proje dosyalarını mevcut repoya ekleyip yeniden deploy et.

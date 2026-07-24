@@ -352,120 +352,116 @@ export function LayeredHomepage() {
       });
 
       const orbitSection = document.querySelector<HTMLElement>(".orbit-showcase");
-      const orbitStage = document.querySelector<HTMLElement>(".orbit-stage");
-      const orbitCore = document.querySelector<HTMLElement>(".orbit-core");
-      const orbitCards = gsap.utils.toArray<HTMLElement>(".orbit-card");
+      const vortexStage = document.querySelector<HTMLElement>(".vortex-stage");
+      const vortexCore = document.querySelector<HTMLElement>(".vortex-core");
+      const vortexCards = gsap.utils.toArray<HTMLElement>(".vortex-card");
 
-      if (orbitSection && orbitStage && orbitCore && orbitCards.length) {
-        const cardCount = orbitCards.length;
-        const setters = orbitCards.map((card) => ({
+      if (orbitSection && vortexStage && vortexCore && vortexCards.length) {
+        const cardCount = vortexCards.length;
+        let targetProgress = 0;
+        let renderedProgress = 0;
+        let raf = 0;
+        let active = false;
+
+        const cardSetters = vortexCards.map((card) => ({
           x: gsap.quickSetter(card, "x", "px"),
           y: gsap.quickSetter(card, "y", "px"),
           scale: gsap.quickSetter(card, "scale"),
-          rotationY: gsap.quickSetter(card, "rotationY", "deg"),
-          rotationZ: gsap.quickSetter(card, "rotationZ", "deg"),
+          rotate: gsap.quickSetter(card, "rotation", "deg"),
+          rotateY: gsap.quickSetter(card, "rotationY", "deg"),
           opacity: gsap.quickSetter(card, "opacity"),
           filter: gsap.quickSetter(card, "filter"),
         }));
 
-        let targetProgress = 0;
-        let renderedProgress = 0;
-        let animationFrame = 0;
-        let active = false;
+        const renderVortex = () => {
+          renderedProgress += (targetProgress - renderedProgress) * 0.095;
 
-        const renderOrbit = () => {
-          renderedProgress += (targetProgress - renderedProgress) * 0.105;
+          const width = vortexStage.clientWidth;
+          const height = vortexStage.clientHeight;
+          const radiusX = Math.min(width * 0.255, 395);
+          const verticalSpan = Math.min(height * 0.86, 720);
+          const turns = Math.PI * 2.6;
+          const scrollAngle = renderedProgress * Math.PI * 2.1;
 
-          const width = orbitStage.clientWidth;
-          const height = orbitStage.clientHeight;
-          const radiusX = Math.min(width * 0.405, 620);
-          const radiusY = Math.min(height * 0.245, 190);
-          const travel = renderedProgress * Math.PI * 3.15;
-          const stageBreath = Math.sin(renderedProgress * Math.PI) * 0.035;
-
-          orbitCards.forEach((card, index) => {
-            const baseAngle = (index / cardCount) * Math.PI * 2 - Math.PI / 2;
-            const angle = baseAngle + travel;
+          vortexCards.forEach((card, index) => {
+            const normalized = index / Math.max(cardCount - 1, 1);
+            const angle = normalized * turns + scrollAngle;
             const depth = Math.sin(angle);
             const side = Math.cos(angle);
             const frontness = (depth + 1) / 2;
 
-            const x = side * radiusX;
-            const y = depth * radiusY + Math.cos(angle * 2) * 12;
-            const scale = 0.67 + frontness * 0.43 + stageBreath;
-            const opacity = 0.22 + frontness * 0.78;
-            const blur = (1 - frontness) * 2.2;
-            const brightness = 0.38 + frontness * 0.72;
-            const yaw = side * -11;
-            const roll = side * 2.1;
+            const localShift = ((renderedProgress * 1.28 + normalized) % 1.38) - 0.18;
+            const y = (0.5 - localShift) * verticalSpan;
+            const x = side * radiusX * (0.72 + frontness * 0.3);
+            const scale = 0.58 + frontness * 0.56;
+            const opacity = 0.16 + frontness * 0.84;
+            const blur = (1 - frontness) * 3.1;
+            const brightness = 0.3 + frontness * 0.86;
+            const yaw = side * -10;
+            const roll = side * 3.4;
 
-            setters[index].x(x);
-            setters[index].y(y);
-            setters[index].scale(scale);
-            setters[index].rotationY(yaw);
-            setters[index].rotationZ(roll);
-            setters[index].opacity(opacity);
-            setters[index].filter(`brightness(${brightness}) blur(${blur}px)`);
+            cardSetters[index].x(x);
+            cardSetters[index].y(y);
+            cardSetters[index].scale(scale);
+            cardSetters[index].rotate(roll);
+            cardSetters[index].rotateY(yaw);
+            cardSetters[index].opacity(opacity);
+            cardSetters[index].filter(`brightness(${brightness}) blur(${blur}px)`);
 
             card.style.zIndex = depth > 0
-              ? String(300 + Math.round(frontness * 100))
-              : String(50 + Math.round(frontness * 40));
+              ? String(420 + Math.round(frontness * 120))
+              : String(80 + Math.round(frontness * 50));
             card.style.pointerEvents = frontness > 0.72 ? "auto" : "none";
           });
 
-          const coreScale = 1 + Math.sin(renderedProgress * Math.PI * 2) * 0.018;
-          gsap.set(orbitCore, {
-            scale: coreScale,
-            rotate: renderedProgress * 18 - 9,
+          gsap.set(vortexCore, {
+            rotate: -11 + renderedProgress * 24,
+            scale: 1 + Math.sin(renderedProgress * Math.PI * 3) * 0.018,
           });
 
-          if (active || Math.abs(targetProgress - renderedProgress) > 0.0005) {
-            animationFrame = requestAnimationFrame(renderOrbit);
+          if (active || Math.abs(targetProgress - renderedProgress) > 0.0006) {
+            raf = requestAnimationFrame(renderVortex);
           } else {
-            animationFrame = 0;
+            raf = 0;
           }
         };
 
-        const startRender = () => {
+        const ensureRender = () => {
           active = true;
-          if (!animationFrame) animationFrame = requestAnimationFrame(renderOrbit);
+          if (!raf) raf = requestAnimationFrame(renderVortex);
         };
 
-        const stopRender = () => {
-          active = false;
-        };
-
-        gsap.set(orbitCards, {
+        gsap.set(vortexCards, {
           xPercent: -50,
           yPercent: -50,
           transformOrigin: "50% 50%",
-          transformPerspective: 1400,
+          transformPerspective: 1500,
         });
 
-        const orbitTrigger = ScrollTrigger.create({
+        const vortexTrigger = ScrollTrigger.create({
           trigger: orbitSection,
           start: "top top",
           end: "bottom bottom",
           scrub: 1.15,
           invalidateOnRefresh: true,
-          onEnter: startRender,
-          onEnterBack: startRender,
-          onLeave: stopRender,
-          onLeaveBack: stopRender,
+          onEnter: ensureRender,
+          onEnterBack: ensureRender,
+          onLeave: () => { active = false; },
+          onLeaveBack: () => { active = false; },
           onUpdate: (self) => {
             targetProgress = self.progress;
-            startRender();
+            ensureRender();
           },
           onRefresh: (self) => {
             targetProgress = self.progress;
-            renderedProgress = targetProgress;
-            startRender();
+            renderedProgress = self.progress;
+            ensureRender();
           },
         });
 
         gsap.fromTo(
-          orbitStage,
-          { scale: 0.84, opacity: 0, yPercent: 7 },
+          vortexStage,
+          { scale: 0.78, opacity: 0, yPercent: 8 },
           {
             scale: 1,
             opacity: 1,
@@ -473,90 +469,67 @@ export function LayeredHomepage() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: orbitSection,
-              start: "top 82%",
+              start: "top 84%",
               end: "top 18%",
-              scrub: 1.15,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          orbitCore,
-          { scale: 0.72, opacity: 0, filter: "blur(12px)" },
-          {
-            scale: 1,
-            opacity: 1,
-            filter: "blur(0px)",
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: orbitSection,
-              start: "top 78%",
-              end: "top 22%",
               scrub: 1.05,
             },
           }
         );
 
         gsap.fromTo(
-          ".orbit-copy",
-          { y: 46, opacity: 0 },
+          vortexCore,
+          { opacity: 0, scale: 0.72, filter: "blur(14px)" },
+          {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px)",
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: orbitSection,
+              start: "top 80%",
+              end: "top 24%",
+              scrub: 1.1,
+            },
+          }
+        );
+
+        gsap.fromTo(
+          ".vortex-copy",
+          { y: 42, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power3.out",
             scrollTrigger: {
               trigger: orbitSection,
-              start: "top 72%",
+              start: "top 74%",
               end: "top 30%",
               scrub: 1,
             },
           }
         );
 
-        gsap.to(".orbit-grid", {
-          backgroundPosition: "0px 145px",
+        gsap.to(".vortex-grid", {
+          backgroundPosition: "0px 150px",
           ease: "none",
           scrollTrigger: {
             trigger: orbitSection,
             start: "top top",
             end: "bottom bottom",
-            scrub: 1.4,
-          },
-        });
-
-        gsap.to(".orbit-halo--outer", {
-          rotate: 28,
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: orbitSection,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.8,
-          },
-        });
-
-        gsap.to(".orbit-halo--inner", {
-          rotate: -34,
-          scale: 0.96,
-          ease: "none",
-          scrollTrigger: {
-            trigger: orbitSection,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.6,
+            scrub: 1.5,
           },
         });
 
         renderedProgress = 0;
         targetProgress = 0;
-        startRender();
+        ensureRender();
 
         return () => {
           active = false;
-          cancelAnimationFrame(animationFrame);
-          orbitTrigger.kill();
+          cancelAnimationFrame(raf);
+          vortexTrigger.kill();
         };
+      };
       }
     },
     { scope: root }
@@ -646,69 +619,67 @@ export function LayeredHomepage() {
         </div>
       </section>
 
-      <section className="orbit-showcase" aria-label="Interactive product ecosystem">
+      <section className="orbit-showcase" aria-label="Layered product vortex">
         <div className="orbit-showcase__sticky">
-          <div className="orbit-grid" aria-hidden="true" />
+          <div className="vortex-grid" aria-hidden="true" />
 
-          <div className="orbit-copy">
-            <span>03 / DIGITAL ECOSYSTEMS</span>
+          <nav className="vortex-nav" aria-hidden="true">
+            <span>Approach</span>
+            <span>Work</span>
+            <span>About</span>
+            <span>Pricing</span>
+            <span>Contact</span>
+          </nav>
+
+          <div className="vortex-copy">
+            <span>03 / PRODUCT ECOSYSTEM</span>
             <p>
-              Product partners for ambitious digital platforms. From strategy
-              and design systems to scalable development, every layer moves as
-              one connected experience.
+              Product partners for AI-first platforms. From concept systems to
+              launch-ready experiences, every interface layer moves as one
+              connected whole.
             </p>
           </div>
 
-          <div className="orbit-stage">
-            <div className="orbit-halo orbit-halo--outer" aria-hidden="true" />
-            <div className="orbit-halo orbit-halo--inner" aria-hidden="true" />
-            <div className="orbit-axis orbit-axis--horizontal" aria-hidden="true" />
-            <div className="orbit-axis orbit-axis--vertical" aria-hidden="true" />
-
-            <div className="orbit-core" aria-hidden="true">
-              <div className="orbit-core__shell" />
-              <div className="orbit-core__ring orbit-core__ring--one" />
-              <div className="orbit-core__ring orbit-core__ring--two" />
-              <div className="orbit-core__glow" />
+          <div className="vortex-stage">
+            <div className="vortex-core" aria-hidden="true">
+              <div className="vortex-core__shell" />
+              <div className="vortex-core__fold vortex-core__fold--one" />
+              <div className="vortex-core__fold vortex-core__fold--two" />
+              <div className="vortex-core__fold vortex-core__fold--three" />
+              <div className="vortex-core__glow" />
             </div>
 
-            <div className="orbit-ring" aria-label="Orbiting project gallery">
+            <div className="vortex-cards">
               {orbitPanels.map((panel, index) => (
-                <article className="orbit-card" key={panel.image}>
-                  <div className="orbit-card__surface">
+                <article className="vortex-card" key={panel.image}>
+                  <div className="vortex-card__surface">
                     <Image
-                      className="orbit-card__image"
+                      className="vortex-card__image"
                       src={panel.image}
                       alt=""
                       fill
-                      sizes="(max-width: 700px) 44vw, 22vw"
+                      sizes="(max-width: 700px) 48vw, 22vw"
                     />
-                    <div className="orbit-card__shade" aria-hidden="true" />
-                    <div className="orbit-card__ui">
+                    <div className="vortex-card__overlay" aria-hidden="true" />
+                    <div className="vortex-card__ui">
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <strong>
                         {index % 3 === 0
                           ? "Product System"
                           : index % 3 === 1
                             ? "Interface Layer"
-                            : "Digital Platform"}
+                            : "AI Platform"}
                       </strong>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
-
-            <div className="orbit-center-label" aria-hidden="true">
-              <span>CONNECTED</span>
-              <strong>ECOSYSTEM</strong>
-            </div>
           </div>
 
-          <div className="orbit-index" aria-hidden="true">
-            <span>9 Projects</span>
-            <span>24/7 Systems</span>
-            <span>One Ecosystem</span>
+          <div className="vortex-index" aria-hidden="true">
+            <span>03 / 09</span>
+            <span>Scroll to orbit</span>
           </div>
         </div>
       </section>

@@ -344,10 +344,11 @@ a { color: inherit; text-decoration: none; }
 
 
 
-/* Third section — professional elliptical orbit */
+
+/* Third section — reference-matched layered vortex */
 .orbit-showcase {
   position: relative;
-  height: 560vh;
+  height: 620vh;
   background: #050505;
   color: #f4f4f0;
 }
@@ -358,8 +359,8 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 47%, rgba(255,255,255,.065), transparent 27%),
-    radial-gradient(circle at 50% 50%, #111 0%, #070707 48%, #020202 100%);
+    radial-gradient(circle at 50% 46%, rgba(255,255,255,.045), transparent 25%),
+    radial-gradient(circle at 50% 50%, #101010 0%, #060606 50%, #020202 100%);
 }
 .orbit-showcase__sticky::after {
   content: "";
@@ -368,284 +369,222 @@ a { color: inherit; text-decoration: none; }
   z-index: 900;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.38), transparent 15%, transparent 82%, rgba(0,0,0,.5)),
-    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.56) 100%);
+    linear-gradient(to bottom, rgba(0,0,0,.42), transparent 14%, transparent 82%, rgba(0,0,0,.48)),
+    radial-gradient(ellipse at center, transparent 42%, rgba(0,0,0,.62) 100%);
 }
-.orbit-grid {
+.vortex-grid {
   position: absolute;
   inset: -140px;
   z-index: -5;
-  opacity: .19;
+  opacity: .2;
   background-image:
-    linear-gradient(rgba(255,255,255,.042) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.042) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, #000 14%, rgba(0,0,0,.65) 58%, transparent 94%);
+    linear-gradient(rgba(255,255,255,.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.038) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse at center, #000 18%, rgba(0,0,0,.66) 58%, transparent 94%);
 }
-.orbit-copy {
+.vortex-nav {
   position: absolute;
-  z-index: 950;
-  left: 2.4vw;
-  bottom: 2.4vw;
-  width: min(365px, 29vw);
+  z-index: 960;
+  top: 14px;
+  left: 16px;
+  display: flex;
+  gap: 15px;
+  color: rgba(255,255,255,.65);
+  font-size: 8px;
+  letter-spacing: .04em;
 }
-.orbit-copy span {
+.vortex-copy {
+  position: absolute;
+  z-index: 960;
+  left: 2vw;
+  bottom: 2vw;
+  width: min(380px, 30vw);
+}
+.vortex-copy span {
   display: block;
-  margin-bottom: 13px;
-  color: rgba(255,255,255,.44);
-  font-size: 9px;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,.43);
+  font-size: 8px;
   letter-spacing: .17em;
 }
-.orbit-copy p {
+.vortex-copy p {
   margin: 0;
   color: rgba(255,255,255,.73);
-  font-size: clamp(11px, .8vw, 14px);
+  font-size: clamp(11px, .78vw, 14px);
   line-height: 1.48;
 }
-.orbit-stage {
+.vortex-stage {
   position: absolute;
   left: 50%;
-  top: 48%;
-  width: min(94vw, 1540px);
-  height: min(82vh, 860px);
+  top: 49%;
+  width: min(88vw, 1380px);
+  height: min(88vh, 900px);
   transform: translate(-50%, -50%);
   perspective: 1600px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
-.orbit-ring {
+.vortex-cards {
   position: absolute;
   inset: 0;
   z-index: 100;
   transform-style: preserve-3d;
 }
-.orbit-card {
+.vortex-card {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(210px, 20vw, 330px);
-  aspect-ratio: 1.5;
+  width: clamp(195px, 18.5vw, 305px);
+  aspect-ratio: 1.32;
   transform-style: preserve-3d;
   will-change: transform, opacity, filter;
 }
-.orbit-card__surface {
+.vortex-card__surface {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.17);
-  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 3px;
   background: #111;
   box-shadow:
-    0 34px 85px rgba(0,0,0,.78),
-    inset 0 1px rgba(255,255,255,.1);
-  transform: translateZ(0);
+    0 30px 78px rgba(0,0,0,.78),
+    inset 0 1px rgba(255,255,255,.08);
 }
-.orbit-card__image {
+.vortex-card__image {
   object-fit: cover;
-  filter: saturate(.68) contrast(1.08);
-  transform: scale(1.025);
+  filter: saturate(.6) contrast(1.08);
+  transform: scale(1.03);
 }
-.orbit-card__shade {
+.vortex-card__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255,255,255,.035), transparent 22%),
-    linear-gradient(to top, rgba(0,0,0,.8), transparent 48%);
-  pointer-events: none;
+    linear-gradient(to bottom, rgba(255,255,255,.025), transparent 22%),
+    linear-gradient(to top, rgba(0,0,0,.84), transparent 46%);
 }
-.orbit-card__ui {
+.vortex-card__ui {
   position: absolute;
   inset: auto 0 0;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
-  padding: 11px 12px;
-  color: rgba(255,255,255,.86);
-  font-size: 8px;
+  padding: 10px 11px;
+  color: rgba(255,255,255,.84);
+  font-size: 7px;
   letter-spacing: .105em;
   text-transform: uppercase;
 }
-.orbit-card__ui span {
-  color: rgba(255,255,255,.5);
+.vortex-card__ui span {
+  color: rgba(255,255,255,.46);
 }
-.orbit-card__ui strong {
+.vortex-card__ui strong {
   font-weight: 500;
 }
-.orbit-core {
+.vortex-core {
   position: absolute;
-  z-index: 210;
+  z-index: 300;
   left: 50%;
   top: 50%;
-  width: clamp(245px, 29vw, 455px);
-  aspect-ratio: 1;
+  width: clamp(280px, 33vw, 515px);
+  aspect-ratio: .86;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
-  filter: drop-shadow(0 55px 100px rgba(0,0,0,.82));
   pointer-events: none;
+  filter: drop-shadow(0 60px 110px rgba(0,0,0,.82));
   will-change: transform, opacity, filter;
 }
-.orbit-core__shell {
+.vortex-core__shell {
   position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 50%;
+  inset: 4% 7%;
+  border-radius: 34% 66% 57% 43% / 44% 35% 65% 56%;
   background:
-    radial-gradient(circle at 64% 23%, rgba(255,255,255,.97), transparent 4.5%),
-    radial-gradient(circle at 35% 70%, rgba(255,255,255,.2), transparent 22%),
-    conic-gradient(from 198deg, #070707, #b6b6b6, #242424, #f1f1f1, #101010, #8d8d8d, #080808);
+    radial-gradient(circle at 64% 24%, rgba(255,255,255,.96), transparent 5%),
+    radial-gradient(circle at 30% 72%, rgba(255,255,255,.2), transparent 18%),
+    conic-gradient(from 210deg, #080808, #bcbcbc, #232323, #efefef, #151515, #808080, #070707);
   box-shadow:
-    inset 34px -40px 68px rgba(0,0,0,.78),
-    inset -22px 27px 48px rgba(255,255,255,.31);
+    inset 36px -44px 72px rgba(0,0,0,.78),
+    inset -24px 30px 48px rgba(255,255,255,.32);
+  transform: rotate(-8deg);
 }
-.orbit-core__shell::before {
-  content: "";
+.vortex-core__fold {
   position: absolute;
-  inset: 16%;
-  border: 1px solid rgba(255,255,255,.17);
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 62px rgba(0,0,0,.82),
-    0 0 0 1px rgba(0,0,0,.32);
-}
-.orbit-core__ring {
-  position: absolute;
-  border: 1px solid rgba(255,255,255,.17);
+  border: 1px solid rgba(255,255,255,.16);
   border-radius: 50%;
   mix-blend-mode: screen;
 }
-.orbit-core__ring--one {
-  inset: 25%;
-  transform: rotateX(66deg) rotateZ(-18deg);
+.vortex-core__fold--one {
+  inset: 20% 25% 31% 18%;
+  transform: rotate(28deg);
 }
-.orbit-core__ring--two {
-  inset: 34%;
-  transform: rotateY(68deg) rotateZ(24deg);
+.vortex-core__fold--two {
+  inset: 32% 14% 15% 33%;
+  transform: rotate(-34deg);
 }
-.orbit-core__glow {
+.vortex-core__fold--three {
+  inset: 24% 39% 26% 29%;
+  transform: rotate(72deg);
+}
+.vortex-core__glow {
   position: absolute;
-  inset: 21%;
+  inset: 25%;
   border-radius: 50%;
   background: rgba(255,255,255,.15);
-  filter: blur(42px);
+  filter: blur(44px);
 }
-.orbit-halo {
+.vortex-index {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 80;
-  border: 1px solid rgba(255,255,255,.115);
-  border-radius: 50%;
-  pointer-events: none;
-}
-.orbit-halo--outer {
-  width: 82%;
-  height: 46%;
-  transform: translate(-50%, -50%) rotate(-4deg);
-  box-shadow: 0 0 70px rgba(255,255,255,.025);
-}
-.orbit-halo--inner {
-  width: 66%;
-  height: 34%;
-  transform: translate(-50%, -50%) rotate(7deg);
-  border-color: rgba(255,255,255,.075);
-}
-.orbit-axis {
-  position: absolute;
-  z-index: 70;
-  left: 50%;
-  top: 50%;
-  pointer-events: none;
-  opacity: .12;
-}
-.orbit-axis--horizontal {
-  width: 88%;
-  height: 1px;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(90deg, transparent, #fff 20%, #fff 80%, transparent);
-}
-.orbit-axis--vertical {
-  width: 1px;
-  height: 72%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(transparent, #fff 20%, #fff 80%, transparent);
-}
-.orbit-center-label {
-  position: absolute;
-  z-index: 240;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  gap: 3px;
-  text-align: center;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-.orbit-center-label span {
-  font-size: 7px;
-  letter-spacing: .28em;
-  color: rgba(255,255,255,.62);
-}
-.orbit-center-label strong {
-  font-size: 10px;
-  letter-spacing: .16em;
-  font-weight: 500;
-}
-.orbit-index {
-  position: absolute;
-  z-index: 950;
-  right: 2.4vw;
-  bottom: 2.4vw;
+  z-index: 960;
+  right: 2vw;
+  bottom: 2vw;
   display: grid;
   gap: 5px;
-  color: rgba(255,255,255,.43);
-  font-size: 9px;
+  color: rgba(255,255,255,.42);
+  font-size: 8px;
   text-align: right;
 }
 
 @media (max-width: 900px) {
   .orbit-showcase {
-    height: 500vh;
+    height: 520vh;
   }
-  .orbit-stage {
-    top: 46%;
+  .vortex-stage {
     width: 118vw;
-    height: 72vh;
+    height: 76vh;
   }
-  .orbit-core {
-    width: 44vw;
+  .vortex-core {
+    width: 46vw;
   }
-  .orbit-card {
-    width: clamp(160px, 37vw, 255px);
+  .vortex-card {
+    width: clamp(155px, 38vw, 235px);
   }
-  .orbit-copy {
+  .vortex-copy {
     left: 18px;
     bottom: 20px;
-    width: min(68vw, 320px);
+    width: min(70vw, 320px);
   }
-  .orbit-index {
+  .vortex-index {
     right: 18px;
     bottom: 20px;
   }
 }
 
 @media (max-width: 600px) {
-  .orbit-stage {
-    width: 142vw;
-    height: 66vh;
+  .vortex-stage {
+    width: 146vw;
+    height: 70vh;
   }
-  .orbit-core {
-    width: 56vw;
+  .vortex-core {
+    width: 59vw;
   }
-  .orbit-card {
-    width: 44vw;
+  .vortex-card {
+    width: 45vw;
   }
-  .orbit-copy p {
+  .vortex-copy p {
     display: none;
   }
-  .orbit-halo--outer {
-    width: 88%;
+  .vortex-nav {
+    gap: 10px;
+    font-size: 7px;
   }
 }
 
