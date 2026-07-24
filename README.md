@@ -1,22 +1,13 @@
-# SoftBridge Solutions Finland — 4 Layer Text-Only First Section
+# SoftBridge Solutions Finland — Four Layer Images
 
-## Changes
-- Reduced the first layered section from 8 layers to 4.
-- Removed all dashboard, mockup and image-style visuals.
-- Added text-led kinetic compositions using:
-  - oversized typography
-  - technical rings
-  - grid lines
-  - section numbering
-  - restrained matte surfaces
-- Preserved the original sticky layer animation and timing.
-- Kept the final-layer transition spacer to prevent white-strip issues.
+The four uploaded images were added to the first layered section in the supplied order:
 
-## Layers
-1. AI & Automation
-2. Software Systems
-3. Digital Products
-4. European Delivery
+1. AI & Automation — AI processor image
+2. Software Systems — source-code image
+3. Digital Products — laptop and application interface image
+4. European Delivery — European Union flag image
+
+The original sticky GSAP layer animation and timing values were preserved.
 
 ## Run
 ```bash

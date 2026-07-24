@@ -17,24 +17,32 @@ const layers = [
     title: "Intelligence Built Into the Product",
     body: "AI agents, workflow automation and intelligent software designed around measurable business outcomes.",
     accent: "AI",
+    image: "/layer-images/ai-automation.jpg",
+    alt: "Artificial intelligence processor and digital infrastructure representing AI automation services",
   },
   {
     eyebrow: "02 / SOFTWARE SYSTEMS",
     title: "Software That Scales With the Business",
     body: "Cloud-native platforms, internal systems and digital infrastructure engineered for reliability and long-term growth.",
     accent: "SYSTEMS",
+    image: "/layer-images/software-systems.jpg",
+    alt: "Software development source code representing scalable enterprise software systems",
   },
   {
     eyebrow: "03 / DIGITAL PRODUCTS",
     title: "Clear Experiences Across Every Screen",
     body: "High-performance web and mobile products shaped by strong UX, accessible interfaces and production-grade engineering.",
     accent: "PRODUCTS",
+    image: "/layer-images/digital-products.jpg",
+    alt: "Digital product development workspace with web and mobile application interfaces",
   },
   {
     eyebrow: "04 / EUROPEAN DELIVERY",
     title: "Global Engineering, Closer Nordic Collaboration",
     body: "SoftBridge Solutions combines global delivery capability with a Finland-focused presence for companies across the Nordics and Europe.",
     accent: "EUROPE",
+    image: "/layer-images/european-delivery.jpg",
+    alt: "European Union flag representing SoftBridge Solutions delivery across Finland and Europe",
   },
 ] as const;
 
@@ -319,39 +327,29 @@ export function LayeredHomepage() {
               </a>
             </div>
 
-            <div className="layer-visual layer-visual--textual" aria-hidden="true">
-              <div className="kinetic-field">
-                <span className="kinetic-field__index">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+            <div className="layer-visual layer-visual--image">
+              <figure className="layer-image-frame">
+                <Image
+                  src={layer.image}
+                  alt={layer.alt}
+                  fill
+                  priority={index === 0}
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                  className="layer-image"
+                />
 
-                <div className="kinetic-field__word">
-                  {layer.accent}
-                </div>
+                <div className="layer-image-frame__overlay" aria-hidden="true" />
 
-                <div className="kinetic-field__rings">
-                  <i />
-                  <i />
-                  <i />
-                </div>
+                <figcaption className="layer-image-frame__caption">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{layer.accent}</strong>
+                </figcaption>
 
-                <div className="kinetic-field__lines">
-                  {Array.from({ length: 7 }).map((_, item) => (
-                    <span
-                      key={item}
-                      style={{
-                        width: `${32 + item * 9}%`,
-                        transform: `translateY(${item * 18}px)`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                <div className="kinetic-field__meta">
+                <div className="layer-image-frame__meta" aria-hidden="true">
                   <span>SOFTBRIDGE SOLUTIONS</span>
                   <span>FINLAND / EUROPE</span>
                 </div>
-              </div>
+              </figure>
             </div>
           </article>
         ))}
