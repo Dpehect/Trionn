@@ -61,9 +61,9 @@ export function LayeredHomepage() {
             ease: "none",
             scrollTrigger: {
               trigger: card,
-              start: "top 108%",
-              end: "top 12%",
-              scrub: 1.8,
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
             },
           }
         );
@@ -77,9 +77,9 @@ export function LayeredHomepage() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 88%",
-              end: "top 24%",
-              scrub: 1.65,
+              start: "top 76%",
+              end: "top 30%",
+              scrub: 0.9,
             },
           }
         );
