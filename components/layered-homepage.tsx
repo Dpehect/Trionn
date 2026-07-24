@@ -264,7 +264,7 @@ export function LayeredHomepage() {
         });
       });
     },
-    { scope: root }
+    { scope: root, dependencies: [] }
   );
 
   return (
