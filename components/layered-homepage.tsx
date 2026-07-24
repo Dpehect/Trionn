@@ -14,24 +14,9 @@ const layers = [
   { eyebrow: "03 / STRATEGY", title: "Strategic Sites", body: "Editorial structure, precise interaction design and cinematic transitions combined in one scalable system.", visual: "map" },
 ] as const;
 
-const cases = [
-  { title: "Health Platform", meta: "Digital Product", visual: "people", size: "wide" },
-  { title: "Lumen", meta: "Brand Experience", visual: "city", size: "small" },
-  { title: "Connected", meta: "Mobile Campaign", visual: "phone", size: "medium" },
-  { title: "Commerce Lab", meta: "E-commerce", visual: "commerce", size: "small" },
-  { title: "Aesop", meta: "Launch Film", visual: "stage", size: "wide" },
-  { title: "Super Interconnect", meta: "Interactive Web", visual: "circuit", size: "large" },
-  { title: "Object Coach", meta: "Product Story", visual: "travel", size: "medium" },
-  { title: "Drift", meta: "Identity System", visual: "symbol", size: "small" },
-  { title: "Caviar", meta: "Motion Identity", visual: "caviar", size: "wide" },
-  { title: "Meeting Room", meta: "Digital Service", visual: "meeting", size: "small" },
-  { title: "Orbital", meta: "Interactive Film", visual: "orbital", size: "medium" },
-  { title: "Scan Smart", meta: "Retail Campaign", visual: "scan", size: "wide" },
-  { title: "NFT / 008", meta: "Web3 Experience", visual: "nft", size: "medium" },
-] as const;
-
 export function LayeredHomepage() {
   const root = useRef<HTMLElement>(null);
+  const casesVideo = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
     const cards = gsap.utils.toArray<HTMLElement>(".layer-card");
@@ -48,27 +33,33 @@ export function LayeredHomepage() {
       });
     });
 
-    gsap.fromTo(".cases-heading", { y: 70, opacity: 0 }, {
-      y: 0, opacity: 1, ease: "power3.out", scrollTrigger: { trigger: ".selected-cases", start: "top 76%", end: "top 32%", scrub: .7 }
-    });
+    const video = casesVideo.current;
+    if (!video) return;
 
-    gsap.utils.toArray<HTMLElement>(".case-card").forEach((card, index) => {
-      const media = card.querySelector(".case-card__visual");
-      gsap.fromTo(card, { y: 90 + (index % 3) * 24, opacity: 0, scale: .96 }, {
-        y: 0, opacity: 1, scale: 1, ease: "power3.out",
-        scrollTrigger: { trigger: card, start: "top 94%", end: "top 58%", scrub: .7 }
-      });
-      gsap.fromTo(media, { yPercent: -7, scale: 1.08 }, {
-        yPercent: 7, scale: 1, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true }
-      });
-    });
+    const setupVideoScrub = () => {
+      const duration = Math.max(video.duration || 0, 0.1);
+      video.pause();
+      video.currentTime = 0.001;
 
-    gsap.fromTo(".project-cta__label", { y: 50, opacity: 0 }, {
-      y: 0, opacity: 1, ease: "power3.out", scrollTrigger: { trigger: ".project-cta", start: "top 78%", end: "top 48%", scrub: .6 }
-    });
-    gsap.fromTo(".project-cta__marquee", { xPercent: -12, opacity: 0 }, {
-      xPercent: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: ".project-cta", start: "top 72%", end: "center 48%", scrub: .8 }
-    });
+      ScrollTrigger.create({
+        trigger: ".selected-cases-video",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        onEnter: () => document.documentElement.classList.add("cases-active"),
+        onEnterBack: () => document.documentElement.classList.add("cases-active"),
+        onLeave: () => document.documentElement.classList.remove("cases-active"),
+        onLeaveBack: () => document.documentElement.classList.remove("cases-active"),
+        onUpdate: (self) => {
+          const target = Math.min(duration - 0.02, Math.max(0.001, self.progress * duration));
+          if (Math.abs(video.currentTime - target) > 0.018) video.currentTime = target;
+        },
+      });
+      ScrollTrigger.refresh();
+    };
+
+    if (video.readyState >= 1) setupVideoScrub();
+    else video.addEventListener("loadedmetadata", setupVideoScrub, { once: true });
   }, { scope: root });
 
   return (
@@ -98,28 +89,23 @@ export function LayeredHomepage() {
         ))}
       </section>
 
-      <section id="cases" className="selected-cases">
-        <div className="cases-heading">
-          <div className="cases-index"><span>Selected (13)</span><span>Cases / 2024—26</span></div>
-          <h2>Selected Cases</h2>
-        </div>
-
-        <div className="cases-grid">
-          {cases.map((item, index) => (
-            <article className={`case-card case-card--${index + 1} case-card--${item.size}`} key={item.title}>
-              <div className={`case-card__visual visual-case--${item.visual}`} aria-hidden="true"><i /><b /></div>
-              <div className="case-card__caption"><span>{item.title}</span><small>{item.meta}</small></div>
-            </article>
-          ))}
+      <section id="cases" className="selected-cases-video" aria-label="Selected Cases scroll experience">
+        <div className="selected-cases-video__sticky">
+          <video
+            ref={casesVideo}
+            className="selected-cases-video__media"
+            src="/media/selected-cases-scroll.mp4"
+            muted
+            playsInline
+            preload="auto"
+            aria-label="Selected Cases animated showcase"
+          />
         </div>
       </section>
 
-      <section id="contact" className="project-cta">
-        <p className="project-cta__label">Got Project?</p>
-        <div className="project-cta__marquee" aria-label="Let's talk">
-          <span className="waves">((((</span><strong>LET&apos;S TALK</strong><span className="waves">))))</span>
-          <a href="mailto:hello@example.com">Start <ArrowUpRight size={14} /></a>
-        </div>
+      <section id="contact" className="closing">
+        <p>Next layer</p>
+        <h2>Ready for the next part.</h2>
       </section>
     </main>
   );
