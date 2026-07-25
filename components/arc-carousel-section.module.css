@@ -1643,3 +1643,113 @@ object-position:center!important;
     min-height: 1050px !important;
   }
 }
+
+
+/* Section 03 — reduced header gap and full card visibility */
+.section {
+  min-height: 1340px !important;
+  padding-top: clamp(48px, 4vw, 74px) !important;
+  padding-bottom: clamp(120px, 9vw, 170px) !important;
+}
+
+.header {
+  min-height: clamp(170px, 13vw, 220px) !important;
+}
+
+.title {
+  margin-bottom: 0 !important;
+}
+
+.viewport {
+  height: clamp(1160px, 76vw, 1360px) !important;
+  margin-top: clamp(18px, 1.8vw, 32px) !important;
+  overflow: hidden !important;
+  padding-top: 120px;
+  box-sizing: border-box;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 735px) !important;
+}
+
+.slot {
+  overflow: visible !important;
+}
+
+.card,
+.cover,
+.text {
+  overflow: visible;
+}
+
+.cover {
+  min-height: clamp(610px, 34vw, 770px) !important;
+}
+
+.card:hover .cover {
+  min-height: clamp(670px, 38vw, 850px) !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1210px !important;
+    padding-bottom: 140px !important;
+  }
+
+  .header {
+    min-height: 165px !important;
+  }
+
+  .viewport {
+    height: 1060px !important;
+    margin-top: 20px !important;
+    padding-top: 105px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 635px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1110px !important;
+    padding-bottom: 120px !important;
+  }
+
+  .header {
+    min-height: 155px !important;
+  }
+
+  .viewport {
+    height: 980px !important;
+    margin-top: 18px !important;
+    padding-top: 90px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 555px) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 1010px !important;
+    padding-top: 42px !important;
+    padding-bottom: 100px !important;
+  }
+
+  .header {
+    min-height: 200px !important;
+  }
+
+  .viewport {
+    height: 900px !important;
+    margin-top: 12px !important;
+    padding-top: 80px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 465px) !important;
+  }
+}
