@@ -1520,3 +1520,54 @@
       linear-gradient(145deg, #0B3233 0%, #0F3D3E 56%, #16494A 100%) !important;
   }
 }
+
+
+/* Section 01 SEO/UX color refinement only — Section 02 remains unchanged */
+.titaniumTheme .workSection,
+.titaniumTheme .workSticky {
+  background:
+    radial-gradient(circle at 14% 16%, rgba(74,176,169,.12), transparent 28%),
+    radial-gradient(circle at 88% 82%, rgba(226,122,63,.09), transparent 30%),
+    linear-gradient(135deg, #123F40 0%, #164C4D 48%, #1A5556 100%) !important;
+}
+
+.titaniumTheme .workSticky::after {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(74,176,169,.10), transparent 26%),
+    radial-gradient(circle at 86% 78%, rgba(226,122,63,.08), transparent 28%) !important;
+}
+
+.titaniumTheme .featuredTitle strong {
+  color: #F7F6F2 !important;
+}
+
+.titaniumTheme .featuredTitle p {
+  color: #D6DDD8 !important;
+}
+
+.titaniumTheme .featuredTitle span {
+  color: #9AD7CF !important;
+}
+
+.titaniumTheme .featuredLabel {
+  color: #E27A3F !important;
+}
+
+.titaniumTheme .mediaArea {
+  background:
+    linear-gradient(145deg, #1A5556, #123F40) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.28),
+    0 12px 30px rgba(18,63,64,.22),
+    inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+@media (max-width: 800px) {
+  .titaniumTheme .workSection,
+  .titaniumTheme .workSticky {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(74,176,169,.10), transparent 28%),
+      linear-gradient(145deg, #123F40 0%, #164C4D 58%, #1A5556 100%) !important;
+  }
+}

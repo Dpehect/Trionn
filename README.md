@@ -1,16 +1,15 @@
-# SoftBridge Deep Petrol Theme
+# SoftBridge Section 01 Color Update
 
-Updated:
-- detail page background changed to Deep Petrol (#0F3D3E)
-- warm coral accent (#E37A42)
-- soft teal support accent
-- light premium typography
-- darker media and service surfaces
+Changed:
+- only Part 01 background and supporting colors
+- new Part 01 base: #164C4D
+- stronger readable contrast
+- subtle teal and orange atmospheric accents
 
 Preserved:
-- component structure
-- grid proportions
+- Part 02 Deep Petrol colors
+- layout structure
 - GSAP animations
 - pinned scroll
-- title/media transitions
+- typography sizes
 - responsive behavior
