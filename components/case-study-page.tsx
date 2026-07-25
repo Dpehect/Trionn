@@ -2,18 +2,35 @@
 
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { CaseStudy } from "@/data/cases";
 
-const SCENARIO_IMAGES = [
-  "/vivid-3d/scene1.jpg",
-  "/vivid-3d/scene2.jpg",
-  "/vivid-3d/scene3.jpg",
-];
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const SCENARIO_LABELS = [
-  { kicker: "Featured work", title: "Branding", sub: "Vakeso" },
-  { kicker: "Featured work", title: "Web", sub: "SoundCloud Worldwide" },
-  { kicker: "Featured work", title: "Mobile", sub: "AI Avatar Studio" },
+const SCENES = [
+  {
+    kicker: "Featured work",
+    titleMain: "Brand",
+    titleItalic: "ing",
+    clientName: "Vakeso",
+    image: "/vivid-3d/scene1.jpg",
+  },
+  {
+    kicker: "Featured work",
+    titleMain: "We",
+    titleItalic: "b",
+    clientName: "SoundCloud",
+    image: "/vivid-3d/scene2.jpg",
+  },
+  {
+    kicker: "Featured work",
+    titleMain: "Mobi",
+    titleItalic: "le",
+    clientName: "Sona",
+    image: "/vivid-3d/scene3.jpg",
+  },
 ];
 
 const VERTEX_SHADER_SRC = `
@@ -27,8 +44,8 @@ const VERTEX_SHADER_SRC = `
 
 const FRAGMENT_SHADER_SRC = `
   precision highp float;
-  uniform sampler2D u_currentImage;
-  uniform sampler2D u_nextImage;
+  uniform sampler2D u_tex0;
+  uniform sampler2D u_tex1;
   uniform float u_progress;
   uniform float u_time;
   uniform float u_hover;
@@ -38,49 +55,75 @@ const FRAGMENT_SHADER_SRC = `
     vec2 uv = v_uv;
     uv.y = 1.0 - uv.y;
 
-    // Prismatic chromatic aberration & liquid wave
-    float wave = sin(uv.y * 14.0 + u_time * 2.5) * (0.015 + u_hover * 0.025);
-    float glitch = sin(uv.x * 30.0 + u_time * 8.0) * u_progress * 0.03;
+    // Holographic liquid wave distortion
+    float wave = sin(uv.y * 16.0 + u_time * 2.8) * (0.015 + u_hover * 0.02);
+    float glitch = sin(uv.x * 24.0 + u_time * 6.0) * sin(u_progress * 3.14159) * 0.04;
 
-    vec2 p1 = uv + vec2(wave + glitch, 0.0);
-    vec2 p2 = uv + vec2(wave * 0.5, glitch);
+    vec2 uv1 = uv + vec2(wave + glitch, glitch * 0.5);
+    vec2 uv2 = uv + vec2(wave * 0.6 - glitch, -glitch * 0.5);
 
-    // RGB Split / Chromatic Aberration
-    float r = texture2D(u_currentImage, p1 + vec2(0.008 * u_progress, 0.0)).r;
-    float g = texture2D(u_currentImage, p1).g;
-    float b = texture2D(u_currentImage, p1 - vec2(0.008 * u_progress, 0.0)).b;
-    vec4 currentCol = vec4(r, g, b, 1.0);
+    // RGB Split / Chromatic Aberration during transition
+    float splitAmt = 0.012 * sin(u_progress * 3.14159);
 
-    float rNext = texture2D(u_nextImage, p2 + vec2(0.008 * (1.0 - u_progress), 0.0)).r;
-    float gNext = texture2D(u_nextImage, p2).g;
-    float bNext = texture2D(u_nextImage, p2 - vec2(0.008 * (1.0 - u_progress), 0.0)).b;
-    vec4 nextCol = vec4(rNext, gNext, bNext, 1.0);
+    float r0 = texture2D(u_tex0, uv1 + vec2(splitAmt, 0.0)).r;
+    float g0 = texture2D(u_tex0, uv1).g;
+    float b0 = texture2D(u_tex0, uv1 - vec2(splitAmt, 0.0)).b;
+    vec4 col0 = vec4(r0, g0, b0, 1.0);
 
-    vec4 finalColor = mix(currentCol, nextCol, u_progress);
+    float r1 = texture2D(u_tex1, uv2 + vec2(splitAmt, 0.0)).r;
+    float g1 = texture2D(u_tex1, uv2).g;
+    float b1 = texture2D(u_tex1, uv2 - vec2(splitAmt, 0.0)).b;
+    vec4 col1 = vec4(r1, g1, b1, 1.0);
 
-    // Holographic rainbow edge vignette
+    vec4 finalCol = mix(col0, col1, u_progress);
+
+    // Holographic edge vignette
     float dist = length(uv - vec2(0.5));
-    finalColor.rgb *= smoothstep(0.88, 0.2, dist);
+    finalCol.rgb *= smoothstep(0.9, 0.2, dist);
 
-    gl_FragColor = finalColor;
+    gl_FragColor = finalCol;
   }
 `;
 
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
+  const rootRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [activeScene, setActiveScene] = useState(0);
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [nextIdx, setNextIdx] = useState(1);
+  const [transitionProgress, setTransitionProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [progress, setProgress] = useState(0);
 
-  // Auto sequence camera movement cycle
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveScene((prev) => (prev + 1) % SCENARIO_IMAGES.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
+  // GSAP ScrollTrigger pinning & scroll-driven sync
+  useGSAP(
+    () => {
+      const container = document.querySelector<HTMLElement>(".vivid-scroll-stage");
+      if (!container) return;
 
-  // WebGL Holographic Glitch & Liquid Transition Engine
+      ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "+=300%",
+        pin: true,
+        scrub: 0.8,
+        onUpdate: (self) => {
+          const rawProgress = self.progress * (SCENES.length - 1);
+          const currentStage = Math.min(
+            Math.floor(rawProgress),
+            SCENES.length - 1
+          );
+          const stageSubProgress = rawProgress - currentStage;
+
+          setActiveIdx(currentStage);
+          setNextIdx(Math.min(currentStage + 1, SCENES.length - 1));
+          setTransitionProgress(stageSubProgress);
+        },
+      });
+    },
+    { scope: rootRef }
+  );
+
+  // WebGL Shader Renderer
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -88,7 +131,6 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     const gl =
       canvas.getContext("webgl") ||
       (canvas.getContext("experimental-webgl") as WebGLRenderingContext | null);
-
     if (!gl) return;
 
     function compileShader(type: number, src: string) {
@@ -129,12 +171,12 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     const uTimeLoc = gl.getUniformLocation(program, "u_time");
     const uProgressLoc = gl.getUniformLocation(program, "u_progress");
     const uHoverLoc = gl.getUniformLocation(program, "u_hover");
-    const uCurrLoc = gl.getUniformLocation(program, "u_currentImage");
-    const uNextLoc = gl.getUniformLocation(program, "u_nextImage");
+    const uTex0Loc = gl.getUniformLocation(program, "u_tex0");
+    const uTex1Loc = gl.getUniformLocation(program, "u_tex1");
 
-    // Load All 3D CGI Textures
+    // Load textures
     const textures: WebGLTexture[] = [];
-    SCENARIO_IMAGES.forEach((src, idx) => {
+    SCENES.forEach((sc) => {
       const tex = gl.createTexture()!;
       gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -144,7 +186,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
       const img = new Image();
       img.crossOrigin = "anonymous";
-      img.src = src;
+      img.src = sc.image;
       img.onload = () => {
         gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
@@ -164,29 +206,25 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
     let animId: number;
     let startTime = performance.now();
-    let currProg = 0;
 
     const render = () => {
       const now = (performance.now() - startTime) * 0.001;
 
-      // Smooth progress animation on scene change
-      currProg += (0 - currProg) * 0.05;
-
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uTimeLoc, now);
-      gl.uniform1f(uProgressLoc, currProg);
+      gl.uniform1f(uProgressLoc, transitionProgress);
       gl.uniform1f(uHoverLoc, isHovered ? 1.0 : 0.0);
 
-      const currTex = textures[activeScene] || textures[0];
-      const nextTex = textures[(activeScene + 1) % textures.length] || textures[0];
+      const t0 = textures[activeIdx] || textures[0];
+      const t1 = textures[nextIdx] || textures[0];
 
       gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, currTex);
-      gl.uniform1i(uCurrLoc, 0);
+      gl.bindTexture(gl.TEXTURE_2D, t0);
+      gl.uniform1i(uTex0Loc, 0);
 
       gl.activeTexture(gl.TEXTURE1);
-      gl.bindTexture(gl.TEXTURE_2D, nextTex);
-      gl.uniform1i(uNextLoc, 1);
+      gl.bindTexture(gl.TEXTURE_2D, t1);
+      gl.uniform1i(uTex1Loc, 1);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       animId = requestAnimationFrame(render);
@@ -198,82 +236,76 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animId);
     };
-  }, [activeScene, isHovered]);
+  }, [activeIdx, nextIdx, transitionProgress, isHovered]);
 
-  const sceneInfo = SCENARIO_LABELS[activeScene];
+  const activeScene = SCENES[activeIdx];
 
   return (
-    <main className="vivid-3d-stage">
-      {/* Film Grain & Chromatic Light Leaks Overlay */}
-      <div className="vivid-dust-grain" />
+    <main ref={rootRef} className="vivid-scroll-page">
+      {/* Film Grain Texture */}
+      <div className="vivid-scroll-grain" />
 
-      {/* TOP NAV HEADER */}
-      <header className="vivid-3d-nav">
-        <Link href="/" className="vivid-3d-brand">
-          Vivid Motion<sup>®</sup>
-        </Link>
-        <Link href="/" className="vivid-3d-home-btn">
-          HOME ::
-        </Link>
-      </header>
+      {/* STICKY FEATURED WORK SECTION */}
+      <section className="vivid-scroll-stage">
+        {/* Navigation Header */}
+        <header className="vivid-scroll-nav">
+          <Link href="/" className="vivid-scroll-logo">
+            Vivid Motion<sup>®</sup>
+          </Link>
+          <Link href="/" className="vivid-scroll-home-btn">
+            HOME ::
+          </Link>
+        </header>
 
-      {/* 50/50 SPLIT STAGE */}
-      <div className="vivid-3d-split">
-        {/* LEFT COLUMN: Serif Typography & Interactive Client Logos */}
-        <div className="vivid-3d-left">
-          <span className="vivid-3d-kicker">{sceneInfo.kicker}</span>
+        {/* 50/50 Split Content */}
+        <div className="vivid-scroll-split">
+          {/* LEFT SIDE: STICKY PANEL */}
+          <div className="vivid-scroll-left">
+            {/* Top Small Gray Text */}
+            <span className="vivid-scroll-kicker">{activeScene.kicker}</span>
 
-          <h1 className="vivid-3d-title">
-            {sceneInfo.title === "Branding" ? (
-              <>
-                Brand<em className="vivid-3d-em">ing</em>
-              </>
-            ) : sceneInfo.title === "Web" ? (
-              <>
-                We<em className="vivid-3d-em">b</em>
-              </>
-            ) : (
-              <>
-                Mobi<em className="vivid-3d-em">le</em>
-              </>
-            )}
-          </h1>
+            {/* Center Large White Serif Typography */}
+            <h1 className="vivid-scroll-title">
+              {activeScene.titleMain}
+              <em className="vivid-scroll-em">{activeScene.titleItalic}</em>
+            </h1>
 
-          {/* Bottom Client Logos Sequence Controls */}
-          <div className="vivid-3d-clients">
-            {SCENARIO_LABELS.map((item, idx) => (
-              <button
-                key={item.sub}
-                className={`vivid-3d-client-pill ${activeScene === idx ? "is-active" : ""}`}
-                onClick={() => setActiveScene(idx)}
-              >
-                <span className="vivid-3d-client-mark" />
-                <div className="vivid-3d-client-text">
-                  <small>CLIENT</small>
-                  <strong>{item.sub}</strong>
-                </div>
-              </button>
-            ))}
+            {/* Bottom Left Client Logo + Name (Vakeso → SoundCloud → Sona) */}
+            <div className="vivid-scroll-client-card">
+              <div className="vivid-scroll-client-mark">
+                <span className="vivid-scroll-shape" />
+              </div>
+              <div className="vivid-scroll-client-info">
+                <small>CLIENT</small>
+                <strong>{activeScene.clientName}</strong>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* RIGHT COLUMN: 3D CGI Commercial Render Canvas with Holographic Rays */}
-        <div className="vivid-3d-right">
-          <div
-            className="vivid-3d-frame"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Real-time WebGL Fragment Shader Canvas */}
-            <canvas ref={canvasRef} className="vivid-3d-canvas" />
+          {/* RIGHT SIDE: CINEMATIC 3D HERO VISUALS (WEBGL GLITCH) */}
+          <div className="vivid-scroll-right">
+            <div
+              className="vivid-scroll-frame"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <canvas ref={canvasRef} className="vivid-scroll-canvas" />
 
-            {/* Cinematic Camera Orbit Badge */}
-            <div className="vivid-3d-badge">
-              <span>OCTANE RENDER 8K // SCENE 0{activeScene + 1}</span>
+              <div className="vivid-scroll-badge">
+                <span>SCENE 0{activeIdx + 1} // AWWWARDS SELECTION</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Follow-up content section */}
+      <section className="vivid-scroll-below">
+        <div className="vivid-scroll-below-inner">
+          <h2>Crafted for High-Impact Brands</h2>
+          <p>{study.intro}</p>
+        </div>
+      </section>
     </main>
   );
 }

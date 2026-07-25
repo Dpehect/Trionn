@@ -5014,3 +5014,245 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Scroll-Driven Sticky Featured Work Section Styles */
+.vivid-scroll-page {
+  position: relative;
+  background: #040404;
+  color: #ffffff;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+.vivid-scroll-grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 2;
+  background-image: repeating-radial-gradient(circle, #fff 0 1px, transparent 1px 4px);
+  background-size: 4px 4px;
+  mix-blend-mode: overlay;
+  animation: vivid-grain-anim 0.2s steps(2) infinite;
+}
+
+@keyframes vivid-grain-anim {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-1%, 1.5%); }
+  100% { transform: translate(0, 0); }
+}
+
+.vivid-scroll-stage {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 32px 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.vivid-scroll-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.vivid-scroll-logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.vivid-scroll-logo sup {
+  font-size: 11px;
+  margin-left: 2px;
+  font-family: sans-serif;
+}
+
+.vivid-scroll-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.vivid-scroll-home-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.vivid-scroll-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  align-items: center;
+  min-height: 82vh;
+  position: relative;
+  z-index: 10;
+}
+
+.vivid-scroll-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vivid-scroll-kicker {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.vivid-scroll-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 8.5vw, 140px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0 0 60px;
+  font-weight: 400;
+}
+
+.vivid-scroll-em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.vivid-scroll-client-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 22px 12px 14px;
+  border-radius: 14px;
+  background: rgba(18, 22, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: fit-content;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.vivid-scroll-client-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #f0642f;
+  display: grid;
+  place-items: center;
+}
+
+.vivid-scroll-shape {
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.vivid-scroll-client-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.vivid-scroll-client-info small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+.vivid-scroll-client-info strong {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.vivid-scroll-right {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+
+.vivid-scroll-frame {
+  position: relative;
+  width: 100%;
+  height: 74vh;
+  min-height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+
+.vivid-scroll-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.vivid-scroll-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.vivid-scroll-below {
+  padding: 120px 4vw;
+  background: #080808;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vivid-scroll-below-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.vivid-scroll-below-inner h2 {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.vivid-scroll-below-inner p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .vivid-scroll-split {
+    grid-template-columns: 1fr;
+  }
+}
