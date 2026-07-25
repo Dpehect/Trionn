@@ -850,3 +850,113 @@
     font-size: 14px !important;
   }
 }
+
+
+/* Section 03 overlap correction */
+.section {
+  min-height: 1120px !important;
+  padding-top: clamp(72px, 6vw, 108px) !important;
+  padding-bottom: clamp(58px, 5vw, 84px) !important;
+}
+
+.header {
+  position: relative;
+  z-index: 20;
+  min-height: clamp(250px, 20vw, 340px);
+  align-items: start !important;
+}
+
+.title {
+  max-width: 980px;
+  font-size: clamp(66px, 7.6vw, 138px) !important;
+  line-height: .88 !important;
+}
+
+.intro {
+  position: relative;
+  z-index: 21;
+  max-width: 500px;
+  margin-top: clamp(34px, 4vw, 72px) !important;
+}
+
+.viewport {
+  z-index: 2;
+  height: clamp(720px, 52vw, 820px) !important;
+  margin-top: clamp(12px, 1.4vw, 24px) !important;
+  overflow: hidden !important;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 400px) !important;
+}
+
+.slot {
+  width: clamp(360px, 24vw, 500px) !important;
+}
+
+.tags {
+  min-height: 30px !important;
+  margin-bottom: 10px !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tags span {
+  max-width: 48%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text {
+  min-height: 190px;
+  padding-top: 16px !important;
+}
+
+.text h3 {
+  min-height: 42px;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.text p {
+  min-height: 72px !important;
+  max-height: 86px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+@media (max-width: 1400px) {
+  .section { min-height: 1020px !important; }
+  .header { min-height: 240px; }
+  .viewport { height: 690px !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 365px) !important; }
+  .slot { width: clamp(330px, 28vw, 450px) !important; }
+}
+
+@media (max-width: 1050px) {
+  .section { min-height: 940px !important; }
+  .header { min-height: 220px; }
+  .title { font-size: clamp(58px, 10vw, 96px) !important; }
+  .intro { margin-top: 20px !important; }
+  .viewport { height: 640px !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 330px) !important; }
+}
+
+@media (max-width: 700px) {
+  .section { min-height: 820px !important; }
+  .header {
+    min-height: 250px;
+    grid-template-columns: 1fr !important;
+  }
+  .title { font-size: clamp(52px, 16vw, 78px) !important; }
+  .intro { margin-top: 18px !important; }
+  .viewport { height: 560px !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 280px) !important; }
+  .slot { width: min(80vw, 350px) !important; }
+  .text { min-height: 170px; }
+}
