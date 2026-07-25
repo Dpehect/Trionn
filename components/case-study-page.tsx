@@ -10,305 +10,142 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const scenes = [
-  {
-    title: "Artificial Intelligence",
-    shortTitle: "AI",
-    image: "/detail-part-01/ai-strategy.jpg",
-    client: "AI Strategy",
-    tone: "01",
-  },
-  {
-    title: "Data Platforms",
-    shortTitle: "Data",
-    image: "/detail-part-01/data-platform.jpg",
-    client: "Data Systems",
-    tone: "02",
-  },
-  {
-    title: "Software Engineering",
-    shortTitle: "Software",
-    image: "/detail-part-01/software-studio.jpg",
-    client: "Software Studio",
-    tone: "03",
-  },
-  {
-    title: "Web Development",
-    shortTitle: "Web",
-    image: "/detail-part-01/web-engineering.jpg",
-    client: "Web Engineering",
-    tone: "04",
-  },
-  {
-    title: "Development Systems",
-    shortTitle: "Systems",
-    image: "/detail-part-01/development-environment.jpg",
-    client: "Development Environment",
-    tone: "05",
-  },
-  {
-    title: "Digital Products",
-    shortTitle: "Product",
-    image: "/detail-part-01/digital-product.jpg",
-    client: "Product Experience",
-    tone: "06",
-  },
-  {
-    title: "Engineering Workflow",
-    shortTitle: "Motion",
-    image: "/detail-part-01/engineering-workflow.jpg",
-    client: "Delivery Systems",
-    tone: "07",
-  },
+const projects = [
+  { category: "AI Systems", client: "Nordic Intelligence", mark: "NI", image: "/detail-part-01/ai-strategy.jpg", description: "Intelligent automation and decision systems for complex operations." },
+  { category: "Enterprise Web", client: "Atlas Platform", mark: "AP", image: "/detail-part-01/digital-product.jpg", description: "High-performance digital platforms engineered for clarity and scale." },
+  { category: "Mobile Platforms", client: "Nova Mobile", mark: "NM", image: "/detail-part-01/software-studio.jpg", description: "Focused mobile experiences with responsive product systems." },
+  { category: "Cloud Infrastructure", client: "Vault Cloud", mark: "VC", image: "/detail-part-01/data-platform.jpg", description: "Reliable cloud foundations for products operating across Europe." },
 ] as const;
 
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const root = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const wrapper = root.current;
-      if (!wrapper) return;
+  useGSAP(() => {
+    const slides = gsap.utils.toArray<HTMLElement>(".sr-slide");
+    const categories = gsap.utils.toArray<HTMLElement>(".sr-category");
+    const clients = gsap.utils.toArray<HTMLElement>(".sr-client");
+    const progress = gsap.utils.toArray<HTMLElement>(".sr-progress span");
 
-      const sceneEls = gsap.utils.toArray<HTMLElement>(".rm-scene");
-      const titleEls = gsap.utils.toArray<HTMLElement>(".rm-left-title");
-      const clientEls = gsap.utils.toArray<HTMLElement>(".rm-client");
-      const progressEls = gsap.utils.toArray<HTMLElement>(".rm-progress span");
+    gsap.set(slides, { yPercent: (i) => i * 100 });
+    gsap.set(categories, { yPercent: (i) => i * 100 });
+    gsap.set(clients, { yPercent: (i) => i * 100 });
+    gsap.set(progress, { opacity: .24 });
+    gsap.set(progress[0], { opacity: 1 });
 
-      gsap.set(sceneEls, {
-        yPercent: (index) => index * 100,
-      });
+    const master = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".sr-scroll",
+        start: "top top",
+        end: `+=${projects.length * 125}%`,
+        pin: ".sr-stage",
+        scrub: 1.22,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
 
-      gsap.set(titleEls, {
-        yPercent: (index) => index * 100,
-      });
+    projects.forEach((_, index) => {
+      if (index === projects.length - 1) return;
+      const at = index + .04;
+      master
+        .to(slides, {
+          yPercent: (i) => (i - index - 1) * 100,
+          duration: 1.02,
+          ease: "power3.inOut",
+        }, at)
+        .to(categories, {
+          yPercent: (i) => (i - index - 1) * 100,
+          duration: .96,
+          ease: "power3.inOut",
+        }, at)
+        .to(clients, {
+          yPercent: (i) => (i - index - 1) * 100,
+          duration: .96,
+          ease: "power3.inOut",
+        }, at)
+        .to(progress[index], { opacity: .24, duration: .18 }, at + .58)
+        .to(progress[index + 1], { opacity: 1, duration: .18 }, at + .58);
+    });
 
-      gsap.set(clientEls, {
-        yPercent: (index) => index * 100,
-      });
+    master.to(".sr-see-all", { yPercent: 0, duration: .66, ease: "power3.inOut" }, projects.length - .06);
 
-      gsap.set(progressEls, { opacity: .22 });
-      gsap.set(progressEls[0], { opacity: 1 });
+    gsap.fromTo(".sr-header", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .7, ease: "power3.out" });
+    gsap.fromTo(".sr-intro-copy", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: .92, ease: "power3.out", delay: .08 });
 
-      const master = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".rm-scroll",
-          start: "top top",
-          end: `+=${scenes.length * 105}%`,
-          pin: ".rm-pin",
-          scrub: 1.28,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+    gsap.utils.toArray<HTMLElement>(".sr-slide__media").forEach((media) => {
+      const image = media.querySelector<HTMLElement>(".sr-slide__image");
+      const lens = media.querySelector<HTMLElement>(".sr-wave");
+      const chroma = media.querySelector<HTMLElement>(".sr-chroma");
+      if (!image || !lens || !chroma) return;
 
-      scenes.forEach((_, index) => {
-        if (index === scenes.length - 1) return;
+      const xTo = gsap.quickTo(image, "xPercent", { duration: .65, ease: "power3.out" });
+      const yTo = gsap.quickTo(image, "yPercent", { duration: .65, ease: "power3.out" });
+      const rxTo = gsap.quickTo(image, "rotationX", { duration: .75, ease: "power3.out" });
+      const ryTo = gsap.quickTo(image, "rotationY", { duration: .75, ease: "power3.out" });
 
-        const at = index + .02;
-
-        master
-          .to(
-            sceneEls,
-            {
-              yPercent: (sceneIndex) => (sceneIndex - index - 1) * 100,
-              duration: 1.02,
-              ease: "power2.inOut",
-            },
-            at,
-          )
-          .to(
-            titleEls,
-            {
-              yPercent: (titleIndex) => (titleIndex - index - 1) * 100,
-              duration: 1.02,
-              ease: "power2.inOut",
-            },
-            at,
-          )
-          .to(
-            clientEls,
-            {
-              yPercent: (clientIndex) => (clientIndex - index - 1) * 100,
-              duration: 1.02,
-              ease: "power2.inOut",
-            },
-            at,
-          )
-          .to(progressEls[index], { opacity: .22, duration: .2 }, at + .55)
-          .to(progressEls[index + 1], { opacity: 1, duration: .2 }, at + .55);
-      });
-
-      master.to(
-        ".rm-see-all",
-        {
-          yPercent: 0,
-          duration: .68,
-          ease: "power2.inOut",
-        },
-        scenes.length - .1,
-      );
-
-      gsap.fromTo(
-        ".rm-header",
-        { opacity: 0, y: -12 },
-        { opacity: 1, y: 0, duration: .7, ease: "power3.out" },
-      );
-
-      gsap.fromTo(
-        ".rm-intro-copy",
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: .8, ease: "power3.out", delay: .1 },
-      );
-
-      const mediaEls = gsap.utils.toArray<HTMLElement>(".rm-scene__media");
-
-      mediaEls.forEach((media) => {
-        const image = media.querySelector<HTMLElement>(".rm-scene__image");
-        const lens = media.querySelector<HTMLElement>(".rm-wave");
-        if (!image || !lens) return;
-
-        const xTo = gsap.quickTo(image, "xPercent", { duration: .55, ease: "power3.out" });
-        const yTo = gsap.quickTo(image, "yPercent", { duration: .55, ease: "power3.out" });
-        const sxTo = gsap.quickTo(image, "skewX", { duration: .6, ease: "power3.out" });
-        const syTo = gsap.quickTo(image, "skewY", { duration: .6, ease: "power3.out" });
-
-        const onMove = (event: PointerEvent) => {
-          const rect = media.getBoundingClientRect();
-          const nx = (event.clientX - rect.left) / rect.width - .5;
-          const ny = (event.clientY - rect.top) / rect.height - .5;
-
-          xTo(nx * 1.6);
-          yTo(ny * 1.25);
-          sxTo(nx * .65);
-          syTo(ny * -.4);
-
-          gsap.to(lens, {
-            x: event.clientX - rect.left,
-            y: event.clientY - rect.top,
-            opacity: .5,
-            scale: 1,
-            duration: .28,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        };
-
-        const onLeave = () => {
-          xTo(0);
-          yTo(0);
-          sxTo(0);
-          syTo(0);
-
-          gsap.to(lens, {
-            opacity: 0,
-            scale: .72,
-            duration: .38,
-            ease: "power2.out",
-          });
-        };
-
-        media.addEventListener("pointermove", onMove);
-        media.addEventListener("pointerleave", onLeave);
-
-        return () => {
-          media.removeEventListener("pointermove", onMove);
-          media.removeEventListener("pointerleave", onLeave);
-        };
-      });
-    },
-    { scope: root },
-  );
+      const onMove = (event: PointerEvent) => {
+        const rect = media.getBoundingClientRect();
+        const nx = (event.clientX - rect.left) / rect.width - .5;
+        const ny = (event.clientY - rect.top) / rect.height - .5;
+        xTo(nx * 1.5); yTo(ny * 1.2); rxTo(ny * -2.2); ryTo(nx * 2.6);
+        gsap.to(lens, { x: event.clientX - rect.left, y: event.clientY - rect.top, opacity: .48, scale: 1, duration: .28, overwrite: true });
+        gsap.to(chroma, { x: nx * 9, y: ny * 7, opacity: .16, duration: .25, overwrite: true });
+      };
+      const onLeave = () => {
+        xTo(0); yTo(0); rxTo(0); ryTo(0);
+        gsap.to(lens, { opacity: 0, scale: .72, duration: .38 });
+        gsap.to(chroma, { x: 0, y: 0, opacity: .05, duration: .4 });
+      };
+      media.addEventListener("pointermove", onMove);
+      media.addEventListener("pointerleave", onLeave);
+    });
+  }, { scope: root });
 
   return (
-    <main ref={root} className="rm-page">
-      <section className="rm-intro">
-        <header className="rm-header">
-          <Link href="/#cases">
-            <ArrowLeft size={14} />
-            Selected Cases
-          </Link>
-
-          <span>SoftBridge Solutions</span>
-
-          <Link href="/" className="rm-home">
-            Home
-            <b>33</b>
-          </Link>
+    <main ref={root} className="sr-page">
+      <section className="sr-intro">
+        <header className="sr-header">
+          <Link href="/#cases"><ArrowLeft size={14}/>Selected Cases</Link>
+          <span className="sr-header__brand">SoftBridge Solutions®</span>
+          <Link href="/" className="sr-home">Home <span>::</span></Link>
         </header>
-
-        <div className="rm-intro-copy">
-          <p>
-            Digital products for Europe&apos;s most ambitious companies and boldest
-            new ideas.
-          </p>
+        <div className="sr-intro-copy">
+          <p>We design, build and grow digital products for Europe&apos;s most ambitious companies and boldest new ideas.</p>
         </div>
       </section>
 
-      <section className="rm-scroll">
-        <div className="rm-pin">
-          <div className="rm-stage">
-            <div className="rm-left">
-              <span className="rm-featured">Featured work</span>
-
-              <div className="rm-left-title-window">
-                <div className="rm-left-title-track">
-                  {scenes.map((scene) => (
-                    <h1 className="rm-left-title" key={scene.shortTitle}>
-                      {scene.shortTitle}
-                    </h1>
-                  ))}
+      <section className="sr-scroll">
+        <div className="sr-stage">
+          <div className="sr-left">
+            <span className="sr-featured">Featured work</span>
+            <div className="sr-category-window"><div className="sr-category-track">
+              {projects.map((project) => <h1 className="sr-category" key={project.category}>{project.category}</h1>)}
+            </div></div>
+            <div className="sr-client-window"><div className="sr-client-track">
+              {projects.map((project) => (
+                <div className="sr-client" key={project.client}>
+                  <span className="sr-client__mark">{project.mark}</span>
+                  <div><small>Client</small><strong>{project.client}</strong></div>
                 </div>
-              </div>
-
-              <div className="rm-client-window">
-                <div className="rm-client-track">
-                  {scenes.map((scene) => (
-                    <div className="rm-client" key={scene.client}>
-                      <span>{scene.client}</span>
-                      <strong>{study.title}</strong>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="rm-right">
-              <div className="rm-scenes-track">
-                {scenes.map((scene) => (
-                  <article className="rm-scene" key={scene.title}>
-                    <div className="rm-scene__media">
-                      <img
-                        className="rm-scene__image"
-                        src={scene.image}
-                        alt={`${scene.title} featured work visual`}
-                      />
-                      <div className="rm-scene__shade" />
-                      <div className="rm-wave" />
-
-                      <div className="rm-scene__labels">
-                        <span>{scene.tone}</span>
-                        <span>{scene.title}</span>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="rm-progress">
-              {scenes.map((scene) => (
-                <span key={scene.tone}>{scene.tone}</span>
               ))}
-            </div>
-
-            <div className="rm-see-all">
-              <Link href="/#cases">
-                See all work
-                <ArrowRight size={18} />
-              </Link>
-            </div>
+            </div></div>
           </div>
+
+          <div className="sr-right"><div className="sr-slides-track">
+            {projects.map((project, index) => (
+              <article className="sr-slide" key={project.category}>
+                <div className="sr-slide__media">
+                  <img className="sr-slide__image" src={project.image} alt={`${project.category} project visual`}/>
+                  <div className="sr-chroma" style={{ backgroundImage: `url(${project.image})` }}/>
+                  <div className="sr-slide__shade"/><div className="sr-film-grain"/><div className="sr-wave"/>
+                  <div className="sr-slide__labels"><span>{String(index + 1).padStart(2, "0")}</span><span>{project.description}</span></div>
+                </div>
+              </article>
+            ))}
+          </div></div>
+
+          <div className="sr-progress">{projects.map((project, index) => <span key={project.category}>{String(index + 1).padStart(2, "0")}</span>)}</div>
+          <div className="sr-see-all"><Link href="/#cases">See all work <ArrowRight size={18}/></Link></div>
         </div>
       </section>
     </main>
