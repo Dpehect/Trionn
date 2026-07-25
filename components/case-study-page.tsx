@@ -108,10 +108,12 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
       scrollTrigger: {
         trigger: `.${styles.workSection}`,
         start: "top top",
-        end: "+=390%",
+        end: () => `+=${Math.round(window.innerHeight * 3.25)}`,
         pin: `.${styles.workSticky}`,
-        scrub: 1.05,
+        pinSpacing: true,
+        scrub: .9,
         anticipatePin: 1,
+        fastScrollEnd: true,
         invalidateOnRefresh: true,
       },
     });
@@ -119,7 +121,7 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
     featuredItems.forEach((_, index) => {
       if (index === 0) return;
       const previous = index - 1;
-      const at = index - .12;
+      const at = (index - 1) * 1.0 + .08;
       gsap.set(media[index], { zIndex: index + 2 });
       timeline
         .to(titles[previous], { autoAlpha: 0, y: -32, duration: .36, ease: "power2.inOut" }, at)
@@ -130,8 +132,17 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
         .fromTo(media[index], { autoAlpha: 0, scale: 1.035, pointerEvents: "none" }, { autoAlpha: 1, scale: 1, pointerEvents: "auto", duration: .56, ease: "power3.out" }, at + .16);
     });
 
-    timeline.fromTo(`.${styles.cta}`, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .48, ease: "power3.out" }, 3.72);
+    timeline.fromTo(
+      `.${styles.cta}`,
+      { autoAlpha: 0, y: 24 },
+      { autoAlpha: 1, y: 0, duration: .42, ease: "power3.out" },
+      2.78,
+    );
     gsap.fromTo(`.${styles.introText}`, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power3.out" });
+
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh, { once: true });
+    requestAnimationFrame(refresh);
 
     gsap.utils.toArray<HTMLElement>(`.${styles.serviceGroup}`).forEach((group) => {
       const header = group.querySelector(`.${styles.serviceHeader}`);

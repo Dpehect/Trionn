@@ -305,3 +305,22 @@
   .serviceHoverLayer,
   .servicePreview { transition: none; }
 }
+
+
+/* Part 01 scroll timing correction */
+.workSection {
+  min-height: 100svh;
+}
+
+.workSticky {
+  position: relative;
+  top: auto;
+  width: 100%;
+  height: 100svh;
+  min-height: 680px;
+}
+
+@media (max-width: 800px) {
+  .workSection { min-height: 100svh; }
+  .workSticky { height: 100svh; min-height: 720px; }
+}
