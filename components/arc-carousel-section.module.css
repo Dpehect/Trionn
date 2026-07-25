@@ -1432,3 +1432,23 @@ object-position:center!important;
     transform: none !important;
   }
 }
+
+
+/* Portrait cards */
+.slot{
+ width:clamp(320px,21vw,430px)!important;
+}
+.cover{
+ aspect-ratio:3/4!important;
+ min-height:clamp(420px,30vw,560px)!important;
+}
+.cover img{
+ object-fit:cover!important;
+}
+.card:hover .cover{
+ min-height:clamp(470px,34vw,640px)!important;
+}
+@media(max-width:1050px){
+ .slot{width:clamp(290px,42vw,360px)!important;}
+ .cover{min-height:420px!important;}
+}
