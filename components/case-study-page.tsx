@@ -251,7 +251,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       <section className="cinema-hero">
         <img
           className="cinema-hero__image"
-          src={study.editorialHero || study.hero}
+          src={study.editorialHero}
           alt={`${study.title} cinematic product visualization`}
         />
         <div className="cinema-hero__grain" />
