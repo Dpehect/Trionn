@@ -1,7 +1,18 @@
-# Trionn Featured Work — No Overlap Fix
+# SoftBridge Solutions Detail Page Content Update
 
-- Inactive images are fully hidden.
-- Only the active image is visible and clickable.
-- Image changes use a short controlled crossfade.
-- Title and client transitions remain unchanged.
-- Layout and media dimensions remain unchanged.
+Only the case detail content was changed.
+
+Preserved:
+- layout
+- sticky structure
+- GSAP transitions
+- media dimensions
+- CTA
+- no-overlap behavior
+
+Updated:
+- manifesto copy
+- categories
+- client name
+- logo
+- four media images

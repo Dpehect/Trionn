@@ -11,11 +11,38 @@ import styles from "./case-study-page.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const softBridgeLogo =
+  "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='14' fill='%23F0642F'/%3E%3Cpath d='M13 31V17h8.2c4.2 0 6.8 2 6.8 5.2 0 1.8-.8 3.2-2.4 4 2.1.7 3.3 2.3 3.3 4.5 0 3.8-3 5.3-7.4 5.3H13Zm5-8.4h3c1.5 0 2.3-.6 2.3-1.8 0-1.1-.8-1.7-2.3-1.7h-3v3.5Zm0 8h3.6c1.8 0 2.7-.7 2.7-2 0-1.3-.9-2-2.7-2H18v4Z' fill='white'/%3E%3C/svg%3E";
+
 const featuredItems = [
-  { category: "Branding", client: "Vakeso", logo: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a216554894abd7ab54f31f6_logo-vakeso.png", image: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a2291003b9fe4985cd42349_vakeso.avif", href: "/projects/vakeso" },
-  { category: "Web", client: "SoundCloud", logo: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a21654ec9611c64ea764636_logo-soundcloud.png", image: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a2290f9df6c01a0603a8645_soundcloud.avif", href: "/projects/soundcloud-website" },
-  { category: "Mobile", client: "Sona", logo: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a21655bce06dc884f5a1e7a_logo-sona.png", image: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a2290ac5bcedfea95e9c0f1_sona.avif", href: "/projects/sona-ai" },
-  { category: "Motion", client: "Vault Bank", logo: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a4d047bed23f5e522210f34_logo-vault.png", image: "https://cdn.prod.website-files.com/6a1865808036c41f27ddd715/6a4cfe6149932a0f324d1e58_Vault%20Card%20Cover%20Be%20edit2%20copy.png", href: "/projects/vault" },
+  {
+    category: "AI Transformation",
+    client: "SoftBridge Solutions",
+    logo: softBridgeLogo,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=88",
+    href: "/cases/ai-software-development-finland",
+  },
+  {
+    category: "Enterprise Platforms",
+    client: "SoftBridge Solutions",
+    logo: softBridgeLogo,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=88",
+    href: "/#cases",
+  },
+  {
+    category: "Mobile Experiences",
+    client: "SoftBridge Solutions",
+    logo: softBridgeLogo,
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1800&q=88",
+    href: "/#cases",
+  },
+  {
+    category: "Cloud Infrastructure",
+    client: "SoftBridge Solutions",
+    logo: softBridgeLogo,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=88",
+    href: "/#cases",
+  },
 ] as const;
 
 export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
@@ -69,7 +96,7 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
         <div className={styles.workSticky}>
           <div className={styles.container}>
             <div className={styles.introGrid}>
-              <div className={styles.introText}>We design, build and grow brands and digital products for the world&apos;s biggest companies and boldest new ones</div>
+              <div className={styles.introText}>We design, engineer and scale AI-powered software, enterprise platforms and digital experiences for ambitious companies.</div>
             </div>
 
             <div className={styles.workGrid}>
