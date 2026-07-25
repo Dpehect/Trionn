@@ -72,7 +72,7 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
           client: study.title === "AI Software Development" ? "Vakeso" : (study.kicker ? study.kicker.split("/")[0].trim() : "Vakeso"),
           mark: study.title === "AI Software Development" ? "V" : study.title.charAt(0),
           color: "#f0642f",
-          image: study.editorialHero || study.hero || "/detail-part-01/digital-product.jpg",
+          image: study.editorialHero || "/detail-part-01/digital-product.jpg",
           logoText: study.title === "AI Software Development" ? "Vakeso" : study.title,
         },
         ...defaultScenes.filter(
