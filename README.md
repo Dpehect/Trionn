@@ -1,8 +1,16 @@
-# SoftBridge Industrial Concrete — Build Fixed
+# SoftBridge Case Details — Titanium Theme
 
-Fixed:
-- removed invalid :global(html) and :global(body) selectors from CSS Module
-- moved html/body reset into app/globals.css
-- preserved full-width layout and edge-gap fix
-- preserved Industrial Concrete theme
-- preserved all animations and case-specific content
+Preserved:
+- layout
+- GSAP animations
+- pinned scroll behavior
+- case-specific content
+- service interactions
+- full-width viewport fix
+
+Updated:
+- titanium gray background system
+- cool silver surfaces
+- graphite typography
+- bronze accent
+- restrained metallic depth and shadow

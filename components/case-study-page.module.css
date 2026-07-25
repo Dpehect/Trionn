@@ -1119,3 +1119,115 @@
     max-width: 100%;
   }
 }
+
+
+/* SoftBridge Titanium palette override
+   Layout, GSAP animations and content remain unchanged. */
+
+.page {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(232, 235, 236, .58), transparent 34%),
+    radial-gradient(circle at 16% 84%, rgba(140, 96, 62, .12), transparent 30%),
+    linear-gradient(135deg, #aeb4b7 0%, #bcc1c3 48%, #c9ced0 100%);
+  color: #202224;
+}
+
+.workSection,
+.servicesSection {
+  background: transparent;
+}
+
+.workSticky::before {
+  background:
+    linear-gradient(90deg, rgba(32, 34, 36, .042) 1px, transparent 1px),
+    linear-gradient(rgba(32, 34, 36, .034) 1px, transparent 1px);
+}
+
+.featuredLabel {
+  color: #8c603e;
+}
+
+.featuredLabel::before {
+  color: #657078;
+}
+
+.featuredTitle {
+  color: #202224;
+  text-shadow: none;
+}
+
+.featuredTitle p {
+  color: rgba(32, 34, 36, .78);
+}
+
+.featuredTitle span {
+  color: rgba(63, 69, 73, .68);
+}
+
+.clientLabel {
+  color: #8c603e;
+}
+
+.clientName {
+  color: #202224;
+}
+
+.mediaArea {
+  border: 1px solid rgba(70, 76, 80, .17);
+  background: rgba(232, 235, 236, .68);
+  box-shadow:
+    0 24px 70px rgba(70, 77, 81, .18),
+    0 0 28px rgba(140, 96, 62, .06);
+}
+
+.mediaArea::after {
+  background:
+    linear-gradient(135deg, rgba(140, 96, 62, .07), transparent 38%),
+    linear-gradient(315deg, rgba(101, 112, 120, .08), transparent 34%);
+}
+
+.mediaItem img {
+  filter: saturate(.78) contrast(1.04) brightness(.97);
+}
+
+.cta {
+  background: linear-gradient(90deg, #7f5639, #9a6b49);
+  box-shadow: 0 12px 32px rgba(104, 71, 48, .18);
+}
+
+.cta a {
+  color: #ece8e2;
+}
+
+.serviceGroup {
+  border-color: rgba(50, 55, 58, .17);
+}
+
+.serviceNumber {
+  color: #8c603e;
+}
+
+.serviceTitle {
+  color: #202224;
+}
+
+.serviceRow {
+  border-color: rgba(50, 55, 58, .14);
+}
+
+.serviceRowLabel {
+  color: rgba(32, 34, 36, .84);
+}
+
+.serviceHoverLayer {
+  background: linear-gradient(90deg, #e7eaeb, #d6dadd);
+}
+
+.marqueeTrack {
+  color: #202224;
+}
+
+.servicePreview {
+  border: 1px solid rgba(32, 34, 36, .12);
+  box-shadow: 0 16px 36px rgba(63, 69, 73, .16);
+}
