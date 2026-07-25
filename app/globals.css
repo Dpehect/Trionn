@@ -1257,3 +1257,32 @@
     }
   }
 }
+
+
+/* Stronger, more colorful background images */
+.layer-background{
+  opacity:.34 !important;
+  filter:saturate(.92) grayscale(.08) contrast(1.08) brightness(.92) blur(.6px) !important;
+  transform:scale(1.1);
+}
+
+.layer-card--1 .layer-background{opacity:.38!important;}
+.layer-card--2 .layer-background{opacity:.33!important;}
+.layer-card--3 .layer-background{opacity:.36!important;}
+.layer-card--4 .layer-background{opacity:.31!important;}
+
+.layer-card::after{
+  background:
+  linear-gradient(
+    90deg,
+    rgba(242,243,241,.88) 0%,
+    rgba(242,243,241,.62) 35%,
+    rgba(242,243,241,.28) 65%,
+    rgba(242,243,241,.10) 100%
+  ) !important;
+}
+
+.layer-copy{
+  background:rgba(250,250,248,.16)!important;
+  backdrop-filter:blur(1.5px)!important;
+}
