@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { getCaseSeoProfile, type CaseStudy } from "@/data/cases";
 import styles from "./case-study-page.module.css";
+import { ArcCarouselSection } from "./arc-carousel-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -606,6 +607,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           ))}
         </div>
       </section>
+
+      <ArcCarouselSection currentSlug={study.slug} />
 
       {seo ? (
         <section className={styles.seoSection} aria-labelledby="case-seo-heading">

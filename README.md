@@ -1,22 +1,21 @@
-# SoftBridge Case-Specific SEO/GEO Upgrade
+# SoftBridge Arc Carousel — Other Cases
 
-Included for every case:
-- unique SEO title and meta description
-- case-specific keyword cluster
-- geographic service targeting
-- unique GEO summary
-- visible case-specific FAQ content
-- Service, FAQPage and Breadcrumb structured data
-- Open Graph and Twitter metadata
-- index/follow directives and expanded Googlebot preview settings
+Updated:
+- Section 03 now displays the other case studies.
+- The currently open case is excluded.
+- Each card uses the related case title, intro, image, category and URL.
+- Cards navigate directly to /cases/[slug].
 
 Preserved:
-- first-section structure
-- GSAP timelines
-- pinned scrolling
-- media/title animations
-- Deep Petrol second section
-- Section 01 #164C4D color system
-
-Important:
-No implementation can guarantee a first-place Google ranking. This project now provides a stronger technical and content foundation; authority, backlinks, reputation, indexing and competition still affect rankings.
+- circular arc geometry
+- drag and touch controls
+- requestAnimationFrame smoothing
+- momentum
+- clone-based infinite loop
+- active-card scale and z-index
+- hover tilt
+- custom drag cursor
+- keyboard controls
+- responsive behavior
+- Sections 01 and 02
+- SEO/GEO section
