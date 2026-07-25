@@ -28,10 +28,10 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
 
     gsap.set(titles, { autoAlpha: 0, y: 32 });
     gsap.set(clients, { autoAlpha: 0, x: -32 });
-    gsap.set(media, { autoAlpha: .25, scale: 1.05 });
+    gsap.set(media, { autoAlpha: 0, scale: 1.035, pointerEvents: "none" });
     gsap.set(titles[0], { autoAlpha: 1, y: 0 });
     gsap.set(clients[0], { autoAlpha: 1, x: 0 });
-    gsap.set(media[0], { autoAlpha: 1, scale: 1 });
+    gsap.set(media[0], { autoAlpha: 1, scale: 1, pointerEvents: "auto", zIndex: 2 });
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -49,13 +49,14 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
       if (index === 0) return;
       const previous = index - 1;
       const at = index - .12;
+      gsap.set(media[index], { zIndex: index + 2 });
       timeline
         .to(titles[previous], { autoAlpha: 0, y: -32, duration: .36, ease: "power2.inOut" }, at)
         .fromTo(titles[index], { autoAlpha: 0, y: 32 }, { autoAlpha: 1, y: 0, duration: .48, ease: "power3.out" }, at + .2)
         .to(clients[previous], { autoAlpha: 0, x: 32, duration: .34, ease: "power2.inOut" }, at)
         .fromTo(clients[index], { autoAlpha: 0, x: -32 }, { autoAlpha: 1, x: 0, duration: .46, ease: "power3.out" }, at + .18)
-        .to(media[previous], { autoAlpha: .25, scale: 1.05, duration: .58, ease: "power2.inOut" }, at)
-        .to(media[index], { autoAlpha: 1, scale: 1, duration: .72, ease: "power3.inOut" }, at + .06);
+        .to(media[previous], { autoAlpha: 0, scale: 1.035, pointerEvents: "none", duration: .4, ease: "power2.inOut" }, at)
+        .fromTo(media[index], { autoAlpha: 0, scale: 1.035, pointerEvents: "none" }, { autoAlpha: 1, scale: 1, pointerEvents: "auto", duration: .56, ease: "power3.out" }, at + .16);
     });
 
     timeline.fromTo(`.${styles.cta}`, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .48, ease: "power3.out" }, 3.72);
