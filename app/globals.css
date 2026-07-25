@@ -5716,14 +5716,12 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.03);
-  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-  filter: brightness(0.88) saturate(1.05);
+  transition: opacity 0.8s ease-in-out;
+  filter: brightness(0.9) saturate(1.02);
 }
 
 .sb-media-img.is-active {
   opacity: 1;
-  transform: scale(1);
 }
 
 .sb-media-overlay {
