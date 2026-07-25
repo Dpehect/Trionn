@@ -1,12 +1,17 @@
-# SoftBridge Case-Specific Details — Type Fix
+# SoftBridge Case Details — Text Scale Fix
 
-Fixed Vercel TypeScript error:
+Only typography readability was changed.
 
-Type 'string' is not assignable to type '{ label: string; image: string; }'
+Increased:
+- Featured work label
+- scene descriptions
+- target audience text
+- client label and client name
 
-The profile data now correctly defines service rows as `string[]`.
-`buildCaseContent()` continues converting each string into:
-- label
-- image
-
-No layout, animation, content, or visual structure was changed.
+Preserved:
+- layout
+- animation
+- scroll behavior
+- images
+- case-specific content
+- service section
