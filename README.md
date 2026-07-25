@@ -1,13 +1,19 @@
-# SoftBridge Solutions Finland — Detail Page Part 01 Revision
+# SoftBridge Solutions Finland — Detail Part 01 Reference Match
 
-## Updated
-- Scenes now move vertically like stacked cards.
-- The outgoing scene slides upward while the next scene enters from below.
-- No clip-wipe replacement animation is used.
-- Left-side eyebrow, title, description and metadata change for every scene.
-- Images react to pointer movement with subtle tilt, parallax and a soft wave field.
-- Mobile disables the pointer-wave effect while preserving the vertical scroll sequence.
-- Only detail page Part 01 is included.
+This version rebuilds only the first detail-page section using the exact
+reference composition logic:
+
+- introductory statement above the canvas
+- one pinned black stage
+- fixed left editorial column
+- large right image stage
+- all scenes arranged in one vertical track
+- synchronized title, client and image movement
+- pointer-responsive image wave and subtle distortion
+- scene progress numbers
+- final red See All Work bar
+
+No later detail-page sections are included.
 
 ## Run
 ```bash

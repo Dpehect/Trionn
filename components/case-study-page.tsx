@@ -10,62 +10,55 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const featuredSlides = [
+const scenes = [
   {
-    category: "AI",
-    eyebrow: "Featured capability",
     title: "Artificial Intelligence",
-    description: "AI agents, intelligent automation and machine-learning systems designed around measurable business outcomes.",
+    shortTitle: "AI",
     image: "/detail-part-01/ai-strategy.jpg",
-    label: "AI Strategy",
+    client: "AI Strategy",
+    tone: "01",
   },
   {
-    category: "Data",
-    eyebrow: "Featured capability",
     title: "Data Platforms",
-    description: "Operational data products that turn complex information into clear decisions, forecasts and scalable workflows.",
+    shortTitle: "Data",
     image: "/detail-part-01/data-platform.jpg",
-    label: "Data Systems",
+    client: "Data Systems",
+    tone: "02",
   },
   {
-    category: "Software",
-    eyebrow: "Featured capability",
     title: "Software Engineering",
-    description: "Reliable software foundations for enterprise platforms, internal tools and customer-facing digital products.",
+    shortTitle: "Software",
     image: "/detail-part-01/software-studio.jpg",
-    label: "Software Studio",
+    client: "Software Studio",
+    tone: "03",
   },
   {
-    category: "Web",
-    eyebrow: "Featured capability",
     title: "Web Development",
-    description: "Fast, accessible and search-ready web applications built with modern product engineering practices.",
+    shortTitle: "Web",
     image: "/detail-part-01/web-engineering.jpg",
-    label: "Web Engineering",
+    client: "Web Engineering",
+    tone: "04",
   },
   {
-    category: "Development",
-    eyebrow: "Featured capability",
     title: "Development Systems",
-    description: "Clear development environments, reusable architecture and delivery systems that support long-term product growth.",
+    shortTitle: "Systems",
     image: "/detail-part-01/development-environment.jpg",
-    label: "Development Environment",
+    client: "Development Environment",
+    tone: "05",
   },
   {
-    category: "Product",
-    eyebrow: "Featured capability",
     title: "Digital Products",
-    description: "Integrated web, mobile and interface systems designed to feel coherent across every screen and user journey.",
+    shortTitle: "Product",
     image: "/detail-part-01/digital-product.jpg",
-    label: "Product Experience",
+    client: "Product Experience",
+    tone: "06",
   },
   {
-    category: "Engineering",
-    eyebrow: "Featured capability",
     title: "Engineering Workflow",
-    description: "A practical delivery model connecting strategy, design, engineering and continuous product improvement.",
+    shortTitle: "Motion",
     image: "/detail-part-01/engineering-workflow.jpg",
-    label: "Delivery Systems",
+    client: "Delivery Systems",
+    tone: "07",
   },
 ] as const;
 
@@ -74,153 +67,128 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
   useGSAP(
     () => {
-      const section = root.current;
-      if (!section) return;
+      const wrapper = root.current;
+      if (!wrapper) return;
 
-      const slides = gsap.utils.toArray<HTMLElement>(".fw-slide");
-      const progressItems = gsap.utils.toArray<HTMLElement>(".fw-progress__item");
+      const sceneEls = gsap.utils.toArray<HTMLElement>(".rm-scene");
+      const titleEls = gsap.utils.toArray<HTMLElement>(".rm-left-title");
+      const clientEls = gsap.utils.toArray<HTMLElement>(".rm-client");
+      const progressEls = gsap.utils.toArray<HTMLElement>(".rm-progress span");
 
-      gsap.set(slides, {
-        yPercent: (index) => (index === 0 ? 0 : 100),
+      gsap.set(sceneEls, {
+        yPercent: (index) => index * 100,
       });
 
-      gsap.set(slides.slice(1), {
-        visibility: "visible",
+      gsap.set(titleEls, {
+        yPercent: (index) => index * 100,
       });
 
-      gsap.set(".fw-slide__title-line > span", { yPercent: 105 });
-      gsap.set(".fw-slide:first-child .fw-slide__title-line > span", { yPercent: 0 });
-      gsap.set(".fw-slide:first-child .fw-slide__description", { opacity: 1, y: 0 });
-      gsap.set(progressItems[0], { opacity: 1 });
+      gsap.set(clientEls, {
+        yPercent: (index) => index * 100,
+      });
 
-      const timeline = gsap.timeline({
+      gsap.set(progressEls, { opacity: .22 });
+      gsap.set(progressEls[0], { opacity: 1 });
+
+      const master = gsap.timeline({
         scrollTrigger: {
-          trigger: ".fw-section",
+          trigger: ".rm-scroll",
           start: "top top",
-          end: `+=${featuredSlides.length * 115}%`,
-          pin: ".fw-stage",
-          scrub: 1.2,
+          end: `+=${scenes.length * 105}%`,
+          pin: ".rm-pin",
+          scrub: 1.15,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      slides.forEach((slide, index) => {
-        if (index === 0) return;
+      scenes.forEach((_, index) => {
+        if (index === scenes.length - 1) return;
 
-        const previous = slides[index - 1];
-        const previousTitle = previous.querySelectorAll(".fw-slide__title-line > span");
-        const currentTitle = slide.querySelectorAll(".fw-slide__title-line > span");
-        const currentDescription = slide.querySelector(".fw-slide__description");
+        const at = index + .02;
 
-        timeline
+        master
           .to(
-            previous,
+            sceneEls,
             {
-              yPercent: -100,
-              duration: .9,
+              yPercent: (sceneIndex) => (sceneIndex - index - 1) * 100,
+              duration: .95,
               ease: "power3.inOut",
             },
-            index - .58,
+            at,
           )
           .to(
-            slide,
+            titleEls,
             {
-              yPercent: 0,
-              duration: .9,
+              yPercent: (titleIndex) => (titleIndex - index - 1) * 100,
+              duration: .95,
               ease: "power3.inOut",
             },
-            index - .58,
+            at,
           )
           .to(
-            previousTitle,
+            clientEls,
             {
-              yPercent: -110,
-              duration: .32,
-              stagger: .025,
-              ease: "power2.in",
+              yPercent: (clientIndex) => (clientIndex - index - 1) * 100,
+              duration: .95,
+              ease: "power3.inOut",
             },
-            index - .56,
+            at,
           )
-          .fromTo(
-            currentTitle,
-            { yPercent: 108 },
-            {
-              yPercent: 0,
-              duration: .48,
-              stagger: .035,
-              ease: "power3.out",
-            },
-            index - .16,
-          )
-          .fromTo(
-            currentDescription,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: .4,
-              ease: "power2.out",
-            },
-            index - .08,
-          )
-          .to(
-            progressItems[index - 1],
-            { opacity: .25, duration: .15 },
-            index - .2,
-          )
-          .to(
-            progressItems[index],
-            { opacity: 1, duration: .15 },
-            index - .2,
-          );
+          .to(progressEls[index], { opacity: .22, duration: .2 }, at + .55)
+          .to(progressEls[index + 1], { opacity: 1, duration: .2 }, at + .55);
       });
 
-      timeline.fromTo(
-        ".fw-all-work",
-        { yPercent: 100 },
+      master.to(
+        ".rm-see-all",
         {
           yPercent: 0,
-          duration: .55,
+          duration: .6,
           ease: "power3.inOut",
         },
-        featuredSlides.length - .12,
+        scenes.length - .1,
       );
 
       gsap.fromTo(
-        ".fw-header",
+        ".rm-header",
         { opacity: 0, y: -12 },
         { opacity: 1, y: 0, duration: .7, ease: "power3.out" },
       );
 
-      const mediaElements = gsap.utils.toArray<HTMLElement>(".fw-slide__media");
+      gsap.fromTo(
+        ".rm-intro-copy",
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: .8, ease: "power3.out", delay: .1 },
+      );
 
-      mediaElements.forEach((media) => {
-        const image = media.querySelector<HTMLElement>(".fw-slide__image");
-        const wave = media.querySelector<HTMLElement>(".fw-slide__wave");
-        if (!image || !wave) return;
+      const mediaEls = gsap.utils.toArray<HTMLElement>(".rm-scene__media");
 
-        const xTo = gsap.quickTo(image, "xPercent", { duration: .7, ease: "power3.out" });
-        const yTo = gsap.quickTo(image, "yPercent", { duration: .7, ease: "power3.out" });
-        const rotateXTo = gsap.quickTo(image, "rotationX", { duration: .8, ease: "power3.out" });
-        const rotateYTo = gsap.quickTo(image, "rotationY", { duration: .8, ease: "power3.out" });
+      mediaEls.forEach((media) => {
+        const image = media.querySelector<HTMLElement>(".rm-scene__image");
+        const lens = media.querySelector<HTMLElement>(".rm-wave");
+        if (!image || !lens) return;
+
+        const xTo = gsap.quickTo(image, "xPercent", { duration: .55, ease: "power3.out" });
+        const yTo = gsap.quickTo(image, "yPercent", { duration: .55, ease: "power3.out" });
+        const sxTo = gsap.quickTo(image, "skewX", { duration: .6, ease: "power3.out" });
+        const syTo = gsap.quickTo(image, "skewY", { duration: .6, ease: "power3.out" });
 
         const onMove = (event: PointerEvent) => {
           const rect = media.getBoundingClientRect();
           const nx = (event.clientX - rect.left) / rect.width - .5;
           const ny = (event.clientY - rect.top) / rect.height - .5;
 
-          xTo(nx * 2.6);
-          yTo(ny * 2.2);
-          rotateXTo(ny * -3.5);
-          rotateYTo(nx * 4);
+          xTo(nx * 2.4);
+          yTo(ny * 1.9);
+          sxTo(nx * 1.1);
+          syTo(ny * -.7);
 
-          gsap.to(wave, {
+          gsap.to(lens, {
             x: event.clientX - rect.left,
             y: event.clientY - rect.top,
-            opacity: .42,
+            opacity: .5,
             scale: 1,
-            duration: .35,
+            duration: .28,
             ease: "power2.out",
             overwrite: true,
           });
@@ -229,13 +197,13 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         const onLeave = () => {
           xTo(0);
           yTo(0);
-          rotateXTo(0);
-          rotateYTo(0);
+          sxTo(0);
+          syTo(0);
 
-          gsap.to(wave, {
+          gsap.to(lens, {
             opacity: 0,
-            scale: .7,
-            duration: .45,
+            scale: .72,
+            duration: .38,
             ease: "power2.out",
           });
         };
@@ -253,81 +221,93 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
   );
 
   return (
-    <main ref={root} className="fw-page">
-      <section className="fw-section">
-        <div className="fw-stage">
-          <header className="fw-header">
-            <Link href="/#cases" className="fw-header__back">
-              <ArrowLeft size={14} />
-              Selected Cases
-            </Link>
+    <main ref={root} className="rm-page">
+      <section className="rm-intro">
+        <header className="rm-header">
+          <Link href="/#cases">
+            <ArrowLeft size={14} />
+            Selected Cases
+          </Link>
 
-            <span className="fw-header__brand">SoftBridge Solutions</span>
+          <span>SoftBridge Solutions</span>
 
-            <Link href="/" className="fw-header__home">
-              Home
-              <span>33</span>
-            </Link>
-          </header>
+          <Link href="/" className="rm-home">
+            Home
+            <b>33</b>
+          </Link>
+        </header>
 
-          <div className="fw-slides">
-            {featuredSlides.map((slide, index) => (
-              <article
-                className={`fw-slide fw-slide--${index + 1}`}
-                key={slide.title}
-                style={{ zIndex: index + 1 }}
-              >
-                <div className="fw-slide__copy">
-                  <span className="fw-slide__eyebrow">{slide.eyebrow}</span>
+        <div className="rm-intro-copy">
+          <p>
+            Digital products for Europe&apos;s most ambitious companies and boldest
+            new ideas.
+          </p>
+        </div>
+      </section>
 
-                  <h1>
-                    <span className="fw-slide__title-line">
-                      <span>{slide.title}</span>
-                    </span>
-                  </h1>
+      <section className="rm-scroll">
+        <div className="rm-pin">
+          <div className="rm-stage">
+            <div className="rm-left">
+              <span className="rm-featured">Featured work</span>
 
-                  <p className="fw-slide__description">
-                    {slide.description}
-                  </p>
-
-                  <div className="fw-slide__meta">
-                    <span>{slide.label}</span>
-                    <strong>{study.title}</strong>
-                  </div>
+              <div className="rm-left-title-window">
+                <div className="rm-left-title-track">
+                  {scenes.map((scene) => (
+                    <h1 className="rm-left-title" key={scene.shortTitle}>
+                      {scene.shortTitle}
+                    </h1>
+                  ))}
                 </div>
+              </div>
 
-                <div className="fw-slide__media">
-                  <img
-                    className="fw-slide__image"
-                    src={slide.image}
-                    alt={`${slide.title} featured visual`}
-                  />
-
-                  <div className="fw-slide__media-shade" />
-                  <div className="fw-slide__wave" />
-
-                  <div className="fw-slide__media-label">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <span>{slide.category}</span>
-                  </div>
+              <div className="rm-client-window">
+                <div className="rm-client-track">
+                  {scenes.map((scene) => (
+                    <div className="rm-client" key={scene.client}>
+                      <span>{scene.client}</span>
+                      <strong>{study.title}</strong>
+                    </div>
+                  ))}
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
 
-          <aside className="fw-progress" aria-label="Featured work progress">
-            {featuredSlides.map((slide, index) => (
-              <span className="fw-progress__item" key={slide.title}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            ))}
-          </aside>
+            <div className="rm-right">
+              <div className="rm-scenes-track">
+                {scenes.map((scene) => (
+                  <article className="rm-scene" key={scene.title}>
+                    <div className="rm-scene__media">
+                      <img
+                        className="rm-scene__image"
+                        src={scene.image}
+                        alt={`${scene.title} featured work visual`}
+                      />
+                      <div className="rm-scene__shade" />
+                      <div className="rm-wave" />
 
-          <div className="fw-all-work">
-            <Link href="/#cases">
-              See all work
-              <ArrowRight size={18} />
-            </Link>
+                      <div className="rm-scene__labels">
+                        <span>{scene.tone}</span>
+                        <span>{scene.title}</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="rm-progress">
+              {scenes.map((scene) => (
+                <span key={scene.tone}>{scene.tone}</span>
+              ))}
+            </div>
+
+            <div className="rm-see-all">
+              <Link href="/#cases">
+                See all work
+                <ArrowRight size={18} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
