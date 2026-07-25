@@ -1,17 +1,18 @@
-# SoftBridge Section 03 Hover Focus
+# SoftBridge Section 03 Full Height Fix
 
 Updated:
-- hovered carousel card becomes taller and larger than neighboring cards
-- complete card grows vertically: image, title, description and link
-- non-hovered cards blur and fade while one card is hovered
-- all cards return to their original state when hover ends
-- stronger shadow and focus depth added to hovered card
+- carousel viewport height increased
+- arc ring moved lower
+- card image height increased
+- hover image height increased further
+- complete card content remains visible
+- mobile and tablet heights adjusted
 
 Preserved:
-- drag
-- touch
+- arc structure
+- drag and touch controls
 - momentum
 - infinite loop
-- card spacing
-- mobile behavior
-- all other sections and animations
+- hover focus
+- card blur behavior
+- all other detail-page sections and animations

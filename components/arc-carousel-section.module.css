@@ -1452,3 +1452,121 @@ object-position:center!important;
  .slot{width:clamp(290px,42vw,360px)!important;}
  .cover{min-height:420px!important;}
 }
+
+
+/* Section 03 — full card visibility and increased height */
+.section {
+  min-height: 1260px !important;
+  padding-bottom: clamp(90px, 7vw, 130px) !important;
+}
+
+.viewport {
+  height: clamp(940px, 70vw, 1120px) !important;
+  overflow: hidden !important;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 610px) !important;
+}
+
+.slot {
+  width: clamp(320px, 21vw, 430px) !important;
+}
+
+.cover {
+  aspect-ratio: 3 / 4 !important;
+  min-height: clamp(460px, 34vw, 620px) !important;
+}
+
+.cover img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.card:hover .cover {
+  min-height: clamp(520px, 38vw, 700px) !important;
+}
+
+.text {
+  min-height: 210px !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1120px !important;
+  }
+
+  .viewport {
+    height: 850px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 520px) !important;
+  }
+
+  .cover {
+    min-height: clamp(410px, 38vw, 540px) !important;
+  }
+
+  .card:hover .cover {
+    min-height: clamp(470px, 43vw, 610px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1020px !important;
+  }
+
+  .viewport {
+    height: 780px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 460px) !important;
+  }
+
+  .slot {
+    width: clamp(290px, 44vw, 370px) !important;
+  }
+
+  .cover {
+    min-height: 430px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 500px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 900px !important;
+  }
+
+  .viewport {
+    height: 700px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 390px) !important;
+  }
+
+  .slot {
+    width: min(84vw, 360px) !important;
+  }
+
+  .cover {
+    min-height: 390px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 430px !important;
+  }
+
+  .text {
+    min-height: 185px !important;
+  }
+}
