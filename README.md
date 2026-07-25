@@ -1,18 +1,16 @@
-# SoftBridge Typography Upgrade
+# SoftBridge Color Upgrade
 
 Updated:
-- stronger Featured Work label
-- larger and more balanced case titles
-- larger, clearer descriptions
-- stronger audience metadata
-- improved spacing and contrast
+- richer coral, violet, teal, gold and blue accents
+- subtle color atmosphere over #F9F6F1
+- gradient editorial title treatment
+- more colorful service hover states
+- richer media shadows and borders
 
 Preserved:
-- DOM/component structure
-- grid layout
-- first-section proportions
-- GSAP timelines
-- pinned scrolling
-- media transitions
+- layout structure
+- typography dimensions
+- GSAP animations
+- pinned scroll
+- first-section alignment
 - responsive behavior
-- #F9F6F1 background

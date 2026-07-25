@@ -1266,3 +1266,123 @@
     letter-spacing: .11em !important;
   }
 }
+
+
+/* Color-rich editorial system — layout and animations preserved */
+.titaniumTheme {
+  --accent-coral: #E66A3A;
+  --accent-violet: #7657D6;
+  --accent-teal: #2D8C84;
+  --accent-gold: #C58A2F;
+  --accent-blue: #4677C8;
+}
+
+.titaniumTheme .workSticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(230,106,58,.11), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(118,87,214,.10), transparent 30%),
+    radial-gradient(circle at 72% 88%, rgba(45,140,132,.09), transparent 28%);
+}
+
+.titaniumTheme .container {
+  position: relative;
+  z-index: 1;
+}
+
+.titaniumTheme .featuredLabel {
+  color: var(--accent-coral) !important;
+}
+
+.titaniumTheme .featuredTitle strong {
+  background:
+    linear-gradient(
+      92deg,
+      #131313 0%,
+      #2B3140 46%,
+      #40315D 72%,
+      #131313 100%
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.titaniumTheme .featuredTitle p {
+  color: #3D4650 !important;
+}
+
+.titaniumTheme .featuredTitle span {
+  color: var(--accent-teal) !important;
+}
+
+.titaniumTheme .featuredTitle span::first-letter {
+  color: var(--accent-coral);
+}
+
+.titaniumTheme .mediaArea {
+  border-color: rgba(118,87,214,.24) !important;
+  box-shadow:
+    0 28px 72px rgba(58,42,96,.18),
+    0 12px 28px rgba(45,140,132,.10),
+    inset 0 1px 0 rgba(255,255,255,.30) !important;
+}
+
+.titaniumTheme .mediaArea::after {
+  background:
+    linear-gradient(125deg, rgba(230,106,58,.13), transparent 31%),
+    radial-gradient(circle at 82% 18%, rgba(118,87,214,.19), transparent 32%),
+    radial-gradient(circle at 18% 84%, rgba(45,140,132,.12), transparent 30%) !important;
+}
+
+.titaniumTheme .serviceNumber {
+  color: var(--accent-coral) !important;
+}
+
+.titaniumTheme .serviceTitle {
+  background:
+    linear-gradient(92deg, #172027 0%, #394B54 42%, #7657D6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.titaniumTheme .serviceRowLabel {
+  color: #38454D !important;
+}
+
+.titaniumTheme .serviceRow:nth-child(4n + 1) .serviceHoverLayer {
+  background: linear-gradient(90deg, #F7C9B5, #FBE1D5) !important;
+}
+
+.titaniumTheme .serviceRow:nth-child(4n + 2) .serviceHoverLayer {
+  background: linear-gradient(90deg, #DCD3FF, #EEE9FF) !important;
+}
+
+.titaniumTheme .serviceRow:nth-child(4n + 3) .serviceHoverLayer {
+  background: linear-gradient(90deg, #BFE3DE, #DDF1EE) !important;
+}
+
+.titaniumTheme .serviceRow:nth-child(4n + 4) .serviceHoverLayer {
+  background: linear-gradient(90deg, #F4D9A4, #FAE9C9) !important;
+}
+
+.titaniumTheme .marqueeTrack {
+  color: #1A1F24 !important;
+}
+
+.titaniumTheme .servicePreview {
+  border-color: rgba(118,87,214,.28) !important;
+}
+
+@media (max-width: 800px) {
+  .titaniumTheme .workSticky::after {
+    background:
+      radial-gradient(circle at 10% 10%, rgba(230,106,58,.10), transparent 28%),
+      radial-gradient(circle at 92% 16%, rgba(118,87,214,.09), transparent 28%);
+  }
+}
