@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,35 +10,76 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const scenes = [
+interface Scene {
+  category: string;
+  client: string;
+  mark: string;
+  color: string;
+  image: string;
+  logoText: string;
+}
+
+const defaultScenes: Scene[] = [
+  {
+    category: "Branding",
+    client: "Vakeso",
+    mark: "V",
+    color: "#f0642f",
+    image: "/detail-part-01/digital-product.jpg",
+    logoText: "Vakeso",
+  },
   {
     category: "AI Systems",
     client: "Nordic Intelligence",
     mark: "NI",
+    color: "#3b82f6",
     image: "/detail-part-01/ai-strategy.jpg",
+    logoText: "Nordic AI",
   },
   {
     category: "Enterprise Web",
     client: "Atlas Platform",
     mark: "AP",
-    image: "/detail-part-01/digital-product.jpg",
+    color: "#10b981",
+    image: "/detail-part-01/web-engineering.jpg",
+    logoText: "Atlas",
   },
   {
     category: "Mobile Platforms",
     client: "Nova Mobile",
     mark: "NM",
+    color: "#8b5cf6",
     image: "/detail-part-01/software-studio.jpg",
+    logoText: "Nova",
   },
   {
     category: "Cloud Infrastructure",
     client: "Vault Cloud",
     mark: "VC",
+    color: "#ec4899",
     image: "/detail-part-01/data-platform.jpg",
+    logoText: "Vault",
   },
-] as const;
+];
 
-export function CaseStudyPage({ study }: { study: CaseStudy }) {
+export function CaseStudyPage({ study }: { study?: CaseStudy }) {
   const root = useRef<HTMLElement>(null);
+
+  const scenes: Scene[] = study
+    ? [
+        {
+          category: study.title === "AI Software Development" ? "Branding" : study.title,
+          client: study.title === "AI Software Development" ? "Vakeso" : (study.kicker ? study.kicker.split("/")[0].trim() : "Vakeso"),
+          mark: study.title === "AI Software Development" ? "V" : study.title.charAt(0),
+          color: "#f0642f",
+          image: study.editorialHero || study.hero || "/detail-part-01/digital-product.jpg",
+          logoText: study.title === "AI Software Development" ? "Vakeso" : study.title,
+        },
+        ...defaultScenes.filter(
+          (s) => s.category !== (study.title === "AI Software Development" ? "Branding" : study.title)
+        ),
+      ]
+    : defaultScenes;
 
   useGSAP(
     () => {
@@ -49,14 +90,14 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
       if (!slideTrack || !categoryTrack || !clientTrack) return;
 
-      gsap.set(progress, { opacity: .24 });
-      gsap.set(progress[0], { opacity: 1 });
+      gsap.set(progress, { opacity: 0.24 });
+      if (progress[0]) gsap.set(progress[0], { opacity: 1 });
 
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: ".fc-scroll",
           start: "top top",
-          end: `+=${scenes.length * 130}%`,
+          end: `+=${scenes.length * 120}%`,
           pin: ".fc-stage",
           scrub: 1.15,
           anticipatePin: 1,
@@ -75,87 +116,90 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
               duration: 1,
               ease: "power3.inOut",
             },
-            at,
+            at
           )
           .to(
             categoryTrack,
             {
               yPercent: -100 * (index + 1),
-              duration: .92,
+              duration: 0.92,
               ease: "power3.inOut",
             },
-            at,
+            at
           )
           .to(
             clientTrack,
             {
               yPercent: -100 * (index + 1),
-              duration: .92,
+              duration: 0.92,
               ease: "power3.inOut",
             },
-            at,
+            at
           )
-          .to(progress[index], { opacity: .24, duration: .16 }, at + .56)
-          .to(progress[index + 1], { opacity: 1, duration: .16 }, at + .56);
+          .to(progress[index], { opacity: 0.24, duration: 0.16 }, at + 0.56)
+          .to(progress[index + 1], { opacity: 1, duration: 0.16 }, at + 0.56);
       }
 
       master.to(
         ".fc-cta",
         {
           yPercent: 0,
-          duration: .62,
+          duration: 0.62,
           ease: "power3.inOut",
         },
-        scenes.length - .08,
+        scenes.length - 0.08
       );
 
       gsap.fromTo(
         ".fc-header",
-        { opacity: 0, y: -12 },
-        { opacity: 1, y: 0, duration: .7, ease: "power3.out" },
-      );
-
-      gsap.fromTo(
-        ".fc-intro-copy",
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: .9, ease: "power3.out", delay: .08 },
+        { opacity: 0, y: -16 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
       );
 
       const canvases = gsap.utils.toArray<HTMLElement>(".fc-image-canvas");
 
       canvases.forEach((canvas) => {
         const image = canvas.querySelector<HTMLElement>(".fc-image");
+        const overlay = canvas.querySelector<HTMLElement>(".fc-brand-overlay");
         const chroma = canvas.querySelector<HTMLElement>(".fc-chroma");
         const wave = canvas.querySelector<HTMLElement>(".fc-wave");
         if (!image || !chroma || !wave) return;
 
-        const xTo = gsap.quickTo(image, "xPercent", { duration: .65, ease: "power3.out" });
-        const yTo = gsap.quickTo(image, "yPercent", { duration: .65, ease: "power3.out" });
-        const scaleTo = gsap.quickTo(image, "scale", { duration: .7, ease: "power3.out" });
+        const xTo = gsap.quickTo(image, "xPercent", { duration: 0.65, ease: "power3.out" });
+        const yTo = gsap.quickTo(image, "yPercent", { duration: 0.65, ease: "power3.out" });
+        const scaleTo = gsap.quickTo(image, "scale", { duration: 0.7, ease: "power3.out" });
+
+        const overlayXTo = overlay ? gsap.quickTo(overlay, "x", { duration: 0.5, ease: "power2.out" }) : null;
+        const overlayYTo = overlay ? gsap.quickTo(overlay, "y", { duration: 0.5, ease: "power2.out" }) : null;
 
         const onMove = (event: PointerEvent) => {
           const rect = canvas.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - .5;
-          const y = (event.clientY - rect.top) / rect.height - .5;
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-          xTo(x * 1.2);
-          yTo(y * 1);
-          scaleTo(1.015);
+          xTo(x * 1.5);
+          yTo(y * 1.2);
+          scaleTo(1.02);
+
+          if (overlayXTo && overlayYTo) {
+            overlayXTo(x * 12);
+            overlayYTo(y * 8);
+          }
 
           gsap.to(wave, {
             x: event.clientX - rect.left,
             y: event.clientY - rect.top,
-            opacity: .28,
+            opacity: 0.32,
             scale: 1,
-            duration: .22,
+            duration: 0.22,
             overwrite: true,
           });
 
           gsap.to(chroma, {
             x: x * 5,
             y: y * 4,
-            opacity: .09,
-            duration: .22,
+            opacity: 0.09,
+            duration: 0.22,
             overwrite: true,
           });
         };
@@ -165,17 +209,22 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           yTo(0);
           scaleTo(1);
 
+          if (overlayXTo && overlayYTo) {
+            overlayXTo(0);
+            overlayYTo(0);
+          }
+
           gsap.to(wave, {
             opacity: 0,
-            scale: .8,
-            duration: .36,
+            scale: 0.8,
+            duration: 0.36,
           });
 
           gsap.to(chroma, {
             x: 0,
             y: 0,
-            opacity: .035,
-            duration: .36,
+            opacity: 0.035,
+            duration: 0.36,
           });
         };
 
@@ -183,43 +232,43 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         canvas.addEventListener("pointerleave", onLeave);
       });
     },
-    { scope: root },
+    { scope: root }
   );
 
   return (
     <main ref={root} className="fc-page">
-      <section className="fc-intro">
-        <header className="fc-header">
-          <Link href="/#cases">
-            <ArrowLeft size={14} />
-            Selected Cases
+      <header className="fc-header">
+        <div className="fc-header-left">
+          <Link href="/" className="fc-logo">
+            Vivid Motion<sup>®</sup>
           </Link>
+        </div>
 
-          <span className="fc-logo">SoftBridge Solutions®</span>
-
-          <Link href="/" className="fc-home">
-            Home ::
-          </Link>
-        </header>
-
-        <div className="fc-intro-copy">
-          <p>
-            We design, build and grow digital products for Europe&apos;s most
-            ambitious companies and boldest new ideas.
+        <div className="fc-header-center">
+          <p className="fc-header-statement">
+            We design, build and grow brands and digital products for the world&apos;s biggest companies and boldest new ones
           </p>
         </div>
-      </section>
+
+        <div className="fc-header-right">
+          <Link href="/" className="fc-home-btn">
+            HOME ::
+          </Link>
+        </div>
+      </header>
 
       <section className="fc-scroll">
         <div className="fc-stage">
           <div className="fc-left">
-            <span className="fc-featured">Featured work</span>
+            <div className="fc-left-top">
+              <span className="fc-featured">Featured work</span>
 
-            <div className="fc-category-window">
-              <div className="fc-category-track">
-                {scenes.map((scene) => (
-                  <h1 key={scene.category}>{scene.category}</h1>
-                ))}
+              <div className="fc-category-window">
+                <div className="fc-category-track">
+                  {scenes.map((scene) => (
+                    <h1 key={scene.category}>{scene.category}</h1>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -227,9 +276,17 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
               <div className="fc-client-track">
                 {scenes.map((scene) => (
                   <div className="fc-client" key={scene.client}>
-                    <span className="fc-client-mark">{scene.mark}</span>
-                    <div>
-                      <small>Client</small>
+                    <div
+                      className="fc-client-mark"
+                      style={{ backgroundColor: scene.color }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 6L12 18L19 6" stroke="#FFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <rect x="4" y="4" width="6" height="6" rx="1.5" fill="#FFF" />
+                      </svg>
+                    </div>
+                    <div className="fc-client-info">
+                      <small>CLIENT</small>
                       <strong>{scene.client}</strong>
                     </div>
                   </div>
@@ -248,6 +305,20 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
                       src={scene.image}
                       alt={`${scene.category} project visual`}
                     />
+
+                    <div className="fc-brand-overlay">
+                      <div
+                        className="fc-brand-icon"
+                        style={{ backgroundColor: scene.color }}
+                      >
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                          <path d="M5 6L12 18L19 6" stroke="#FFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <rect x="4" y="4" width="6" height="6" rx="1.5" fill="#FFF" />
+                        </svg>
+                      </div>
+                      <span className="fc-brand-name">{scene.logoText}</span>
+                    </div>
+
                     <div
                       className="fc-chroma"
                       style={{ backgroundImage: `url(${scene.image})` }}

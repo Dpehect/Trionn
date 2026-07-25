@@ -1307,80 +1307,117 @@
   background: #000;
   color: #f5f3ed;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.fc-intro {
+  min-height: 100vh;
   position: relative;
-  min-height: 34vh;
-  padding-top: 58px;
+  overflow-x: hidden;
 }
 
 .fc-header {
-  position: absolute;
+  position: relative;
   z-index: 100;
-  inset: 0 0 auto;
-  height: 58px;
-  padding: 0 1.25vw;
+  padding: 24px 3vw 16px 2.5vw;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  font-size: 8px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  grid-template-columns: minmax(180px, auto) 1fr auto;
+  align-items: flex-start;
+  gap: 32px;
+  background: #000;
 }
 
-.fc-header a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.fc-logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  line-height: 1.1;
 }
 
-.fc-home {
-  justify-self: end;
+.fc-logo sup {
+  font-size: 10px;
+  font-family: sans-serif;
+  vertical-align: super;
+  margin-left: 2px;
 }
 
-.fc-intro-copy {
-  min-height: calc(34vh - 58px);
-  padding: 3vh 1.25vw 5vh;
+.fc-header-center {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
+  padding-right: 1vw;
 }
 
-.fc-intro-copy p {
-  width: min(58vw, 980px);
+.fc-header-statement {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(30px, 4vw, 72px);
-  line-height: .91;
-  letter-spacing: -.055em;
+  max-width: 780px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(20px, 2.6vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: left;
+}
+
+.fc-header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fc-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.fc-home-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .fc-stage {
   position: relative;
-  height: 100svh;
-  min-height: 700px;
+  height: calc(100vh - 120px);
+  min-height: 600px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 38% 62%;
   background: #000;
 }
 
 .fc-left {
   position: relative;
-  padding: 10vh 4vw 5vh 1.25vw;
+  padding: 2.5vw 3vw 40px 2.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
 }
 
 .fc-featured {
-  color: rgba(245,243,237,.42);
-  font-size: 10px;
+  display: block;
+  color: rgba(245, 243, 237, 0.45);
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .fc-category-window {
   position: relative;
-  height: clamp(104px, 10vw, 176px);
-  margin-top: 26px;
+  height: clamp(80px, 10vw, 160px);
+  margin-top: 18px;
   overflow: hidden;
 }
 
@@ -1393,82 +1430,83 @@
 }
 
 .fc-category-track {
-  height: 400%;
+  height: 500%;
 }
 
 .fc-category-track h1 {
-  height: 25%;
+  height: 20%;
   margin: 0;
   display: flex;
   align-items: flex-start;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(60px, 7.2vw, 128px);
-  line-height: .84;
-  letter-spacing: -.065em;
+  font-size: clamp(56px, 7.5vw, 120px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
   font-weight: 400;
+  color: #ffffff;
 }
 
 .fc-client-window {
-  position: absolute;
-  left: 1.25vw;
-  right: 4vw;
-  bottom: 5.5vh;
-  height: 58px;
+  position: relative;
+  height: 54px;
   overflow: hidden;
+  margin-top: auto;
 }
 
 .fc-client-track {
-  height: 400%;
+  height: 500%;
 }
 
 .fc-client {
-  height: 25%;
+  height: 20%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .fc-client-mark {
   display: grid;
   place-items: center;
-  width: 34px;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   background: #f0642f;
   color: #fff;
-  font-size: 9px;
-  font-weight: 700;
+  flex-shrink: 0;
 }
 
-.fc-client small {
+.fc-client-info small {
   display: block;
-  color: rgba(245,243,237,.4);
-  font-size: 7px;
-  letter-spacing: .12em;
+  color: rgba(245, 243, 237, 0.4);
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.fc-client strong {
+.fc-client-info strong {
   display: block;
-  margin-top: 4px;
-  font-size: 10px;
+  margin-top: 2px;
+  font-size: 15px;
   font-weight: 500;
+  color: #ffffff;
 }
 
 .fc-right {
   position: relative;
   overflow: hidden;
-  margin: 2.4vh 1.25vw 1.25vw 0;
+  margin: 10px 2.5vw 30px 0;
+  border-radius: 20px;
   background: #080808;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .fc-image-track {
-  height: 400%;
+  height: 500%;
 }
 
 .fc-image-scene {
   position: relative;
-  height: 25%;
+  height: 20%;
 }
 
 .fc-image-canvas {
@@ -1482,20 +1520,47 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(.79) saturate(.9) contrast(1.04);
+  filter: brightness(0.82) saturate(1.05) contrast(1.05);
   transform-origin: center;
   will-change: transform;
 }
 
-.fc-image-scene:nth-child(1) .fc-image { object-position: 48% 50%; }
-.fc-image-scene:nth-child(2) .fc-image { object-position: 50% 50%; }
-.fc-image-scene:nth-child(3) .fc-image { object-position: 50% 55%; }
-.fc-image-scene:nth-child(4) .fc-image { object-position: 50% 50%; }
+.fc-brand-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.fc-brand-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 32px rgba(240, 100, 47, 0.4);
+}
+
+.fc-brand-name {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(36px, 4.5vw, 68px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
 
 .fc-chroma {
   position: absolute;
   inset: 0;
-  opacity: .035;
+  opacity: 0.035;
   background-size: cover;
   background-position: center;
   mix-blend-mode: screen;
@@ -1507,28 +1572,21 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(0,0,0,.2), transparent 54%),
-    radial-gradient(circle at center, transparent 62%, rgba(0,0,0,.12));
+    linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 50%),
+    radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.25));
   pointer-events: none;
 }
 
 .fc-grain {
   position: absolute;
   inset: -35%;
-  opacity: .065;
+  opacity: 0.065;
   background-image:
-    repeating-radial-gradient(circle, rgba(255,255,255,.72) 0 1px, transparent 1px 4px);
+    repeating-radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 1px, transparent 1px 4px);
   background-size: 5px 5px;
   mix-blend-mode: soft-light;
   pointer-events: none;
-  animation: fc-grain .35s steps(2) infinite;
-}
-
-@keyframes fc-grain {
-  0% { transform: translate(0,0); }
-  33% { transform: translate(1.5%,-1%); }
-  66% { transform: translate(-1%,1.5%); }
-  100% { transform: translate(0,0); }
+  animation: fc-grain 0.35s steps(2) infinite;
 }
 
 .fc-wave {
@@ -1536,14 +1594,14 @@
   z-index: 5;
   left: 0;
   top: 0;
-  width: 200px;
+  width: 220px;
   aspect-ratio: 1;
   opacity: 0;
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(.8);
+  transform: translate(-50%, -50%) scale(0.8);
   background:
-    radial-gradient(circle, rgba(255,255,255,.15), rgba(255,255,255,.055) 28%, transparent 70%);
-  filter: blur(12px);
+    radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 28%, transparent 70%);
+  filter: blur(14px);
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -1551,14 +1609,14 @@
 .fc-image-meta {
   position: absolute;
   z-index: 6;
-  top: 14px;
-  left: 16px;
-  right: 16px;
+  top: 18px;
+  left: 20px;
+  right: 20px;
   display: flex;
   justify-content: space-between;
-  color: rgba(255,255,255,.68);
-  font-size: 8px;
-  letter-spacing: .1em;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   mix-blend-mode: difference;
 }
@@ -1566,104 +1624,66 @@
 .fc-progress {
   position: absolute;
   z-index: 20;
-  left: 1.25vw;
-  bottom: 1.25vw;
+  left: 2.5vw;
+  bottom: 25px;
   display: flex;
-  gap: 9px;
-  color: rgba(245,243,237,.5);
-  font-size: 7px;
+  gap: 12px;
+  color: rgba(245, 243, 237, 0.5);
+  font-size: 9px;
 }
 
 .fc-cta {
   position: absolute;
   z-index: 30;
-  left: 40%;
-  right: 1.25vw;
-  bottom: 1.25vw;
+  left: 38%;
+  right: 2.5vw;
+  bottom: 20px;
   height: 54px;
-  transform: translateY(120%);
+  transform: translateY(140%);
   background: #ed2b1f;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .fc-cta a {
   height: 100%;
-  padding: 0 18px;
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  font-size: 9px;
-  letter-spacing: .12em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 @media (max-width: 900px) {
-  .fc-intro {
-    min-height: 27vh;
-  }
-
   .fc-header {
-    padding-inline: 14px;
     grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 16px;
   }
 
-  .fc-logo {
-    display: none;
+  .fc-header-center {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
   }
 
-  .fc-intro-copy {
-    min-height: calc(27vh - 58px);
-    padding: 3vh 14px 4vh;
-  }
-
-  .fc-intro-copy p {
-    width: 100%;
-    font-size: clamp(34px, 9.8vw, 56px);
+  .fc-header-statement {
+    font-size: 20px;
   }
 
   .fc-stage {
     grid-template-columns: 1fr;
-    grid-template-rows: 38% 62%;
-  }
-
-  .fc-left {
-    padding: 5vh 14px 2vh;
-  }
-
-  .fc-category-window {
-    height: 86px;
-    margin-top: 18px;
-  }
-
-  .fc-category-track h1 {
-    font-size: clamp(48px, 14vw, 78px);
-  }
-
-  .fc-client-window {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: 100vh;
   }
 
   .fc-right {
-    margin: 0 14px 14px;
-  }
-
-  .fc-progress {
-    left: 14px;
-    bottom: 18px;
-  }
-
-  .fc-cta {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    height: 48px;
-  }
-
-  .fc-wave,
-  .fc-chroma {
-    display: none;
+    margin: 20px 2.5vw;
+    min-height: 350px;
   }
 }
 
