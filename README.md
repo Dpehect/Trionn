@@ -1,14 +1,21 @@
-# SoftBridge Case Carousel — Build Fix
+# SoftBridge Carousel Full-Image and Section Spacing Fix
 
-Fixed:
-- Removed the unreachable `study.hero` fallback.
-- Every carousel card now uses its own `study.editorialHero`.
-- Resolves Next.js/TypeScript error: Property 'hero' does not exist on type 'never'.
+Updated:
+- case carousel images are substantially larger
+- complete images remain visible
+- ring center moved lower without changing the arc transform formula
+- cards and typography enlarged
+- carousel viewport allows full card visibility
+- reduced spacing between Section 02, Section 03 and SEO/GEO content
+- reduced service-group and FAQ vertical whitespace
 
 Preserved:
-- case-only carousel content
-- complete case images
-- arc geometry
-- drag, touch, momentum and infinite loop
-- unified #164C4D detail-page background
-- all existing sections and animations
+- case-only carousel
+- current case exclusion
+- drag and touch controls
+- momentum
+- clone-based infinite loop
+- hover tilt
+- keyboard navigation
+- unified #164C4D page background
+- existing Sections 01 and 02 animations

@@ -689,3 +689,164 @@
     font-size: 14px !important;
   }
 }
+
+
+/* Full case-image visibility and larger carousel cards */
+.section {
+  --arc-radius: 4704px;
+  --arc-angle-step: 4.390243902439025deg;
+  min-height: 930px !important;
+  padding-top: clamp(62px, 5vw, 92px) !important;
+  padding-bottom: clamp(48px, 4vw, 72px) !important;
+}
+
+.header {
+  padding-inline: 2.2vw;
+}
+
+.viewport {
+  height: clamp(680px, 51vw, 790px) !important;
+  margin-top: clamp(34px, 3.4vw, 56px) !important;
+  overflow: visible !important;
+}
+
+.ring {
+  /*
+    The circle center is moved lower.
+    This keeps the complete image/card inside the visible section
+    while preserving the same arc formula.
+  */
+  bottom: calc(var(--arc-radius) * -1 + 430px) !important;
+}
+
+.slot {
+  width: clamp(390px, 26vw, 540px) !important;
+}
+
+.card {
+  opacity: .82 !important;
+  transform: scale(.95) translateZ(0) !important;
+}
+
+.active .card {
+  transform: scale(1.035) translateY(-6px) translateZ(0) !important;
+  opacity: 1 !important;
+}
+
+.coverWrap {
+  width: 100%;
+}
+
+.cover {
+  width: 100%;
+  aspect-ratio: 16 / 10 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background: #103E3F !important;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
+  background: #103E3F !important;
+}
+
+.text {
+  padding-top: 18px !important;
+}
+
+.text h3 {
+  font-size: clamp(27px, 1.8vw, 38px) !important;
+  line-height: 1.02 !important;
+}
+
+.text p {
+  min-height: 86px !important;
+  margin: 12px 0 15px !important;
+  font-size: clamp(15px, 1.02vw, 19px) !important;
+  line-height: 1.42 !important;
+}
+
+.text a {
+  font-size: clamp(13px, .86vw, 16px) !important;
+}
+
+.progress {
+  margin-top: 4px !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    --arc-radius: 3900px;
+    --arc-angle-step: 5.05deg;
+    min-height: 860px !important;
+  }
+
+  .viewport {
+    height: 650px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 390px) !important;
+  }
+
+  .slot {
+    width: clamp(350px, 30vw, 470px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    --arc-radius: 3000px;
+    --arc-angle-step: 6.5deg;
+    min-height: 820px !important;
+  }
+
+  .viewport {
+    height: 620px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 355px) !important;
+  }
+
+  .slot {
+    width: clamp(310px, 45vw, 410px) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    --arc-radius: 2100px;
+    --arc-angle-step: 9deg;
+    min-height: 750px !important;
+    padding-top: 54px !important;
+    padding-bottom: 42px !important;
+  }
+
+  .viewport {
+    height: 560px !important;
+    margin-top: 34px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 300px) !important;
+  }
+
+  .slot {
+    width: min(82vw, 365px) !important;
+  }
+
+  .text h3 {
+    font-size: 26px !important;
+  }
+
+  .text p {
+    min-height: 78px !important;
+    font-size: 14px !important;
+  }
+}

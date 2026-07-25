@@ -1670,3 +1670,58 @@
   opacity: 0 !important;
   background: none !important;
 }
+
+
+/* Compact section rhythm for SEO and crawlable case content */
+.titaniumTheme .servicesSection {
+  padding-top: clamp(44px, 4vw, 72px) !important;
+  padding-bottom: clamp(52px, 5vw, 88px) !important;
+}
+
+.titaniumTheme .serviceGroup {
+  padding-top: clamp(30px, 3vw, 48px) !important;
+  padding-bottom: clamp(40px, 4vw, 66px) !important;
+}
+
+.titaniumTheme .serviceHeader {
+  margin-bottom: clamp(24px, 2.4vw, 38px) !important;
+}
+
+.titaniumTheme .seoSection {
+  padding-top: clamp(52px, 5vw, 82px) !important;
+  padding-bottom: clamp(54px, 5vw, 88px) !important;
+}
+
+.titaniumTheme .seoHeading {
+  max-width: 1040px;
+}
+
+.titaniumTheme .seoFaqGrid {
+  margin-top: clamp(36px, 4vw, 62px) !important;
+}
+
+.titaniumTheme .seoFaqItem {
+  min-height: 175px !important;
+  padding: clamp(24px, 2.4vw, 38px) !important;
+}
+
+@media (max-width: 800px) {
+  .titaniumTheme .servicesSection {
+    padding-top: 34px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .titaniumTheme .serviceGroup {
+    padding-top: 24px !important;
+    padding-bottom: 38px !important;
+  }
+
+  .titaniumTheme .seoSection {
+    padding-top: 42px !important;
+    padding-bottom: 54px !important;
+  }
+
+  .titaniumTheme .seoFaqGrid {
+    margin-top: 30px !important;
+  }
+}
