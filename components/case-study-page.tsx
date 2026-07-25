@@ -2,38 +2,9 @@
 
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Globe, Sparkles } from "lucide-react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useEffect, useState } from "react";
 import type { CaseStudy } from "@/data/cases";
 import { caseStudies } from "@/data/cases";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const FEATURED_PROJECTS = [
-  {
-    kicker: "Featured work",
-    title: "Branding",
-    clientName: "Vakeso",
-    image: "/vivid-3d/scene1.jpg",
-    accent: "Brand Identity & Design System",
-  },
-  {
-    kicker: "Featured work",
-    title: "Web",
-    clientName: "SoundCloud",
-    image: "/vivid-3d/scene2.jpg",
-    accent: "Global Music Platform & Streaming UI",
-  },
-  {
-    kicker: "Featured work",
-    title: "Mobile",
-    clientName: "Sona",
-    image: "/vivid-3d/scene3.jpg",
-    accent: "AI Avatar Studio & iOS Experience",
-  },
-];
 
 const VERTEX_SHADER_SRC = `
   attribute vec2 a_position;
@@ -56,7 +27,7 @@ const FRAGMENT_SHADER_SRC = `
     vec2 uv = v_uv;
     uv.y = 1.0 - uv.y;
 
-    // Local cursor fluid ripple (only active on cursor movement over image)
+    // Cursor-only fluid wave ripple (active only when cursor moves over image)
     float dist = distance(uv, u_mouse);
     float ripple = smoothstep(0.4, 0.0, dist) * u_fluid * sin(dist * 22.0 - u_time * 4.5);
 
@@ -68,39 +39,13 @@ const FRAGMENT_SHADER_SRC = `
 `;
 
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
-  const rootRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const [activeIdx, setActiveIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
   const currentIndex = caseStudies.findIndex((c) => c.slug === study.slug);
   const nextStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
-
-  // GSAP ScrollTrigger pinning for sticky stage
-  useGSAP(
-    () => {
-      const stage = document.querySelector<HTMLElement>(".sb-featured-stage");
-      if (!stage) return;
-
-      ScrollTrigger.create({
-        trigger: stage,
-        start: "top top",
-        end: "+=240%",
-        pin: true,
-        scrub: 0.4,
-        onUpdate: (self) => {
-          const idx = Math.min(
-            Math.floor(self.progress * FEATURED_PROJECTS.length),
-            FEATURED_PROJECTS.length - 1
-          );
-          setActiveIdx(idx);
-        },
-      });
-    },
-    { scope: rootRef }
-  );
+  const clientName = study.kicker.split("/")[0].trim();
 
   // Mouse movement tracking over canvas image
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -170,7 +115,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     let isLoaded = false;
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = FEATURED_PROJECTS[activeIdx].image;
+    img.src = study.editorialHero || "/vivid-3d/scene1.jpg";
     img.onload = () => {
       gl.bindTexture(gl.TEXTURE_2D, texture);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
@@ -215,12 +160,33 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animId);
     };
-  }, [activeIdx, isHovered, mousePos]);
+  }, [study.editorialHero, isHovered, mousePos]);
 
-  const activeProject = FEATURED_PROJECTS[activeIdx];
+  // Mixed typography helper ("AI Software" normal + "Development" italic)
+  const renderTitle = (title: string) => {
+    const words = title.split(" ");
+    if (words.length === 1) {
+      const w = words[0];
+      const half = Math.ceil(w.length * 0.6);
+      return (
+        <>
+          <span>{w.slice(0, half)}</span>
+          <em className="sb-title-italic">{w.slice(half)}</em>
+        </>
+      );
+    }
+    const mainPart = words.slice(0, words.length - 1).join(" ");
+    const lastWord = words[words.length - 1];
+    return (
+      <>
+        <span>{mainPart}&nbsp;</span>
+        <em className="sb-title-italic">{lastWord}</em>
+      </>
+    );
+  };
 
   return (
-    <main ref={rootRef} className="sb-case-page">
+    <main className="sb-case-page">
       {/* Header Navigation */}
       <header className="sb-case-header">
         <div className="sb-header-left">
@@ -243,32 +209,27 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         </div>
       </header>
 
-      {/* FEATURED WORK STICKY SECTION */}
-      <section className="sb-featured-stage">
-        <div className="sb-featured-grid">
-          {/* Left Sticky Panel */}
-          <div className="sb-featured-left">
-            <span className="sb-featured-kicker">{activeProject.kicker}</span>
+      {/* HERO SECTION (Single 50/50 Stage - Exactly like Video) */}
+      <section className="sb-hero-stage">
+        <div className="sb-hero-grid">
+          {/* Left Column */}
+          <div className="sb-hero-left">
+            <span className="sb-hero-kicker">Featured work</span>
+            <h1 className="sb-hero-title">{renderTitle(study.title)}</h1>
 
-            <div className="sb-featured-title-wrap">
-              <h1 key={activeProject.title} className="sb-featured-title">
-                {activeProject.title}
-              </h1>
-            </div>
-
-            <div className="sb-featured-client-card">
+            <div className="sb-client-badge">
               <span className="sb-client-dot" />
-              <div className="sb-client-text">
+              <div className="sb-client-info">
                 <small>CLIENT</small>
-                <strong>{activeProject.clientName}</strong>
+                <strong>{clientName}</strong>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Showcase: Cursor-Only Fluid Canvas */}
-          <div className="sb-featured-right">
+          {/* Right Visual Showcase (Cursor-Only Fluid Wave) */}
+          <div className="sb-hero-right">
             <div
-              className="sb-media-card"
+              className="sb-media-frame"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onMouseMove={handleMouseMove}
@@ -277,14 +238,14 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
               <div className="sb-media-overlay" />
               <div className="sb-media-caption">
                 <span>SOFTBRIDGE ENGINEERING</span>
-                <span>{activeProject.accent}</span>
+                <span>{study.accent}</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CASE STUDY DEEP DIVE SECTION */}
+      {/* CASE STUDY DEEP DIVE SECTION (Natural Scroll Down) */}
       <section className="sb-details-section">
         <div className="sb-details-container">
           <div className="sb-meta-bar">
