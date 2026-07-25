@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowDown, ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,345 +10,405 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-interface Scene {
-  category: string;
-  client: string;
-  mark: string;
-  color: string;
-  image: string;
-  logoText: string;
-}
-
-const defaultSoftBridgeScenes: Scene[] = [
-  {
-    category: "AI Engineering",
-    client: "SoftBridge AI",
-    mark: "SB",
-    color: "#f0642f",
-    image: "https://images.unsplash.com/photo-1634985490771-dd66dc9981a8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
-    logoText: "SoftBridge AI",
-  },
-  {
-    category: "Enterprise SaaS",
-    client: "Nordic Systems",
-    mark: "NS",
-    color: "#3b82f6",
-    image: "/detail-part-01/digital-product.jpg",
-    logoText: "Nordic SaaS",
-  },
-  {
-    category: "Digital Health",
-    client: "HealthCare Nordics",
-    mark: "HN",
-    color: "#10b981",
-    image: "/detail-part-01/web-engineering.jpg",
-    logoText: "MedTech",
-  },
-  {
-    category: "Logistics Platform",
-    client: "EuroFleet Logistics",
-    mark: "EF",
-    color: "#8b5cf6",
-    image: "/detail-part-01/software-studio.jpg",
-    logoText: "EuroFleet",
-  },
-  {
-    category: "Cloud Infrastructure",
-    client: "Vault Cloud",
-    mark: "VC",
-    color: "#ec4899",
-    image: "/detail-part-01/data-platform.jpg",
-    logoText: "Vault",
-  },
-];
-
-export function CaseStudyPage({ study }: { study?: CaseStudy }) {
+export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const root = useRef<HTMLElement>(null);
-
-  const scenes: Scene[] = study
-    ? [
-        {
-          category: study.title,
-          client: study.kicker ? study.kicker.split("/")[0].trim() : "SoftBridge Solutions",
-          mark: study.title.slice(0, 2).toUpperCase(),
-          color: "#f0642f",
-          image: study.editorialHero || "/detail-part-01/digital-product.jpg",
-          logoText: study.title,
-        },
-        ...defaultSoftBridgeScenes.filter((s) => s.category !== study.title),
-      ]
-    : defaultSoftBridgeScenes;
 
   useGSAP(
     () => {
-      const slideTrack = document.querySelector<HTMLElement>(".fc-image-track");
-      const categoryTrack = document.querySelector<HTMLElement>(".fc-category-track");
-      const clientTrack = document.querySelector<HTMLElement>(".fc-client-track");
-      const progress = gsap.utils.toArray<HTMLElement>(".fc-progress span");
-
-      if (!slideTrack || !categoryTrack || !clientTrack) return;
-
-      gsap.set(progress, { opacity: 0.24 });
-      if (progress[0]) gsap.set(progress[0], { opacity: 1 });
-
-      const master = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".fc-scroll",
-          start: "top top",
-          end: `+=${scenes.length * 130}%`,
-          pin: ".fc-stage",
-          scrub: 1.15,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      for (let index = 0; index < scenes.length - 1; index += 1) {
-        const at = index + 0.05;
-
-        master
-          .to(
-            slideTrack,
-            {
-              yPercent: -100 * (index + 1),
-              duration: 1,
-              ease: "power3.inOut",
-            },
-            at
-          )
-          .to(
-            categoryTrack,
-            {
-              yPercent: -100 * (index + 1),
-              duration: 0.92,
-              ease: "power3.inOut",
-            },
-            at
-          )
-          .to(
-            clientTrack,
-            {
-              yPercent: -100 * (index + 1),
-              duration: 0.92,
-              ease: "power3.inOut",
-            },
-            at
-          )
-          .to(progress[index], { opacity: 0.24, duration: 0.16 }, at + 0.56)
-          .to(progress[index + 1], { opacity: 1, duration: 0.16 }, at + 0.56);
-      }
-
-      master.to(
-        ".fc-cta",
+      gsap.fromTo(
+        ".cinema-hero__title h1 span span",
+        { yPercent: 100 },
         {
           yPercent: 0,
-          duration: 0.62,
-          ease: "power3.inOut",
+          duration: 1.2,
+          ease: "power4.out",
+          stagger: 0.1,
+        }
+      );
+
+      gsap.fromTo(
+        ".cinema-hero__image",
+        { scale: 1.15 },
+        {
+          scale: 1,
+          duration: 1.6,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.to(".cinema-hero__image", {
+        yPercent: 24,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".cinema-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
         },
-        scenes.length - 0.08
-      );
-
-      gsap.fromTo(
-        ".fc-header",
-        { opacity: 0, y: -16 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      );
-
-      gsap.fromTo(
-        ".fc-left",
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: 0.1 }
-      );
-
-      const canvases = gsap.utils.toArray<HTMLElement>(".fc-image-canvas");
-
-      canvases.forEach((canvas) => {
-        const image = canvas.querySelector<HTMLElement>(".fc-image");
-        const overlay = canvas.querySelector<HTMLElement>(".fc-brand-overlay");
-        const chroma = canvas.querySelector<HTMLElement>(".fc-chroma");
-        const wave = canvas.querySelector<HTMLElement>(".fc-wave");
-        if (!image || !chroma || !wave) return;
-
-        const xTo = gsap.quickTo(image, "xPercent", { duration: 0.65, ease: "power3.out" });
-        const yTo = gsap.quickTo(image, "yPercent", { duration: 0.65, ease: "power3.out" });
-        const scaleTo = gsap.quickTo(image, "scale", { duration: 0.7, ease: "power3.out" });
-
-        const overlayXTo = overlay ? gsap.quickTo(overlay, "x", { duration: 0.5, ease: "power2.out" }) : null;
-        const overlayYTo = overlay ? gsap.quickTo(overlay, "y", { duration: 0.5, ease: "power2.out" }) : null;
-
-        const onMove = (event: PointerEvent) => {
-          const rect = canvas.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - 0.5;
-          const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-          xTo(x * 1.5);
-          yTo(y * 1.2);
-          scaleTo(1.02);
-
-          if (overlayXTo && overlayYTo) {
-            overlayXTo(x * 12);
-            overlayYTo(y * 8);
-          }
-
-          gsap.to(wave, {
-            x: event.clientX - rect.left,
-            y: event.clientY - rect.top,
-            opacity: 0.32,
-            scale: 1,
-            duration: 0.22,
-            overwrite: true,
-          });
-
-          gsap.to(chroma, {
-            x: x * 5,
-            y: y * 4,
-            opacity: 0.09,
-            duration: 0.22,
-            overwrite: true,
-          });
-        };
-
-        const onLeave = () => {
-          xTo(0);
-          yTo(0);
-          scaleTo(1);
-
-          if (overlayXTo && overlayYTo) {
-            overlayXTo(0);
-            overlayYTo(0);
-          }
-
-          gsap.to(wave, {
-            opacity: 0,
-            scale: 0.8,
-            duration: 0.36,
-          });
-
-          gsap.to(chroma, {
-            x: 0,
-            y: 0,
-            opacity: 0.035,
-            duration: 0.36,
-          });
-        };
-
-        canvas.addEventListener("pointermove", onMove);
-        canvas.addEventListener("pointerleave", onLeave);
       });
+
+      gsap.fromTo(
+        ".cinema-manifesto__copy",
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cinema-manifesto",
+            start: "top 78%",
+            end: "top 28%",
+            scrub: 1,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".cinema-manifesto__metric",
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cinema-manifesto",
+            start: "top 68%",
+            end: "top 22%",
+            scrub: 1.1,
+          },
+        }
+      );
+
+      gsap.utils
+        .toArray<HTMLElement>(".visual-story__scene")
+        .forEach((scene, index) => {
+          const image = scene.querySelector<HTMLElement>(".visual-story__image");
+          const copy = scene.querySelector<HTMLElement>(".visual-story__copy");
+          const progress = scene.querySelector<HTMLElement>(
+            ".visual-story__progress span"
+          );
+
+          if (image) {
+            gsap.fromTo(
+              image,
+              {
+                clipPath:
+                  index % 2 === 0
+                    ? "inset(0 100% 0 0)"
+                    : "inset(0 0 0 100%)",
+                scale: 1.13,
+              },
+              {
+                clipPath: "inset(0 0 0 0)",
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: scene,
+                  start: "top 88%",
+                  end: "top 20%",
+                  scrub: 1.3,
+                },
+              }
+            );
+          }
+
+          if (copy) {
+            gsap.fromTo(
+              copy,
+              { opacity: 0, y: 60 },
+              {
+                opacity: 1,
+                y: 0,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: scene,
+                  start: "top 75%",
+                  end: "top 32%",
+                  scrub: 1,
+                },
+              }
+            );
+          }
+
+          if (progress) {
+            gsap.fromTo(
+              progress,
+              { scaleX: 0 },
+              {
+                scaleX: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: scene,
+                  start: "top 65%",
+                  end: "bottom 45%",
+                  scrub: 1,
+                },
+              }
+            );
+          }
+        });
+
+      gsap.to(".system-orbit", {
+        rotate: 55,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".system-visual",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.6,
+        },
+      });
+
+      gsap.to(".system-grid", {
+        backgroundPosition: "120px 80px",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".system-visual",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.8,
+        },
+      });
+
+      gsap.fromTo(
+        ".cinema-gallery__item",
+        {
+          opacity: 0,
+          y: 80,
+          clipPath: "inset(12% 8% 12% 8%)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0 0 0 0)",
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cinema-gallery",
+            start: "top 76%",
+            end: "top 20%",
+            scrub: 1,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".cinema-closing__inner",
+        { opacity: 0, y: 70 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".cinema-closing",
+            start: "top 72%",
+            end: "top 26%",
+            scrub: 1,
+          },
+        }
+      );
     },
     { scope: root }
   );
 
+  const titleLines =
+    study.title.length > 23
+      ? [
+          study.title.split(" ").slice(0, -1).join(" "),
+          study.title.split(" ").slice(-1).join(" "),
+        ]
+      : [study.title];
+
   return (
-    <main ref={root} className="fc-page">
-      <header className="fc-header">
-        <div className="fc-header-left">
-          <Link href="/" className="fc-logo">
-            SoftBridge Solutions<sup>®</sup>
+    <main ref={root} className="cinema-case">
+      <nav className="cinema-nav">
+        <div className="cinema-nav__brand">
+          <Link href="/" className="cinema-nav__logo">
+            <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
+              <rect x="2" y="2" width="20" height="3" fill="#FFF" />
+              <rect x="5" y="8" width="14" height="3" fill="#FFF" />
+              <rect x="2" y="14" width="20" height="3" fill="#FFF" />
+              <rect x="5" y="20" width="14" height="3" fill="#FFF" />
+            </svg>
+            <span>SoftBridge</span>
           </Link>
         </div>
 
-        <div className="fc-header-center">
-          <p className="fc-header-statement">
-            We design, build and grow digital products for Europe&apos;s most ambitious companies and boldest new ideas
-          </p>
-        </div>
-
-        <div className="fc-header-right">
-          <Link href="/" className="fc-home-btn">
-            HOME ::
+        <div className="cinema-nav__links">
+          <Link href="/#cases">
+            <ArrowLeft size={14} /> Selected Cases
           </Link>
         </div>
-      </header>
 
-      <section className="fc-scroll">
-        <div className="fc-stage">
-          <div className="fc-left">
-            <div className="fc-left-top">
-              <span className="fc-featured">Featured work</span>
+        <div className="cinema-nav__menu">
+          <span className="cinema-nav__lang">EN &nbsp; FI</span>
+          <Link href="/" className="cinema-nav__home">
+            MENU <small>•</small>
+          </Link>
+        </div>
+      </nav>
 
-              <div className="fc-category-window">
-                <div className="fc-category-track">
-                  {scenes.map((scene) => (
-                    <h1 key={scene.category}>{scene.category}</h1>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <section className="cinema-hero">
+        <img
+          className="cinema-hero__image"
+          src={study.editorialHero || study.hero}
+          alt={`${study.title} cinematic product visualization`}
+        />
+        <div className="cinema-hero__grain" />
+        <div className="cinema-hero__veil" />
 
-            <div className="fc-client-window">
-              <div className="fc-client-track">
-                {scenes.map((scene) => (
-                  <div className="fc-client" key={scene.client}>
-                    <div
-                      className="fc-client-mark"
-                      style={{ backgroundColor: scene.color }}
-                    >
-                      <span>{scene.mark}</span>
-                    </div>
-                    <div className="fc-client-info">
-                      <small>CLIENT</small>
-                      <strong>{scene.client}</strong>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="cinema-hero__quote">
+          <p>{study.statement || "Remember who you are"}</p>
+        </div>
 
-          <div className="fc-right">
-            <div className="fc-image-track">
-              {scenes.map((scene, index) => (
-                <article className="fc-image-scene" key={scene.category}>
-                  <div className="fc-image-canvas">
-                    <img
-                      className="fc-image"
-                      src={scene.image}
-                      alt={`${scene.category} project visual`}
-                    />
+        <span className="cinema-hero__index">
+          CASE / {study.slug.slice(0, 2).toUpperCase()}
+        </span>
 
-                    <div className="fc-brand-overlay">
-                      <div
-                        className="fc-brand-icon"
-                        style={{ backgroundColor: scene.color }}
-                      >
-                        <span className="fc-brand-icon-text">{scene.mark}</span>
-                      </div>
-                      <span className="fc-brand-name">{scene.logoText}</span>
-                    </div>
-
-                    <div
-                      className="fc-chroma"
-                      style={{ backgroundImage: `url(${scene.image})` }}
-                    />
-                    <div className="fc-image-shade" />
-                    <div className="fc-grain" />
-                    <div className="fc-wave" />
-
-                    <div className="fc-image-meta">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <span>{scene.category}</span>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="fc-progress">
-            {scenes.map((scene, index) => (
-              <span key={scene.category}>
-                {String(index + 1).padStart(2, "0")}
+        <div className="cinema-hero__title">
+          <p>{study.kicker}</p>
+          <h1>
+            {titleLines.map((line) => (
+              <span className="cinema-hero__line" key={line}>
+                <span>{line}</span>
               </span>
             ))}
-          </div>
+          </h1>
+        </div>
 
-          <div className="fc-cta">
-            <Link href="/#cases">
-              See all work
-              <ArrowRight size={18} />
-            </Link>
-          </div>
+        <div className="cinema-hero__meta">
+          <span>{study.accent}</span>
+          <span className="cinema-hero__scroll">
+            <ArrowDown size={14} /> Scroll to explore
+          </span>
+        </div>
+      </section>
+
+      <section className="cinema-manifesto">
+        <div className="cinema-manifesto__rail">
+          <span>01</span>
+          <i />
+          <b>CONTEXT</b>
+        </div>
+
+        <div className="cinema-manifesto__copy">
+          <span>THE CHALLENGE</span>
+          <h2>{study.statement}</h2>
+          <p>{study.intro}</p>
+        </div>
+
+        <div className="cinema-manifesto__metric">
+          <small>DESIGN TARGET</small>
+          <strong>{study.metric}</strong>
+          <span>{study.metricLabel}</span>
+        </div>
+      </section>
+
+      <section className="visual-story">
+        {study.sections.map(([title, body], index) => (
+          <article
+            className={`visual-story__scene visual-story__scene--${index + 1}`}
+            key={title}
+          >
+            <div className="visual-story__media">
+              <img
+                className="visual-story__image"
+                src={study.visuals[index] || study.hero}
+                alt={`${study.title} ${title.toLowerCase()} editorial visualization`}
+              />
+              <span className="visual-story__number">0{index + 2}</span>
+            </div>
+
+            <div className="visual-story__copy">
+              <span>{title.toUpperCase()}</span>
+              <h2>{title}</h2>
+              <p>{body}</p>
+              <div className="visual-story__tags">
+                {study.tags.slice(index, index + 2).map((tag) => (
+                  <i key={tag}>{tag}</i>
+                ))}
+              </div>
+              <div className="visual-story__progress">
+                <span />
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="system-visual">
+        <div className="system-grid" />
+        <div className="system-orbit">
+          <span className="system-orbit__core">SB</span>
+          {study.tags.map((tag, index) => (
+            <span
+              className="system-orbit__node"
+              key={tag}
+              style={{
+                transform: `rotate(${
+                  index * (360 / study.tags.length)
+                }deg) translateX(210px) rotate(${
+                  -index * (360 / study.tags.length)
+                }deg)`,
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="system-visual__copy">
+          <span>04 / CONNECTED SYSTEM</span>
+          <h2>Strategy, design and engineering move as one.</h2>
+          <p>
+            The experience is shaped as a complete operating system rather than
+            a collection of isolated screens.
+          </p>
+        </div>
+      </section>
+
+      <section className="cinema-gallery">
+        <header>
+          <span>05 / VISUAL LANGUAGE</span>
+          <h2>Built to feel coherent at every scale.</h2>
+        </header>
+
+        <div className="cinema-gallery__grid">
+          {[study.hero, ...study.visuals].map((src, index) => (
+            <figure
+              className={`cinema-gallery__item cinema-gallery__item--${
+                index + 1
+              }`}
+              key={`${src}-${index}`}
+            >
+              <img
+                src={src}
+                alt={`${study.title} visual direction ${index + 1}`}
+              />
+              <figcaption>
+                {String(index + 1).padStart(2, "0")} / {study.accent}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="cinema-closing">
+        <img
+          src={study.visuals[0] || study.hero}
+          alt={`${study.title} closing visual`}
+        />
+        <div className="cinema-closing__veil" />
+        <div className="cinema-closing__inner">
+          <span>SOFTBRIDGE SOLUTIONS / FINLAND OFFICE</span>
+          <h2>
+            Ready to build
+            <br />
+            what comes next?
+          </h2>
+          <Link href="/#cases">
+            Explore another case <ArrowUpRight size={16} />
+          </Link>
         </div>
       </section>
     </main>
