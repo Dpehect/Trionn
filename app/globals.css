@@ -4440,6 +4440,51 @@
   font-weight: 400;
 }
 
+.fc-italic {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.fc-center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fc-logo-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f0642f;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 25px rgba(240, 100, 47, 0.4);
+}
+
+.fc-logo-shape {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.fc-logo-text {
+  font-family: Inter, sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
 .fc-client-card {
   display: inline-flex;
   align-items: center;

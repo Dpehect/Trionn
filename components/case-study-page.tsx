@@ -8,7 +8,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // WebGL / Canvas Liquid Wave Distortion Effect
+  // Canvas Liquid Wave Distortion with Rounded Mask
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -22,8 +22,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
     let animId: number;
     let time = 0;
-    let amplitude = 4;
-    let targetAmplitude = 4;
+    let amplitude = 3;
+    let targetAmplitude = 3;
 
     let width = (canvas.width = canvas.parentElement?.clientWidth || 700);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 520);
@@ -42,17 +42,28 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     };
 
     const render = () => {
-      time += 0.035;
-      targetAmplitude = isHovered ? 14 : 4;
+      time += 0.03;
+      targetAmplitude = isHovered ? 10 : 3;
       amplitude += (targetAmplitude - amplitude) * 0.08;
 
       ctx.clearRect(0, 0, width, height);
 
       if (imgLoaded) {
-        const sliceH = 2;
+        ctx.save();
+        // Clip rounded rectangle boundary for ultra-sharp card edges
+        ctx.beginPath();
+        if (ctx.roundRect) {
+          ctx.roundRect(0, 0, width, height, 24);
+        } else {
+          ctx.rect(0, 0, width, height);
+        }
+        ctx.clip();
+
+        // Render fluid internal wave slices
+        const sliceH = 3;
         for (let y = 0; y < height; y += sliceH) {
-          const waveX = Math.sin(y * 0.02 + time) * amplitude;
-          const waveX2 = Math.cos(y * 0.045 - time * 0.8) * (amplitude * 0.45);
+          const waveX = Math.sin(y * 0.025 + time) * amplitude;
+          const waveX2 = Math.cos(y * 0.04 - time * 0.7) * (amplitude * 0.5);
           const totalX = waveX + waveX2;
 
           ctx.drawImage(
@@ -67,6 +78,16 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             sliceH
           );
         }
+
+        // Dark warm vignette overlay matching reference
+        const grad = ctx.createLinearGradient(0, height, 0, 0);
+        grad.addColorStop(0, "rgba(9, 10, 12, 0.65)");
+        grad.addColorStop(0.5, "rgba(9, 10, 12, 0.1)");
+        grad.addColorStop(1, "rgba(9, 10, 12, 0.35)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.restore();
       }
 
       animId = requestAnimationFrame(render);
@@ -80,6 +101,31 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     };
   }, [study.editorialHero, isHovered]);
 
+  // Mixed serif/italic typography helper
+  const renderTitle = (title: string) => {
+    const words = title.split(" ");
+    if (words.length === 1) {
+      const w = words[0];
+      const half = Math.ceil(w.length * 0.6);
+      return (
+        <>
+          <span>{w.slice(0, half)}</span>
+          <em className="fc-italic">{w.slice(half)}</em>
+        </>
+      );
+    }
+    const mainPart = words.slice(0, words.length - 1).join(" ");
+    const lastWord = words[words.length - 1];
+    return (
+      <>
+        <span>{mainPart}&nbsp;</span>
+        <em className="fc-italic">{lastWord}</em>
+      </>
+    );
+  };
+
+  const clientName = study.kicker.split("/")[0].trim();
+
   return (
     <main className="fc-stage">
       {/* Navigation Header */}
@@ -92,12 +138,12 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         </Link>
       </header>
 
-      {/* Hero Section (Ekran Kaydı Birebir Düzeni) */}
+      {/* Hero Section */}
       <div className="fc-hero-split">
         {/* Left Column */}
         <div className="fc-hero-left">
           <span className="fc-kicker">Featured work</span>
-          <h1 className="fc-hero-title">{study.title}</h1>
+          <h1 className="fc-hero-title">{renderTitle(study.title)}</h1>
 
           <div className="fc-client-card">
             <div className="fc-client-icon">
@@ -105,14 +151,12 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             </div>
             <div className="fc-client-meta">
               <span className="fc-client-label">CLIENT</span>
-              <strong className="fc-client-name">
-                {study.kicker.split("/")[0].trim()}
-              </strong>
+              <strong className="fc-client-name">{clientName}</strong>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Dynamic Wave Image */}
+        {/* Right Column: Dynamic Wave Image with Center Logo Overlay */}
         <div className="fc-hero-right">
           <div
             className="fc-image-frame"
@@ -120,6 +164,15 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             onMouseLeave={() => setIsHovered(false)}
           >
             <canvas ref={canvasRef} className="fc-wave-canvas" />
+
+            {/* Center Logo Overlay like Vakeso in reference */}
+            <div className="fc-center-logo">
+              <div className="fc-logo-mark">
+                <span className="fc-logo-shape" />
+              </div>
+              <span className="fc-logo-text">{clientName}</span>
+            </div>
+
             <div className="fc-image-badge">
               <span>{study.accent}</span>
             </div>
