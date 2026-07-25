@@ -33,7 +33,10 @@ type ServiceGroup = {
 type CaseProfile = {
   manifesto: string;
   featured: Omit<FeaturedItem, "client" | "logo" | "href" | "image">[];
-  services: Omit<ServiceGroup, "number">[];
+  services: {
+    title: string;
+    rows: string[];
+  }[];
 };
 
 const profiles: Record<string, CaseProfile> = {

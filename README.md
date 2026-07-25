@@ -1,22 +1,12 @@
-# SoftBridge Solutions — Case-Specific Detail Pages
+# SoftBridge Case-Specific Details — Type Fix
 
-The approved layout and animation system are preserved.
+Fixed Vercel TypeScript error:
 
-Added:
-- description below every Featured Work title
-- target-audience line for every scene
-- unique manifesto for every case route
-- unique four-scene content for all nine case studies
-- unique service groups and service rows for every case
-- case-specific images sourced from each case's existing data
+Type 'string' is not assignable to type '{ label: string; image: string; }'
 
-Supported routes:
-- AI Software Development
-- Enterprise SaaS Platform
-- Healthcare Software
-- Logistics Platform
-- Manufacturing AI
-- Cloud Applications
-- Mobile Product
-- Retail AI Automation
-- Digital Transformation
+The profile data now correctly defines service rows as `string[]`.
+`buildCaseContent()` continues converting each string into:
+- label
+- image
+
+No layout, animation, content, or visual structure was changed.
