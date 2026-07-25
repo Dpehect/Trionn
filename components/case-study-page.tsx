@@ -45,6 +45,50 @@ const featuredItems = [
   },
 ] as const;
 
+const serviceGroups = [
+  {
+    number: "01",
+    title: "Strategy",
+    rows: [
+      { label: "Digital Strategy", image: "/detail-part-01/ai-strategy.jpg" },
+      { label: "Product Strategy", image: "/detail-part-01/digital-product.jpg" },
+      { label: "User Research", image: "/detail-part-01/software-studio.jpg" },
+      { label: "AI Strategy", image: "/detail-part-01/data-platform.jpg" },
+    ],
+  },
+  {
+    number: "02",
+    title: "Creative & Design",
+    rows: [
+      { label: "Brand Systems", image: "/detail-part-01/digital-product.jpg" },
+      { label: "UI/UX Design", image: "/detail-part-01/software-studio.jpg" },
+      { label: "Design Systems", image: "/detail-part-01/web-engineering.jpg" },
+      { label: "Motion Design", image: "/detail-part-01/engineering-workflow.jpg" },
+    ],
+  },
+  {
+    number: "03",
+    title: "Development",
+    rows: [
+      { label: "Web Development", image: "/detail-part-01/web-engineering.jpg" },
+      { label: "Mobile Development", image: "/detail-part-01/software-studio.jpg" },
+      { label: "Enterprise Software", image: "/detail-part-01/development-environment.jpg" },
+      { label: "API & Integrations", image: "/detail-part-01/data-platform.jpg" },
+    ],
+  },
+  {
+    number: "04",
+    title: "AI & Cloud",
+    rows: [
+      { label: "AI Automation", image: "/detail-part-01/ai-strategy.jpg" },
+      { label: "LLM Solutions", image: "/detail-part-01/digital-product.jpg" },
+      { label: "Cloud Infrastructure", image: "/detail-part-01/data-platform.jpg" },
+      { label: "DevOps & Scaling", image: "/detail-part-01/engineering-workflow.jpg" },
+    ],
+  },
+] as const;
+
+
 export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
   const root = useRef<HTMLElement>(null);
 
@@ -88,6 +132,36 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
 
     timeline.fromTo(`.${styles.cta}`, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .48, ease: "power3.out" }, 3.72);
     gsap.fromTo(`.${styles.introText}`, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power3.out" });
+
+    gsap.utils.toArray<HTMLElement>(`.${styles.serviceGroup}`).forEach((group) => {
+      const header = group.querySelector(`.${styles.serviceHeader}`);
+      const rows = group.querySelectorAll(`.${styles.serviceRow}`);
+
+      gsap.fromTo(
+        header,
+        { autoAlpha: 0, y: 38 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: .85,
+          ease: "power3.out",
+          scrollTrigger: { trigger: group, start: "top 82%" },
+        },
+      );
+
+      gsap.fromTo(
+        rows,
+        { autoAlpha: 0, y: 18 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: .62,
+          stagger: .07,
+          ease: "power3.out",
+          scrollTrigger: { trigger: group, start: "top 72%" },
+        },
+      );
+    });
   }, { scope: root });
 
   return (
@@ -130,6 +204,46 @@ export function CaseStudyPage({ study: _study }: { study: CaseStudy }) {
           </div>
         </div>
       </section>
+
+      <section className={styles.servicesSection} aria-label="SoftBridge Solutions services">
+        <div className={styles.servicesContainer}>
+          {serviceGroups.map((group) => (
+            <article className={styles.serviceGroup} key={group.number}>
+              <header className={styles.serviceHeader}>
+                <span className={styles.serviceNumber}>{group.number}</span>
+                <h2 className={styles.serviceTitle}>{group.title}</h2>
+              </header>
+
+              <div className={styles.serviceRows}>
+                {group.rows.map((row) => (
+                  <div className={styles.serviceRow} key={row.label}>
+                    <span className={styles.serviceRowLabel}>{row.label}</span>
+
+                    <div className={styles.serviceHoverLayer} aria-hidden="true">
+                      <div className={styles.marqueeTrack}>
+                        {[0, 1].map((copy) => (
+                          <div className={styles.marqueeGroup} key={copy}>
+                            {[0, 1, 2, 3, 4].map((item) => (
+                              <span key={item}>
+                                <i>✣</i> {row.label}
+                              </span>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={styles.servicePreview} aria-hidden="true">
+                      <img src={row.image} alt="" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
     </main>
   );
 }

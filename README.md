@@ -1,16 +1,11 @@
-# SoftBridge Detail Page — Text Visibility Fixed
+# SoftBridge Detail Page — Parts 01 + 02
 
-Fixed:
-- left column text clipping
-- title overflow
-- z-index conflict between text and media
-- insufficient title group height
-- intro spacing
-- desktop and mobile title sizing
+Part 02 adds the supplied What We Do interaction below the approved Featured Work section.
 
-Preserved:
-- sticky structure
-- GSAP animation timing
-- image transitions
-- media dimensions
-- CTA behavior
+- numbered service groups
+- large editorial headings
+- 56px service rows
+- bottom-up white hover reveal
+- looping marquee labels
+- right-side preview thumbnail
+- GSAP scroll entrance reveals
