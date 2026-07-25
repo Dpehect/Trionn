@@ -1,14 +1,18 @@
-# SoftBridge Safe Gap Fix
+# SoftBridge Typography Upgrade
 
-Fixed:
-- restored the original Part 01 structure
-- preserved sticky and GSAP behavior
-- removed excess spacing only from the beginning of Part 02
+Updated:
+- stronger Featured Work label
+- larger and more balanced case titles
+- larger, clearer descriptions
+- stronger audience metadata
+- improved spacing and contrast
 
 Preserved:
-- first-section dimensions
-- animation timeline
-- pinned scroll
-- title/media transitions
+- DOM/component structure
+- grid layout
+- first-section proportions
+- GSAP timelines
+- pinned scrolling
+- media transitions
+- responsive behavior
 - #F9F6F1 background
-- removed CTA and client block
