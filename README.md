@@ -1,22 +1,14 @@
-# SoftBridge Case Carousel Fix
+# SoftBridge Case Carousel — Build Fix
 
 Fixed:
-- Section 03 contains only real SoftBridge case studies.
-- The current case is excluded; all cards link to another case.
-- Every carousel card uses that case's own landscape editorial image.
-- Case images now display fully with object-fit: contain.
-- Cards, images, titles and descriptions are substantially larger.
-- The ring is repositioned so images are not clipped into thin strips.
-- Old generated book-cover assets were removed.
-- Every detail-page section now uses the same #164C4D background.
+- Removed the unreachable `study.hero` fallback.
+- Every carousel card now uses its own `study.editorialHero`.
+- Resolves Next.js/TypeScript error: Property 'hero' does not exist on type 'never'.
 
 Preserved:
+- case-only carousel content
+- complete case images
 - arc geometry
-- drag and touch controls
-- momentum
-- clone-based infinite loop
-- active-card scale and z-index
-- hover tilt
-- keyboard controls
-- Sections 01 and 02 structure and animations
-- SEO/GEO content
+- drag, touch, momentum and infinite loop
+- unified #164C4D detail-page background
+- all existing sections and animations
