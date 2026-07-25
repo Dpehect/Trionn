@@ -967,3 +967,93 @@
 .container:has(.introText:empty) .workGrid {
   align-self: stretch;
 }
+
+
+/* First section alignment correction — structure and GSAP motion unchanged */
+.container:has(.introText:empty) {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  padding-top: clamp(22px, 3vh, 36px);
+  padding-bottom: clamp(18px, 2.4vh, 30px);
+}
+
+.container:has(.introText:empty) .workGrid {
+  height: 100%;
+  min-height: 0;
+  align-items: start;
+  padding-top: 0;
+}
+
+.container:has(.introText:empty) .workContent {
+  align-self: stretch;
+  min-height: 0;
+  height: min(68vh, 580px);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.container:has(.introText:empty) .mediaArea {
+  align-self: start;
+  height: min(68vh, 580px);
+  min-height: 460px;
+  max-height: 580px;
+}
+
+.container:has(.introText:empty) .featuredLabel {
+  margin-top: 0;
+}
+
+.container:has(.introText:empty) .featuredTitleGroup {
+  margin-top: clamp(16px, 2.2vh, 26px);
+}
+
+.container:has(.introText:empty) .clientGroup {
+  bottom: 0;
+}
+
+.container:has(.introText:empty) .ctaRow {
+  align-self: end;
+}
+
+@media (max-height: 900px) and (min-width: 801px) {
+  .container:has(.introText:empty) .workContent,
+  .container:has(.introText:empty) .mediaArea {
+    height: min(64vh, 520px);
+    min-height: 420px;
+    max-height: 520px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 801px) {
+  .container:has(.introText:empty) .workContent,
+  .container:has(.introText:empty) .mediaArea {
+    height: min(61vh, 455px);
+    min-height: 360px;
+    max-height: 455px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container:has(.introText:empty) {
+    padding-top: 18px;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .container:has(.introText:empty) .workGrid {
+    grid-template-rows: minmax(210px, 38%) minmax(0, 62%);
+    align-items: stretch;
+  }
+
+  .container:has(.introText:empty) .workContent {
+    height: auto;
+    min-height: 0;
+  }
+
+  .container:has(.introText:empty) .mediaArea {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    align-self: stretch;
+  }
+}
