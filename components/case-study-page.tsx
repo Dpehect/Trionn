@@ -9,27 +9,22 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const SCENES = [
+const STAGES = [
   {
     kicker: "Featured work",
-    titleMain: "Brand",
-    titleItalic: "ing",
+    title: "Branding",
     clientName: "Vakeso",
+    clientColor: "#f0642f",
+    sceneText: "SCENE 01 // AWWARDS SELECTION",
     image: "/vivid-3d/scene1.jpg",
   },
   {
     kicker: "Featured work",
-    titleMain: "We",
-    titleItalic: "b",
+    title: "Web",
     clientName: "SoundCloud",
+    clientColor: "#ff5500",
+    sceneText: "SCENE 02 // AWWARDS SELECTION",
     image: "/vivid-3d/scene2.jpg",
-  },
-  {
-    kicker: "Featured work",
-    titleMain: "Mobi",
-    titleItalic: "le",
-    clientName: "Sona",
-    image: "/vivid-3d/scene3.jpg",
   },
 ];
 
@@ -47,8 +42,8 @@ const FRAGMENT_SHADER_SRC = `
   uniform sampler2D u_tex0;
   uniform sampler2D u_tex1;
   uniform float u_progress;
+  uniform float u_reveal;
   uniform float u_time;
-  uniform float u_hover;
   uniform vec2 u_mouse;
   varying vec2 v_uv;
 
@@ -56,18 +51,19 @@ const FRAGMENT_SHADER_SRC = `
     vec2 uv = v_uv;
     uv.y = 1.0 - uv.y;
 
-    // Hover-ONLY Fluid ripple effect (only active when hovering)
+    // Liquid glitch reveal wave
+    float wave = sin(uv.y * 18.0 + u_time * 3.0) * (1.0 - u_reveal) * 0.08;
+    float glitch = sin(uv.x * 35.0 + u_time * 7.0) * sin(u_progress * 3.14159) * 0.05;
+
+    // Mouse interaction distortion
     float dist = distance(uv, u_mouse);
-    float hoverRipple = smoothstep(0.45, 0.0, dist) * u_hover * 0.035 * sin(dist * 20.0 - u_time * 4.0);
+    float hoverDisplace = smoothstep(0.4, 0.0, dist) * 0.02 * sin(dist * 25.0 - u_time * 5.0);
 
-    // Scroll Transition Glitch (active only during transition progress)
-    float glitch = sin(uv.x * 25.0 + u_time * 8.0) * sin(u_progress * 3.14159) * 0.04;
+    vec2 uv1 = uv + vec2(wave + glitch + hoverDisplace, glitch * 0.5);
+    vec2 uv2 = uv + vec2(wave * 0.5 - glitch + hoverDisplace, -glitch * 0.5);
 
-    vec2 uv1 = uv + vec2(hoverRipple + glitch, glitch * 0.5);
-    vec2 uv2 = uv + vec2(hoverRipple * 0.6 - glitch, -glitch * 0.5);
-
-    // RGB Split / Chromatic Aberration during transition & hover
-    float splitAmt = 0.012 * sin(u_progress * 3.14159) + (u_hover * 0.004);
+    // RGB Split / Chromatic Aberration
+    float splitAmt = 0.015 * (1.0 - u_reveal) + 0.012 * sin(u_progress * 3.14159);
 
     float r0 = texture2D(u_tex0, uv1 + vec2(splitAmt, 0.0)).r;
     float g0 = texture2D(u_tex0, uv1).g;
@@ -79,13 +75,17 @@ const FRAGMENT_SHADER_SRC = `
     float b1 = texture2D(u_tex1, uv2 - vec2(splitAmt, 0.0)).b;
     vec4 col1 = vec4(r1, g1, b1, 1.0);
 
-    vec4 finalCol = mix(col0, col1, u_progress);
+    vec4 mixedCol = mix(col0, col1, u_progress);
 
-    // Holographic edge vignette
+    // Smooth reveal from completely black container (0.0 -> 1.0)
+    vec4 blackBg = vec4(0.01, 0.01, 0.01, 1.0);
+    vec4 finalColor = mix(blackBg, mixedCol, u_reveal);
+
+    // Vignette
     float edgeDist = length(uv - vec2(0.5));
-    finalCol.rgb *= smoothstep(0.9, 0.2, edgeDist);
+    finalColor.rgb *= smoothstep(0.9, 0.25, edgeDist);
 
-    gl_FragColor = finalCol;
+    gl_FragColor = finalColor;
   }
 `;
 
@@ -95,48 +95,53 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [nextIdx, setNextIdx] = useState(1);
-  const [transitionProgress, setTransitionProgress] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+  const [stageProgress, setStageProgress] = useState(0);
+  const [revealProgress, setRevealProgress] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
-  // GSAP ScrollTrigger pinning & scroll-driven sync
+  // GSAP ScrollTrigger pinning & scroll sync
   useGSAP(
     () => {
-      const container = document.querySelector<HTMLElement>(".vivid-scroll-stage");
+      const container = document.querySelector<HTMLElement>(".dark-stage-container");
       if (!container) return;
 
       ScrollTrigger.create({
         trigger: container,
         start: "top top",
-        end: "+=300%",
+        end: "+=250%",
         pin: true,
         scrub: 0.8,
         onUpdate: (self) => {
-          const rawProgress = self.progress * (SCENES.length - 1);
-          const currentStage = Math.min(
-            Math.floor(rawProgress),
-            SCENES.length - 1
-          );
-          const stageSubProgress = rawProgress - currentStage;
+          // Reveal container from black initially as user scrolls into stage
+          const reveal = Math.min(1.0, self.progress * 4.0);
+          setRevealProgress(reveal);
 
-          setActiveIdx(currentStage);
-          setNextIdx(Math.min(currentStage + 1, SCENES.length - 1));
-          setTransitionProgress(stageSubProgress);
+          // Transition between Stage 0 (Branding / Vakeso) and Stage 1 (Web / SoundCloud)
+          if (self.progress > 0.4) {
+            setActiveIdx(1);
+            setNextIdx(1);
+            setStageProgress(Math.min(1.0, (self.progress - 0.4) * 2.5));
+          } else {
+            setActiveIdx(0);
+            setNextIdx(1);
+            setStageProgress(self.progress * 2.5);
+          }
         },
       });
     },
     { scope: rootRef }
   );
 
-  // Mouse movement tracking over canvas frame
+  // Mouse move handler for container interaction
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
     setMousePos({ x, y });
+    setRevealProgress(1.0); // Immediately reveal on hover interaction
   };
 
-  // WebGL Shader Renderer
+  // WebGL Holographic Liquid Shader Setup
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -144,6 +149,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     const gl =
       canvas.getContext("webgl") ||
       (canvas.getContext("experimental-webgl") as WebGLRenderingContext | null);
+
     if (!gl) return;
 
     function compileShader(type: number, src: string) {
@@ -183,14 +189,14 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
     const uTimeLoc = gl.getUniformLocation(program, "u_time");
     const uProgressLoc = gl.getUniformLocation(program, "u_progress");
-    const uHoverLoc = gl.getUniformLocation(program, "u_hover");
+    const uRevealLoc = gl.getUniformLocation(program, "u_reveal");
     const uMouseLoc = gl.getUniformLocation(program, "u_mouse");
     const uTex0Loc = gl.getUniformLocation(program, "u_tex0");
     const uTex1Loc = gl.getUniformLocation(program, "u_tex1");
 
     // Load textures
     const textures: WebGLTexture[] = [];
-    SCENES.forEach((sc) => {
+    STAGES.forEach((sc) => {
       const tex = gl.createTexture()!;
       gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -220,17 +226,14 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
     let animId: number;
     let startTime = performance.now();
-    let currHover = 0;
 
     const render = () => {
       const now = (performance.now() - startTime) * 0.001;
-      const targetHover = isHovered ? 1.0 : 0.0;
-      currHover += (targetHover - currHover) * 0.08;
 
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uTimeLoc, now);
-      gl.uniform1f(uProgressLoc, transitionProgress);
-      gl.uniform1f(uHoverLoc, currHover);
+      gl.uniform1f(uProgressLoc, stageProgress);
+      gl.uniform1f(uRevealLoc, revealProgress);
       gl.uniform2f(uMouseLoc, mousePos.x, mousePos.y);
 
       const t0 = textures[activeIdx] || textures[0];
@@ -254,73 +257,82 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animId);
     };
-  }, [activeIdx, nextIdx, transitionProgress, isHovered, mousePos]);
+  }, [activeIdx, nextIdx, stageProgress, revealProgress, mousePos]);
 
-  const activeScene = SCENES[activeIdx];
+  const activeStage = STAGES[activeIdx];
 
   return (
-    <main ref={rootRef} className="vivid-scroll-page">
-      {/* Film Grain Texture */}
-      <div className="vivid-scroll-grain" />
-
-      {/* STICKY FEATURED WORK SECTION */}
-      <section className="vivid-scroll-stage">
+    <main ref={rootRef} className="dark-portfolio-page">
+      {/* STICKY CONTAINER STAGE */}
+      <section className="dark-stage-container">
         {/* Navigation Header */}
-        <header className="vivid-scroll-nav">
-          <Link href="/" className="vivid-scroll-logo">
+        <header className="dark-stage-nav">
+          <Link href="/" className="dark-nav-brand">
             Vivid Motion<sup>®</sup>
           </Link>
-          <Link href="/" className="vivid-scroll-home-btn">
+          <Link href="/" className="dark-nav-home">
             HOME ::
           </Link>
         </header>
 
-        {/* 50/50 Split Content */}
-        <div className="vivid-scroll-split">
-          {/* LEFT SIDE: STICKY PANEL */}
-          <div className="vivid-scroll-left">
-            {/* Top Small Gray Text */}
-            <span className="vivid-scroll-kicker">{activeScene.kicker}</span>
+        {/* 50/50 Split Stage Layout */}
+        <div className="dark-split-layout">
+          {/* LEFT SIDE STICKY PANEL */}
+          <div className="dark-panel-left">
+            {/* 1. Small gray text "Featured work" */}
+            <span className="dark-kicker-text">{activeStage.kicker}</span>
 
-            {/* Center Large White Serif Typography */}
-            <h1 className="vivid-scroll-title">
-              {activeScene.titleMain}
-              <em className="vivid-scroll-em">{activeScene.titleItalic}</em>
+            {/* 2. Large elegant white serif title ("Branding" -> "Web") */}
+            <h1 className="dark-serif-title">
+              {activeStage.title === "Branding" ? (
+                <>
+                  Brand<em className="dark-em">ing</em>
+                </>
+              ) : (
+                <>
+                  We<em className="dark-em">b</em>
+                </>
+              )}
             </h1>
 
-            {/* Bottom Left Client Logo + Name (Vakeso → SoundCloud → Sona) */}
-            <div className="vivid-scroll-client-card">
-              <div className="vivid-scroll-client-mark">
-                <span className="vivid-scroll-shape" />
+            {/* 3. Rounded client badge at bottom left ("Vakeso" -> "SoundCloud") */}
+            <div className="dark-client-badge">
+              <div
+                className="dark-badge-icon"
+                style={{ backgroundColor: activeStage.clientColor }}
+              >
+                <span className="dark-icon-shape" />
               </div>
-              <div className="vivid-scroll-client-info">
+              <div className="dark-badge-meta">
                 <small>CLIENT</small>
-                <strong>{activeScene.clientName}</strong>
+                <strong>{activeStage.clientName}</strong>
               </div>
             </div>
           </div>
 
-          {/* RIGHT SIDE: CINEMATIC 3D HERO VISUALS (HOVER-ONLY FLUID RIPPLE) */}
-          <div className="vivid-scroll-right">
+          {/* RIGHT SIDE: CONTAINER WITH SOFT BORDER (INITIALLY BLACK) */}
+          <div className="dark-panel-right">
             <div
-              className="vivid-scroll-frame"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              className="dark-hero-container-box"
+              onMouseEnter={() => setRevealProgress(1.0)}
+              onMouseLeave={() => setRevealProgress(0.0)}
               onMouseMove={handleMouseMove}
             >
-              <canvas ref={canvasRef} className="vivid-scroll-canvas" />
+              {/* WebGL Canvas for 3D Holographic Image Reveal */}
+              <canvas ref={canvasRef} className="dark-webgl-canvas" />
 
-              <div className="vivid-scroll-badge">
-                <span>SCENE 0{activeIdx + 1} // AWWWARDS SELECTION</span>
+              {/* Bottom Right Text ("SCENE 01 // AWWARDS SELECTION" -> "SCENE 02") */}
+              <div className="dark-scene-badge">
+                <span>{activeStage.sceneText}</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Follow-up content section */}
-      <section className="vivid-scroll-below">
-        <div className="vivid-scroll-below-inner">
+      {/* Continuation Section */}
+      <section className="dark-below-section">
+        <div className="dark-below-container">
           <h2>Crafted for High-Impact Brands</h2>
           <p>{study.intro}</p>
         </div>

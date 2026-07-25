@@ -5256,3 +5256,227 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Dark Minimal Portfolio Stage Styles (Exact Prompt Spec) */
+.dark-portfolio-page {
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+.dark-stage-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 32px 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.dark-stage-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.dark-nav-brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.dark-nav-brand sup {
+  font-size: 11px;
+  margin-left: 2px;
+  font-family: sans-serif;
+}
+
+.dark-nav-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.dark-nav-home:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.dark-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  align-items: center;
+  min-height: 82vh;
+  position: relative;
+  z-index: 10;
+}
+
+.dark-panel-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dark-kicker-text {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.dark-serif-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 8.5vw, 140px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0 0 60px;
+  font-weight: 400;
+}
+
+.dark-em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.dark-client-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 22px 12px 14px;
+  border-radius: 99px;
+  background: rgba(18, 22, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: fit-content;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.dark-badge-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.4s ease;
+}
+
+.dark-icon-shape {
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.dark-badge-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-badge-meta small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+.dark-badge-meta strong {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.dark-panel-right {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+
+.dark-hero-container-box {
+  position: relative;
+  width: 100%;
+  height: 74vh;
+  min-height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #010101;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+
+.dark-webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dark-scene-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.dark-below-section {
+  padding: 120px 4vw;
+  background: #040404;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark-below-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dark-below-container h2 {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.dark-below-container p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .dark-split-layout {
+    grid-template-columns: 1fr;
+  }
+}
