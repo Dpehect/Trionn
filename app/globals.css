@@ -4287,3 +4287,70 @@
     height: auto;
   }
 }
+
+
+/* Step-by-step Clean Base Case Study Styles */
+.cs-base-page {
+  min-height: 100vh;
+  background: #070809;
+  color: #f5f3ed;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding-bottom: 100px;
+}
+
+.cs-base-nav {
+  padding: 24px 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cs-base-logo {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: Georgia, serif;
+}
+
+.cs-base-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.cs-base-container {
+  max-width: 1000px;
+  margin: 100px auto 0;
+  padding: 0 4vw;
+}
+
+.cs-base-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(240, 100, 47, 0.15);
+  color: #f0642f;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.cs-base-title {
+  font-family: Georgia, serif;
+  font-size: clamp(40px, 6vw, 84px);
+  color: #ffffff;
+  margin: 0 0 20px;
+  line-height: 1;
+}
+
+.cs-base-intro {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 18px;
+  line-height: 1.6;
+}
