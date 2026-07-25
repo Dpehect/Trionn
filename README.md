@@ -1,18 +1,16 @@
-# SoftBridge Solutions Detail Page Content Update
+# SoftBridge Detail Page — Text Visibility Fixed
 
-Only the case detail content was changed.
+Fixed:
+- left column text clipping
+- title overflow
+- z-index conflict between text and media
+- insufficient title group height
+- intro spacing
+- desktop and mobile title sizing
 
 Preserved:
-- layout
 - sticky structure
-- GSAP transitions
+- GSAP animation timing
+- image transitions
 - media dimensions
-- CTA
-- no-overlap behavior
-
-Updated:
-- manifesto copy
-- categories
-- client name
-- logo
-- four media images
+- CTA behavior
