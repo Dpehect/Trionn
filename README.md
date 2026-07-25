@@ -1,16 +1,22 @@
-# SoftBridge Detail Page — Part 01 Viewport Fix
+# SoftBridge Solutions — Case-Specific Detail Pages
 
-The first pinned Featured Work section now fits completely inside the viewport.
+The approved layout and animation system are preserved.
 
-Fixed:
-- manifesto clipping at the top
-- client block clipping at the bottom
-- media extending below the viewport
-- oversized spacing on short desktop screens
-- responsive sizing for 760–900px viewport heights
+Added:
+- description below every Featured Work title
+- target-audience line for every scene
+- unique manifesto for every case route
+- unique four-scene content for all nine case studies
+- unique service groups and service rows for every case
+- case-specific images sourced from each case's existing data
 
-Preserved:
-- pinned scroll behavior
-- title/client/image animation
-- Part 02 service section
-- existing content and image sequence
+Supported routes:
+- AI Software Development
+- Enterprise SaaS Platform
+- Healthcare Software
+- Logistics Platform
+- Manufacturing AI
+- Cloud Applications
+- Mobile Product
+- Retail AI Automation
+- Digital Transformation
