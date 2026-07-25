@@ -1687,7 +1687,9 @@
 
 
 
-/* SoftBridge Titanium viewport */
+
+
+/* SoftBridge True Titanium viewport */
 html,
 body {
   margin: 0;
@@ -1695,7 +1697,7 @@ body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  background: #9ca5aa;
+  background: #7f8d95;
 }
 
 body {

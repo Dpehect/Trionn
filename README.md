@@ -1,12 +1,17 @@
-# SoftBridge Titanium Clean Theme
+# SoftBridge True Titanium
 
-Previous navy, purple, emerald and concrete theme blocks were removed.
+Updated:
+- removed flat gray appearance
+- added cold blue-steel titanium base
+- added brushed-metal lines
+- added directional metallic reflection
+- added subtle titanium grain
+- darkened media surfaces for stronger contrast
+- preserved bronze accent
 
-This package contains one clean Titanium color source:
-- brushed titanium gray background
-- silver metallic surfaces
-- graphite typography
-- restrained bronze accents
-- no old theme cascade
-- full-width viewport
-- animations and structure unchanged
+Preserved:
+- layout
+- all GSAP animations
+- pinned scroll
+- case-specific content
+- service section interactions

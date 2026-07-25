@@ -731,140 +731,201 @@
 }
 
 
-/* SoftBridge Titanium — clean single-source theme */
+/* SoftBridge True Titanium — brushed metal system */
 .page {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  color: #171a1c;
+  overflow: hidden;
+  color: #12171a;
   background:
-    radial-gradient(circle at 80% 12%, rgba(231, 235, 237, .68), transparent 33%),
-    radial-gradient(circle at 18% 88%, rgba(120, 129, 135, .22), transparent 30%),
-    linear-gradient(135deg, #8f989d 0%, #aeb6ba 46%, #c8ced1 100%);
+    linear-gradient(112deg, rgba(255,255,255,.28) 0%, transparent 22%, rgba(255,255,255,.10) 38%, transparent 54%, rgba(54,68,77,.14) 78%, transparent 100%),
+    radial-gradient(circle at 78% 12%, rgba(237,246,250,.72), transparent 28%),
+    radial-gradient(circle at 12% 88%, rgba(72,87,96,.28), transparent 34%),
+    linear-gradient(135deg, #6e7c84 0%, #9aa7ae 34%, #c5ced3 58%, #87959d 100%);
+}
+
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .42;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 1px,
+      rgba(37,49,56,.025) 1px,
+      rgba(37,49,56,.025) 3px
+    );
+  mix-blend-mode: overlay;
+}
+
+.page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .18;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 75%, rgba(17,25,30,.28) 0 1px, transparent 1.5px);
+  background-size: 7px 7px, 9px 9px;
+  mix-blend-mode: soft-light;
 }
 
 .workSection,
 .servicesSection {
+  position: relative;
+  z-index: 1;
   width: 100%;
   margin: 0;
   background: transparent;
 }
 
-.workSticky {
-  width: 100%;
-  margin: 0;
-}
-
+.workSticky,
 .container,
 .servicesContainer {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .workSticky::before {
   background:
-    linear-gradient(90deg, rgba(23, 26, 28, .055) 1px, transparent 1px),
-    linear-gradient(rgba(23, 26, 28, .045) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(90deg, rgba(20,27,31,.06) 1px, transparent 1px),
+    linear-gradient(rgba(20,27,31,.045) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 .featuredLabel {
-  color: #7d5135;
+  color: #8a5837;
 }
 
 .featuredLabel::before {
-  color: #59636a;
+  color: #41515a;
 }
 
 .featuredTitle {
-  color: #171a1c;
-  text-shadow: none;
+  color: #111619;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.28),
+    0 8px 22px rgba(24,33,38,.08);
 }
 
 .featuredTitle p {
-  color: rgba(23, 26, 28, .82);
+  color: rgba(17, 22, 25, .82);
 }
 
 .featuredTitle span {
-  color: rgba(55, 62, 66, .72);
+  color: rgba(42, 53, 59, .74);
 }
 
 .clientLabel {
-  color: #7d5135;
+  color: #8a5837;
 }
 
 .clientName {
-  color: #171a1c;
+  color: #12171a;
 }
 
 .mediaArea {
-  border: 1px solid rgba(58, 65, 69, .2);
-  background: linear-gradient(145deg, rgba(221, 225, 227, .86), rgba(180, 188, 192, .78));
+  border: 1px solid rgba(255,255,255,.30);
+  background:
+    linear-gradient(145deg, rgba(82,96,105,.92), rgba(42,53,60,.96));
   box-shadow:
-    0 24px 72px rgba(46, 51, 54, .22),
-    inset 0 1px 0 rgba(245, 247, 248, .52);
+    0 30px 90px rgba(22,31,36,.30),
+    inset 0 1px 0 rgba(255,255,255,.28),
+    inset 0 -1px 0 rgba(8,14,17,.22);
+}
+
+.mediaArea::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: .32;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.05) 0px,
+      rgba(255,255,255,.05) 1px,
+      rgba(0,0,0,.02) 1px,
+      rgba(0,0,0,.02) 3px
+    );
 }
 
 .mediaArea::after {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, .13), transparent 34%),
-    linear-gradient(315deg, rgba(87, 96, 102, .1), transparent 36%);
+    linear-gradient(118deg, rgba(255,255,255,.18), transparent 31%),
+    linear-gradient(315deg, rgba(35,47,54,.24), transparent 37%);
 }
 
 .mediaItem img {
-  filter: saturate(.68) contrast(1.08) brightness(.96);
+  filter: saturate(.72) contrast(1.10) brightness(.90);
 }
 
 .cta {
-  background: linear-gradient(90deg, #735039, #94684a);
-  box-shadow: 0 12px 30px rgba(73, 50, 35, .2);
+  background:
+    linear-gradient(90deg, #6e4932 0%, #95654a 48%, #b27a58 100%);
+  box-shadow:
+    0 14px 34px rgba(64,42,30,.22),
+    inset 0 1px 0 rgba(255,255,255,.18);
 }
 
 .cta a {
-  color: #ece8e2;
+  color: #f2ece5;
 }
 
 .serviceGroup {
-  border-color: rgba(38, 43, 46, .18);
+  border-color: rgba(18,24,28,.20);
 }
 
 .serviceNumber {
-  color: #7d5135;
+  color: #855437;
 }
 
 .serviceTitle {
-  color: #171a1c;
+  color: #111619;
 }
 
 .serviceRow {
-  border-color: rgba(38, 43, 46, .15);
+  border-color: rgba(18,24,28,.16);
 }
 
 .serviceRowLabel {
-  color: rgba(23, 26, 28, .86);
+  color: rgba(17,22,25,.88);
 }
 
 .serviceHoverLayer {
-  background: linear-gradient(90deg, #e2e6e8, #cfd5d8);
+  background:
+    linear-gradient(90deg, #dbe2e5 0%, #b8c3c8 50%, #d4dce0 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(51,63,69,.18);
 }
 
 .marqueeTrack {
-  color: #171a1c;
+  color: #111619;
 }
 
 .servicePreview {
-  border: 1px solid rgba(23, 26, 28, .13);
-  box-shadow: 0 16px 36px rgba(47, 53, 56, .2);
+  border: 1px solid rgba(255,255,255,.28);
+  box-shadow:
+    0 18px 42px rgba(25,34,39,.24),
+    inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 @media (max-width: 800px) {
-  .page,
-  .workSection,
-  .servicesSection {
-    width: 100%;
-    max-width: 100%;
+  .page {
+    background:
+      radial-gradient(circle at 78% 10%, rgba(237,246,250,.64), transparent 26%),
+      linear-gradient(145deg, #74828a 0%, #aab5bb 56%, #89979f 100%);
   }
 }
