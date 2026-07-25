@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -399,7 +400,15 @@ export function LayeredHomepage() {
         <div className="selected-cases__gallery">
           {cases.map((item) => (
             <article className="case-card" key={item.name} itemScope itemType="https://schema.org/CreativeWork">
-              <a id={item.slug} href={`/cases/${item.slug}`} className="case-card__link" itemProp="url">
+              <Link
+                id={item.slug}
+                href={{ pathname: `/cases/${item.slug}` }}
+                prefetch
+                scroll
+                className="case-card__link"
+                itemProp="url"
+                aria-label={`Open ${item.name} case study`}
+              >
                 <div className="case-card__media">
                   <Image
                     className="case-card__image"
@@ -415,11 +424,11 @@ export function LayeredHomepage() {
                     <p>{item.category}</p>
                     <h3 itemProp="name">{item.name}</h3>
                     <meta itemProp="description" content={item.category} />
-                    <meta itemProp="url" content={`#${item.slug}`} />
+                    <meta itemProp="url" content={`/cases/${item.slug}`} />
                   </div>
                   <ArrowUpRight size={20} strokeWidth={1.4} />
                 </div>
-              </a>
+              </Link>
             </article>
           ))}
         </div>

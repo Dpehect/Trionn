@@ -1514,3 +1514,63 @@
   .case-editorial:nth-of-type(even) .case-editorial__media { order: 0; }
   .case-editorial__media { min-height: 52vh; }
 }
+
+
+/* Selected Cases click-target fix */
+.selected-cases {
+  position: relative;
+  isolation: isolate;
+}
+
+.selected-cases__gallery {
+  position: relative;
+  z-index: 20;
+}
+
+.case-card {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto !important;
+  contain: layout paint;
+}
+
+.case-card__link {
+  position: relative;
+  z-index: 10;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.case-card__media,
+.case-card__image,
+.case-card__meta,
+.case-card__meta *,
+.case-card__link::before,
+.case-card__link::after {
+  pointer-events: none !important;
+}
+
+.case-card__link:focus-visible {
+  outline: 3px solid rgba(75, 96, 225, .72);
+  outline-offset: 5px;
+}
+
+.case-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: box-shadow .25s ease;
+}
+
+.case-card__link:hover::after,
+.case-card__link:focus-visible::after {
+  box-shadow: inset 0 0 0 1px rgba(58, 70, 102, .25);
+}
