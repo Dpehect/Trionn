@@ -1,25 +1,18 @@
-# SoftBridge Solutions Finland — Selected Case Links Fixed
+# SoftBridge Solutions Finland — Reference-Style Case Pages
 
-## Fixed
-- Replaced plain anchor elements with Next.js `Link`.
-- Enabled route prefetching and normal scroll behavior.
-- Raised the link above all animated and visual layers.
-- Disabled pointer events on images, metadata and decorative overlays.
-- Added keyboard focus styling.
-- Updated schema URLs to real `/cases/[slug]` paths.
-- Rewrote the Next.js 15 dynamic route with `dynamicParams = false`.
-- Added a clear route-level not-found screen.
+The Selected Case detail pages were rebuilt to match the second reference video:
 
-## Expected routes
-- /cases/ai-software-development-finland
-- /cases/enterprise-saas-platform
-- /cases/healthcare-software-nordics
-- /cases/logistics-software-europe
-- /cases/manufacturing-ai-solutions
-- /cases/cloud-application-development
-- /cases/mobile-app-development-finland
-- /cases/retail-ai-automation
-- /cases/digital-transformation-platform
+- atmospheric full-screen opening
+- minimal fixed navigation
+- centered micro-copy
+- black editorial split sections
+- vertical side labels and chapter numbers
+- masked image reveals
+- full-width cinematic image section
+- alternating copy and media composition
+- atmospheric final section
+
+All nine case routes use the same design system with case-specific content.
 
 ## Run
 ```bash
