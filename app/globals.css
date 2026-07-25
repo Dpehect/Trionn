@@ -1579,3 +1579,105 @@
     transform: none !important;
   }
 }
+
+
+/* Part 01 revision — vertical scene transitions and pointer-responsive imagery */
+.fw-slides {
+  overflow: hidden;
+}
+
+.fw-slide {
+  clip-path: none !important;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.fw-slide__copy {
+  overflow: hidden;
+}
+
+.fw-slide__description {
+  max-width: 430px;
+  margin: 26px 0 0;
+  color: rgba(244,242,236,.5);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.fw-slide__media {
+  perspective: 1100px;
+  cursor: crosshair;
+}
+
+.fw-slide__image {
+  width: 104%;
+  height: 104%;
+  margin: -2%;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+.fw-slide__wave {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 220px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.7);
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.18) 0%,
+      rgba(255,255,255,.08) 22%,
+      rgba(255,255,255,.025) 46%,
+      transparent 72%
+    );
+  filter: blur(8px);
+  mix-blend-mode: screen;
+}
+
+.fw-slide__wave::before,
+.fw-slide__wave::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+}
+
+.fw-slide__wave::after {
+  inset: 34%;
+  border-color: rgba(255,255,255,.09);
+}
+
+@media (max-width: 900px) {
+  .fw-slide__description {
+    max-width: 100%;
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .fw-slide__wave {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fw-slide {
+    transform: none !important;
+  }
+
+  .fw-slide:not(:first-child) {
+    display: none;
+  }
+
+  .fw-slide__wave {
+    display: none;
+  }
+}

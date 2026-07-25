@@ -1,21 +1,13 @@
-# SoftBridge Solutions Finland — Detail Page Part 01
+# SoftBridge Solutions Finland — Detail Page Part 01 Revision
 
-Only the first detail-page section is included in this version.
-
-## Reference structure
-- Black full-screen pinned stage
-- Minimal top navigation
-- Featured Work label and large serif category title on the left
-- Large project image on the right
-- Scroll-controlled transition between seven scenes
-- Image wipe, image zoom-out and title-mask animation
-- Scene progress numbers
-- Red See All Work band on the final scene
-
-## Images
-The seven images supplied by the user are included locally under:
-
-`public/detail-part-01/`
+## Updated
+- Scenes now move vertically like stacked cards.
+- The outgoing scene slides upward while the next scene enters from below.
+- No clip-wipe replacement animation is used.
+- Left-side eyebrow, title, description and metadata change for every scene.
+- Images react to pointer movement with subtle tilt, parallax and a soft wave field.
+- Mobile disables the pointer-wave effect while preserving the vertical scroll sequence.
+- Only detail page Part 01 is included.
 
 ## Run
 ```bash
