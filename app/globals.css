@@ -1710,3 +1710,10 @@ html,
 body {
   background: #F9F6F1 !important;
 }
+
+
+/* Deep Petrol page fallback */
+html,
+body {
+  background: #0F3D3E !important;
+}

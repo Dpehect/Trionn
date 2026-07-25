@@ -1386,3 +1386,137 @@
       radial-gradient(circle at 92% 16%, rgba(118,87,214,.09), transparent 28%);
   }
 }
+
+
+/* Deep Petrol theme — structure and GSAP animations preserved */
+.titaniumTheme {
+  --petrol-bg: #0F3D3E;
+  --petrol-surface: #16494A;
+  --petrol-card: #1C5556;
+  --petrol-line: rgba(255,255,255,.10);
+  --petrol-text: #F5F3EE;
+  --petrol-text-soft: rgba(245,243,238,.78);
+  --petrol-accent: #E37A42;
+  --petrol-accent-soft: #F09A63;
+
+  color: var(--petrol-text) !important;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(227,122,66,.10), transparent 26%),
+    radial-gradient(circle at 86% 18%, rgba(62,163,151,.12), transparent 30%),
+    linear-gradient(135deg, #0B3233 0%, #0F3D3E 46%, #15494A 100%) !important;
+}
+
+.titaniumTheme::before {
+  opacity: .18 !important;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 1px,
+      rgba(0,0,0,.018) 1px,
+      rgba(0,0,0,.018) 4px
+    ) !important;
+}
+
+.titaniumTheme::after {
+  background:
+    radial-gradient(circle at 48% 30%, transparent 0 42%, rgba(0,0,0,.12) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%) !important;
+}
+
+.titaniumTheme .workSticky::after {
+  background:
+    radial-gradient(circle at 10% 16%, rgba(227,122,66,.11), transparent 25%),
+    radial-gradient(circle at 90% 20%, rgba(60,164,151,.11), transparent 28%),
+    radial-gradient(circle at 72% 88%, rgba(240,154,99,.07), transparent 26%) !important;
+}
+
+.titaniumTheme .featuredLabel,
+.titaniumTheme .serviceNumber {
+  color: var(--petrol-accent) !important;
+}
+
+.titaniumTheme .featuredTitle strong,
+.titaniumTheme .serviceTitle {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: var(--petrol-text) !important;
+  text-shadow: 0 10px 30px rgba(0,0,0,.18) !important;
+}
+
+.titaniumTheme .featuredTitle p {
+  color: var(--petrol-text-soft) !important;
+}
+
+.titaniumTheme .featuredTitle span {
+  color: #79C8BE !important;
+}
+
+.titaniumTheme .mediaArea {
+  background:
+    linear-gradient(145deg, #123F40, #0B2C2D) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.34),
+    0 12px 28px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+.titaniumTheme .mediaArea::after {
+  background:
+    linear-gradient(125deg, rgba(227,122,66,.10), transparent 32%),
+    radial-gradient(circle at 82% 18%, rgba(121,200,190,.11), transparent 34%),
+    radial-gradient(circle at 16% 84%, rgba(240,154,99,.08), transparent 30%) !important;
+}
+
+.titaniumTheme .servicesSection {
+  background:
+    linear-gradient(180deg, #103E3F 0%, #0C3536 100%) !important;
+  color: var(--petrol-text) !important;
+}
+
+.titaniumTheme .serviceGroup,
+.titaniumTheme .serviceRow {
+  border-color: var(--petrol-line) !important;
+}
+
+.titaniumTheme .serviceRowLabel {
+  color: rgba(245,243,238,.74) !important;
+}
+
+.titaniumTheme .serviceHoverLayer {
+  background:
+    linear-gradient(90deg, #E37A42 0%, #F09A63 52%, #79C8BE 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 -1px 0 rgba(0,0,0,.14) !important;
+}
+
+.titaniumTheme .serviceRow:nth-child(4n + 1) .serviceHoverLayer,
+.titaniumTheme .serviceRow:nth-child(4n + 2) .serviceHoverLayer,
+.titaniumTheme .serviceRow:nth-child(4n + 3) .serviceHoverLayer,
+.titaniumTheme .serviceRow:nth-child(4n + 4) .serviceHoverLayer {
+  background:
+    linear-gradient(90deg, #E37A42 0%, #F09A63 52%, #79C8BE 100%) !important;
+}
+
+.titaniumTheme .marqueeTrack,
+.titaniumTheme .marqueeGroup span {
+  color: #102B2C !important;
+}
+
+.titaniumTheme .servicePreview {
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+@media (max-width: 800px) {
+  .titaniumTheme {
+    background:
+      radial-gradient(circle at 12% 10%, rgba(227,122,66,.09), transparent 28%),
+      linear-gradient(145deg, #0B3233 0%, #0F3D3E 56%, #16494A 100%) !important;
+  }
+}

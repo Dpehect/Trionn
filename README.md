@@ -1,16 +1,16 @@
-# SoftBridge Color Upgrade
+# SoftBridge Deep Petrol Theme
 
 Updated:
-- richer coral, violet, teal, gold and blue accents
-- subtle color atmosphere over #F9F6F1
-- gradient editorial title treatment
-- more colorful service hover states
-- richer media shadows and borders
+- detail page background changed to Deep Petrol (#0F3D3E)
+- warm coral accent (#E37A42)
+- soft teal support accent
+- light premium typography
+- darker media and service surfaces
 
 Preserved:
-- layout structure
-- typography dimensions
+- component structure
+- grid proportions
 - GSAP animations
 - pinned scroll
-- first-section alignment
+- title/media transitions
 - responsive behavior
