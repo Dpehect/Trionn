@@ -1,13 +1,14 @@
-# SoftBridge Gap Removal
+# SoftBridge Safe Gap Fix
 
 Fixed:
-- removed the large blank area between Part 01 and Part 02
-- Part 02 now follows immediately after the first section
+- restored the original Part 01 structure
+- preserved sticky and GSAP behavior
+- removed excess spacing only from the beginning of Part 02
 
 Preserved:
-- existing DOM structure
-- GSAP selectors and animation elements
+- first-section dimensions
+- animation timeline
+- pinned scroll
 - title/media transitions
-- responsive behavior
 - #F9F6F1 background
 - removed CTA and client block

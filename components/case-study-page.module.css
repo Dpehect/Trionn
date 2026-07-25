@@ -1124,42 +1124,19 @@
 }
 
 
-/* Remove the large empty transition gap after Part 01.
-   Existing GSAP selectors, elements and animation structure stay intact. */
-.titaniumTheme .workSection {
-  min-height: 100svh !important;
-  height: 100svh;
-}
-
-.titaniumTheme .workSticky {
-  min-height: 100svh;
-  height: 100svh;
-}
-
-.titaniumTheme .container:has(.introText:empty) {
-  min-height: 100svh;
-  height: 100svh;
-  grid-template-rows: 1fr;
-}
-
-.titaniumTheme .container:has(.introText:empty) .workGrid {
-  height: 100%;
-  align-content: center;
-}
-
+/* Safe transition-gap correction.
+   Part 01 sizing, sticky layout and GSAP timing remain untouched. */
 .titaniumTheme .servicesSection {
   margin-top: 0 !important;
+  padding-top: clamp(36px, 5vw, 72px) !important;
+}
+
+.titaniumTheme .serviceGroup:first-child {
+  padding-top: 0 !important;
 }
 
 @media (max-width: 800px) {
-  .titaniumTheme .workSection,
-  .titaniumTheme .workSticky {
-    min-height: 100svh !important;
-    height: auto;
-  }
-
-  .titaniumTheme .container:has(.introText:empty) {
-    min-height: 100svh;
-    height: auto;
+  .titaniumTheme .servicesSection {
+    padding-top: 28px !important;
   }
 }
