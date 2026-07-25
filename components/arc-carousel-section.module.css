@@ -2130,3 +2130,173 @@ object-position:center!important;
     min-height: 540px !important;
   }
 }
+
+
+/* Section 03 — compact title gap and forced full image height */
+.section {
+  min-height: 1460px !important;
+  padding-top: clamp(42px, 3.5vw, 64px) !important;
+  padding-bottom: 150px !important;
+  overflow: hidden !important;
+}
+
+.header {
+  min-height: 155px !important;
+  margin-bottom: 0 !important;
+}
+
+.title {
+  margin: 0 !important;
+}
+
+.viewport {
+  height: 1220px !important;
+  margin-top: 14px !important;
+  padding-top: 32px !important;
+  overflow: hidden !important;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 805px) !important;
+}
+
+.slot {
+  width: clamp(320px, 21vw, 430px) !important;
+  overflow: visible !important;
+}
+
+.card {
+  min-height: 980px !important;
+  overflow: visible !important;
+}
+
+.coverWrap {
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.cover {
+  width: 100% !important;
+  height: clamp(650px, 39vw, 790px) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+.cover img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+}
+
+.card:hover .cover {
+  height: clamp(720px, 43vw, 870px) !important;
+  min-height: 0 !important;
+}
+
+.text {
+  min-height: 220px !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1340px !important;
+  }
+
+  .header {
+    min-height: 145px !important;
+  }
+
+  .viewport {
+    height: 1110px !important;
+    margin-top: 12px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 710px) !important;
+  }
+
+  .card {
+    min-height: 890px !important;
+  }
+
+  .cover {
+    height: clamp(590px, 42vw, 700px) !important;
+  }
+
+  .card:hover .cover {
+    height: clamp(650px, 47vw, 770px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1210px !important;
+  }
+
+  .header {
+    min-height: 140px !important;
+  }
+
+  .viewport {
+    height: 990px !important;
+    margin-top: 10px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 610px) !important;
+  }
+
+  .card {
+    min-height: 800px !important;
+  }
+
+  .cover {
+    height: 560px !important;
+  }
+
+  .card:hover .cover {
+    height: 620px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 1080px !important;
+    padding-top: 38px !important;
+    padding-bottom: 100px !important;
+  }
+
+  .header {
+    min-height: 205px !important;
+  }
+
+  .viewport {
+    height: 850px !important;
+    margin-top: 8px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 495px) !important;
+  }
+
+  .card {
+    min-height: 700px !important;
+  }
+
+  .cover {
+    height: 510px !important;
+  }
+
+  .card:hover .cover {
+    height: 550px !important;
+  }
+}

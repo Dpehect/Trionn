@@ -1,16 +1,17 @@
-# SoftBridge Section 03 Full Cards — No Overlap
+# SoftBridge Section 03 Forced Height Fix
 
-Fixed:
-- carousel cards are tall again
-- full image area remains visible
-- header and carousel use separate vertical zones
-- sections no longer overlap
-- hover growth remains controlled and visible
+Updated:
+- reduced the gap between the title and carousel
+- replaced min-height/aspect-ratio sizing with explicit responsive height
+- carousel images can no longer be reduced by previous CSS rules
+- normal and hovered cards remain fully visible
+- vertical section space recalculated to prevent overlap
 
 Preserved:
-- card width
+- carousel width
 - drag and touch
 - momentum
 - infinite loop
-- hover blur focus
-- all other detail-page sections and animations
+- hover enlargement
+- blur focus
+- all other page sections and animations
