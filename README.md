@@ -1,21 +1,14 @@
-# SoftBridge Carousel Full-Image and Section Spacing Fix
+# SoftBridge Section 03 Update
 
-Updated:
-- case carousel images are substantially larger
-- complete images remain visible
-- ring center moved lower without changing the arc transform formula
-- cards and typography enlarged
-- carousel viewport allows full card visibility
-- reduced spacing between Section 02, Section 03 and SEO/GEO content
-- reduced service-group and FAQ vertical whitespace
+Changed:
+- carousel cards have slightly more space between them
+- hover lift, tilt, scale, shadow and image intensity are stronger
+- active card stays above neighboring cards
 
 Preserved:
-- case-only carousel
-- current case exclusion
+- arc structure
 - drag and touch controls
 - momentum
-- clone-based infinite loop
-- hover tilt
-- keyboard navigation
-- unified #164C4D page background
-- existing Sections 01 and 02 animations
+- infinite loop
+- card sizes and full-image visibility
+- all other detail-page sections and animations

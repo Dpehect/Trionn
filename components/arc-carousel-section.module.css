@@ -960,3 +960,91 @@
   .slot { width: min(80vw, 350px) !important; }
   .text { min-height: 170px; }
 }
+
+
+/* Section 03 spacing and stronger hover — structure preserved */
+.section {
+  --arc-angle-step: 4.85deg !important;
+}
+
+.card {
+  transition:
+    transform .62s cubic-bezier(.16, 1, .3, 1),
+    opacity .42s ease,
+    filter .42s ease !important;
+}
+
+.active .card {
+  z-index: 70 !important;
+  transform: scale(1.055) translateY(-10px) translateZ(0) !important;
+}
+
+.cover {
+  transition:
+    transform .52s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .52s ease,
+    filter .42s ease !important;
+  transform-origin: center center;
+}
+
+.cover:hover {
+  position: relative;
+  z-index: 90;
+  transform:
+    perspective(1200px)
+    rotateX(7deg)
+    rotateY(-9deg)
+    translateY(-16px)
+    scale(1.045) !important;
+  box-shadow:
+    0 44px 96px rgba(0, 0, 0, .34),
+    0 18px 42px rgba(0, 0, 0, .24),
+    0 0 0 1px rgba(255, 255, 255, .11) !important;
+  filter: brightness(1.07) saturate(1.08);
+}
+
+.viewport:hover .card {
+  opacity: .72;
+}
+
+.viewport:hover .active .card,
+.viewport:hover .card:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    --arc-angle-step: 5.55deg !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    --arc-angle-step: 7.05deg !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    --arc-angle-step: 9.55deg !important;
+  }
+}
+
+@media (hover: none) {
+  .viewport:hover .card {
+    opacity: .82;
+  }
+
+  .cover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cover {
+    transition: none !important;
+  }
+}
