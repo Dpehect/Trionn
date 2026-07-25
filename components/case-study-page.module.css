@@ -1571,3 +1571,85 @@
       linear-gradient(145deg, #123F40 0%, #164C4D 58%, #1A5556 100%) !important;
   }
 }
+
+
+/* Case-specific SEO/GEO content — outside the animated structure */
+.seoSection {
+  position: relative;
+  background: #0C3536;
+  color: #F5F3EE;
+  padding: clamp(96px, 10vw, 170px) 0;
+}
+
+.seoContainer {
+  width: min(100%, 1520px);
+  margin: 0 auto;
+  padding: 0 2.2vw;
+}
+
+.seoEyebrow {
+  margin: 0 0 24px;
+  color: #E27A3F;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.seoHeading {
+  max-width: 1120px;
+  margin: 0;
+  color: #F7F6F2;
+  font-size: clamp(34px, 4.2vw, 70px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.seoFaqGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(60px, 7vw, 110px);
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.seoFaqItem {
+  min-height: 220px;
+  padding: clamp(28px, 3vw, 48px);
+  background: #103E3F;
+}
+
+.seoFaqItem h3 {
+  max-width: 580px;
+  margin: 0 0 18px;
+  color: #F7F6F2;
+  font-size: clamp(20px, 1.65vw, 29px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.seoFaqItem p {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(245,243,238,.75);
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.65;
+}
+
+@media (max-width: 800px) {
+  .seoContainer {
+    padding-inline: 16px;
+  }
+
+  .seoFaqGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .seoFaqItem {
+    min-height: auto;
+  }
+}

@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import type { CaseStudy } from "@/data/cases";
+import { getCaseSeoProfile, type CaseStudy } from "@/data/cases";
 import styles from "./case-study-page.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -413,6 +413,7 @@ function buildCaseContent(study: CaseStudy) {
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const root = useRef<HTMLElement>(null);
   const { manifesto, featuredItems, serviceGroups } = buildCaseContent(study);
+  const seo = getCaseSeoProfile(study.slug);
 
   useGSAP(() => {
     const titles = gsap.utils.toArray<HTMLElement>(`.${styles.featuredTitle}`);
@@ -605,6 +606,25 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           ))}
         </div>
       </section>
+
+      {seo ? (
+        <section className={styles.seoSection} aria-labelledby="case-seo-heading">
+          <div className={styles.seoContainer}>
+            <p className={styles.seoEyebrow}>{seo.serviceName}</p>
+            <h2 id="case-seo-heading" className={styles.seoHeading}>
+              {seo.geoSummary}
+            </h2>
+            <div className={styles.seoFaqGrid}>
+              {seo.faqs.map((faq) => (
+                <article className={styles.seoFaqItem} key={faq.question}>
+                  <h3>{faq.question}</h3>
+                  <p>{faq.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

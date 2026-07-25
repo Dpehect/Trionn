@@ -174,3 +174,342 @@ export const caseStudies = [
 
 export type CaseStudy = (typeof caseStudies)[number];
 export function getCaseStudy(slug: string) { return caseStudies.find((item) => item.slug === slug); }
+
+export type CaseSeoProfile = {
+  seoTitle: string;
+  metaDescription: string;
+  serviceName: string;
+  serviceType: string;
+  geoSummary: string;
+  keywords: string[];
+  areaServed: string[];
+  faqs: { question: string; answer: string }[];
+};
+
+export const caseSeoProfiles: Record<string, CaseSeoProfile> = {
+  "ai-software-development-finland": {
+    seoTitle: "AI Software Development Company in Finland | SoftBridge Solutions",
+    metaDescription:
+      "SoftBridge Solutions builds production-ready AI agents, LLM workflows, automation systems and machine-learning software for companies in Finland and across the Nordics.",
+    serviceName: "AI Software Development in Finland",
+    serviceType: "AI software development, LLM applications and business automation",
+    geoSummary:
+      "SoftBridge Solutions helps companies in Helsinki, Espoo, Tampere and across Finland design, build and operate secure AI software connected to real business data and workflows.",
+    keywords: [
+      "AI software development company Finland",
+      "AI development Finland",
+      "software companies in Finland",
+      "LLM development Finland",
+      "AI automation Helsinki",
+      "machine learning company Finland",
+      "custom AI software Nordics"
+    ],
+    areaServed: ["Finland", "Helsinki", "Espoo", "Tampere", "Nordics", "European Union"],
+    faqs: [
+      {
+        question: "What does an AI software development company in Finland build?",
+        answer:
+          "An AI software development company can build secure LLM applications, retrieval-augmented generation systems, workflow automation, predictive models, AI agents and integrations with existing business platforms."
+      },
+      {
+        question: "Does SoftBridge Solutions work with companies outside Helsinki?",
+        answer:
+          "Yes. SoftBridge Solutions supports organizations in Helsinki, Espoo, Tampere and other Finnish regions, as well as distributed teams across the Nordics and Europe."
+      },
+      {
+        question: "Can AI software be connected to existing company data?",
+        answer:
+          "Yes. AI systems can be connected to approved documents, databases, APIs and business rules with access controls, evaluation, monitoring and human review."
+      },
+      {
+        question: "How long does a custom AI software project take?",
+        answer:
+          "A focused discovery and prototype can often be completed in several weeks. Production delivery depends on integrations, data readiness, security requirements and the scope of the operational workflow."
+      }
+    ]
+  },
+  "enterprise-saas-platform": {
+    seoTitle: "Enterprise SaaS Development Company for Nordic Businesses | SoftBridge",
+    metaDescription:
+      "SoftBridge Solutions designs and develops scalable enterprise SaaS platforms, dashboards, permissions, integrations and cloud architecture for Nordic and European companies.",
+    serviceName: "Enterprise SaaS Platform Development",
+    serviceType: "Enterprise SaaS product design and software engineering",
+    geoSummary:
+      "SoftBridge Solutions develops enterprise SaaS platforms for Finnish, Nordic and European organizations that need reliable workflows, role-based access, reporting and multi-market scalability.",
+    keywords: [
+      "enterprise SaaS development Finland",
+      "SaaS development company Nordics",
+      "custom SaaS platform Europe",
+      "B2B SaaS developers Finland",
+      "enterprise software company Finland",
+      "SaaS product development Helsinki"
+    ],
+    areaServed: ["Finland", "Nordics", "Sweden", "Norway", "Denmark", "European Union"],
+    faqs: [
+      {
+        question: "What is included in enterprise SaaS development?",
+        answer:
+          "Enterprise SaaS development typically includes product architecture, role-based permissions, dashboards, workflow design, API integrations, cloud infrastructure, security and release operations."
+      },
+      {
+        question: "Can SoftBridge Solutions modernize an existing SaaS product?",
+        answer:
+          "Yes. Existing products can be improved through architecture reviews, design-system upgrades, performance optimization, permission redesign and staged migration."
+      },
+      {
+        question: "Is the platform suitable for multiple markets?",
+        answer:
+          "The platform can be designed for multiple languages, regions, legal requirements, currencies, teams and customer organizations."
+      }
+    ]
+  },
+  "healthcare-software-nordics": {
+    seoTitle: "Healthcare Software Development for the Nordics | SoftBridge Solutions",
+    metaDescription:
+      "Secure healthcare software, patient portals, clinical workflows and digital health platforms designed for Nordic providers and healthcare technology companies.",
+    serviceName: "Healthcare Software Development in the Nordics",
+    serviceType: "Digital health platform and healthcare software development",
+    geoSummary:
+      "SoftBridge Solutions creates privacy-aware healthcare software for clinics, digital health teams and care providers in Finland and the wider Nordic region.",
+    keywords: [
+      "healthcare software development Finland",
+      "digital health company Nordics",
+      "patient portal development",
+      "clinical software developers Finland",
+      "healthtech software company",
+      "secure healthcare platform Europe"
+    ],
+    areaServed: ["Finland", "Nordics", "Sweden", "Norway", "Denmark", "European Union"],
+    faqs: [
+      {
+        question: "What healthcare software can SoftBridge Solutions develop?",
+        answer:
+          "Projects can include patient portals, clinician dashboards, appointment workflows, secure messaging, operational reporting and integrations with approved healthcare systems."
+      },
+      {
+        question: "How is sensitive healthcare data handled?",
+        answer:
+          "Systems are designed around data minimization, controlled access, auditability, secure infrastructure and privacy-aware product decisions."
+      },
+      {
+        question: "Can healthcare software support multiple clinics?",
+        answer:
+          "Yes. Multi-site organizations can use shared workflows, location-aware permissions, reporting and configurable operational views."
+      }
+    ]
+  },
+  "logistics-software-europe": {
+    seoTitle: "Logistics Software Development Company in Europe | SoftBridge Solutions",
+    metaDescription:
+      "Custom logistics software for fleet visibility, route intelligence, tracking, dispatch, alerts and multi-region transport operations across Europe.",
+    serviceName: "Logistics Software Development in Europe",
+    serviceType: "Fleet, transport and logistics platform development",
+    geoSummary:
+      "SoftBridge Solutions builds logistics platforms for European carriers, fleet operators, distribution networks and 3PL providers that need real-time visibility and faster exception handling.",
+    keywords: [
+      "logistics software development Europe",
+      "fleet management software company",
+      "transport software developers",
+      "route optimization software Europe",
+      "custom logistics platform",
+      "3PL software development"
+    ],
+    areaServed: ["Finland", "Nordics", "Europe", "European Union"],
+    faqs: [
+      {
+        question: "What features can a custom logistics platform include?",
+        answer:
+          "A logistics platform can include fleet tracking, route views, dispatch workflows, event processing, exception alerts, driver tools, reporting and partner integrations."
+      },
+      {
+        question: "Can the platform support multiple countries?",
+        answer:
+          "Yes. Multi-region architecture can support regional operations, time zones, languages, partner networks and country-specific workflows."
+      },
+      {
+        question: "Can existing telematics systems be integrated?",
+        answer:
+          "Yes. Approved tracking, telematics, ERP, warehouse and customer systems can be connected through APIs and event-based integrations."
+      }
+    ]
+  },
+  "manufacturing-ai-solutions": {
+    seoTitle: "Manufacturing AI Solutions and Predictive Maintenance | SoftBridge",
+    metaDescription:
+      "SoftBridge Solutions develops manufacturing AI, predictive maintenance, anomaly detection and production analytics for industrial companies in Finland and Europe.",
+    serviceName: "Manufacturing AI Solutions",
+    serviceType: "Industrial AI, predictive maintenance and factory software",
+    geoSummary:
+      "SoftBridge Solutions turns machine, quality and production data into practical AI systems for manufacturers, industrial groups and smart factories across Finland and Europe.",
+    keywords: [
+      "manufacturing AI solutions Finland",
+      "predictive maintenance software",
+      "industrial AI company Europe",
+      "factory analytics platform",
+      "Industry 4.0 software development",
+      "machine anomaly detection"
+    ],
+    areaServed: ["Finland", "Nordics", "Germany", "Europe", "European Union"],
+    faqs: [
+      {
+        question: "What is predictive maintenance software?",
+        answer:
+          "Predictive maintenance software analyzes machine and process signals to identify abnormal behavior and support maintenance decisions before failures occur."
+      },
+      {
+        question: "Can manufacturing AI work with existing equipment?",
+        answer:
+          "Often yes. Existing sensors, historians, MES, ERP and machine interfaces can be assessed and connected through a suitable data layer."
+      },
+      {
+        question: "What manufacturing outcomes can AI support?",
+        answer:
+          "Common goals include lower unplanned downtime, improved quality visibility, earlier anomaly detection and clearer production priorities."
+      }
+    ]
+  },
+  "cloud-application-development": {
+    seoTitle: "Cloud Application Development Company in Finland | SoftBridge",
+    metaDescription:
+      "Cloud-native application development, platform engineering, APIs, DevOps, observability and reliable deployment systems for Finnish and European companies.",
+    serviceName: "Cloud Application Development",
+    serviceType: "Cloud-native software and platform engineering",
+    geoSummary:
+      "SoftBridge Solutions engineers cloud applications for Finnish and European product teams that need scalable architecture, reliable releases and operational visibility.",
+    keywords: [
+      "cloud application development Finland",
+      "cloud software company Helsinki",
+      "platform engineering Finland",
+      "DevOps consulting Finland",
+      "cloud native development Europe",
+      "custom cloud applications"
+    ],
+    areaServed: ["Finland", "Helsinki", "Nordics", "Europe", "European Union"],
+    faqs: [
+      {
+        question: "What is cloud-native application development?",
+        answer:
+          "Cloud-native development uses scalable services, automated infrastructure, observability and repeatable deployment practices to support reliable product growth."
+      },
+      {
+        question: "Can SoftBridge Solutions migrate an existing application?",
+        answer:
+          "Yes. Migration can be planned in stages, including architecture assessment, service separation, data migration, testing and release safeguards."
+      },
+      {
+        question: "Which cloud capabilities can be included?",
+        answer:
+          "Projects may include APIs, containers, infrastructure as code, CI/CD, monitoring, alerting, security controls and cost visibility."
+      }
+    ]
+  },
+  "mobile-app-development-finland": {
+    seoTitle: "Mobile App Development Company in Finland | iOS, Android and Flutter",
+    metaDescription:
+      "SoftBridge Solutions designs and develops iOS, Android and Flutter mobile applications for startups, product teams and businesses in Finland.",
+    serviceName: "Mobile App Development in Finland",
+    serviceType: "iOS, Android and cross-platform mobile application development",
+    geoSummary:
+      "SoftBridge Solutions creates user-focused mobile products for companies in Helsinki, Espoo, Tampere and throughout Finland, from product strategy to release and continuous improvement.",
+    keywords: [
+      "mobile app development company Finland",
+      "app developers Helsinki",
+      "Flutter development Finland",
+      "iOS developers Finland",
+      "Android app development Finland",
+      "mobile software company Finland"
+    ],
+    areaServed: ["Finland", "Helsinki", "Espoo", "Tampere", "Nordics"],
+    faqs: [
+      {
+        question: "Does SoftBridge Solutions build both iOS and Android apps?",
+        answer:
+          "Yes. Mobile products can be delivered with native or cross-platform technology depending on product requirements, performance needs and delivery priorities."
+      },
+      {
+        question: "Can an app connect to an existing backend?",
+        answer:
+          "Yes. Mobile applications can integrate with existing APIs, authentication, databases, analytics and business platforms."
+      },
+      {
+        question: "Do you support app releases after development?",
+        answer:
+          "Release preparation can include testing, performance checks, analytics, store assets and ongoing product improvement."
+      }
+    ]
+  },
+  "retail-ai-automation": {
+    seoTitle: "Retail AI Automation and Commerce Software | SoftBridge Solutions",
+    metaDescription:
+      "AI-powered retail automation, demand intelligence, merchandising workflows and commerce analytics for retailers and e-commerce teams in Europe.",
+    serviceName: "Retail AI Automation",
+    serviceType: "Retail intelligence, commerce automation and analytics software",
+    geoSummary:
+      "SoftBridge Solutions connects product, sales, inventory and customer signals to help European retail and e-commerce teams automate repetitive work and make faster decisions.",
+    keywords: [
+      "retail AI automation Europe",
+      "ecommerce automation software",
+      "retail analytics development",
+      "demand forecasting software",
+      "commerce AI company",
+      "merchandising automation"
+    ],
+    areaServed: ["Finland", "Nordics", "Europe", "European Union"],
+    faqs: [
+      {
+        question: "What can retail AI automate?",
+        answer:
+          "Retail AI can support demand analysis, product classification, merchandising workflows, content operations, customer segmentation and exception alerts."
+      },
+      {
+        question: "Can retail systems use existing commerce data?",
+        answer:
+          "Yes. Product, order, inventory, analytics and CRM data can be connected through approved APIs and controlled data pipelines."
+      },
+      {
+        question: "Is human review still possible?",
+        answer:
+          "Yes. High-impact actions can require approval, while lower-risk repetitive tasks can be automated according to business rules."
+      }
+    ]
+  },
+  "digital-transformation-platform": {
+    seoTitle: "Digital Transformation Consulting and Software Development | SoftBridge",
+    metaDescription:
+      "Digital transformation strategy, legacy modernization, workflow redesign and enterprise software delivery for Nordic and European organizations.",
+    serviceName: "Digital Transformation Platform Development",
+    serviceType: "Enterprise modernization and digital transformation software",
+    geoSummary:
+      "SoftBridge Solutions helps Nordic and European organizations modernize legacy processes through practical roadmaps, new digital services, integrations and measurable adoption.",
+    keywords: [
+      "digital transformation company Finland",
+      "enterprise modernization Nordics",
+      "legacy software modernization",
+      "digital transformation consulting Europe",
+      "workflow digitization Finland",
+      "enterprise software transformation"
+    ],
+    areaServed: ["Finland", "Nordics", "Europe", "European Union"],
+    faqs: [
+      {
+        question: "What is included in a digital transformation project?",
+        answer:
+          "A transformation project can include process discovery, roadmap planning, legacy integration, product design, software development, data visibility and adoption support."
+      },
+      {
+        question: "Does modernization require replacing every existing system?",
+        answer:
+          "No. A staged approach can preserve critical systems while introducing new interfaces, services and integrations around them."
+      },
+      {
+        question: "How are transformation results measured?",
+        answer:
+          "Useful measures can include task completion time, adoption, error reduction, operational visibility, deployment speed and customer experience."
+      }
+    ]
+  }
+};
+
+export function getCaseSeoProfile(slug: string) {
+  return caseSeoProfiles[slug];
+}
