@@ -1570,3 +1570,76 @@ object-position:center!important;
     min-height: 185px !important;
   }
 }
+
+
+/* Section 03 — carousel height increased by exactly 150px */
+.cover {
+  min-height: clamp(610px, 34vw, 770px) !important;
+}
+
+.card:hover .cover {
+  min-height: clamp(670px, 38vw, 850px) !important;
+}
+
+/* Extra viewport room prevents the +150px cards from being clipped. */
+.viewport {
+  height: clamp(1090px, 70vw, 1270px) !important;
+}
+
+.section {
+  min-height: 1410px !important;
+}
+
+@media (max-width: 1400px) {
+  .cover {
+    min-height: clamp(560px, 38vw, 690px) !important;
+  }
+
+  .card:hover .cover {
+    min-height: clamp(620px, 43vw, 760px) !important;
+  }
+
+  .viewport {
+    height: 1000px !important;
+  }
+
+  .section {
+    min-height: 1270px !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .cover {
+    min-height: 580px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 650px !important;
+  }
+
+  .viewport {
+    height: 930px !important;
+  }
+
+  .section {
+    min-height: 1170px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .cover {
+    min-height: 540px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 580px !important;
+  }
+
+  .viewport {
+    height: 850px !important;
+  }
+
+  .section {
+    min-height: 1050px !important;
+  }
+}
