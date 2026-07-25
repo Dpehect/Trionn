@@ -1,17 +1,16 @@
-# SoftBridge Case Details — Text Scale Fix
-
-Only typography readability was changed.
-
-Increased:
-- Featured work label
-- scene descriptions
-- target audience text
-- client label and client name
+# SoftBridge Case Details — Emerald + Copper Theme
 
 Preserved:
+- all animations
+- pinned scroll behavior
 - layout
-- animation
-- scroll behavior
-- images
-- case-specific content
-- service section
+- content
+- case-specific data
+- service section interactions
+
+Updated palette:
+- deep emerald background
+- copper primary accent
+- soft sage secondary accent
+- warm sand typography
+- emerald/copper media glow
