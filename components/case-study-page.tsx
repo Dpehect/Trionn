@@ -11,24 +11,24 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const serviceGroups = [
+const capabilities = [
   {
     number: "01",
     title: "Strategy",
-    items: ["Brand Strategy", "Creative Strategy", "Content Strategy", "User Research", "AI Strategy"],
-    ticker: "AI STRATEGY",
+    items: ["Product Strategy", "AI Strategy", "User Research", "Content Strategy", "Roadmapping"],
+    ticker: "STRATEGY",
   },
   {
     number: "02",
     title: "Creative & Design",
-    items: ["Brand Identity", "Creative Direction", "Web Design", "Product Design", "UI/UX Design", "Motion Design", "3D & CGI", "Illustration", "Prototyping"],
-    ticker: "DESIGN SYSTEMS",
+    items: ["Creative Direction", "Brand Identity", "Product Design", "UI/UX Design", "Motion Design", "Design Systems"],
+    ticker: "CREATIVE DIRECTION",
   },
   {
     number: "03",
     title: "Development",
-    items: ["Web Development", "Front-end Development", "Back-end Development", "Cloud Architecture", "Mobile Development", "AI Integrations"],
-    ticker: "WEB DEVELOPMENT",
+    items: ["Front-end Development", "Back-end Development", "Cloud Architecture", "Mobile Development", "AI Integrations", "Quality Engineering"],
+    ticker: "DEVELOPMENT",
   },
 ] as const;
 
@@ -40,81 +40,138 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       const page = root.current;
       if (!page) return;
 
-      const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-      intro
-        .fromTo(".vm-header", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: .65 }, 0)
-        .fromTo(".vm-intro__statement", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: .9 }, .12)
-        .fromTo(".vm-feature", { opacity: 0, y: 44 }, { opacity: 1, y: 0, stagger: .1, duration: .9 }, .28);
+      const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+      heroTimeline
+        .fromTo(".aw-nav", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .7 }, 0)
+        .fromTo(".aw-hero__eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .7 }, .1)
+        .fromTo(".aw-hero__line > span", { yPercent: 120 }, { yPercent: 0, duration: 1.1, stagger: .12 }, .15)
+        .fromTo(".aw-hero__meta > *", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .65, stagger: .06 }, .72);
 
-      gsap.utils.toArray<HTMLElement>(".vm-feature").forEach((feature) => {
-        const image = feature.querySelector("img");
-        if (!image) return;
-        gsap.to(image, {
-          scale: 1.08,
-          yPercent: 6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: feature,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.3,
-          },
-        });
-      });
-
-      gsap.fromTo(".vm-about__copy", { opacity: 0, y: 48 }, {
-        opacity: 1,
-        y: 0,
-        ease: "power3.out",
+      gsap.to(".aw-hero__title", {
+        yPercent: -10,
+        opacity: .2,
+        ease: "none",
         scrollTrigger: {
-          trigger: ".vm-about",
-          start: "top 78%",
-          end: "top 34%",
-          scrub: 1,
+          trigger: ".aw-hero",
+          start: "35% top",
+          end: "bottom top",
+          scrub: 1.2,
         },
       });
 
-      gsap.utils.toArray<HTMLElement>(".vm-service").forEach((service) => {
-        const title = service.querySelector(".vm-service__title");
-        const items = service.querySelectorAll(".vm-service__item");
-        const line = service.querySelector(".vm-service__line");
+      gsap.to(".aw-hero__background", {
+        scale: 1.08,
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".aw-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
 
-        if (title) {
-          gsap.fromTo(title, { opacity: 0, y: 52 }, {
-            opacity: 1,
-            y: 0,
-            ease: "power3.out",
+      gsap.utils.toArray<HTMLElement>(".aw-feature").forEach((section, index) => {
+        const image = section.querySelector(".aw-feature__image");
+        const copy = section.querySelector(".aw-feature__copy");
+        const mask = section.querySelector(".aw-feature__mask");
+
+        if (image) {
+          gsap.fromTo(image, { scale: 1.12 }, {
+            scale: 1,
+            ease: "none",
             scrollTrigger: {
-              trigger: service,
-              start: "top 82%",
-              end: "top 38%",
-              scrub: 1,
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.4,
             },
           });
         }
 
-        if (items.length) {
-          gsap.fromTo(items, { opacity: 0, x: 22 }, {
-            opacity: 1,
-            x: 0,
-            stagger: .035,
-            ease: "power2.out",
+        if (mask) {
+          gsap.fromTo(mask, {
+            clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
+          }, {
+            clipPath: "inset(0 0 0 0)",
+            ease: "none",
             scrollTrigger: {
-              trigger: service,
+              trigger: section,
+              start: "top 88%",
+              end: "top 18%",
+              scrub: 1.2,
+            },
+          });
+        }
+
+        if (copy) {
+          gsap.fromTo(copy, { opacity: 0, y: 58 }, {
+            opacity: 1,
+            y: 0,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
               start: "top 72%",
               end: "top 28%",
               scrub: 1,
             },
           });
         }
+      });
 
-        if (line) {
-          gsap.fromTo(line, { scaleX: 0 }, {
+      gsap.fromTo(".aw-about__copy", { opacity: 0, y: 60 }, {
+        opacity: 1,
+        y: 0,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".aw-about",
+          start: "top 76%",
+          end: "top 30%",
+          scrub: 1,
+        },
+      });
+
+      gsap.utils.toArray<HTMLElement>(".aw-capability").forEach((section) => {
+        const title = section.querySelector(".aw-capability__title");
+        const items = section.querySelectorAll(".aw-capability__item");
+        const divider = section.querySelector(".aw-capability__divider");
+
+        if (title) {
+          gsap.fromTo(title, { opacity: 0, y: 62 }, {
+            opacity: 1,
+            y: 0,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 78%",
+              end: "top 30%",
+              scrub: 1,
+            },
+          });
+        }
+
+        if (items.length) {
+          gsap.fromTo(items, { opacity: 0, x: 28 }, {
+            opacity: 1,
+            x: 0,
+            stagger: .04,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 64%",
+              end: "top 18%",
+              scrub: 1,
+            },
+          });
+        }
+
+        if (divider) {
+          gsap.fromTo(divider, { scaleX: 0 }, {
             scaleX: 1,
             transformOrigin: "left",
             ease: "none",
             scrollTrigger: {
-              trigger: service,
+              trigger: section,
               start: "top 72%",
               end: "top 42%",
               scrub: 1,
@@ -123,14 +180,32 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         }
       });
 
-      gsap.fromTo(".vm-closing__inner", { opacity: 0, y: 52 }, {
+      gsap.fromTo(".aw-gallery__item", {
+        opacity: 0,
+        y: 70,
+        clipPath: "inset(10% 7% 10% 7%)",
+      }, {
+        opacity: 1,
+        y: 0,
+        clipPath: "inset(0 0 0 0)",
+        stagger: .08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".aw-gallery",
+          start: "top 76%",
+          end: "top 18%",
+          scrub: 1,
+        },
+      });
+
+      gsap.fromTo(".aw-next__content", { opacity: 0, y: 70 }, {
         opacity: 1,
         y: 0,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".vm-closing",
-          start: "top 78%",
-          end: "top 32%",
+          trigger: ".aw-next",
+          start: "top 74%",
+          end: "top 28%",
           scrub: 1,
         },
       });
@@ -139,111 +214,134 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
   );
 
   const heroTwo = study.visuals[0] || study.hero;
+  const heroThree = study.visuals[1] || study.hero;
+
+  const heroLines =
+    study.title.length > 22
+      ? [study.title.split(" ").slice(0, -1).join(" "), study.title.split(" ").slice(-1).join(" ")]
+      : [study.title];
 
   return (
-    <main ref={root} className="vm-page">
-      <header className="vm-header">
-        <Link href="/#cases" className="vm-header__back">
+    <main ref={root} className="aw-page">
+      <nav className="aw-nav">
+        <Link href="/#cases">
           <ArrowLeft size={14} />
           Selected Cases
         </Link>
+        <span>SoftBridge Solutions</span>
+        <span>Finland / Europe</span>
+      </nav>
 
-        <span className="vm-header__brand">SoftBridge Solutions</span>
+      <section className="aw-hero">
+        <Image
+          className="aw-hero__background"
+          src={study.hero}
+          alt={`${study.title} project background`}
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className="aw-hero__overlay" />
+        <div className="aw-hero__grain" />
 
-        <Link href="/" className="vm-header__home">
-          Home
-          <span aria-hidden="true">⋮</span>
-        </Link>
-      </header>
+        <div className="aw-hero__content">
+          <p className="aw-hero__eyebrow">{study.kicker}</p>
+          <h1 className="aw-hero__title">
+            {heroLines.map((line) => (
+              <span className="aw-hero__line" key={line}>
+                <span>{line}</span>
+              </span>
+            ))}
+          </h1>
 
-      <section className="vm-intro">
-        <div className="vm-intro__statement">
-          <p>
-            We design, build and grow digital products for ambitious companies
-            across Finland, the Nordics and Europe.
-          </p>
-        </div>
-
-        <div className="vm-feature vm-feature--primary">
-          <div className="vm-feature__copy">
-            <span>Featured work</span>
-            <h1>{study.title}</h1>
-            <p>{study.kicker}</p>
-          </div>
-
-          <div className="vm-feature__media">
-            <Image
-              src={study.hero}
-              alt={`${study.title} featured project visualization`}
-              fill
-              priority
-              sizes="65vw"
-            />
-          </div>
-
-          <div className="vm-feature__client">
-            <span>Client</span>
-            <strong>SoftBridge Concept Lab</strong>
-          </div>
-        </div>
-
-        <div className="vm-feature vm-feature--secondary">
-          <div className="vm-feature__copy">
-            <span>Project focus</span>
-            <h2>{study.accent}</h2>
-            <p>{study.tags.slice(0, 2).join(" / ")}</p>
-          </div>
-
-          <div className="vm-feature__media">
-            <Image
-              src={heroTwo}
-              alt={`${study.title} supporting product visual`}
-              fill
-              sizes="65vw"
-            />
-          </div>
-
-          <div className="vm-feature__client">
-            <span>Region</span>
-            <strong>Finland / Europe</strong>
+          <div className="aw-hero__meta">
+            <span>{study.accent}</span>
+            <span>Concept Case Study</span>
+            <span>Scroll to explore</span>
           </div>
         </div>
       </section>
 
-      <section className="vm-about">
-        <span>What we do</span>
-        <div className="vm-about__copy">
-          <h2>
-            Strategy, design and development. From product direction and user
-            experience to scalable platforms and software, we build what
-            companies need to lead.
-          </h2>
+      <section className="aw-feature aw-feature--one">
+        <div className="aw-feature__copy">
+          <span>Featured work</span>
+          <h2>{study.statement}</h2>
           <p>{study.intro}</p>
         </div>
+
+        <div className="aw-feature__mask">
+          <Image
+            className="aw-feature__image"
+            src={study.hero}
+            alt={`${study.title} interface composition`}
+            fill
+            sizes="62vw"
+          />
+        </div>
+
+        <footer>
+          <span>SoftBridge Concept Lab</span>
+          <span>{study.tags.slice(0, 2).join(" / ")}</span>
+        </footer>
       </section>
 
-      <section className="vm-services" aria-label="Project capabilities">
-        {serviceGroups.map((group, groupIndex) => (
-          <article className="vm-service" key={group.title}>
-            <div className="vm-service__line" />
+      <section className="aw-feature aw-feature--two">
+        <div className="aw-feature__copy">
+          <span>Project direction</span>
+          <h2>{study.sections[0][0]}</h2>
+          <p>{study.sections[0][1]}</p>
+        </div>
 
-            <div className="vm-service__heading">
-              <span className="vm-service__number">{group.number}</span>
-              <h2 className="vm-service__title">{group.title}</h2>
+        <div className="aw-feature__mask">
+          <Image
+            className="aw-feature__image"
+            src={heroTwo}
+            alt={`${study.title} project direction visual`}
+            fill
+            sizes="62vw"
+          />
+        </div>
+
+        <footer>
+          <span>Finland / Europe</span>
+          <span>{study.tags.slice(1, 3).join(" / ")}</span>
+        </footer>
+      </section>
+
+      <section className="aw-about">
+        <span>What we do</span>
+
+        <div className="aw-about__copy">
+          <h2>
+            Strategy, design and development for digital products that need to
+            feel clear, distinctive and ready to scale.
+          </h2>
+          <p>{study.sections[1][1]}</p>
+        </div>
+      </section>
+
+      <section className="aw-capabilities">
+        {capabilities.map((group, index) => (
+          <article className="aw-capability" key={group.title}>
+            <div className="aw-capability__divider" />
+
+            <div className="aw-capability__heading">
+              <span>{group.number}</span>
+              <h2 className="aw-capability__title">{group.title}</h2>
             </div>
 
-            <div className="vm-service__items">
+            <div className="aw-capability__items">
               {group.items.map((item) => (
-                <span className="vm-service__item" key={item}>
+                <span className="aw-capability__item" key={item}>
                   {item}
                 </span>
               ))}
             </div>
 
-            <div className="vm-ticker" aria-hidden="true">
-              <div className={`vm-ticker__track ${groupIndex % 2 ? "vm-ticker__track--reverse" : ""}`}>
-                {Array.from({ length: 7 }).map((_, index) => (
-                  <span key={index}>{group.ticker} ✱</span>
+            <div className="aw-ticker" aria-hidden="true">
+              <div className={`aw-ticker__track ${index % 2 ? "aw-ticker__track--reverse" : ""}`}>
+                {Array.from({ length: 8 }).map((_, tickerIndex) => (
+                  <span key={tickerIndex}>{group.ticker} ✱</span>
                 ))}
               </div>
             </div>
@@ -251,23 +349,43 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         ))}
       </section>
 
-      <section className="vm-case-summary">
-        <span>Project summary</span>
-        <div>
-          <h2>{study.statement}</h2>
-          <p>{study.sections[2][1]}</p>
-          <div className="vm-case-summary__tags">
-            {study.tags.map((tag) => <i key={tag}>{tag}</i>)}
-          </div>
+      <section className="aw-gallery">
+        <header>
+          <span>Visual system</span>
+          <h2>A consistent experience across every touchpoint.</h2>
+        </header>
+
+        <div className="aw-gallery__grid">
+          {[study.hero, heroTwo, heroThree].map((src, index) => (
+            <figure className={`aw-gallery__item aw-gallery__item--${index + 1}`} key={`${src}-${index}`}>
+              <Image
+                src={src}
+                alt={`${study.title} visual system ${index + 1}`}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+              <figcaption>
+                {String(index + 1).padStart(2, "0")} / {study.tags[index] || study.accent}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
-      <section className="vm-closing">
-        <div className="vm-closing__inner">
-          <span>SoftBridge Solutions / Finland Office</span>
-          <h2>Explore the next case.</h2>
+      <section className="aw-next">
+        <Image
+          src={heroThree}
+          alt={`${study.title} next project background`}
+          fill
+          sizes="100vw"
+        />
+        <div className="aw-next__overlay" />
+
+        <div className="aw-next__content">
+          <span>Next project</span>
+          <h2>Continue exploring.</h2>
           <Link href="/#cases">
-            Back to Selected Cases
+            View all selected cases
             <ArrowUpRight size={16} />
           </Link>
         </div>

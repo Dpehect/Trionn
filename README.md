@@ -1,22 +1,26 @@
-# SoftBridge Solutions Finland — Case Detail Video Structure
+# SoftBridge Solutions Finland — Awwwards Case Detail Rebuild
 
-The previous case-detail page was removed and rebuilt to match the supplied
-reference-video structure:
+The previous detail page was removed and rebuilt from scratch.
 
-1. Minimal black header
-2. Large right-aligned introduction statement
-3. Two full-width Featured Work panels
-4. What We Do introduction
-5. 01 Strategy service block
-6. Moving AI Strategy ticker
-7. 02 Creative & Design service block
-8. Moving Design Systems ticker
-9. 03 Development service block
-10. Moving Web Development ticker
-11. Case summary and closing navigation
+## Structure
+1. Full-screen editorial hero
+2. Featured Project I
+3. Featured Project II
+4. What We Do
+5. 01 Strategy + ticker
+6. 02 Creative & Design + ticker
+7. 03 Development + ticker
+8. Art-directed visual gallery
+9. Full-screen next-project transition
 
-All case routes reuse this exact structure with case-specific titles, imagery,
-copy and tags.
+## Motion
+- Independent GSAP timeline per major scene
+- Hero parallax and title fade
+- Mask-reveal featured imagery
+- Scroll-reveal service titles and lists
+- Infinite alternating tickers
+- Art-directed gallery reveal
+- Cinematic next-project close
 
 ## Run
 ```bash
