@@ -198,7 +198,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     "@type": "TechArticle",
     headline: study.title,
     description: study.intro,
-    image: study.editorialHero || study.hero,
+    image: study.editorialHero,
     author: {
       "@type": "Organization",
       name: "SoftBridge Solutions",
@@ -282,7 +282,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         {/* Hero Visual Card */}
         <div className="cs-hero-card">
           <img
-            src={study.editorialHero || study.hero}
+            src={study.editorialHero}
             alt={`${study.title} hero visualization`}
             className="cs-hero-img"
           />
