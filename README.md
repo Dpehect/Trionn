@@ -1,16 +1,15 @@
-# SoftBridge First Section Alignment Fix
+# SoftBridge Detail Page Update
 
-Fixed:
-- left text block and right media now start on the same horizontal line
-- both columns use the same effective height
-- client block stays aligned to the bottom of the text column
-- media no longer sits lower than the content
-- short desktop and mobile viewport alignment included
+Removed visually:
+- SEE ALL WORK CTA
+- SoftBridge Solutions client block
+- CLIENT label
+- repeated SoftBridge Solutions client name
 
 Preserved:
-- layout structure
-- GSAP animations
-- pinned scroll
-- title/client/media transitions
-- Titanium theme
-- Part 02
+- component/DOM structure
+- GSAP timelines
+- pinned scrolling
+- media/title transitions
+- first-section alignment
+- #F9F6F1 background

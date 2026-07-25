@@ -1110,3 +1110,15 @@
   background: #FFFFFF !important;
   box-shadow: inset 0 0 0 1px #E7E1D8 !important;
 }
+
+
+/* Hide CTA and client identity while preserving DOM and GSAP structure */
+.titaniumTheme .ctaRow,
+.titaniumTheme .clientGroup {
+  display: none !important;
+}
+
+/* Keep the first-part composition balanced after visual removal */
+.container:has(.introText:empty) .workContent {
+  padding-bottom: 0;
+}
