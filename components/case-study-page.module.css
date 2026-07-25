@@ -976,20 +976,6 @@
 /* Industrial Concrete theme + full viewport edge fix
    Layout, GSAP timelines and component structure remain unchanged. */
 
-:global(html),
-:global(body) {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  background: #a7aca8;
-}
-
-:global(body) {
-  max-width: none;
-}
-
 .page {
   width: 100%;
   min-height: 100vh;
@@ -1123,9 +1109,9 @@
   box-shadow: 0 16px 36px rgba(48, 52, 50, .18);
 }
 
+
+
 @media (max-width: 800px) {
-  :global(html),
-  :global(body),
   .page,
   .workSection,
   .servicesSection {

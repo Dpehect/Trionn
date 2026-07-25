@@ -1683,3 +1683,19 @@
     display: none;
   }
 }
+
+
+/* SoftBridge case pages — global viewport reset */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #a7aca8;
+}
+
+body {
+  max-width: none;
+}

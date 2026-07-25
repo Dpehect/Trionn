@@ -1,18 +1,8 @@
-# SoftBridge Case Details — Industrial Concrete Theme
+# SoftBridge Industrial Concrete — Build Fixed
 
-Preserved:
-- layout
-- GSAP animations
-- pinned scroll behavior
-- case-specific content
-- image transitions
-- service hover interactions
-
-Updated:
-- Industrial Concrete palette
-- warm concrete background
-- graphite typography
-- copper accents
-- muted architectural card surfaces
-- full viewport width
-- removed white borders and outer page gaps
+Fixed:
+- removed invalid :global(html) and :global(body) selectors from CSS Module
+- moved html/body reset into app/globals.css
+- preserved full-width layout and edge-gap fix
+- preserved Industrial Concrete theme
+- preserved all animations and case-specific content
