@@ -1,15 +1,13 @@
-# SoftBridge Detail Page Update
+# SoftBridge Gap Removal
 
-Removed visually:
-- SEE ALL WORK CTA
-- SoftBridge Solutions client block
-- CLIENT label
-- repeated SoftBridge Solutions client name
+Fixed:
+- removed the large blank area between Part 01 and Part 02
+- Part 02 now follows immediately after the first section
 
 Preserved:
-- component/DOM structure
-- GSAP timelines
-- pinned scrolling
-- media/title transitions
-- first-section alignment
+- existing DOM structure
+- GSAP selectors and animation elements
+- title/media transitions
+- responsive behavior
 - #F9F6F1 background
+- removed CTA and client block
