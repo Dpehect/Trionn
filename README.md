@@ -1,14 +1,11 @@
-# SoftBridge Solutions Finland — Detail Part 01 Single Canvas
+# Trionn — Featured Work Detail Section
 
-The first detail-page section was rebuilt around one pinned canvas:
-
-- fixed header
-- fixed left editorial column
-- one category track
-- one client track
-- one image track
-- synchronized camera-like vertical movement
-- restrained grain, RGB split and pointer response
-- final red See All Work CTA
-
-Only Part 01 is included.
+The first section of every case detail page now follows the supplied Featured Work structure:
+- right-aligned manifesto
+- 40/58 split
+- layered titles with fade and ±32px motion
+- layered clients with horizontal motion
+- stacked media with active scale 1 / opacity 1
+- inactive media scale 1.05 / opacity .25
+- media height capped at 580px
+- restrained red CTA
