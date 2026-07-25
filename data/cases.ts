@@ -1,6 +1,7 @@
 export const caseStudies = [
   {
     slug: "ai-software-development-finland",
+    editorialHero: "https://images.unsplash.com/photo-1634985490771-dd66dc9981a8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "AI Software Development",
     kicker: "AI Engineering / Finland & Europe",
     hero: "/cases-seo/ai-software-development-finland.webp",
@@ -19,6 +20,7 @@ export const caseStudies = [
   },
   {
     slug: "enterprise-saas-platform",
+    editorialHero: "https://images.unsplash.com/photo-1758762641372-e3b52bf061d4?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Enterprise SaaS Platform",
     kicker: "SaaS Product Development / Nordics",
     hero: "/cases-seo/enterprise-saas-platform.webp",
@@ -37,6 +39,7 @@ export const caseStudies = [
   },
   {
     slug: "healthcare-software-nordics",
+    editorialHero: "https://images.unsplash.com/photo-1745474633597-be94033b16d6?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Healthcare Software",
     kicker: "Digital Health Platform / Nordics",
     hero: "/cases-seo/healthcare-software-nordics.webp",
@@ -55,6 +58,7 @@ export const caseStudies = [
   },
   {
     slug: "logistics-software-europe",
+    editorialHero: "https://images.unsplash.com/photo-1778015862504-b877b548266e?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Logistics Platform",
     kicker: "Fleet & Logistics Software / Europe",
     hero: "/cases-seo/logistics-software-europe.webp",
@@ -73,6 +77,7 @@ export const caseStudies = [
   },
   {
     slug: "manufacturing-ai-solutions",
+    editorialHero: "https://images.unsplash.com/photo-1779517226273-bcf843b759b9?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Manufacturing AI",
     kicker: "Predictive Maintenance / Industry 4.0",
     hero: "/cases-seo/manufacturing-ai-solutions.webp",
@@ -91,6 +96,7 @@ export const caseStudies = [
   },
   {
     slug: "cloud-application-development",
+    editorialHero: "https://images.unsplash.com/photo-1758876020967-e5a80e49463a?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Cloud Applications",
     kicker: "Cloud-Native Software / Europe",
     hero: "/cases-seo/cloud-application-development.webp",
@@ -109,6 +115,7 @@ export const caseStudies = [
   },
   {
     slug: "mobile-app-development-finland",
+    editorialHero: "https://images.unsplash.com/photo-1551721434-8b94ddff0e6d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Mobile Product",
     kicker: "iOS & Android Development / Finland",
     hero: "/cases-seo/mobile-app-development-finland.webp",
@@ -127,6 +134,7 @@ export const caseStudies = [
   },
   {
     slug: "retail-ai-automation",
+    editorialHero: "https://images.unsplash.com/photo-1758876201767-a3d9922be8c8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Retail AI Automation",
     kicker: "Commerce Intelligence / Europe",
     hero: "/cases-seo/retail-ai-automation.webp",
@@ -145,6 +153,7 @@ export const caseStudies = [
   },
   {
     slug: "digital-transformation-platform",
+    editorialHero: "https://images.unsplash.com/photo-1758873268512-d008d84552f8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
     title: "Digital Transformation",
     kicker: "Enterprise Modernization / Nordics",
     hero: "/cases-seo/digital-transformation-platform.webp",
