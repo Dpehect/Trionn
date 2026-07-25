@@ -1685,7 +1685,9 @@
 }
 
 
-/* SoftBridge case pages — global viewport reset */
+
+
+/* SoftBridge Titanium viewport */
 html,
 body {
   margin: 0;
@@ -1693,7 +1695,7 @@ body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  background: #a7aca8;
+  background: #9ca5aa;
 }
 
 body {

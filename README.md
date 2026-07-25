@@ -1,16 +1,12 @@
-# SoftBridge Case Details — Titanium Theme
+# SoftBridge Titanium Clean Theme
 
-Preserved:
-- layout
-- GSAP animations
-- pinned scroll behavior
-- case-specific content
-- service interactions
-- full-width viewport fix
+Previous navy, purple, emerald and concrete theme blocks were removed.
 
-Updated:
-- titanium gray background system
-- cool silver surfaces
+This package contains one clean Titanium color source:
+- brushed titanium gray background
+- silver metallic surfaces
 - graphite typography
-- bronze accent
-- restrained metallic depth and shadow
+- restrained bronze accents
+- no old theme cascade
+- full-width viewport
+- animations and structure unchanged

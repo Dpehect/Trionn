@@ -731,261 +731,17 @@
 }
 
 
-/* SoftBridge premium navy-purple theme — motion structure unchanged */
-.page {
-  background:
-    radial-gradient(circle at 82% 18%, rgba(56, 82, 255, .18), transparent 34%),
-    radial-gradient(circle at 88% 78%, rgba(146, 57, 255, .18), transparent 30%),
-    linear-gradient(135deg, #030817 0%, #061126 48%, #130a2b 100%);
-}
-
-.workSection,
-.servicesSection {
-  background: transparent;
-}
-
-.workSticky::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,.35), transparent 88%);
-}
-
-.container,
-.servicesContainer {
-  position: relative;
-  z-index: 1;
-}
-
-.featuredLabel {
-  color: #c98cff;
-}
-
-.featuredLabel::before {
-  content: "✦";
-  margin-right: 8px;
-  color: #9b6cff;
-}
-
-.featuredTitle {
-  color: #f7f4ff;
-  text-shadow: 0 0 32px rgba(116, 104, 255, .08);
-}
-
-.featuredTitle p {
-  color: rgba(236, 235, 255, .86);
-  font-size: clamp(18px, 1.24vw, 22px);
-  line-height: 1.5;
-}
-
-.featuredTitle span {
-  color: rgba(178, 188, 255, .78);
-  font-size: clamp(12px, .84vw, 14px);
-  line-height: 1.45;
-}
-
-.clientLabel {
-  color: #7fa8ff;
-}
-
-.clientName {
-  color: #f3f0ff;
-}
-
-.mediaArea {
-  border: 1px solid rgba(130, 119, 255, .28);
-  box-shadow:
-    0 24px 80px rgba(0, 0, 0, .38),
-    0 0 42px rgba(75, 88, 255, .10);
-  background: rgba(8, 15, 37, .78);
-}
-
-.mediaArea::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  border-radius: inherit;
-  background:
-    linear-gradient(135deg, rgba(118, 83, 255, .08), transparent 36%),
-    linear-gradient(315deg, rgba(28, 122, 255, .08), transparent 34%);
-}
-
-.mediaItem img {
-  filter: saturate(.92) contrast(1.04) brightness(.88);
-}
-
-.cta {
-  background: linear-gradient(90deg, #6246ea, #8e48ff);
-  box-shadow: 0 12px 36px rgba(110, 72, 255, .25);
-}
-
-.serviceGroup {
-  border-color: rgba(137, 144, 255, .2);
-}
-
-.serviceNumber {
-  color: #875dff;
-}
-
-.serviceTitle {
-  color: #f7f4ff;
-}
-
-.serviceRow {
-  border-color: rgba(137, 144, 255, .14);
-}
-
-.serviceRowLabel {
-  color: rgba(238, 238, 255, .82);
-}
-
-.serviceHoverLayer {
-  background: linear-gradient(90deg, #f7f6ff, #e5e8ff);
-}
-
-.marqueeTrack {
-  color: #0a1025;
-}
-
-@media (max-height: 900px) and (min-width: 801px) {
-  .featuredTitle p {
-    font-size: clamp(16px, 1.1vw, 19px);
-  }
-
-  .featuredTitle span {
-    font-size: clamp(11px, .76vw, 13px);
-  }
-}
-
-@media (max-width: 800px) {
-  .featuredTitle p {
-    font-size: 15px;
-  }
-
-  .featuredTitle span {
-    font-size: 11px;
-  }
-}
-
-
-/* SoftBridge Emerald + Copper palette override
-   Layout and motion are unchanged. */
-.page {
-  background:
-    radial-gradient(circle at 84% 18%, rgba(95, 175, 144, .14), transparent 34%),
-    radial-gradient(circle at 78% 82%, rgba(198, 124, 78, .14), transparent 30%),
-    linear-gradient(135deg, #18231f 0%, #21302a 48%, #2b362f 100%);
-  color: #e7dfc8;
-}
-
-.workSection,
-.servicesSection {
-  background: transparent;
-}
-
-.workSticky::before {
-  background:
-    linear-gradient(90deg, rgba(231, 223, 200, .025) 1px, transparent 1px),
-    linear-gradient(rgba(231, 223, 200, .02) 1px, transparent 1px);
-}
-
-.featuredLabel {
-  color: #c67c4e;
-}
-
-.featuredLabel::before {
-  color: #5faf90;
-}
-
-.featuredTitle {
-  color: #e7dfc8;
-  text-shadow: 0 0 28px rgba(198, 124, 78, .06);
-}
-
-.featuredTitle p {
-  color: rgba(231, 223, 200, .84);
-}
-
-.featuredTitle span {
-  color: rgba(159, 198, 177, .82);
-}
-
-.clientLabel {
-  color: #5faf90;
-}
-
-.clientName {
-  color: #e7dfc8;
-}
-
-.mediaArea {
-  border-color: rgba(95, 175, 144, .26);
-  background: rgba(38, 53, 46, .84);
-  box-shadow:
-    0 24px 80px rgba(17, 24, 21, .34),
-    0 0 38px rgba(95, 175, 144, .08);
-}
-
-.mediaArea::after {
-  background:
-    linear-gradient(135deg, rgba(95, 175, 144, .08), transparent 36%),
-    linear-gradient(315deg, rgba(198, 124, 78, .08), transparent 34%);
-}
-
-.cta {
-  background: linear-gradient(90deg, #b96f43, #d18b5d);
-  box-shadow: 0 12px 34px rgba(198, 124, 78, .22);
-}
-
-.serviceGroup {
-  border-color: rgba(95, 175, 144, .18);
-}
-
-.serviceNumber {
-  color: #c67c4e;
-}
-
-.serviceTitle {
-  color: #e7dfc8;
-}
-
-.serviceRow {
-  border-color: rgba(95, 175, 144, .13);
-}
-
-.serviceRowLabel {
-  color: rgba(231, 223, 200, .84);
-}
-
-.serviceHoverLayer {
-  background: linear-gradient(90deg, #d8c7aa, #c9b28f);
-}
-
-.marqueeTrack {
-  color: #223129;
-}
-
-
-/* Industrial Concrete theme + full viewport edge fix
-   Layout, GSAP timelines and component structure remain unchanged. */
-
+/* SoftBridge Titanium — clean single-source theme */
 .page {
   width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  color: #171a1c;
   background:
-    radial-gradient(circle at 82% 16%, rgba(193, 196, 190, .55), transparent 35%),
-    radial-gradient(circle at 18% 84%, rgba(175, 107, 61, .14), transparent 28%),
-    linear-gradient(135deg, #9ea5a1 0%, #a7aca8 48%, #b8bbb6 100%);
-  color: #1d1f1f;
+    radial-gradient(circle at 80% 12%, rgba(231, 235, 237, .68), transparent 33%),
+    radial-gradient(circle at 18% 88%, rgba(120, 129, 135, .22), transparent 30%),
+    linear-gradient(135deg, #8f989d 0%, #aeb6ba 46%, #c8ced1 100%);
 }
 
 .workSection,
@@ -1000,13 +756,7 @@
   margin: 0;
 }
 
-.container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  box-sizing: border-box;
-}
-
+.container,
 .servicesContainer {
   width: 100%;
   max-width: none;
@@ -1016,100 +766,99 @@
 
 .workSticky::before {
   background:
-    linear-gradient(90deg, rgba(29, 31, 31, .045) 1px, transparent 1px),
-    linear-gradient(rgba(29, 31, 31, .038) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(23, 26, 28, .055) 1px, transparent 1px),
+    linear-gradient(rgba(23, 26, 28, .045) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 .featuredLabel {
-  color: #8f5736;
+  color: #7d5135;
 }
 
 .featuredLabel::before {
-  color: #5f6c67;
+  color: #59636a;
 }
 
 .featuredTitle {
-  color: #1d1f1f;
+  color: #171a1c;
   text-shadow: none;
 }
 
 .featuredTitle p {
-  color: rgba(29, 31, 31, .78);
+  color: rgba(23, 26, 28, .82);
 }
 
 .featuredTitle span {
-  color: rgba(54, 62, 59, .72);
+  color: rgba(55, 62, 66, .72);
 }
 
 .clientLabel {
-  color: #7b4a30;
+  color: #7d5135;
 }
 
 .clientName {
-  color: #1d1f1f;
+  color: #171a1c;
 }
 
 .mediaArea {
-  border: 1px solid rgba(58, 63, 61, .16);
-  background: rgba(218, 219, 214, .68);
+  border: 1px solid rgba(58, 65, 69, .2);
+  background: linear-gradient(145deg, rgba(221, 225, 227, .86), rgba(180, 188, 192, .78));
   box-shadow:
-    0 24px 70px rgba(65, 71, 68, .18),
-    0 0 28px rgba(175, 107, 61, .07);
+    0 24px 72px rgba(46, 51, 54, .22),
+    inset 0 1px 0 rgba(245, 247, 248, .52);
 }
 
 .mediaArea::after {
   background:
-    linear-gradient(135deg, rgba(175, 107, 61, .08), transparent 38%),
-    linear-gradient(315deg, rgba(95, 108, 103, .09), transparent 34%);
+    linear-gradient(135deg, rgba(255, 255, 255, .13), transparent 34%),
+    linear-gradient(315deg, rgba(87, 96, 102, .1), transparent 36%);
 }
 
 .mediaItem img {
-  filter: saturate(.8) contrast(1.03) brightness(.96);
+  filter: saturate(.68) contrast(1.08) brightness(.96);
 }
 
 .cta {
-  background: linear-gradient(90deg, #9d5f39, #b9784e);
-  box-shadow: 0 12px 32px rgba(119, 76, 50, .18);
+  background: linear-gradient(90deg, #735039, #94684a);
+  box-shadow: 0 12px 30px rgba(73, 50, 35, .2);
 }
 
 .cta a {
-  color: #f0ebe4;
+  color: #ece8e2;
 }
 
 .serviceGroup {
-  border-color: rgba(44, 49, 47, .16);
+  border-color: rgba(38, 43, 46, .18);
 }
 
 .serviceNumber {
-  color: #9c5f3a;
+  color: #7d5135;
 }
 
 .serviceTitle {
-  color: #1d1f1f;
+  color: #171a1c;
 }
 
 .serviceRow {
-  border-color: rgba(44, 49, 47, .14);
+  border-color: rgba(38, 43, 46, .15);
 }
 
 .serviceRowLabel {
-  color: rgba(29, 31, 31, .82);
+  color: rgba(23, 26, 28, .86);
 }
 
 .serviceHoverLayer {
-  background: linear-gradient(90deg, #d8d5ce, #c9c5bc);
+  background: linear-gradient(90deg, #e2e6e8, #cfd5d8);
 }
 
 .marqueeTrack {
-  color: #1f2221;
+  color: #171a1c;
 }
 
 .servicePreview {
-  border: 1px solid rgba(29, 31, 31, .12);
-  box-shadow: 0 16px 36px rgba(48, 52, 50, .18);
+  border: 1px solid rgba(23, 26, 28, .13);
+  box-shadow: 0 16px 36px rgba(47, 53, 56, .2);
 }
-
-
 
 @media (max-width: 800px) {
   .page,
@@ -1118,116 +867,4 @@
     width: 100%;
     max-width: 100%;
   }
-}
-
-
-/* SoftBridge Titanium palette override
-   Layout, GSAP animations and content remain unchanged. */
-
-.page {
-  background:
-    radial-gradient(circle at 82% 16%, rgba(232, 235, 236, .58), transparent 34%),
-    radial-gradient(circle at 16% 84%, rgba(140, 96, 62, .12), transparent 30%),
-    linear-gradient(135deg, #aeb4b7 0%, #bcc1c3 48%, #c9ced0 100%);
-  color: #202224;
-}
-
-.workSection,
-.servicesSection {
-  background: transparent;
-}
-
-.workSticky::before {
-  background:
-    linear-gradient(90deg, rgba(32, 34, 36, .042) 1px, transparent 1px),
-    linear-gradient(rgba(32, 34, 36, .034) 1px, transparent 1px);
-}
-
-.featuredLabel {
-  color: #8c603e;
-}
-
-.featuredLabel::before {
-  color: #657078;
-}
-
-.featuredTitle {
-  color: #202224;
-  text-shadow: none;
-}
-
-.featuredTitle p {
-  color: rgba(32, 34, 36, .78);
-}
-
-.featuredTitle span {
-  color: rgba(63, 69, 73, .68);
-}
-
-.clientLabel {
-  color: #8c603e;
-}
-
-.clientName {
-  color: #202224;
-}
-
-.mediaArea {
-  border: 1px solid rgba(70, 76, 80, .17);
-  background: rgba(232, 235, 236, .68);
-  box-shadow:
-    0 24px 70px rgba(70, 77, 81, .18),
-    0 0 28px rgba(140, 96, 62, .06);
-}
-
-.mediaArea::after {
-  background:
-    linear-gradient(135deg, rgba(140, 96, 62, .07), transparent 38%),
-    linear-gradient(315deg, rgba(101, 112, 120, .08), transparent 34%);
-}
-
-.mediaItem img {
-  filter: saturate(.78) contrast(1.04) brightness(.97);
-}
-
-.cta {
-  background: linear-gradient(90deg, #7f5639, #9a6b49);
-  box-shadow: 0 12px 32px rgba(104, 71, 48, .18);
-}
-
-.cta a {
-  color: #ece8e2;
-}
-
-.serviceGroup {
-  border-color: rgba(50, 55, 58, .17);
-}
-
-.serviceNumber {
-  color: #8c603e;
-}
-
-.serviceTitle {
-  color: #202224;
-}
-
-.serviceRow {
-  border-color: rgba(50, 55, 58, .14);
-}
-
-.serviceRowLabel {
-  color: rgba(32, 34, 36, .84);
-}
-
-.serviceHoverLayer {
-  background: linear-gradient(90deg, #e7eaeb, #d6dadd);
-}
-
-.marqueeTrack {
-  color: #202224;
-}
-
-.servicePreview {
-  border: 1px solid rgba(32, 34, 36, .12);
-  box-shadow: 0 16px 36px rgba(63, 69, 73, .16);
 }
