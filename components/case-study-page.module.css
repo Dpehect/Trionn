@@ -324,3 +324,211 @@
   .workSection { min-height: 100svh; }
   .workSticky { height: 100svh; min-height: 720px; }
 }
+
+
+/* Part 01 viewport-fit correction
+   Keep the complete manifesto, Featured Work copy, client and media visible
+   while the section is pinned. */
+.workSticky {
+  height: 100svh;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.container {
+  height: 100%;
+  min-height: 0;
+  padding: clamp(18px, 2.8vh, 34px) 2.2vw clamp(16px, 2.2vh, 28px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: stretch;
+  overflow: hidden;
+}
+
+.introGrid {
+  min-height: 0;
+  margin-bottom: clamp(20px, 3.2vh, 42px);
+}
+
+.introText {
+  max-width: 850px;
+  font-size: clamp(30px, 3.55vw, 64px);
+  line-height: .91;
+}
+
+.workGrid {
+  min-height: 0;
+  height: 100%;
+  align-items: stretch;
+}
+
+.workContent {
+  min-height: 0;
+  height: 100%;
+  padding-top: clamp(4px, 1vh, 12px);
+  padding-bottom: clamp(8px, 1.5vh, 18px);
+}
+
+.featuredTitleGroup {
+  min-height: 0;
+  height: clamp(104px, 14vh, 150px);
+  margin-top: clamp(14px, 2.5vh, 28px);
+}
+
+.featuredTitle {
+  font-size: clamp(48px, 5.4vw, 96px);
+  line-height: .9;
+}
+
+.clientGroup {
+  bottom: clamp(4px, 1.2vh, 14px);
+}
+
+.mediaArea {
+  height: 100%;
+  min-height: 0;
+  max-height: 580px;
+  align-self: center;
+}
+
+.ctaRow {
+  margin-top: clamp(10px, 1.6vh, 18px);
+}
+
+.cta {
+  height: clamp(48px, 6.5vh, 56px);
+}
+
+@media (max-height: 900px) and (min-width: 801px) {
+  .container {
+    padding-top: 18px;
+    padding-bottom: 16px;
+  }
+
+  .introGrid {
+    margin-bottom: 18px;
+  }
+
+  .introText {
+    font-size: clamp(28px, 3.15vw, 54px);
+    line-height: .9;
+  }
+
+  .workContent {
+    padding-top: 4px;
+    padding-bottom: 8px;
+  }
+
+  .featuredTitleGroup {
+    height: 112px;
+    margin-top: 14px;
+  }
+
+  .featuredTitle {
+    font-size: clamp(46px, 5vw, 86px);
+  }
+
+  .mediaArea {
+    max-height: 520px;
+  }
+
+  .clientGroup {
+    bottom: 2px;
+  }
+
+  .ctaRow {
+    margin-top: 10px;
+  }
+
+  .cta {
+    height: 48px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 801px) {
+  .introText {
+    font-size: clamp(26px, 2.8vw, 46px);
+  }
+
+  .introGrid {
+    margin-bottom: 12px;
+  }
+
+  .featuredTitleGroup {
+    height: 96px;
+    margin-top: 10px;
+  }
+
+  .featuredTitle {
+    font-size: clamp(42px, 4.6vw, 76px);
+  }
+
+  .mediaArea {
+    max-height: 455px;
+  }
+
+  .clientLogo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .clientLogo img {
+    max-width: 42px;
+    max-height: 42px;
+  }
+
+  .clientGroup {
+    height: 48px;
+  }
+}
+
+@media (max-width: 800px) {
+  .workSticky {
+    height: 100svh;
+  }
+
+  .container {
+    padding: 18px 16px 14px;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .introGrid {
+    margin-bottom: 16px;
+  }
+
+  .introText {
+    font-size: clamp(27px, 7.8vw, 43px);
+  }
+
+  .workGrid {
+    grid-template-rows: minmax(180px, 34%) minmax(0, 66%);
+    gap: 14px;
+  }
+
+  .workContent {
+    min-height: 0;
+  }
+
+  .featuredTitleGroup {
+    height: 76px;
+    margin-top: 10px;
+  }
+
+  .featuredTitle {
+    font-size: clamp(38px, 10.5vw, 58px);
+  }
+
+  .mediaArea {
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .clientGroup {
+    bottom: 0;
+  }
+
+  .ctaRow {
+    margin-top: 10px;
+  }
+}

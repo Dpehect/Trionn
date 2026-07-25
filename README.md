@@ -1,11 +1,16 @@
-# SoftBridge Detail Page — Parts 01 + 02
+# SoftBridge Detail Page — Part 01 Viewport Fix
 
-Part 02 adds the supplied What We Do interaction below the approved Featured Work section.
+The first pinned Featured Work section now fits completely inside the viewport.
 
-- numbered service groups
-- large editorial headings
-- 56px service rows
-- bottom-up white hover reveal
-- looping marquee labels
-- right-side preview thumbnail
-- GSAP scroll entrance reveals
+Fixed:
+- manifesto clipping at the top
+- client block clipping at the bottom
+- media extending below the viewport
+- oversized spacing on short desktop screens
+- responsive sizing for 760–900px viewport heights
+
+Preserved:
+- pinned scroll behavior
+- title/client/image animation
+- Part 02 service section
+- existing content and image sequence
