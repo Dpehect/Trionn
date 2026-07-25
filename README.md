@@ -1,17 +1,19 @@
-# SoftBridge Section 03 Gap and Visibility Fix
+# SoftBridge Section 03 No-Clipping Fix
 
-Updated:
-- reduced the gap between "Explore other cases" and the carousel
-- increased viewport room so tall cards remain fully visible
-- moved the arc ring to prevent top clipping
-- increased bottom room so hover growth is not cut off
-- preserved the existing +150px carousel height
+Fixed:
+- removed clipping from section, viewport, ring, slot and card containers
+- moved the arc center lower
+- increased vertical room
+- normal cards now display fully
+- hovered cards now display fully
+- cover itself still clips only its image as intended
 
 Preserved:
-- card width
-- drag and touch controls
+- drag
+- touch
 - momentum
 - infinite loop
 - hover enlargement
-- blur behavior
+- blur focus
+- card width
 - all other detail-page sections and animations

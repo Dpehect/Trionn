@@ -1753,3 +1753,98 @@ object-position:center!important;
     bottom: calc(var(--arc-radius) * -1 + 465px) !important;
   }
 }
+
+
+/* Section 03 — definitive clipping removal */
+.section {
+  min-height: 1500px !important;
+  overflow: visible !important;
+  contain: none !important;
+  padding-bottom: 180px !important;
+}
+
+.header {
+  min-height: 150px !important;
+}
+
+.viewport {
+  height: 1220px !important;
+  margin-top: 8px !important;
+  padding-top: 40px !important;
+  overflow: visible !important;
+  clip-path: none !important;
+  contain: none !important;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 860px) !important;
+  overflow: visible !important;
+  contain: none !important;
+}
+
+.slot,
+.card,
+.coverWrap,
+.cover,
+.text {
+  overflow: visible !important;
+  contain: none !important;
+}
+
+.cover {
+  overflow: hidden !important;
+}
+
+.card {
+  transform-origin: center top !important;
+}
+
+.viewport:hover .card:hover {
+  transform:
+    translateY(-24px)
+    scaleX(1.07)
+    scaleY(1.14)
+    translateZ(0) !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1360px !important;
+  }
+
+  .viewport {
+    height: 1100px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 750px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1240px !important;
+  }
+
+  .viewport {
+    height: 1000px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 650px) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 1100px !important;
+  }
+
+  .viewport {
+    height: 900px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 540px) !important;
+  }
+}
