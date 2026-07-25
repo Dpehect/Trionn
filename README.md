@@ -1,21 +1,21 @@
-# SoftBridge Arc Carousel — Other Cases
+# SoftBridge Arc Carousel — Reference Scale Fix
 
-Updated:
-- Section 03 now displays the other case studies.
-- The currently open case is excluded.
-- Each card uses the related case title, intro, image, category and URL.
-- Cards navigate directly to /cases/[slug].
+Section 03 updated to match the supplied reference more closely:
+
+- substantially larger portrait cards
+- larger case images
+- larger monospaced case titles and descriptions
+- reference radius: 4704px
+- reference angle step: 4.390243902439025deg
+- larger green drag cursor
+- stronger arc rotation and vertical composition
+- active card remains subtly larger and in front
 
 Preserved:
-- circular arc geometry
-- drag and touch controls
-- requestAnimationFrame smoothing
-- momentum
+- other-case content
 - clone-based infinite loop
-- active-card scale and z-index
+- drag, touch and momentum
+- requestAnimationFrame animation
 - hover tilt
-- custom drag cursor
 - keyboard controls
-- responsive behavior
-- Sections 01 and 02
-- SEO/GEO section
+- Sections 01, 02 and SEO/GEO content
