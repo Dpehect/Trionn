@@ -399,7 +399,7 @@ export function LayeredHomepage() {
         <div className="selected-cases__gallery">
           {cases.map((item) => (
             <article className="case-card" key={item.name} itemScope itemType="https://schema.org/CreativeWork">
-              <a id={item.slug} href="#industries" className="case-card__link" itemProp="url">
+              <a id={item.slug} href={`/cases/${item.slug}`} className="case-card__link" itemProp="url">
                 <div className="case-card__media">
                   <Image
                     className="case-card__image"

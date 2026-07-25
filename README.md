@@ -1,18 +1,13 @@
-# SoftBridge Solutions Finland — Original Layer Animation Restored
+# SoftBridge Solutions Finland — Selected Case Detail Pages
 
-## Fixed
-- Removed the extra hold spacer that made the four cards feel like separate vertical sections.
-- Restored the original sticky overlapping layer behaviour.
-- Restored original clip reveal timing:
-  - start: top bottom
-  - end: top top
-  - scrub: true
-- Restored original copy timing:
-  - start: top 76%
-  - end: top 30%
-  - scrub: 0.9
-- Transparent background images and subtle parallax remain.
-- Image cards stay hidden; images are used only as atmospheric full-layer backgrounds.
+## Added
+- Every Selected Cases card now opens its own route: `/cases/[slug]`.
+- Nine statically generated case-study pages.
+- Video-inspired dark editorial design.
+- Full-screen image hero with cinematic reveal and parallax.
+- Alternating image/text chapters with scroll-mask animation.
+- Case-specific SEO metadata, copy, tags and image alt text.
+- Back navigation to Selected Cases.
 
 ## Run
 ```bash
