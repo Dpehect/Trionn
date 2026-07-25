@@ -1848,3 +1848,126 @@ object-position:center!important;
     bottom: calc(var(--arc-radius) * -1 + 540px) !important;
   }
 }
+
+
+/* Section 03 — balanced height to prevent section overlap */
+.section {
+  min-height: 1360px !important;
+  padding-top: clamp(54px, 4.5vw, 78px) !important;
+  padding-bottom: 140px !important;
+  overflow: hidden !important;
+}
+
+.header {
+  min-height: 210px !important;
+  position: relative;
+  z-index: 30;
+}
+
+.viewport {
+  height: 1130px !important;
+  margin-top: 40px !important;
+  padding-top: 20px !important;
+  overflow: hidden !important;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 805px) !important;
+}
+
+.cover {
+  min-height: clamp(540px, 31vw, 700px) !important;
+}
+
+.card:hover .cover {
+  min-height: clamp(630px, 36vw, 810px) !important;
+}
+
+.viewport:hover .card:hover {
+  transform:
+    translateY(-18px)
+    scaleX(1.06)
+    scaleY(1.11)
+    translateZ(0) !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1240px !important;
+  }
+
+  .header {
+    min-height: 190px !important;
+  }
+
+  .viewport {
+    height: 1010px !important;
+    margin-top: 34px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 700px) !important;
+  }
+
+  .cover {
+    min-height: clamp(500px, 35vw, 620px) !important;
+  }
+
+  .card:hover .cover {
+    min-height: clamp(580px, 40vw, 700px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1130px !important;
+  }
+
+  .header {
+    min-height: 180px !important;
+  }
+
+  .viewport {
+    height: 920px !important;
+    margin-top: 30px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 610px) !important;
+  }
+
+  .cover {
+    min-height: 500px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 575px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 1010px !important;
+  }
+
+  .header {
+    min-height: 220px !important;
+  }
+
+  .viewport {
+    height: 820px !important;
+    margin-top: 24px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 500px) !important;
+  }
+
+  .cover {
+    min-height: 460px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 510px !important;
+  }
+}

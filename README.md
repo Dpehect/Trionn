@@ -1,19 +1,16 @@
-# SoftBridge Section 03 No-Clipping Fix
+# SoftBridge Section 03 Balanced Height
 
 Fixed:
-- removed clipping from section, viewport, ring, slot and card containers
-- moved the arc center lower
-- increased vertical room
-- normal cards now display fully
-- hovered cards now display fully
-- cover itself still clips only its image as intended
+- reduced carousel height slightly
+- prevented Section 03 content from overlapping neighboring sections
+- added controlled spacing between title and carousel
+- reduced hover growth to a balanced level
+- kept cards fully visible
 
 Preserved:
-- drag
-- touch
+- drag and touch controls
 - momentum
 - infinite loop
-- hover enlargement
-- blur focus
+- hover blur focus
 - card width
 - all other detail-page sections and animations
