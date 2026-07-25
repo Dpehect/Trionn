@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,24 +10,48 @@ import type { CaseStudy } from "@/data/cases";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const capabilities = [
+const featuredSlides = [
   {
-    number: "01",
-    title: "Strategy",
-    items: ["Product Strategy", "AI Strategy", "User Research", "Content Strategy", "Roadmapping"],
-    ticker: "STRATEGY",
+    category: "AI",
+    title: "Artificial Intelligence",
+    image: "/detail-part-01/ai-strategy.jpg",
+    label: "AI Strategy",
   },
   {
-    number: "02",
-    title: "Creative & Design",
-    items: ["Creative Direction", "Brand Identity", "Product Design", "UI/UX Design", "Motion Design", "Design Systems"],
-    ticker: "CREATIVE DIRECTION",
+    category: "Data",
+    title: "Data Platforms",
+    image: "/detail-part-01/data-platform.jpg",
+    label: "Data Systems",
   },
   {
-    number: "03",
-    title: "Development",
-    items: ["Front-end Development", "Back-end Development", "Cloud Architecture", "Mobile Development", "AI Integrations", "Quality Engineering"],
-    ticker: "DEVELOPMENT",
+    category: "Software",
+    title: "Software Engineering",
+    image: "/detail-part-01/software-studio.jpg",
+    label: "Software Studio",
+  },
+  {
+    category: "Web",
+    title: "Web Development",
+    image: "/detail-part-01/web-engineering.jpg",
+    label: "Web Engineering",
+  },
+  {
+    category: "Development",
+    title: "Development Systems",
+    image: "/detail-part-01/development-environment.jpg",
+    label: "Development Environment",
+  },
+  {
+    category: "Product",
+    title: "Digital Products",
+    image: "/detail-part-01/digital-product.jpg",
+    label: "Product Experience",
+  },
+  {
+    category: "Engineering",
+    title: "Engineering Workflow",
+    image: "/detail-part-01/engineering-workflow.jpg",
+    label: "Delivery Systems",
   },
 ] as const;
 
@@ -37,357 +60,201 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
   useGSAP(
     () => {
-      const page = root.current;
-      if (!page) return;
+      const section = root.current;
+      if (!section) return;
 
-      const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
-      heroTimeline
-        .fromTo(".aw-nav", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .7 }, 0)
-        .fromTo(".aw-hero__eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .7 }, .1)
-        .fromTo(".aw-hero__line > span", { yPercent: 120 }, { yPercent: 0, duration: 1.1, stagger: .12 }, .15)
-        .fromTo(".aw-hero__meta > *", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .65, stagger: .06 }, .72);
+      const slides = gsap.utils.toArray<HTMLElement>(".fw-slide");
+      const progressItems = gsap.utils.toArray<HTMLElement>(".fw-progress__item");
 
-      gsap.to(".aw-hero__title", {
-        yPercent: -10,
-        opacity: .2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".aw-hero",
-          start: "35% top",
-          end: "bottom top",
-          scrub: 1.2,
-        },
+      gsap.set(slides.slice(1), {
+        clipPath: "inset(100% 0 0 0)",
       });
 
-      gsap.to(".aw-hero__background", {
-        scale: 1.08,
-        yPercent: 8,
-        ease: "none",
+      gsap.set(".fw-slide__title-line > span", {
+        yPercent: 105,
+      });
+
+      gsap.set(".fw-slide:first-child .fw-slide__title-line > span", {
+        yPercent: 0,
+      });
+
+      gsap.set(progressItems[0], { opacity: 1 });
+
+      const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: ".aw-hero",
+          trigger: ".fw-section",
           start: "top top",
-          end: "bottom top",
-          scrub: 1.5,
+          end: `+=${featuredSlides.length * 110}%`,
+          pin: ".fw-stage",
+          scrub: 1.25,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
-      gsap.utils.toArray<HTMLElement>(".aw-feature").forEach((section, index) => {
-        const image = section.querySelector(".aw-feature__image");
-        const copy = section.querySelector(".aw-feature__copy");
-        const mask = section.querySelector(".aw-feature__mask");
+      slides.forEach((slide, index) => {
+        if (index === 0) return;
 
-        if (image) {
-          gsap.fromTo(image, { scale: 1.12 }, {
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.4,
-            },
-          });
-        }
+        const previous = slides[index - 1];
+        const currentTitle = slide.querySelectorAll(".fw-slide__title-line > span");
+        const previousTitle = previous.querySelectorAll(".fw-slide__title-line > span");
 
-        if (mask) {
-          gsap.fromTo(mask, {
-            clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
-          }, {
-            clipPath: "inset(0 0 0 0)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 88%",
-              end: "top 18%",
-              scrub: 1.2,
+        timeline
+          .to(
+            previousTitle,
+            {
+              yPercent: -110,
+              duration: .24,
+              stagger: .025,
+              ease: "power2.in",
             },
-          });
-        }
-
-        if (copy) {
-          gsap.fromTo(copy, { opacity: 0, y: 58 }, {
-            opacity: 1,
-            y: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 72%",
-              end: "top 28%",
-              scrub: 1,
+            index - .46,
+          )
+          .to(
+            slide,
+            {
+              clipPath: "inset(0% 0 0 0)",
+              duration: .72,
+              ease: "power3.inOut",
             },
-          });
-        }
+            index - .55,
+          )
+          .fromTo(
+            slide.querySelector(".fw-slide__image"),
+            {
+              scale: 1.1,
+              yPercent: 6,
+            },
+            {
+              scale: 1,
+              yPercent: 0,
+              duration: .8,
+              ease: "power3.out",
+            },
+            index - .52,
+          )
+          .to(
+            currentTitle,
+            {
+              yPercent: 0,
+              duration: .42,
+              stagger: .035,
+              ease: "power3.out",
+            },
+            index - .26,
+          )
+          .to(
+            progressItems[index - 1],
+            {
+              opacity: .25,
+              duration: .15,
+            },
+            index - .3,
+          )
+          .to(
+            progressItems[index],
+            {
+              opacity: 1,
+              duration: .15,
+            },
+            index - .3,
+          );
       });
 
-      gsap.fromTo(".aw-about__copy", { opacity: 0, y: 60 }, {
-        opacity: 1,
-        y: 0,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".aw-about",
-          start: "top 76%",
-          end: "top 30%",
-          scrub: 1,
+      timeline.fromTo(
+        ".fw-all-work",
+        {
+          yPercent: 100,
         },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".aw-capability").forEach((section) => {
-        const title = section.querySelector(".aw-capability__title");
-        const items = section.querySelectorAll(".aw-capability__item");
-        const divider = section.querySelector(".aw-capability__divider");
-
-        if (title) {
-          gsap.fromTo(title, { opacity: 0, y: 62 }, {
-            opacity: 1,
-            y: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 78%",
-              end: "top 30%",
-              scrub: 1,
-            },
-          });
-        }
-
-        if (items.length) {
-          gsap.fromTo(items, { opacity: 0, x: 28 }, {
-            opacity: 1,
-            x: 0,
-            stagger: .04,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 64%",
-              end: "top 18%",
-              scrub: 1,
-            },
-          });
-        }
-
-        if (divider) {
-          gsap.fromTo(divider, { scaleX: 0 }, {
-            scaleX: 1,
-            transformOrigin: "left",
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 72%",
-              end: "top 42%",
-              scrub: 1,
-            },
-          });
-        }
-      });
-
-      gsap.fromTo(".aw-gallery__item", {
-        opacity: 0,
-        y: 70,
-        clipPath: "inset(10% 7% 10% 7%)",
-      }, {
-        opacity: 1,
-        y: 0,
-        clipPath: "inset(0 0 0 0)",
-        stagger: .08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".aw-gallery",
-          start: "top 76%",
-          end: "top 18%",
-          scrub: 1,
+        {
+          yPercent: 0,
+          duration: .55,
+          ease: "power3.inOut",
         },
-      });
+        featuredSlides.length - .15,
+      );
 
-      gsap.fromTo(".aw-next__content", { opacity: 0, y: 70 }, {
-        opacity: 1,
-        y: 0,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".aw-next",
-          start: "top 74%",
-          end: "top 28%",
-          scrub: 1,
-        },
-      });
+      gsap.fromTo(
+        ".fw-header",
+        { opacity: 0, y: -12 },
+        { opacity: 1, y: 0, duration: .7, ease: "power3.out" },
+      );
     },
     { scope: root },
   );
 
-  const heroTwo = study.visuals[0] || study.hero;
-  const heroThree = study.visuals[1] || study.hero;
-
-  const heroLines =
-    study.title.length > 22
-      ? [study.title.split(" ").slice(0, -1).join(" "), study.title.split(" ").slice(-1).join(" ")]
-      : [study.title];
-
   return (
-    <main ref={root} className="aw-page">
-      <nav className="aw-nav">
-        <Link href="/#cases">
-          <ArrowLeft size={14} />
-          Selected Cases
-        </Link>
-        <span>SoftBridge Solutions</span>
-        <span>Finland / Europe</span>
-      </nav>
+    <main ref={root} className="fw-page">
+      <section className="fw-section">
+        <div className="fw-stage">
+          <header className="fw-header">
+            <Link href="/#cases" className="fw-header__back">
+              <ArrowLeft size={14} />
+              Selected Cases
+            </Link>
 
-      <section className="aw-hero">
-        <Image
-          className="aw-hero__background"
-          src={study.hero}
-          alt={`${study.title} project background`}
-          fill
-          priority
-          sizes="100vw"
-        />
-        <div className="aw-hero__overlay" />
-        <div className="aw-hero__grain" />
+            <span className="fw-header__brand">SoftBridge Solutions</span>
 
-        <div className="aw-hero__content">
-          <p className="aw-hero__eyebrow">{study.kicker}</p>
-          <h1 className="aw-hero__title">
-            {heroLines.map((line) => (
-              <span className="aw-hero__line" key={line}>
-                <span>{line}</span>
+            <Link href="/" className="fw-header__home">
+              Home
+              <span>33</span>
+            </Link>
+          </header>
+
+          <div className="fw-slides">
+            {featuredSlides.map((slide, index) => (
+              <article
+                className={`fw-slide fw-slide--${index + 1}`}
+                key={slide.title}
+                style={{ zIndex: index + 1 }}
+              >
+                <div className="fw-slide__copy">
+                  <span className="fw-slide__eyebrow">Featured work</span>
+
+                  <h1>
+                    <span className="fw-slide__title-line">
+                      <span>{slide.title}</span>
+                    </span>
+                  </h1>
+
+                  <div className="fw-slide__meta">
+                    <span>{slide.label}</span>
+                    <strong>{study.title}</strong>
+                  </div>
+                </div>
+
+                <div className="fw-slide__media">
+                  <img
+                    className="fw-slide__image"
+                    src={slide.image}
+                    alt={`${slide.title} featured visual`}
+                  />
+
+                  <div className="fw-slide__media-shade" />
+
+                  <div className="fw-slide__media-label">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{slide.category}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <aside className="fw-progress" aria-label="Featured work progress">
+            {featuredSlides.map((slide, index) => (
+              <span className="fw-progress__item" key={slide.title}>
+                {String(index + 1).padStart(2, "0")}
               </span>
             ))}
-          </h1>
+          </aside>
 
-          <div className="aw-hero__meta">
-            <span>{study.accent}</span>
-            <span>Concept Case Study</span>
-            <span>Scroll to explore</span>
+          <div className="fw-all-work">
+            <Link href="/#cases">
+              See all work
+              <ArrowRight size={18} />
+            </Link>
           </div>
-        </div>
-      </section>
-
-      <section className="aw-feature aw-feature--one">
-        <div className="aw-feature__copy">
-          <span>Featured work</span>
-          <h2>{study.statement}</h2>
-          <p>{study.intro}</p>
-        </div>
-
-        <div className="aw-feature__mask">
-          <Image
-            className="aw-feature__image"
-            src={study.hero}
-            alt={`${study.title} interface composition`}
-            fill
-            sizes="62vw"
-          />
-        </div>
-
-        <footer>
-          <span>SoftBridge Concept Lab</span>
-          <span>{study.tags.slice(0, 2).join(" / ")}</span>
-        </footer>
-      </section>
-
-      <section className="aw-feature aw-feature--two">
-        <div className="aw-feature__copy">
-          <span>Project direction</span>
-          <h2>{study.sections[0][0]}</h2>
-          <p>{study.sections[0][1]}</p>
-        </div>
-
-        <div className="aw-feature__mask">
-          <Image
-            className="aw-feature__image"
-            src={heroTwo}
-            alt={`${study.title} project direction visual`}
-            fill
-            sizes="62vw"
-          />
-        </div>
-
-        <footer>
-          <span>Finland / Europe</span>
-          <span>{study.tags.slice(1, 3).join(" / ")}</span>
-        </footer>
-      </section>
-
-      <section className="aw-about">
-        <span>What we do</span>
-
-        <div className="aw-about__copy">
-          <h2>
-            Strategy, design and development for digital products that need to
-            feel clear, distinctive and ready to scale.
-          </h2>
-          <p>{study.sections[1][1]}</p>
-        </div>
-      </section>
-
-      <section className="aw-capabilities">
-        {capabilities.map((group, index) => (
-          <article className="aw-capability" key={group.title}>
-            <div className="aw-capability__divider" />
-
-            <div className="aw-capability__heading">
-              <span>{group.number}</span>
-              <h2 className="aw-capability__title">{group.title}</h2>
-            </div>
-
-            <div className="aw-capability__items">
-              {group.items.map((item) => (
-                <span className="aw-capability__item" key={item}>
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            <div className="aw-ticker" aria-hidden="true">
-              <div className={`aw-ticker__track ${index % 2 ? "aw-ticker__track--reverse" : ""}`}>
-                {Array.from({ length: 8 }).map((_, tickerIndex) => (
-                  <span key={tickerIndex}>{group.ticker} ✱</span>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section className="aw-gallery">
-        <header>
-          <span>Visual system</span>
-          <h2>A consistent experience across every touchpoint.</h2>
-        </header>
-
-        <div className="aw-gallery__grid">
-          {[study.hero, heroTwo, heroThree].map((src, index) => (
-            <figure className={`aw-gallery__item aw-gallery__item--${index + 1}`} key={`${src}-${index}`}>
-              <Image
-                src={src}
-                alt={`${study.title} visual system ${index + 1}`}
-                fill
-                sizes="(max-width: 900px) 100vw, 50vw"
-              />
-              <figcaption>
-                {String(index + 1).padStart(2, "0")} / {study.tags[index] || study.accent}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="aw-next">
-        <Image
-          src={heroThree}
-          alt={`${study.title} next project background`}
-          fill
-          sizes="100vw"
-        />
-        <div className="aw-next__overlay" />
-
-        <div className="aw-next__content">
-          <span>Next project</span>
-          <h2>Continue exploring.</h2>
-          <Link href="/#cases">
-            View all selected cases
-            <ArrowUpRight size={16} />
-          </Link>
         </div>
       </section>
     </main>

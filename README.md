@@ -1,26 +1,21 @@
-# SoftBridge Solutions Finland — Awwwards Case Detail Rebuild
+# SoftBridge Solutions Finland — Detail Page Part 01
 
-The previous detail page was removed and rebuilt from scratch.
+Only the first detail-page section is included in this version.
 
-## Structure
-1. Full-screen editorial hero
-2. Featured Project I
-3. Featured Project II
-4. What We Do
-5. 01 Strategy + ticker
-6. 02 Creative & Design + ticker
-7. 03 Development + ticker
-8. Art-directed visual gallery
-9. Full-screen next-project transition
+## Reference structure
+- Black full-screen pinned stage
+- Minimal top navigation
+- Featured Work label and large serif category title on the left
+- Large project image on the right
+- Scroll-controlled transition between seven scenes
+- Image wipe, image zoom-out and title-mask animation
+- Scene progress numbers
+- Red See All Work band on the final scene
 
-## Motion
-- Independent GSAP timeline per major scene
-- Hero parallax and title fade
-- Mask-reveal featured imagery
-- Scroll-reveal service titles and lists
-- Infinite alternating tickers
-- Art-directed gallery reveal
-- Cinematic next-project close
+## Images
+The seven images supplied by the user are included locally under:
+
+`public/detail-part-01/`
 
 ## Run
 ```bash
