@@ -1048,3 +1048,22 @@
     transition: none !important;
   }
 }
+
+
+/* Hover image clipping fix */
+.viewport{overflow:hidden!important;}
+.slot{overflow:visible!important;}
+.card{overflow:visible!important;}
+.cover{
+overflow:hidden!important;
+isolation:isolate;
+}
+.cover:hover{
+transform:perspective(1200px) rotateX(6deg) rotateY(-8deg) translateY(-14px) scale(1.035)!important;
+}
+.cover img{
+width:100%!important;
+height:100%!important;
+object-fit:cover!important;
+object-position:center!important;
+}

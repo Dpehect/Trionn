@@ -192,10 +192,7 @@ export function ArcCarouselSection({
           </h2>
         </div>
 
-        <p className={styles.intro}>
-          Drag through related SoftBridge Solutions case studies across AI,
-          SaaS, healthcare, logistics, cloud, mobile and digital transformation.
-        </p>
+
       </div>
 
       <div
