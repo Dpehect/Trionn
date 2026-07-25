@@ -19,38 +19,38 @@ interface Scene {
   logoText: string;
 }
 
-const defaultScenes: Scene[] = [
+const defaultSoftBridgeScenes: Scene[] = [
   {
-    category: "Branding",
-    client: "Vakeso",
-    mark: "V",
+    category: "AI Engineering",
+    client: "SoftBridge AI",
+    mark: "SB",
     color: "#f0642f",
-    image: "/detail-part-01/digital-product.jpg",
-    logoText: "Vakeso",
+    image: "https://images.unsplash.com/photo-1634985490771-dd66dc9981a8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=78&w=2400",
+    logoText: "SoftBridge AI",
   },
   {
-    category: "AI Systems",
-    client: "Nordic Intelligence",
-    mark: "NI",
+    category: "Enterprise SaaS",
+    client: "Nordic Systems",
+    mark: "NS",
     color: "#3b82f6",
-    image: "/detail-part-01/ai-strategy.jpg",
-    logoText: "Nordic AI",
+    image: "/detail-part-01/digital-product.jpg",
+    logoText: "Nordic SaaS",
   },
   {
-    category: "Enterprise Web",
-    client: "Atlas Platform",
-    mark: "AP",
+    category: "Digital Health",
+    client: "HealthCare Nordics",
+    mark: "HN",
     color: "#10b981",
     image: "/detail-part-01/web-engineering.jpg",
-    logoText: "Atlas",
+    logoText: "MedTech",
   },
   {
-    category: "Mobile Platforms",
-    client: "Nova Mobile",
-    mark: "NM",
+    category: "Logistics Platform",
+    client: "EuroFleet Logistics",
+    mark: "EF",
     color: "#8b5cf6",
     image: "/detail-part-01/software-studio.jpg",
-    logoText: "Nova",
+    logoText: "EuroFleet",
   },
   {
     category: "Cloud Infrastructure",
@@ -68,18 +68,16 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
   const scenes: Scene[] = study
     ? [
         {
-          category: study.title === "AI Software Development" ? "Branding" : study.title,
-          client: study.title === "AI Software Development" ? "Vakeso" : (study.kicker ? study.kicker.split("/")[0].trim() : "Vakeso"),
-          mark: study.title === "AI Software Development" ? "V" : study.title.charAt(0),
+          category: study.title,
+          client: study.kicker ? study.kicker.split("/")[0].trim() : "SoftBridge Solutions",
+          mark: study.title.slice(0, 2).toUpperCase(),
           color: "#f0642f",
           image: study.editorialHero || "/detail-part-01/digital-product.jpg",
-          logoText: study.title === "AI Software Development" ? "Vakeso" : study.title,
+          logoText: study.title,
         },
-        ...defaultScenes.filter(
-          (s) => s.category !== (study.title === "AI Software Development" ? "Branding" : study.title)
-        ),
+        ...defaultSoftBridgeScenes.filter((s) => s.category !== study.title),
       ]
-    : defaultScenes;
+    : defaultSoftBridgeScenes;
 
   useGSAP(
     () => {
@@ -97,7 +95,7 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
         scrollTrigger: {
           trigger: ".fc-scroll",
           start: "top top",
-          end: `+=${scenes.length * 120}%`,
+          end: `+=${scenes.length * 130}%`,
           pin: ".fc-stage",
           scrub: 1.15,
           anticipatePin: 1,
@@ -154,6 +152,12 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
         ".fc-header",
         { opacity: 0, y: -16 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+      );
+
+      gsap.fromTo(
+        ".fc-left",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: 0.1 }
       );
 
       const canvases = gsap.utils.toArray<HTMLElement>(".fc-image-canvas");
@@ -240,13 +244,13 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
       <header className="fc-header">
         <div className="fc-header-left">
           <Link href="/" className="fc-logo">
-            Vivid Motion<sup>®</sup>
+            SoftBridge Solutions<sup>®</sup>
           </Link>
         </div>
 
         <div className="fc-header-center">
           <p className="fc-header-statement">
-            We design, build and grow brands and digital products for the world&apos;s biggest companies and boldest new ones
+            We design, build and grow digital products for Europe&apos;s most ambitious companies and boldest new ideas
           </p>
         </div>
 
@@ -280,10 +284,7 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
                       className="fc-client-mark"
                       style={{ backgroundColor: scene.color }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 6L12 18L19 6" stroke="#FFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <rect x="4" y="4" width="6" height="6" rx="1.5" fill="#FFF" />
-                      </svg>
+                      <span>{scene.mark}</span>
                     </div>
                     <div className="fc-client-info">
                       <small>CLIENT</small>
@@ -311,10 +312,7 @@ export function CaseStudyPage({ study }: { study?: CaseStudy }) {
                         className="fc-brand-icon"
                         style={{ backgroundColor: scene.color }}
                       >
-                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                          <path d="M5 6L12 18L19 6" stroke="#FFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <rect x="4" y="4" width="6" height="6" rx="1.5" fill="#FFF" />
-                        </svg>
+                        <span className="fc-brand-icon-text">{scene.mark}</span>
                       </div>
                       <span className="fc-brand-name">{scene.logoText}</span>
                     </div>
