@@ -1680,3 +1680,199 @@
     display: none;
   }
 }
+
+
+/* Part 01 UX refinement */
+.rm-intro {
+  min-height: 30vh;
+}
+
+.rm-intro-copy {
+  min-height: calc(30vh - 58px);
+  padding: 3vh 1.6vw 5vh;
+}
+
+.rm-intro-copy p {
+  width: min(53vw, 860px);
+  font-size: clamp(28px, 3.4vw, 62px);
+  line-height: .96;
+}
+
+.rm-stage {
+  grid-template-columns: 44% 56%;
+  padding: 0 1.6vw 1.6vw;
+  column-gap: 1.4vw;
+}
+
+.rm-left {
+  padding: 11vh 4.5vw 6vh 0;
+}
+
+.rm-featured {
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+
+.rm-left-title-window {
+  height: clamp(78px, 8vw, 138px);
+  margin-top: 30px;
+}
+
+.rm-left-title {
+  font-size: clamp(54px, 6.1vw, 106px);
+  line-height: .88;
+}
+
+.rm-client-window {
+  right: 4.5vw;
+  bottom: 6vh;
+}
+
+.rm-right {
+  margin: 4vh 0;
+  border-radius: 2px;
+  background: #0d0d0d;
+}
+
+.rm-scene__media {
+  inset: 0;
+}
+
+.rm-scene__image {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+.rm-scene:nth-child(1) .rm-scene__image {
+  object-position: 50% 48%;
+}
+
+.rm-scene:nth-child(2) .rm-scene__image {
+  object-position: 50% 50%;
+}
+
+.rm-scene:nth-child(3) .rm-scene__image {
+  object-position: 50% 52%;
+}
+
+.rm-scene:nth-child(4) .rm-scene__image {
+  object-position: 50% 50%;
+}
+
+.rm-scene:nth-child(5) .rm-scene__image {
+  object-position: 50% 54%;
+}
+
+.rm-scene:nth-child(6) .rm-scene__image {
+  object-position: 50% 50%;
+}
+
+.rm-scene:nth-child(7) .rm-scene__image {
+  object-position: 50% 54%;
+}
+
+.rm-scene__shade {
+  background:
+    linear-gradient(to top, rgba(5,5,5,.18), transparent 56%),
+    linear-gradient(to right, rgba(5,5,5,.06), transparent 35%),
+    radial-gradient(circle at center, transparent 64%, rgba(5,5,5,.1));
+}
+
+.rm-progress {
+  left: 1.6vw;
+  bottom: 1.6vw;
+}
+
+.rm-see-all {
+  left: 44%;
+  right: 1.6vw;
+  bottom: 1.6vw;
+  height: 50px;
+}
+
+.rm-see-all a {
+  padding-inline: 16px;
+}
+
+.rm-wave {
+  width: 190px;
+  filter: blur(12px);
+}
+
+@media (max-width: 1180px) {
+  .rm-stage {
+    grid-template-columns: 42% 58%;
+  }
+
+  .rm-left {
+    padding-right: 3vw;
+  }
+
+  .rm-see-all {
+    left: 42%;
+  }
+}
+
+@media (max-width: 900px) {
+  .rm-intro {
+    min-height: 25vh;
+  }
+
+  .rm-intro-copy {
+    min-height: calc(25vh - 58px);
+    padding: 3vh 16px 4vh;
+  }
+
+  .rm-intro-copy p {
+    width: 100%;
+    font-size: clamp(30px, 8.6vw, 50px);
+  }
+
+  .rm-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: 34% 66%;
+    padding: 0 14px 14px;
+    column-gap: 0;
+  }
+
+  .rm-left {
+    padding: 4vh 0 2vh;
+  }
+
+  .rm-left-title-window {
+    height: 72px;
+    margin-top: 18px;
+  }
+
+  .rm-left-title {
+    font-size: clamp(44px, 12.5vw, 68px);
+  }
+
+  .rm-client-window {
+    right: 0;
+    bottom: auto;
+  }
+
+  .rm-right {
+    margin: 0;
+  }
+
+  .rm-scene__image {
+    object-fit: cover;
+  }
+
+  .rm-progress {
+    left: 14px;
+    bottom: 18px;
+  }
+
+  .rm-see-all {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    height: 48px;
+  }
+}

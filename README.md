@@ -1,19 +1,15 @@
-# SoftBridge Solutions Finland — Detail Part 01 Reference Match
+# SoftBridge Solutions Finland — Detail Part 01 UX Refined
 
-This version rebuilds only the first detail-page section using the exact
-reference composition logic:
-
-- introductory statement above the canvas
-- one pinned black stage
-- fixed left editorial column
-- large right image stage
-- all scenes arranged in one vertical track
-- synchronized title, client and image movement
-- pointer-responsive image wave and subtle distortion
-- scene progress numbers
-- final red See All Work bar
-
-No later detail-page sections are included.
+## Improvements
+- Reduced the visual area from 61% to 56% on desktop.
+- Increased the left editorial column for better title and metadata breathing room.
+- Added top and bottom margins around the image stage.
+- Reduced oversized crop and removed the previous 104% image overflow.
+- Tuned object positions separately for all seven images.
+- Improved intro text width and typography.
+- Preserved the same synchronized vertical scene animation.
+- Slightly softened scrub, easing and pointer-wave movement.
+- Improved mobile image ratio and title spacing.
 
 ## Run
 ```bash

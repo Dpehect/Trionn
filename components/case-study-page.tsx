@@ -96,7 +96,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           start: "top top",
           end: `+=${scenes.length * 105}%`,
           pin: ".rm-pin",
-          scrub: 1.15,
+          scrub: 1.28,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -112,8 +112,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             sceneEls,
             {
               yPercent: (sceneIndex) => (sceneIndex - index - 1) * 100,
-              duration: .95,
-              ease: "power3.inOut",
+              duration: 1.02,
+              ease: "power2.inOut",
             },
             at,
           )
@@ -121,8 +121,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             titleEls,
             {
               yPercent: (titleIndex) => (titleIndex - index - 1) * 100,
-              duration: .95,
-              ease: "power3.inOut",
+              duration: 1.02,
+              ease: "power2.inOut",
             },
             at,
           )
@@ -130,8 +130,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             clientEls,
             {
               yPercent: (clientIndex) => (clientIndex - index - 1) * 100,
-              duration: .95,
-              ease: "power3.inOut",
+              duration: 1.02,
+              ease: "power2.inOut",
             },
             at,
           )
@@ -143,8 +143,8 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         ".rm-see-all",
         {
           yPercent: 0,
-          duration: .6,
-          ease: "power3.inOut",
+          duration: .68,
+          ease: "power2.inOut",
         },
         scenes.length - .1,
       );
@@ -178,10 +178,10 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           const nx = (event.clientX - rect.left) / rect.width - .5;
           const ny = (event.clientY - rect.top) / rect.height - .5;
 
-          xTo(nx * 2.4);
-          yTo(ny * 1.9);
-          sxTo(nx * 1.1);
-          syTo(ny * -.7);
+          xTo(nx * 1.6);
+          yTo(ny * 1.25);
+          sxTo(nx * .65);
+          syTo(ny * -.4);
 
           gsap.to(lens, {
             x: event.clientX - rect.left,
