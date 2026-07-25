@@ -1166,3 +1166,148 @@ object-position:center!important;
     aspect-ratio: 4 / 3 !important;
   }
 }
+
+
+/* Section 03 — more card spacing, taller images, full-card hover */
+.section {
+  --arc-angle-step: 5.15deg !important;
+}
+
+.slot {
+  width: clamp(410px, 27.5vw, 575px) !important;
+  overflow: visible !important;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  transform-origin: center center;
+  transition:
+    transform .56s cubic-bezier(.16, 1, .3, 1),
+    opacity .38s ease,
+    filter .38s ease !important;
+}
+
+.card:hover {
+  z-index: 120 !important;
+  transform:
+    translateY(-18px)
+    scale(1.075)
+    translateZ(0) !important;
+  opacity: 1 !important;
+  filter: brightness(1.04) saturate(1.06);
+}
+
+.active .card {
+  z-index: 70 !important;
+}
+
+.active .card:hover {
+  z-index: 130 !important;
+  transform:
+    translateY(-22px)
+    scale(1.095)
+    translateZ(0) !important;
+}
+
+.cover {
+  aspect-ratio: 5 / 4 !important;
+  min-height: clamp(340px, 23vw, 455px) !important;
+  transform: none !important;
+  transition:
+    box-shadow .48s ease,
+    filter .38s ease !important;
+}
+
+.card:hover .cover {
+  transform: none !important;
+  box-shadow:
+    0 42px 90px rgba(0, 0, 0, .30),
+    0 14px 34px rgba(0, 0, 0, .20),
+    0 0 0 1px rgba(255, 255, 255, .12) !important;
+}
+
+.cover img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: scale(1.015) !important;
+  transition: transform .55s cubic-bezier(.16, 1, .3, 1) !important;
+}
+
+.card:hover .cover img {
+  transform: scale(1.045) !important;
+}
+
+.viewport:hover .card {
+  opacity: .76;
+}
+
+.viewport:hover .card:hover,
+.viewport:hover .active .card {
+  opacity: 1;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    --arc-angle-step: 5.85deg !important;
+  }
+
+  .slot {
+    width: clamp(370px, 32vw, 515px) !important;
+  }
+
+  .cover {
+    min-height: clamp(315px, 25vw, 405px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    --arc-angle-step: 7.45deg !important;
+  }
+
+  .slot {
+    width: clamp(330px, 50vw, 450px) !important;
+  }
+
+  .cover {
+    min-height: 320px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    --arc-angle-step: 10deg !important;
+  }
+
+  .slot {
+    width: min(86vw, 395px) !important;
+  }
+
+  .cover {
+    min-height: 295px !important;
+    aspect-ratio: 5 / 4 !important;
+  }
+}
+
+@media (hover: none) {
+  .card:hover,
+  .active .card:hover {
+    transform: inherit !important;
+    filter: none !important;
+  }
+
+  .card:hover .cover {
+    box-shadow: inherit !important;
+  }
+
+  .card:hover .cover img {
+    transform: scale(1.015) !important;
+  }
+
+  .viewport:hover .card {
+    opacity: .82;
+  }
+}
