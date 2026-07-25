@@ -731,201 +731,216 @@
 }
 
 
-/* SoftBridge True Titanium — brushed metal system */
-.page {
+/* SOFTBRIDGE TITANIUM — canonical single theme source */
+.titaniumTheme {
+  --ti-ink: #10171b;
+  --ti-ink-soft: #26343b;
+  --ti-copper: #9a6342;
+  --ti-copper-light: #c0835c;
+  --ti-steel-dark: #4e6069;
+  --ti-steel-mid: #7f919a;
+  --ti-steel-light: #c6d1d6;
+  --ti-surface: #a6b3b9;
+  --ti-line: rgba(16, 23, 27, .18);
+
   position: relative;
+  isolation: isolate;
   width: 100%;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  color: #12171a;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: clip;
+  color: var(--ti-ink) !important;
+
+  /* Strong metallic blue-silver titanium, not flat gray */
   background:
-    linear-gradient(112deg, rgba(255,255,255,.28) 0%, transparent 22%, rgba(255,255,255,.10) 38%, transparent 54%, rgba(54,68,77,.14) 78%, transparent 100%),
-    radial-gradient(circle at 78% 12%, rgba(237,246,250,.72), transparent 28%),
-    radial-gradient(circle at 12% 88%, rgba(72,87,96,.28), transparent 34%),
-    linear-gradient(135deg, #6e7c84 0%, #9aa7ae 34%, #c5ced3 58%, #87959d 100%);
+    linear-gradient(
+      116deg,
+      rgba(255,255,255,.36) 0%,
+      rgba(255,255,255,.06) 18%,
+      rgba(33,49,58,.16) 38%,
+      rgba(255,255,255,.23) 57%,
+      rgba(36,53,62,.18) 76%,
+      rgba(255,255,255,.09) 100%
+    ),
+    radial-gradient(circle at 79% 12%, rgba(239,247,250,.82), transparent 28%),
+    radial-gradient(circle at 9% 91%, rgba(58,76,86,.42), transparent 35%),
+    linear-gradient(
+      135deg,
+      #485963 0%,
+      #71848e 24%,
+      #a8b7be 49%,
+      #d0d9dd 66%,
+      #7c8f98 100%
+    ) !important;
 }
 
-.page::before {
+.titaniumTheme::before {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -2;
   pointer-events: none;
-  z-index: 0;
-  opacity: .42;
+  opacity: .58;
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(255,255,255,.06) 0px,
-      rgba(255,255,255,.06) 1px,
-      rgba(37,49,56,.025) 1px,
-      rgba(37,49,56,.025) 3px
+      rgba(255,255,255,.07) 0px,
+      rgba(255,255,255,.07) 1px,
+      rgba(13,25,31,.028) 1px,
+      rgba(13,25,31,.028) 4px
     );
   mix-blend-mode: overlay;
 }
 
-.page::after {
+.titaniumTheme::after {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
-  z-index: 0;
-  opacity: .18;
-  background-image:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 70% 75%, rgba(17,25,30,.28) 0 1px, transparent 1.5px);
-  background-size: 7px 7px, 9px 9px;
-  mix-blend-mode: soft-light;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.07), transparent 28%),
+    radial-gradient(circle at 55% 35%, transparent 0 45%, rgba(26,39,46,.08) 100%);
 }
 
-.workSection,
-.servicesSection {
-  position: relative;
-  z-index: 1;
+.titaniumTheme .workSection,
+.titaniumTheme .servicesSection {
   width: 100%;
   margin: 0;
-  background: transparent;
+  background: transparent !important;
 }
 
-.workSticky,
-.container,
-.servicesContainer {
-  position: relative;
-  z-index: 1;
+.titaniumTheme .workSticky {
+  width: 100%;
+  margin: 0;
+  background: transparent !important;
 }
 
-.workSticky::before {
+.titaniumTheme .container,
+.titaniumTheme .servicesContainer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.titaniumTheme .workSticky::before {
   background:
-    linear-gradient(90deg, rgba(20,27,31,.06) 1px, transparent 1px),
-    linear-gradient(rgba(20,27,31,.045) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(90deg, rgba(16,23,27,.065) 1px, transparent 1px),
+    linear-gradient(rgba(16,23,27,.05) 1px, transparent 1px) !important;
+  background-size: 54px 54px !important;
 }
 
-.featuredLabel {
-  color: #8a5837;
+.titaniumTheme .featuredLabel,
+.titaniumTheme .clientLabel,
+.titaniumTheme .serviceNumber {
+  color: var(--ti-copper) !important;
 }
 
-.featuredLabel::before {
-  color: #41515a;
+.titaniumTheme .featuredLabel::before {
+  color: var(--ti-steel-dark) !important;
 }
 
-.featuredTitle {
-  color: #111619;
+.titaniumTheme .featuredTitle,
+.titaniumTheme .serviceTitle,
+.titaniumTheme .clientName {
+  color: var(--ti-ink) !important;
   text-shadow:
-    0 1px 0 rgba(255,255,255,.28),
-    0 8px 22px rgba(24,33,38,.08);
+    0 1px 0 rgba(255,255,255,.26),
+    0 8px 22px rgba(18,28,34,.08) !important;
 }
 
-.featuredTitle p {
-  color: rgba(17, 22, 25, .82);
+.titaniumTheme .featuredTitle p {
+  color: rgba(16,23,27,.84) !important;
 }
 
-.featuredTitle span {
-  color: rgba(42, 53, 59, .74);
+.titaniumTheme .featuredTitle span {
+  color: rgba(38,52,59,.76) !important;
 }
 
-.clientLabel {
-  color: #8a5837;
-}
-
-.clientName {
-  color: #12171a;
-}
-
-.mediaArea {
-  border: 1px solid rgba(255,255,255,.30);
+.titaniumTheme .mediaArea {
+  border: 1px solid rgba(240,246,249,.46) !important;
   background:
-    linear-gradient(145deg, rgba(82,96,105,.92), rgba(42,53,60,.96));
+    linear-gradient(145deg, rgba(74,91,101,.96), rgba(29,43,51,.98)) !important;
   box-shadow:
-    0 30px 90px rgba(22,31,36,.30),
-    inset 0 1px 0 rgba(255,255,255,.28),
-    inset 0 -1px 0 rgba(8,14,17,.22);
+    0 30px 92px rgba(20,31,37,.34),
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 -1px 0 rgba(5,12,16,.30) !important;
 }
 
-.mediaArea::before {
+.titaniumTheme .mediaArea::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 18;
   pointer-events: none;
   border-radius: inherit;
-  opacity: .32;
+  opacity: .42;
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(255,255,255,.05) 0px,
-      rgba(255,255,255,.05) 1px,
-      rgba(0,0,0,.02) 1px,
-      rgba(0,0,0,.02) 3px
+      rgba(255,255,255,.055) 0px,
+      rgba(255,255,255,.055) 1px,
+      rgba(0,0,0,.025) 1px,
+      rgba(0,0,0,.025) 4px
     );
 }
 
-.mediaArea::after {
+.titaniumTheme .mediaArea::after {
   background:
-    linear-gradient(118deg, rgba(255,255,255,.18), transparent 31%),
-    linear-gradient(315deg, rgba(35,47,54,.24), transparent 37%);
+    linear-gradient(116deg, rgba(255,255,255,.22), transparent 31%),
+    linear-gradient(315deg, rgba(19,31,38,.27), transparent 38%) !important;
 }
 
-.mediaItem img {
-  filter: saturate(.72) contrast(1.10) brightness(.90);
+.titaniumTheme .mediaItem img {
+  filter: saturate(.66) contrast(1.12) brightness(.88) !important;
 }
 
-.cta {
+.titaniumTheme .cta {
   background:
-    linear-gradient(90deg, #6e4932 0%, #95654a 48%, #b27a58 100%);
+    linear-gradient(90deg, #704931 0%, #986548 52%, #b67d5a 100%) !important;
   box-shadow:
-    0 14px 34px rgba(64,42,30,.22),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 14px 36px rgba(66,43,30,.24),
+    inset 0 1px 0 rgba(255,255,255,.20) !important;
 }
 
-.cta a {
-  color: #f2ece5;
+.titaniumTheme .cta a {
+  color: #f1ece7 !important;
 }
 
-.serviceGroup {
-  border-color: rgba(18,24,28,.20);
+.titaniumTheme .serviceGroup,
+.titaniumTheme .serviceRow {
+  border-color: var(--ti-line) !important;
 }
 
-.serviceNumber {
-  color: #855437;
+.titaniumTheme .serviceRowLabel {
+  color: rgba(16,23,27,.88) !important;
 }
 
-.serviceTitle {
-  color: #111619;
-}
-
-.serviceRow {
-  border-color: rgba(18,24,28,.16);
-}
-
-.serviceRowLabel {
-  color: rgba(17,22,25,.88);
-}
-
-.serviceHoverLayer {
+.titaniumTheme .serviceHoverLayer {
   background:
-    linear-gradient(90deg, #dbe2e5 0%, #b8c3c8 50%, #d4dce0 100%);
+    linear-gradient(90deg, #dce4e8 0%, #aebcc3 48%, #d5dee2 100%) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.42),
-    inset 0 -1px 0 rgba(51,63,69,.18);
+    inset 0 1px 0 rgba(255,255,255,.48),
+    inset 0 -1px 0 rgba(39,54,62,.20) !important;
 }
 
-.marqueeTrack {
-  color: #111619;
+.titaniumTheme .marqueeTrack {
+  color: #11181c !important;
 }
 
-.servicePreview {
-  border: 1px solid rgba(255,255,255,.28);
+.titaniumTheme .servicePreview {
+  border: 1px solid rgba(255,255,255,.34) !important;
   box-shadow:
-    0 18px 42px rgba(25,34,39,.24),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 18px 44px rgba(22,33,39,.26),
+    inset 0 1px 0 rgba(255,255,255,.24) !important;
 }
 
 @media (max-width: 800px) {
-  .page {
+  .titaniumTheme {
     background:
-      radial-gradient(circle at 78% 10%, rgba(237,246,250,.64), transparent 26%),
-      linear-gradient(145deg, #74828a 0%, #aab5bb 56%, #89979f 100%);
+      radial-gradient(circle at 78% 10%, rgba(240,248,251,.76), transparent 27%),
+      linear-gradient(145deg, #52636c 0%, #93a4ac 52%, #c6d1d6 75%, #778a93 100%) !important;
   }
 }

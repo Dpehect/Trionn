@@ -1,17 +1,12 @@
-# SoftBridge True Titanium
+# SoftBridge Titanium Root Fix
 
-Updated:
-- removed flat gray appearance
-- added cold blue-steel titanium base
-- added brushed-metal lines
-- added directional metallic reflection
-- added subtle titanium grain
-- darkened media surfaces for stronger contrast
-- preserved bronze accent
+Structure and animations are unchanged.
 
-Preserved:
-- layout
-- all GSAP animations
-- pinned scroll
-- case-specific content
-- service section interactions
+Root fix:
+- every old theme block removed
+- one canonical Titanium theme class added to the existing page root
+- all important surfaces scoped under that class
+- stronger blue-silver metal gradient
+- brushed titanium texture
+- old gray/emerald/concrete cascade cannot override the theme
+- full viewport layout preserved

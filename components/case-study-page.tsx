@@ -504,7 +504,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
   }, { scope: root, dependencies: [study.slug] });
 
   return (
-    <main ref={root} className={styles.page}>
+    <main ref={root} className={`${styles.page} ${styles.titaniumTheme}`}>
       <section className={styles.workSection}>
         <div className={styles.workSticky}>
           <div className={styles.container}>
