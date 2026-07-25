@@ -944,3 +944,26 @@
       linear-gradient(145deg, #52636c 0%, #93a4ac 52%, #c6d1d6 75%, #778a93 100%) !important;
   }
 }
+
+
+/* Collapse the manifesto row only when its content is empty.
+   Existing DOM structure and all GSAP timelines remain unchanged. */
+.introGrid:has(.introText:empty) {
+  display: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.introText:empty {
+  display: none;
+}
+
+.container:has(.introText:empty) {
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding-top: clamp(14px, 2vh, 24px);
+}
+
+.container:has(.introText:empty) .workGrid {
+  align-self: stretch;
+}

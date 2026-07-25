@@ -42,7 +42,7 @@ type CaseProfile = {
 const profiles: Record<string, CaseProfile> = {
   "ai-software-development-finland": {
     manifesto:
-      "We design production-ready AI systems that turn complex operational data into faster decisions, reliable automation and measurable business value.",
+      "",
     featured: [
       {
         category: "AI Discovery",

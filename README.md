@@ -1,12 +1,14 @@
-# SoftBridge Titanium Root Fix
+# SoftBridge Titanium — AI Manifesto Removed
 
-Structure and animations are unchanged.
+Changed:
+- removed the AI case manifesto sentence
+- collapsed its empty intro row
+- moved Featured Work upward
 
-Root fix:
-- every old theme block removed
-- one canonical Titanium theme class added to the existing page root
-- all important surfaces scoped under that class
-- stronger blue-silver metal gradient
-- brushed titanium texture
-- old gray/emerald/concrete cascade cannot override the theme
-- full viewport layout preserved
+Preserved:
+- DOM/component structure
+- GSAP timelines
+- pinned scroll behavior
+- title/client/media transitions
+- Part 02 animations
+- Titanium theme
