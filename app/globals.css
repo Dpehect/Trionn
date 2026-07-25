@@ -1705,3 +1705,8 @@ body {
 body {
   max-width: none;
 }
+
+html,
+body {
+  background: #F9F6F1 !important;
+}

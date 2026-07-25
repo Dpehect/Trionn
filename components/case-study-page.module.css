@@ -1057,3 +1057,56 @@
     align-self: stretch;
   }
 }
+
+/* Detail page background — warm premium surface */
+.titaniumTheme,
+.page,
+.titaniumTheme .workSection,
+.titaniumTheme .workSticky,
+.titaniumTheme .servicesSection {
+  background: #F9F6F1 !important;
+}
+
+.titaniumTheme::before,
+.titaniumTheme::after {
+  display: none !important;
+}
+
+.titaniumTheme {
+  --ti-ink: #171717;
+  --ti-ink-soft: #5F5F5F;
+  --ti-copper: #B87333;
+  --ti-copper-light: #C98955;
+  --ti-line: #E7E1D8;
+  color: #171717 !important;
+}
+
+.titaniumTheme .featuredTitle,
+.titaniumTheme .serviceTitle,
+.titaniumTheme .clientName {
+  color: #171717 !important;
+  text-shadow: none !important;
+}
+
+.titaniumTheme .featuredTitle p,
+.titaniumTheme .featuredTitle span,
+.titaniumTheme .serviceRowLabel {
+  color: #5F5F5F !important;
+}
+
+.titaniumTheme .featuredLabel,
+.titaniumTheme .clientLabel,
+.titaniumTheme .serviceNumber {
+  color: #B87333 !important;
+}
+
+.titaniumTheme .serviceGroup,
+.titaniumTheme .serviceRow,
+.titaniumTheme .serviceRows {
+  border-color: #E7E1D8 !important;
+}
+
+.titaniumTheme .serviceHoverLayer {
+  background: #FFFFFF !important;
+  box-shadow: inset 0 0 0 1px #E7E1D8 !important;
+}
