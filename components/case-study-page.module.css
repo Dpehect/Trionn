@@ -1653,3 +1653,20 @@
     min-height: auto;
   }
 }
+
+
+/* Unified detail-page background */
+.titaniumTheme,
+.titaniumTheme .workSection,
+.titaniumTheme .workSticky,
+.titaniumTheme .servicesSection,
+.titaniumTheme .seoSection {
+  background: #164C4D !important;
+}
+
+.titaniumTheme::before,
+.titaniumTheme::after,
+.titaniumTheme .workSticky::after {
+  opacity: 0 !important;
+  background: none !important;
+}

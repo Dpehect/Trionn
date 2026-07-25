@@ -1,21 +1,22 @@
-# SoftBridge Arc Carousel — Reference Scale Fix
+# SoftBridge Case Carousel Fix
 
-Section 03 updated to match the supplied reference more closely:
-
-- substantially larger portrait cards
-- larger case images
-- larger monospaced case titles and descriptions
-- reference radius: 4704px
-- reference angle step: 4.390243902439025deg
-- larger green drag cursor
-- stronger arc rotation and vertical composition
-- active card remains subtly larger and in front
+Fixed:
+- Section 03 contains only real SoftBridge case studies.
+- The current case is excluded; all cards link to another case.
+- Every carousel card uses that case's own landscape editorial image.
+- Case images now display fully with object-fit: contain.
+- Cards, images, titles and descriptions are substantially larger.
+- The ring is repositioned so images are not clipped into thin strips.
+- Old generated book-cover assets were removed.
+- Every detail-page section now uses the same #164C4D background.
 
 Preserved:
-- other-case content
+- arc geometry
+- drag and touch controls
+- momentum
 - clone-based infinite loop
-- drag, touch and momentum
-- requestAnimationFrame animation
+- active-card scale and z-index
 - hover tilt
 - keyboard controls
-- Sections 01, 02 and SEO/GEO content
+- Sections 01 and 02 structure and animations
+- SEO/GEO content

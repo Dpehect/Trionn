@@ -1717,3 +1717,10 @@ html,
 body {
   background: #0F3D3E !important;
 }
+
+
+/* Unified case-page fallback background */
+html,
+body {
+  background: #164C4D !important;
+}

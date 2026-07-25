@@ -267,8 +267,8 @@ export function ArcCarouselSection({
                       tabIndex={isClone ? -1 : 0}
                     >
                       <img
-                        src={study.hero}
-                        alt={`${study.title} case study`}
+                        src={study.editorialHero || study.hero}
+                        alt={`${study.title} — SoftBridge Solutions case study`}
                         draggable={false}
                       />
                     </a>
