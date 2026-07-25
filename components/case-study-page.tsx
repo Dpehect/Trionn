@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowDown, ArrowUpRight } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowDown,
+  ArrowUpRight,
+  Circle,
+  MoveRight,
+} from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,185 +22,307 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
   useGSAP(
     () => {
-      const section = root.current;
-      if (!section) return;
+      const page = root.current;
+      if (!page) return;
 
       const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-      intro
-        .fromTo(".ref-nav", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: .7 }, 0)
-        .fromTo(".ref-hero__image", { scale: 1.12, filter: "blur(10px) brightness(.65)" }, { scale: 1.02, filter: "blur(0px) brightness(.62)", duration: 1.7 }, 0)
-        .fromTo(".ref-hero__prompt", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .8 }, .45)
-        .fromTo(".ref-hero__scroll", { opacity: 0 }, { opacity: 1, duration: .55 }, 1.05);
 
-      gsap.to(".ref-hero__image", {
-        yPercent: 12,
-        scale: 1.08,
+      intro
+        .fromTo(".cinema-nav", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: .7 }, 0)
+        .fromTo(".cinema-hero__image", { scale: 1.18, filter: "blur(10px) brightness(.72)" }, { scale: 1.03, filter: "blur(0px) brightness(.74)", duration: 1.7 }, 0)
+        .fromTo(".cinema-hero__index", { opacity: 0 }, { opacity: 1, duration: .6 }, .35)
+        .fromTo(".cinema-hero__line > span", { yPercent: 115 }, { yPercent: 0, duration: 1.05, stagger: .1 }, .28)
+        .fromTo(".cinema-hero__meta", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .75 }, .86);
+
+      gsap.to(".cinema-hero__image", {
+        yPercent: 13,
+        scale: 1.1,
         ease: "none",
         scrollTrigger: {
-          trigger: ".ref-hero",
+          trigger: ".cinema-hero",
           start: "top top",
           end: "bottom top",
           scrub: 1.5,
         },
       });
 
-      gsap.utils.toArray<HTMLElement>(".ref-panel").forEach((panel) => {
-        const copy = panel.querySelector(".ref-panel__copy");
-        const media = panel.querySelector(".ref-panel__media");
-        const rule = panel.querySelector(".ref-panel__rule");
-
-        if (copy) {
-          gsap.fromTo(copy, { opacity: 0, y: 56 }, {
-            opacity: 1,
-            y: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: panel, start: "top 80%", end: "top 34%", scrub: 1 },
-          });
-        }
-
-        if (media) {
-          gsap.fromTo(media, { clipPath: "inset(10% 12% 10% 12%)", scale: 1.1 }, {
-            clipPath: "inset(0% 0% 0% 0%)",
-            scale: 1,
-            ease: "none",
-            scrollTrigger: { trigger: panel, start: "top 92%", end: "top 24%", scrub: 1.2 },
-          });
-        }
-
-        if (rule) {
-          gsap.fromTo(rule, { scaleX: 0 }, {
-            scaleX: 1,
-            transformOrigin: "left",
-            ease: "none",
-            scrollTrigger: { trigger: panel, start: "top 72%", end: "top 44%", scrub: 1 },
-          });
-        }
-      });
-
-      gsap.to(".ref-wide__image", {
-        yPercent: 10,
-        scale: 1.08,
+      gsap.to(".cinema-hero__title", {
+        yPercent: -14,
+        opacity: .2,
         ease: "none",
         scrollTrigger: {
-          trigger: ".ref-wide",
-          start: "top bottom",
+          trigger: ".cinema-hero",
+          start: "35% top",
           end: "bottom top",
-          scrub: 1.5,
+          scrub: 1.2,
         },
       });
 
-      gsap.fromTo(".ref-final__content", { opacity: 0, y: 42 }, {
+      gsap.fromTo(".cinema-manifesto__copy", { opacity: 0, y: 80 }, {
         opacity: 1,
         y: 0,
-        scrollTrigger: { trigger: ".ref-final", start: "top 74%", end: "top 30%", scrub: 1 },
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".cinema-manifesto",
+          start: "top 78%",
+          end: "top 28%",
+          scrub: 1,
+        },
+      });
+
+      gsap.fromTo(".cinema-manifesto__metric", { scale: .8, opacity: 0 }, {
+        scale: 1,
+        opacity: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".cinema-manifesto",
+          start: "top 68%",
+          end: "top 22%",
+          scrub: 1.1,
+        },
+      });
+
+      gsap.utils.toArray<HTMLElement>(".visual-story__scene").forEach((scene, index) => {
+        const image = scene.querySelector(".visual-story__image");
+        const copy = scene.querySelector(".visual-story__copy");
+        const progress = scene.querySelector(".visual-story__progress span");
+
+        if (image) {
+          gsap.fromTo(image, {
+            clipPath: index % 2 === 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
+            scale: 1.13,
+          }, {
+            clipPath: "inset(0 0 0 0)",
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: scene,
+              start: "top 88%",
+              end: "top 20%",
+              scrub: 1.3,
+            },
+          });
+        }
+
+        if (copy) {
+          gsap.fromTo(copy, { opacity: 0, y: 60 }, {
+            opacity: 1,
+            y: 0,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: scene,
+              start: "top 75%",
+              end: "top 32%",
+              scrub: 1,
+            },
+          });
+        }
+
+        if (progress) {
+          gsap.fromTo(progress, { scaleX: 0 }, {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: scene,
+              start: "top 65%",
+              end: "bottom 45%",
+              scrub: 1,
+            },
+          });
+        }
+      });
+
+      gsap.to(".system-orbit", {
+        rotate: 55,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".system-visual",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.6,
+        },
+      });
+
+      gsap.to(".system-grid", {
+        backgroundPosition: "120px 80px",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".system-visual",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.8,
+        },
+      });
+
+      gsap.fromTo(".cinema-gallery__item", {
+        opacity: 0,
+        y: 80,
+        clipPath: "inset(12% 8% 12% 8%)",
+      }, {
+        opacity: 1,
+        y: 0,
+        clipPath: "inset(0 0 0 0)",
+        stagger: .08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".cinema-gallery",
+          start: "top 76%",
+          end: "top 20%",
+          scrub: 1,
+        },
+      });
+
+      gsap.fromTo(".cinema-closing__inner", { opacity: 0, y: 70 }, {
+        opacity: 1,
+        y: 0,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".cinema-closing",
+          start: "top 72%",
+          end: "top 26%",
+          scrub: 1,
+        },
       });
     },
     { scope: root },
   );
 
-  const chapters = study.sections;
+  const titleLines = study.title.length > 23
+    ? [study.title.split(" ").slice(0, -1).join(" "), study.title.split(" ").slice(-1).join(" ")]
+    : [study.title];
 
   return (
-    <main ref={root} className="ref-case">
-      <nav className="ref-nav">
-        <Link href="/#cases" className="ref-nav__back">
-          <ArrowLeft size={14} /> Cases
-        </Link>
-        <span className="ref-nav__brand">SoftBridge Solutions</span>
-        <span className="ref-nav__office">Finland Office</span>
+    <main ref={root} className="cinema-case">
+      <nav className="cinema-nav">
+        <Link href="/#cases"><ArrowLeft size={14} /> Selected Cases</Link>
+        <span>SoftBridge Solutions</span>
+        <span>Finland / Europe</span>
       </nav>
 
-      <section className="ref-hero">
+      <section className="cinema-hero">
         <Image
-          className="ref-hero__image"
+          className="cinema-hero__image"
           src={study.hero}
-          alt={`${study.title} concept atmosphere`}
+          alt={`${study.title} cinematic product visualization`}
           fill
           priority
           sizes="100vw"
         />
-        <div className="ref-hero__fog" />
-        <div className="ref-hero__prompt">
-          <span>{study.kicker}</span>
-          <strong>Remember why you are here.</strong>
+        <div className="cinema-hero__grain" />
+        <div className="cinema-hero__veil" />
+
+        <span className="cinema-hero__index">CASE / {study.slug.slice(0, 2).toUpperCase()}</span>
+
+        <div className="cinema-hero__title">
+          <p>{study.kicker}</p>
+          <h1>
+            {titleLines.map((line) => (
+              <span className="cinema-hero__line" key={line}><span>{line}</span></span>
+            ))}
+          </h1>
         </div>
-        <div className="ref-hero__scroll">
-          <ArrowDown size={14} />
-          <span>Scroll to discover</span>
+
+        <div className="cinema-hero__meta">
+          <span>{study.accent}</span>
+          <span className="cinema-hero__scroll"><ArrowDown size={14} /> Scroll to explore</span>
         </div>
       </section>
 
-      <section className="ref-panel ref-panel--intro">
-        <aside className="ref-panel__rail">
+      <section className="cinema-manifesto">
+        <div className="cinema-manifesto__rail">
           <span>01</span>
-          <b>PHILOSOPHY</b>
-        </aside>
+          <i />
+          <b>CONTEXT</b>
+        </div>
 
-        <div className="ref-panel__copy">
-          <span className="ref-panel__eyebrow">OUR PHILOSOPHY</span>
-          <h1>{study.statement}</h1>
+        <div className="cinema-manifesto__copy">
+          <span>THE CHALLENGE</span>
+          <h2>{study.statement}</h2>
           <p>{study.intro}</p>
-          <div className="ref-panel__rule" />
-          <Link href="#chapter-one">View Philosophy <ArrowUpRight size={14} /></Link>
         </div>
 
-        <div className="ref-panel__media">
-          <Image src={study.hero} alt={`${study.title} philosophy visual`} fill sizes="42vw" />
-        </div>
-      </section>
-
-      <section className="ref-wide">
-        <Image className="ref-wide__image" src={study.hero} alt={`${study.title} immersive product visual`} fill sizes="100vw" />
-        <div className="ref-wide__veil" />
-        <span>VIEW PROJECT</span>
-      </section>
-
-      <section id="chapter-one" className="ref-panel ref-panel--craft">
-        <aside className="ref-panel__rail">
-          <span>02</span>
-          <b>CRAFT</b>
-        </aside>
-
-        <div className="ref-panel__copy">
-          <span className="ref-panel__eyebrow">{chapters[0][0].toUpperCase()}</span>
-          <h2>{chapters[0][0]}</h2>
-          <p>{chapters[0][1]}</p>
-          <div className="ref-panel__rule" />
-          <Link href="#chapter-two">View Craft <ArrowUpRight size={14} /></Link>
-        </div>
-
-        <div className="ref-panel__media ref-panel__media--portrait">
-          <Image src={study.hero} alt={`${study.title} ${chapters[0][0].toLowerCase()} visual`} fill sizes="35vw" />
+        <div className="cinema-manifesto__metric">
+          <small>DESIGN TARGET</small>
+          <strong>{study.metric}</strong>
+          <span>{study.metricLabel}</span>
         </div>
       </section>
 
-      <section id="chapter-two" className="ref-panel ref-panel--reverse">
-        <aside className="ref-panel__rail">
-          <span>03</span>
-          <b>{chapters[1][0].toUpperCase()}</b>
-        </aside>
+      <section className="visual-story">
+        {study.sections.map(([title, body], index) => (
+          <article className={`visual-story__scene visual-story__scene--${index + 1}`} key={title}>
+            <div className="visual-story__media">
+              <Image
+                className="visual-story__image"
+                src={study.visuals[index]}
+                alt={`${study.title} ${title.toLowerCase()} editorial visualization`}
+                fill
+                sizes="(max-width: 900px) 100vw, 58vw"
+              />
+              <span className="visual-story__number">0{index + 2}</span>
+            </div>
 
-        <div className="ref-panel__media">
-          <Image src={study.hero} alt={`${study.title} ${chapters[1][0].toLowerCase()} visual`} fill sizes="42vw" />
+            <div className="visual-story__copy">
+              <span>{title.toUpperCase()}</span>
+              <h2>{title}</h2>
+              <p>{body}</p>
+              <div className="visual-story__tags">
+                {study.tags.slice(index, index + 2).map((tag) => <i key={tag}>{tag}</i>)}
+              </div>
+              <div className="visual-story__progress"><span /></div>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="system-visual">
+        <div className="system-grid" />
+        <div className="system-orbit">
+          <span className="system-orbit__core">SB</span>
+          {study.tags.map((tag, index) => (
+            <span
+              className="system-orbit__node"
+              key={tag}
+              style={{ transform: `rotate(${index * (360 / study.tags.length)}deg) translateX(210px) rotate(${-index * (360 / study.tags.length)}deg)` }}
+            >
+              {tag}
+            </span>
+          ))}
         </div>
 
-        <div className="ref-panel__copy">
-          <span className="ref-panel__eyebrow">{chapters[1][0].toUpperCase()}</span>
-          <h2>{chapters[1][0]}</h2>
-          <p>{chapters[1][1]}</p>
-          <div className="ref-panel__rule" />
-          <Link href="#final">Continue <ArrowUpRight size={14} /></Link>
+        <div className="system-visual__copy">
+          <span>04 / CONNECTED SYSTEM</span>
+          <h2>Strategy, design and engineering move as one.</h2>
+          <p>
+            The experience is shaped as a complete operating system rather than
+            a collection of isolated screens.
+          </p>
         </div>
       </section>
 
-      <section id="final" className="ref-final">
-        <Image className="ref-final__image" src={study.hero} alt={`${study.title} closing atmosphere`} fill sizes="100vw" />
-        <div className="ref-final__fog" />
-        <div className="ref-final__content">
-          <span>SOFTBRIDGE SOLUTIONS</span>
-          <h2>Who we are</h2>
-          <p>{chapters[2][1]}</p>
-          <Link href="/#cases">View more cases <ArrowUpRight size={14} /></Link>
+      <section className="cinema-gallery">
+        <header>
+          <span>05 / VISUAL LANGUAGE</span>
+          <h2>Built to feel coherent at every scale.</h2>
+        </header>
+
+        <div className="cinema-gallery__grid">
+          {[study.hero, ...study.visuals].map((src, index) => (
+            <figure className={`cinema-gallery__item cinema-gallery__item--${index + 1}`} key={`${src}-${index}`}>
+              <Image src={src} alt={`${study.title} visual direction ${index + 1}`} fill sizes="(max-width: 800px) 100vw, 50vw" />
+              <figcaption>{String(index + 1).padStart(2, "0")} / {study.accent}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="cinema-closing">
+        <Image src={study.visuals[0]} alt={`${study.title} closing visual`} fill sizes="100vw" />
+        <div className="cinema-closing__veil" />
+        <div className="cinema-closing__inner">
+          <span>SOFTBRIDGE SOLUTIONS / FINLAND OFFICE</span>
+          <h2>Ready to build<br />what comes next?</h2>
+          <Link href="/#cases">Explore another case <ArrowUpRight size={16} /></Link>
         </div>
       </section>
     </main>

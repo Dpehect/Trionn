@@ -1,18 +1,21 @@
-# SoftBridge Solutions Finland — Reference-Style Case Pages
+# SoftBridge Solutions Finland — Cinematic Case Detail Final
 
-The Selected Case detail pages were rebuilt to match the second reference video:
+Case detail pages were rebuilt from scratch as a premium cinematic product story.
 
-- atmospheric full-screen opening
-- minimal fixed navigation
-- centered micro-copy
-- black editorial split sections
-- vertical side labels and chapter numbers
-- masked image reveals
-- full-width cinematic image section
-- alternating copy and media composition
-- atmospheric final section
+## Experience
+- Full-screen cinematic hero with masked title reveal and parallax
+- Challenge and outcome manifesto with visual metric
+- Three large editorial story scenes using supplied Unsplash-style imagery
+- Scroll-reveal image masks, progress rules and alternating compositions
+- Animated system visualization with orbiting product capabilities
+- Art-directed responsive gallery
+- Atmospheric full-screen closing scene
+- Strong keyboard, mobile and reduced-motion support
+- All nine routes retain case-specific metadata and copy
 
-All nine case routes use the same design system with case-specific content.
+## Images
+The supplied technology, development, digital-product and European editorial
+photos are stored locally in `/public/case-editorial` for reliable production loading.
 
 ## Run
 ```bash

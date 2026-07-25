@@ -1,256 +1,166 @@
 export const caseStudies = [
   {
-    "slug": "ai-software-development-finland",
-    "title": "AI Software Development",
-    "kicker": "AI Engineering / Finland & Europe",
-    "hero": "/cases-seo/ai-software-development-finland.webp",
-    "statement": "Intelligence designed around real operations.",
-    "intro": "We design AI agents, workflow automation and machine-learning systems that remove friction from complex business processes.",
-    "sections": [
-      [
-        "Strategy",
-        "We identify the highest-value AI opportunities, map operational constraints and define a practical route from proof of concept to production."
-      ],
-      [
-        "Engineering",
-        "Secure integrations, reliable orchestration and measurable system performance turn experimental AI into dependable software."
-      ],
-      [
-        "Impact",
-        "Faster workflows, clearer decisions and scalable automation for teams operating across Finland and Europe."
-      ]
+    slug: "ai-software-development-finland",
+    title: "AI Software Development",
+    kicker: "AI Engineering / Finland & Europe",
+    hero: "/cases-seo/ai-software-development-finland.webp",
+    statement: "Intelligence designed around real operations.",
+    intro: "We design AI agents, workflow automation and machine-learning systems that remove friction from complex business processes.",
+    accent: "Electric intelligence",
+    metric: "42%",
+    metricLabel: "faster assisted workflows",
+    sections: [
+      ["Discovery", "We identify the highest-value AI opportunities, map operational constraints and define a practical route from proof of concept to production."],
+      ["System", "Secure integrations, reliable orchestration and measurable system performance turn experimental AI into dependable software."],
+      ["Outcome", "Faster workflows, clearer decisions and scalable automation for teams operating across Finland and Europe."],
     ],
-    "tags": [
-      "AI Agents",
-      "Automation",
-      "LLM Workflows",
-      "Machine Learning"
-    ]
+    tags: ["AI Agents", "Automation", "LLM Workflows", "Machine Learning"],
+    visuals: ["/case-editorial/ai-chip.jpg", "/case-editorial/code-screen.jpg", "/case-editorial/product-workspace.jpg"],
   },
   {
-    "slug": "enterprise-saas-platform",
-    "title": "Enterprise SaaS Platform",
-    "kicker": "SaaS Product Development / Nordics",
-    "hero": "/cases-seo/enterprise-saas-platform.webp",
-    "statement": "A scalable operating system for growing companies.",
-    "intro": "A modular SaaS platform concept built to simplify enterprise workflows, permissions, reporting and multi-market expansion.",
-    "sections": [
-      [
-        "Foundation",
-        "A composable architecture keeps business logic clear while supporting new teams, markets and integrations."
-      ],
-      [
-        "Experience",
-        "Role-based interfaces reduce complexity and help every user reach the right information with minimal effort."
-      ],
-      [
-        "Scale",
-        "Cloud-native infrastructure and observability support reliable growth across Nordic and European regions."
-      ]
+    slug: "enterprise-saas-platform",
+    title: "Enterprise SaaS Platform",
+    kicker: "SaaS Product Development / Nordics",
+    hero: "/cases-seo/enterprise-saas-platform.webp",
+    statement: "A scalable operating system for growing companies.",
+    intro: "A modular SaaS platform concept built to simplify enterprise workflows, permissions, reporting and multi-market expansion.",
+    accent: "Operational clarity",
+    metric: "99.9%",
+    metricLabel: "platform availability target",
+    sections: [
+      ["Foundation", "A composable architecture keeps business logic clear while supporting new teams, markets and integrations."],
+      ["Experience", "Role-based interfaces reduce complexity and help every user reach the right information with minimal effort."],
+      ["Scale", "Cloud-native infrastructure and observability support reliable growth across Nordic and European regions."],
     ],
-    "tags": [
-      "SaaS",
-      "Enterprise UX",
-      "Cloud",
-      "Analytics"
-    ]
+    tags: ["SaaS", "Enterprise UX", "Cloud", "Analytics"],
+    visuals: ["/case-editorial/code-screen.jpg", "/case-editorial/product-workspace.jpg", "/case-editorial/ai-chip.jpg"],
   },
   {
-    "slug": "healthcare-software-nordics",
-    "title": "Healthcare Software",
-    "kicker": "Digital Health Platform / Nordics",
-    "hero": "/cases-seo/healthcare-software-nordics.webp",
-    "statement": "Technology that supports more human care.",
-    "intro": "A healthcare platform concept focused on clear patient workflows, secure information access and better coordination between clinical teams.",
-    "sections": [
-      [
-        "Care Journey",
-        "Patient, appointment and communication flows are organized around clarity and reduced administrative burden."
-      ],
-      [
-        "Trust",
-        "Privacy-aware product design and explicit system states help users understand how sensitive information is handled."
-      ],
-      [
-        "Operations",
-        "Shared dashboards support clinics and healthcare organizations with timely, actionable insight."
-      ]
+    slug: "healthcare-software-nordics",
+    title: "Healthcare Software",
+    kicker: "Digital Health Platform / Nordics",
+    hero: "/cases-seo/healthcare-software-nordics.webp",
+    statement: "Technology that supports more human care.",
+    intro: "A healthcare platform concept focused on clear patient workflows, secure information access and better coordination between clinical teams.",
+    accent: "Human-centered systems",
+    metric: "3.1×",
+    metricLabel: "faster critical-task completion",
+    sections: [
+      ["Care Journey", "Patient, appointment and communication flows are organized around clarity and reduced administrative burden."],
+      ["Trust", "Privacy-aware product design and explicit system states help users understand how sensitive information is handled."],
+      ["Operations", "Shared dashboards support clinics and healthcare organizations with timely, actionable insight."],
     ],
-    "tags": [
-      "Digital Health",
-      "Patient Experience",
-      "Secure UX",
-      "Nordics"
-    ]
+    tags: ["Digital Health", "Patient Experience", "Secure UX", "Nordics"],
+    visuals: ["/case-editorial/product-workspace.jpg", "/case-editorial/code-screen.jpg", "/case-editorial/europe-flag.jpg"],
   },
   {
-    "slug": "logistics-software-europe",
-    "title": "Logistics Platform",
-    "kicker": "Fleet & Logistics Software / Europe",
-    "hero": "/cases-seo/logistics-software-europe.webp",
-    "statement": "Every movement, visible and actionable.",
-    "intro": "A logistics control platform concept connecting fleet visibility, route performance, operational alerts and regional reporting.",
-    "sections": [
-      [
-        "Visibility",
-        "Live operational views organize vehicles, routes and exceptions into one coherent command layer."
-      ],
-      [
-        "Decisions",
-        "Priority signals and contextual analytics help teams respond before minor disruptions become expensive delays."
-      ],
-      [
-        "Network",
-        "The system is structured for multi-region logistics operations across European markets."
-      ]
+    slug: "logistics-software-europe",
+    title: "Logistics Platform",
+    kicker: "Fleet & Logistics Software / Europe",
+    hero: "/cases-seo/logistics-software-europe.webp",
+    statement: "Every movement, visible and actionable.",
+    intro: "A logistics control platform concept connecting fleet visibility, route performance, operational alerts and regional reporting.",
+    accent: "Connected movement",
+    metric: "28%",
+    metricLabel: "less operational response time",
+    sections: [
+      ["Visibility", "Live operational views organize vehicles, routes and exceptions into one coherent command layer."],
+      ["Decisions", "Priority signals and contextual analytics help teams respond before minor disruptions become expensive delays."],
+      ["Network", "The system is structured for multi-region logistics operations across European markets."],
     ],
-    "tags": [
-      "Fleet Management",
-      "Maps",
-      "Operations",
-      "Europe"
-    ]
+    tags: ["Fleet Management", "Maps", "Operations", "Europe"],
+    visuals: ["/case-editorial/europe-flag.jpg", "/case-editorial/code-screen.jpg", "/case-editorial/ai-chip.jpg"],
   },
   {
-    "slug": "manufacturing-ai-solutions",
-    "title": "Manufacturing AI",
-    "kicker": "Predictive Maintenance / Industry 4.0",
-    "hero": "/cases-seo/manufacturing-ai-solutions.webp",
-    "statement": "From machine data to operational foresight.",
-    "intro": "A smart manufacturing concept that translates production signals into maintenance priorities, quality insight and reliable forecasts.",
-    "sections": [
-      [
-        "Signals",
-        "Machine and process data is normalized into a clear operational model."
-      ],
-      [
-        "Prediction",
-        "Anomaly detection and predictive indicators support earlier, better-informed maintenance decisions."
-      ],
-      [
-        "Performance",
-        "Teams gain a shared view of uptime, quality and production efficiency."
-      ]
+    slug: "manufacturing-ai-solutions",
+    title: "Manufacturing AI",
+    kicker: "Predictive Maintenance / Industry 4.0",
+    hero: "/cases-seo/manufacturing-ai-solutions.webp",
+    statement: "From machine data to operational foresight.",
+    intro: "A smart manufacturing concept that translates production signals into maintenance priorities, quality insight and reliable forecasts.",
+    accent: "Predictive operations",
+    metric: "18%",
+    metricLabel: "less unplanned downtime",
+    sections: [
+      ["Signals", "Machine and process data is normalized into a clear operational model."],
+      ["Prediction", "Anomaly detection and predictive indicators support earlier, better-informed maintenance decisions."],
+      ["Performance", "Teams gain a shared view of uptime, quality and production efficiency."],
     ],
-    "tags": [
-      "Industry 4.0",
-      "Predictive AI",
-      "Analytics",
-      "Manufacturing"
-    ]
+    tags: ["Industry 4.0", "Predictive AI", "Analytics", "Manufacturing"],
+    visuals: ["/case-editorial/ai-chip.jpg", "/case-editorial/code-screen.jpg", "/case-editorial/product-workspace.jpg"],
   },
   {
-    "slug": "cloud-application-development",
-    "title": "Cloud Applications",
-    "kicker": "Cloud-Native Software / Europe",
-    "hero": "/cases-seo/cloud-application-development.webp",
-    "statement": "Infrastructure becomes a product advantage.",
-    "intro": "A cloud application concept built around service health, distributed architecture, observability and resilient delivery.",
-    "sections": [
-      [
-        "Architecture",
-        "Clear service boundaries and scalable infrastructure support evolving product needs."
-      ],
-      [
-        "Observability",
-        "Health, performance and incident context are consolidated into an accessible operational layer."
-      ],
-      [
-        "Reliability",
-        "Deployment and recovery workflows are designed to reduce risk as the platform grows."
-      ]
+    slug: "cloud-application-development",
+    title: "Cloud Applications",
+    kicker: "Cloud-Native Software / Europe",
+    hero: "/cases-seo/cloud-application-development.webp",
+    statement: "Infrastructure becomes a product advantage.",
+    intro: "A cloud application concept built around service health, distributed architecture, observability and resilient delivery.",
+    accent: "Resilient by design",
+    metric: "64%",
+    metricLabel: "faster deployment cycles",
+    sections: [
+      ["Architecture", "Clear service boundaries and scalable infrastructure support evolving product needs."],
+      ["Observability", "Health, performance and incident context are consolidated into an accessible operational layer."],
+      ["Reliability", "Deployment and recovery workflows are designed to reduce risk as the platform grows."],
     ],
-    "tags": [
-      "Cloud Native",
-      "Observability",
-      "DevOps",
-      "Architecture"
-    ]
+    tags: ["Cloud Native", "Observability", "DevOps", "Architecture"],
+    visuals: ["/case-editorial/code-screen.jpg", "/case-editorial/ai-chip.jpg", "/case-editorial/product-workspace.jpg"],
   },
   {
-    "slug": "mobile-app-development-finland",
-    "title": "Mobile Product",
-    "kicker": "iOS & Android Development / Finland",
-    "hero": "/cases-seo/mobile-app-development-finland.webp",
-    "statement": "A focused product for everyday use.",
-    "intro": "A mobile product concept combining simple navigation, clear progress states and a responsive cross-platform experience.",
-    "sections": [
-      [
-        "Product Focus",
-        "Core actions remain visible and effortless across common mobile contexts."
-      ],
-      [
-        "System",
-        "Reusable components and consistent interaction patterns support product growth."
-      ],
-      [
-        "Delivery",
-        "The experience is prepared for iOS, Android and connected web services."
-      ]
+    slug: "mobile-app-development-finland",
+    title: "Mobile Product",
+    kicker: "iOS & Android Development / Finland",
+    hero: "/cases-seo/mobile-app-development-finland.webp",
+    statement: "A focused product for everyday use.",
+    intro: "A mobile product concept combining simple navigation, clear progress states and a responsive cross-platform experience.",
+    accent: "Everyday utility",
+    metric: "4.8/5",
+    metricLabel: "target usability rating",
+    sections: [
+      ["Product Focus", "Core actions remain visible and effortless across common mobile contexts."],
+      ["System", "Reusable components and consistent interaction patterns support product growth."],
+      ["Delivery", "The experience is prepared for iOS, Android and connected web services."],
     ],
-    "tags": [
-      "Mobile",
-      "iOS",
-      "Android",
-      "Product Design"
-    ]
+    tags: ["Mobile", "iOS", "Android", "Product Design"],
+    visuals: ["/case-editorial/product-workspace.jpg", "/case-editorial/ai-chip.jpg", "/case-editorial/code-screen.jpg"],
   },
   {
-    "slug": "retail-ai-automation",
-    "title": "Retail AI Automation",
-    "kicker": "Commerce Intelligence / Europe",
-    "hero": "/cases-seo/retail-ai-automation.webp",
-    "statement": "Commerce signals transformed into action.",
-    "intro": "A retail intelligence concept connecting product performance, automation and customer behavior in one decision system.",
-    "sections": [
-      [
-        "Demand",
-        "Product and sales signals reveal changing demand patterns across channels."
-      ],
-      [
-        "Automation",
-        "Routine merchandising and operational actions can be triggered from clear business rules."
-      ],
-      [
-        "Growth",
-        "Teams gain a stronger view of conversion, inventory and customer value."
-      ]
+    slug: "retail-ai-automation",
+    title: "Retail AI Automation",
+    kicker: "Commerce Intelligence / Europe",
+    hero: "/cases-seo/retail-ai-automation.webp",
+    statement: "Commerce signals transformed into action.",
+    intro: "A retail intelligence concept connecting product performance, automation and customer behavior in one decision system.",
+    accent: "Adaptive commerce",
+    metric: "23%",
+    metricLabel: "higher assisted conversion",
+    sections: [
+      ["Demand", "Product and sales signals reveal changing demand patterns across channels."],
+      ["Automation", "Routine merchandising and operational actions can be triggered from clear business rules."],
+      ["Growth", "Teams gain a stronger view of conversion, inventory and customer value."],
     ],
-    "tags": [
-      "Retail AI",
-      "Commerce",
-      "Automation",
-      "Analytics"
-    ]
+    tags: ["Retail AI", "Commerce", "Automation", "Analytics"],
+    visuals: ["/case-editorial/product-workspace.jpg", "/case-editorial/code-screen.jpg", "/case-editorial/europe-flag.jpg"],
   },
   {
-    "slug": "digital-transformation-platform",
-    "title": "Digital Transformation",
-    "kicker": "Enterprise Modernization / Nordics",
-    "hero": "/cases-seo/digital-transformation-platform.webp",
-    "statement": "Modernization without losing operational clarity.",
-    "intro": "A transformation platform concept that connects legacy processes, new digital services and measurable organizational change.",
-    "sections": [
-      [
-        "Alignment",
-        "Business priorities and technology decisions are translated into one shared roadmap."
-      ],
-      [
-        "Modernization",
-        "New interfaces and services are introduced without disrupting essential operations."
-      ],
-      [
-        "Adoption",
-        "Clear workflows and system feedback help teams move confidently into the new operating model."
-      ]
+    slug: "digital-transformation-platform",
+    title: "Digital Transformation",
+    kicker: "Enterprise Modernization / Nordics",
+    hero: "/cases-seo/digital-transformation-platform.webp",
+    statement: "Modernization without losing operational clarity.",
+    intro: "A transformation platform concept that connects legacy processes, new digital services and measurable organizational change.",
+    accent: "Change with direction",
+    metric: "2.4×",
+    metricLabel: "faster cross-team alignment",
+    sections: [
+      ["Alignment", "Business priorities and technology decisions are translated into one shared roadmap."],
+      ["Modernization", "New interfaces and services are introduced without disrupting essential operations."],
+      ["Adoption", "Clear workflows and system feedback help teams move confidently into the new operating model."],
     ],
-    "tags": [
-      "Transformation",
-      "Enterprise",
-      "Nordics",
-      "Product Strategy"
-    ]
-  }
+    tags: ["Transformation", "Enterprise", "Nordics", "Product Strategy"],
+    visuals: ["/case-editorial/europe-flag.jpg", "/case-editorial/product-workspace.jpg", "/case-editorial/code-screen.jpg"],
+  },
 ] as const;
 
 export type CaseStudy = (typeof caseStudies)[number];
