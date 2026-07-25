@@ -971,3 +971,165 @@
 .marqueeTrack {
   color: #223129;
 }
+
+
+/* Industrial Concrete theme + full viewport edge fix
+   Layout, GSAP timelines and component structure remain unchanged. */
+
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #a7aca8;
+}
+
+:global(body) {
+  max-width: none;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(circle at 82% 16%, rgba(193, 196, 190, .55), transparent 35%),
+    radial-gradient(circle at 18% 84%, rgba(175, 107, 61, .14), transparent 28%),
+    linear-gradient(135deg, #9ea5a1 0%, #a7aca8 48%, #b8bbb6 100%);
+  color: #1d1f1f;
+}
+
+.workSection,
+.servicesSection {
+  width: 100%;
+  margin: 0;
+  background: transparent;
+}
+
+.workSticky {
+  width: 100%;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.servicesContainer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.workSticky::before {
+  background:
+    linear-gradient(90deg, rgba(29, 31, 31, .045) 1px, transparent 1px),
+    linear-gradient(rgba(29, 31, 31, .038) 1px, transparent 1px);
+}
+
+.featuredLabel {
+  color: #8f5736;
+}
+
+.featuredLabel::before {
+  color: #5f6c67;
+}
+
+.featuredTitle {
+  color: #1d1f1f;
+  text-shadow: none;
+}
+
+.featuredTitle p {
+  color: rgba(29, 31, 31, .78);
+}
+
+.featuredTitle span {
+  color: rgba(54, 62, 59, .72);
+}
+
+.clientLabel {
+  color: #7b4a30;
+}
+
+.clientName {
+  color: #1d1f1f;
+}
+
+.mediaArea {
+  border: 1px solid rgba(58, 63, 61, .16);
+  background: rgba(218, 219, 214, .68);
+  box-shadow:
+    0 24px 70px rgba(65, 71, 68, .18),
+    0 0 28px rgba(175, 107, 61, .07);
+}
+
+.mediaArea::after {
+  background:
+    linear-gradient(135deg, rgba(175, 107, 61, .08), transparent 38%),
+    linear-gradient(315deg, rgba(95, 108, 103, .09), transparent 34%);
+}
+
+.mediaItem img {
+  filter: saturate(.8) contrast(1.03) brightness(.96);
+}
+
+.cta {
+  background: linear-gradient(90deg, #9d5f39, #b9784e);
+  box-shadow: 0 12px 32px rgba(119, 76, 50, .18);
+}
+
+.cta a {
+  color: #f0ebe4;
+}
+
+.serviceGroup {
+  border-color: rgba(44, 49, 47, .16);
+}
+
+.serviceNumber {
+  color: #9c5f3a;
+}
+
+.serviceTitle {
+  color: #1d1f1f;
+}
+
+.serviceRow {
+  border-color: rgba(44, 49, 47, .14);
+}
+
+.serviceRowLabel {
+  color: rgba(29, 31, 31, .82);
+}
+
+.serviceHoverLayer {
+  background: linear-gradient(90deg, #d8d5ce, #c9c5bc);
+}
+
+.marqueeTrack {
+  color: #1f2221;
+}
+
+.servicePreview {
+  border: 1px solid rgba(29, 31, 31, .12);
+  box-shadow: 0 16px 36px rgba(48, 52, 50, .18);
+}
+
+@media (max-width: 800px) {
+  :global(html),
+  :global(body),
+  .page,
+  .workSection,
+  .servicesSection {
+    width: 100%;
+    max-width: 100%;
+  }
+}

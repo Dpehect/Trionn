@@ -1,16 +1,18 @@
-# SoftBridge Case Details — Emerald + Copper Theme
+# SoftBridge Case Details — Industrial Concrete Theme
 
 Preserved:
-- all animations
-- pinned scroll behavior
 - layout
-- content
-- case-specific data
-- service section interactions
+- GSAP animations
+- pinned scroll behavior
+- case-specific content
+- image transitions
+- service hover interactions
 
-Updated palette:
-- deep emerald background
-- copper primary accent
-- soft sage secondary accent
-- warm sand typography
-- emerald/copper media glow
+Updated:
+- Industrial Concrete palette
+- warm concrete background
+- graphite typography
+- copper accents
+- muted architectural card surfaces
+- full viewport width
+- removed white borders and outer page gaps
