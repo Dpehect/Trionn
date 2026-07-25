@@ -1,16 +1,16 @@
-# SoftBridge Section 03 Balanced Height
+# SoftBridge Section 03 Full Cards — No Overlap
 
 Fixed:
-- reduced carousel height slightly
-- prevented Section 03 content from overlapping neighboring sections
-- added controlled spacing between title and carousel
-- reduced hover growth to a balanced level
-- kept cards fully visible
+- carousel cards are tall again
+- full image area remains visible
+- header and carousel use separate vertical zones
+- sections no longer overlap
+- hover growth remains controlled and visible
 
 Preserved:
-- drag and touch controls
+- card width
+- drag and touch
 - momentum
 - infinite loop
 - hover blur focus
-- card width
 - all other detail-page sections and animations

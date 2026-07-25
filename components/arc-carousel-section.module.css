@@ -1971,3 +1971,162 @@ object-position:center!important;
     min-height: 510px !important;
   }
 }
+
+
+/* Section 03 — full-height cards without section overlap */
+.section {
+  min-height: 1540px !important;
+  padding-top: clamp(56px, 4.5vw, 82px) !important;
+  padding-bottom: 170px !important;
+  overflow: hidden !important;
+}
+
+.header {
+  position: relative;
+  z-index: 40;
+  min-height: clamp(250px, 18vw, 320px) !important;
+}
+
+.viewport {
+  position: relative;
+  z-index: 5;
+  height: 1180px !important;
+  margin-top: 34px !important;
+  padding-top: 70px !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 760px) !important;
+}
+
+.slot {
+  width: clamp(320px, 21vw, 430px) !important;
+  overflow: visible !important;
+}
+
+.cover {
+  aspect-ratio: 3 / 4 !important;
+  min-height: clamp(610px, 36vw, 760px) !important;
+  overflow: hidden !important;
+}
+
+.cover img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.card:hover .cover {
+  min-height: clamp(670px, 40vw, 830px) !important;
+}
+
+.text {
+  min-height: 210px !important;
+}
+
+.viewport:hover .card:hover {
+  transform:
+    translateY(-18px)
+    scaleX(1.06)
+    scaleY(1.10)
+    translateZ(0) !important;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: 1400px !important;
+    padding-bottom: 150px !important;
+  }
+
+  .header {
+    min-height: 235px !important;
+  }
+
+  .viewport {
+    height: 1080px !important;
+    margin-top: 30px !important;
+    padding-top: 60px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 670px) !important;
+  }
+
+  .cover {
+    min-height: clamp(560px, 39vw, 680px) !important;
+  }
+
+  .card:hover .cover {
+    min-height: clamp(620px, 44vw, 750px) !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: 1260px !important;
+    padding-bottom: 130px !important;
+  }
+
+  .header {
+    min-height: 220px !important;
+  }
+
+  .viewport {
+    height: 970px !important;
+    margin-top: 26px !important;
+    padding-top: 54px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 580px) !important;
+  }
+
+  .slot {
+    width: clamp(290px, 44vw, 370px) !important;
+  }
+
+  .cover {
+    min-height: 540px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 600px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 1120px !important;
+    padding-top: 44px !important;
+    padding-bottom: 110px !important;
+  }
+
+  .header {
+    min-height: 260px !important;
+  }
+
+  .viewport {
+    height: 850px !important;
+    margin-top: 20px !important;
+    padding-top: 46px !important;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 470px) !important;
+  }
+
+  .slot {
+    width: min(84vw, 360px) !important;
+  }
+
+  .cover {
+    min-height: 500px !important;
+  }
+
+  .card:hover .cover {
+    min-height: 540px !important;
+  }
+}
