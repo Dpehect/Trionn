@@ -1,14 +1,17 @@
-# SoftBridge Section 03 Update
+# SoftBridge Section 03 Tall Images
 
-Changed:
-- carousel cards have slightly more space between them
-- hover lift, tilt, scale, shadow and image intensity are stronger
-- active card stays above neighboring cards
+Updated:
+- carousel case images are larger in normal state
+- image height increased with a taller 4:3 composition
+- hover keeps the full image visible
+- hover image zoom is subtle and controlled
+- carousel viewport and ring position adjusted for taller cards
 
 Preserved:
-- arc structure
-- drag and touch controls
+- drag
+- touch
 - momentum
 - infinite loop
-- card sizes and full-image visibility
-- all other detail-page sections and animations
+- card spacing
+- active-card behavior
+- all other sections and animations
