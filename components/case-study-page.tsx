@@ -49,21 +49,25 @@ const FRAGMENT_SHADER_SRC = `
   uniform float u_progress;
   uniform float u_time;
   uniform float u_hover;
+  uniform vec2 u_mouse;
   varying vec2 v_uv;
 
   void main() {
     vec2 uv = v_uv;
     uv.y = 1.0 - uv.y;
 
-    // Holographic liquid wave distortion
-    float wave = sin(uv.y * 16.0 + u_time * 2.8) * (0.015 + u_hover * 0.02);
-    float glitch = sin(uv.x * 24.0 + u_time * 6.0) * sin(u_progress * 3.14159) * 0.04;
+    // Hover-ONLY Fluid ripple effect (only active when hovering)
+    float dist = distance(uv, u_mouse);
+    float hoverRipple = smoothstep(0.45, 0.0, dist) * u_hover * 0.035 * sin(dist * 20.0 - u_time * 4.0);
 
-    vec2 uv1 = uv + vec2(wave + glitch, glitch * 0.5);
-    vec2 uv2 = uv + vec2(wave * 0.6 - glitch, -glitch * 0.5);
+    // Scroll Transition Glitch (active only during transition progress)
+    float glitch = sin(uv.x * 25.0 + u_time * 8.0) * sin(u_progress * 3.14159) * 0.04;
 
-    // RGB Split / Chromatic Aberration during transition
-    float splitAmt = 0.012 * sin(u_progress * 3.14159);
+    vec2 uv1 = uv + vec2(hoverRipple + glitch, glitch * 0.5);
+    vec2 uv2 = uv + vec2(hoverRipple * 0.6 - glitch, -glitch * 0.5);
+
+    // RGB Split / Chromatic Aberration during transition & hover
+    float splitAmt = 0.012 * sin(u_progress * 3.14159) + (u_hover * 0.004);
 
     float r0 = texture2D(u_tex0, uv1 + vec2(splitAmt, 0.0)).r;
     float g0 = texture2D(u_tex0, uv1).g;
@@ -78,8 +82,8 @@ const FRAGMENT_SHADER_SRC = `
     vec4 finalCol = mix(col0, col1, u_progress);
 
     // Holographic edge vignette
-    float dist = length(uv - vec2(0.5));
-    finalCol.rgb *= smoothstep(0.9, 0.2, dist);
+    float edgeDist = length(uv - vec2(0.5));
+    finalCol.rgb *= smoothstep(0.9, 0.2, edgeDist);
 
     gl_FragColor = finalCol;
   }
@@ -93,6 +97,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const [nextIdx, setNextIdx] = useState(1);
   const [transitionProgress, setTransitionProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
   // GSAP ScrollTrigger pinning & scroll-driven sync
   useGSAP(
@@ -122,6 +127,14 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     },
     { scope: rootRef }
   );
+
+  // Mouse movement tracking over canvas frame
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePos({ x, y });
+  };
 
   // WebGL Shader Renderer
   useEffect(() => {
@@ -171,6 +184,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
     const uTimeLoc = gl.getUniformLocation(program, "u_time");
     const uProgressLoc = gl.getUniformLocation(program, "u_progress");
     const uHoverLoc = gl.getUniformLocation(program, "u_hover");
+    const uMouseLoc = gl.getUniformLocation(program, "u_mouse");
     const uTex0Loc = gl.getUniformLocation(program, "u_tex0");
     const uTex1Loc = gl.getUniformLocation(program, "u_tex1");
 
@@ -206,14 +220,18 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
     let animId: number;
     let startTime = performance.now();
+    let currHover = 0;
 
     const render = () => {
       const now = (performance.now() - startTime) * 0.001;
+      const targetHover = isHovered ? 1.0 : 0.0;
+      currHover += (targetHover - currHover) * 0.08;
 
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform1f(uTimeLoc, now);
       gl.uniform1f(uProgressLoc, transitionProgress);
-      gl.uniform1f(uHoverLoc, isHovered ? 1.0 : 0.0);
+      gl.uniform1f(uHoverLoc, currHover);
+      gl.uniform2f(uMouseLoc, mousePos.x, mousePos.y);
 
       const t0 = textures[activeIdx] || textures[0];
       const t1 = textures[nextIdx] || textures[0];
@@ -236,7 +254,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animId);
     };
-  }, [activeIdx, nextIdx, transitionProgress, isHovered]);
+  }, [activeIdx, nextIdx, transitionProgress, isHovered, mousePos]);
 
   const activeScene = SCENES[activeIdx];
 
@@ -282,12 +300,13 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
             </div>
           </div>
 
-          {/* RIGHT SIDE: CINEMATIC 3D HERO VISUALS (WEBGL GLITCH) */}
+          {/* RIGHT SIDE: CINEMATIC 3D HERO VISUALS (HOVER-ONLY FLUID RIPPLE) */}
           <div className="vivid-scroll-right">
             <div
               className="vivid-scroll-frame"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
+              onMouseMove={handleMouseMove}
             >
               <canvas ref={canvasRef} className="vivid-scroll-canvas" />
 
