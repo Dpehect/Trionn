@@ -1,0 +1,124 @@
+.root {
+  min-height: 100vh;
+  color: #f4f4f2;
+  background: #000;
+}
+
+/* Homepage-only theme override. Layout, dimensions and animations stay untouched. */
+.root :global(.intro) {
+  color: #f4f4f2;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(112, 93, 255, .10), transparent 29%),
+    radial-gradient(circle at 16% 82%, rgba(55, 164, 210, .08), transparent 31%),
+    #000 !important;
+}
+
+.root :global(.intro-grid) {
+  opacity: .12;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
+}
+
+.root :global(.intro-office),
+.root :global(.intro-scroll) {
+  color: rgba(244, 244, 242, .58);
+}
+
+.root :global(.layer-stack) {
+  background: #000;
+}
+
+.root :global(.layer-card) {
+  color: #f4f4f2;
+  border-color: rgba(255, 255, 255, .10);
+  background: #080808 !important;
+}
+
+.root :global(.layer-card--2) {
+  background: #0c0c0c !important;
+}
+
+.root :global(.layer-card--3) {
+  background: #101010 !important;
+}
+
+.root :global(.layer-card--4) {
+  background: #141414 !important;
+}
+
+.root :global(.layer-card .eyebrow) {
+  color: rgba(255, 255, 255, .48);
+}
+
+.root :global(.layer-copy p) {
+  color: rgba(255, 255, 255, .62);
+}
+
+.root :global(.layer-copy h2),
+.root :global(.layer-copy .text-link) {
+  color: #f7f7f5;
+}
+
+.root :global(.layer-image-frame) {
+  border-color: rgba(255, 255, 255, .12);
+  background: #101010;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .42);
+}
+
+.root :global(.selected-cases) {
+  color: #f4f4f2;
+  background: #000 !important;
+}
+
+.root :global(.selected-cases__eyebrow),
+.root :global(.selected-cases__intro) {
+  color: rgba(255, 255, 255, .52);
+}
+
+.root :global(.case-card__link) {
+  color: #f4f4f2;
+  border-color: rgba(255, 255, 255, .10);
+  background: #121212;
+}
+
+.root :global(.case-card__link:hover) {
+  box-shadow: 0 24px 55px rgba(0, 0, 0, .5);
+}
+
+.root :global(.case-card__meta p) {
+  color: rgba(255, 255, 255, .48);
+}
+
+.root :global(.capability-section),
+.root :global(.capability-section__sticky) {
+  color: #f4f4f2;
+  background: #000 !important;
+}
+
+.root :global(.capability-section__sticky::after) {
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.04), transparent 18%, transparent 82%, rgba(255,255,255,.03)),
+    radial-gradient(ellipse at center, transparent 54%, rgba(0,0,0,.36) 100%);
+}
+
+.root :global(.capability-section__header p),
+.root :global(.capability-section__header span),
+.root :global(.capability-section__footer) {
+  color: rgba(255, 255, 255, .52);
+}
+
+.root :global(.capability-section__header h2) {
+  color: #f4f4f2;
+}
+
+.root :global(.capability-pill) {
+  color: rgba(255, 255, 255, .76);
+  border-color: rgba(255, 255, 255, .12);
+  background: #141414;
+}
+
+/* The new Intro section already uses #0a0a0a; keep it visually seamless. */
+.root :global(#about) {
+  background: #000 !important;
+}
