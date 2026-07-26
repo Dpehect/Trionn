@@ -3,8 +3,8 @@
   --arc-angle-step: 4.4deg;
   --arc-position: 6;
   position: relative;
-  min-height: 100vh;
-  padding: clamp(60px, 6vw, 110px) 0 clamp(80px, 8vw, 130px);
+  min-height: auto;
+  padding: clamp(40px, 4vw, 60px) 0 20px 0;
   overflow: hidden;
   color: #f6f3ed;
   background:
@@ -14,12 +14,12 @@
 
 .header {
   width: min(100%, 1440px);
-  margin: 0 auto 20px auto;
+  margin: 0 auto 12px auto;
   padding: 0 4vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 8px;
   position: relative;
   z-index: 10;
 }
@@ -37,7 +37,7 @@
   max-width: 900px;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(36px, 4.2vw, 64px);
+  font-size: clamp(32px, 4vw, 56px);
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -.03em;
@@ -48,8 +48,8 @@
 .viewport {
   position: relative;
   width: 100%;
-  height: clamp(840px, 80vw, 1040px);
-  margin-top: 10px;
+  height: clamp(660px, 64vw, 780px);
+  margin-top: 0px;
   overflow: visible;
   outline: none;
   cursor: grab;
@@ -65,7 +65,7 @@
 .ring {
   position: absolute;
   left: 50%;
-  bottom: calc(var(--arc-radius) * -1 + 200px);
+  bottom: calc(var(--arc-radius) * -1 + 440px);
   width: 1px;
   height: 1px;
   transform: translate3d(0, 0, 0);
@@ -78,7 +78,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: clamp(270px, 20vw, 360px);
+  width: clamp(260px, 19vw, 340px);
   transform:
     rotate(var(--slot-angle))
     translateY(calc(var(--arc-radius) * -1))
@@ -98,7 +98,7 @@
 .active .card {
   position: relative;
   z-index: 30;
-  transform: scale(1.05) translateY(-8px) translateZ(0);
+  transform: scale(1.04) translateY(-8px) translateZ(0);
   opacity: 1;
 }
 
@@ -107,11 +107,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .tags span {
-  padding: 5px 10px;
+  padding: 4px 8px;
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: 4px;
   color: rgba(255, 255, 255, .85);
@@ -156,7 +156,7 @@
 }
 
 .text {
-  padding-top: 14px;
+  padding-top: 12px;
 }
 
 .text h3 {
@@ -169,10 +169,10 @@
 }
 
 .text p {
-  margin: 8px 0 12px;
+  margin: 6px 0 10px;
   color: rgba(255, 255, 255, .68);
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.45;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -235,7 +235,7 @@
 .progress {
   width: min(360px, 60vw);
   height: 2px;
-  margin: 32px auto 0;
+  margin: 20px auto 0;
   overflow: hidden;
   background: rgba(255, 255, 255, .13);
   border-radius: 2px;
@@ -252,23 +252,23 @@
   .section {
     --arc-radius: 3400px;
     --arc-angle-step: 5.5deg;
-    padding-top: 50px;
+    padding-top: 40px;
   }
 
   .title {
-    font-size: clamp(34px, 5.5vw, 54px);
+    font-size: clamp(30px, 5vw, 48px);
   }
 
   .viewport {
-    height: 760px;
+    height: 600px;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 180px);
+    bottom: calc(var(--arc-radius) * -1 + 380px);
   }
 
   .slot {
-    width: clamp(240px, 32vw, 320px);
+    width: clamp(230px, 30vw, 300px);
   }
 }
 
@@ -276,24 +276,23 @@
   .section {
     --arc-radius: 2000px;
     --arc-angle-step: 8.5deg;
-    padding-top: 40px;
+    padding-top: 30px;
   }
 
   .title {
-    font-size: clamp(28px, 7vw, 40px);
+    font-size: clamp(26px, 6.5vw, 36px);
   }
 
   .viewport {
-    height: 680px;
-    margin-top: 10px;
+    height: 540px;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 150px);
+    bottom: calc(var(--arc-radius) * -1 + 330px);
   }
 
   .slot {
-    width: min(76vw, 290px);
+    width: min(72vw, 270px);
   }
 
   .dragCursor {

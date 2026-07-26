@@ -30,6 +30,7 @@ type CharacterItem = {
   className: string;
   segmentIndex: number;
   charIndex: number;
+  isSpace: boolean;
 };
 
 export function BrandStatementSection() {
@@ -45,6 +46,7 @@ export function BrandStatementSection() {
           className: segment.className ?? "",
           segmentIndex,
           charIndex,
+          isSpace: char === " ",
         });
       });
     });
@@ -58,21 +60,10 @@ export function BrandStatementSection() {
       if (!section) return;
 
       const chars = gsap.utils.toArray<HTMLElement>(".brand-char", section);
-      const accentChars = gsap.utils.toArray<HTMLElement>(
-        ".brand-char.accent",
-        section,
-      );
 
+      // Initial state: dim unrevealed text
       gsap.set(chars, {
-        opacity: 0.12,
-        y: 13,
-        rotateX: -18,
-        transformOrigin: "50% 100%",
-      });
-
-      gsap.set(accentChars, {
-        color: "currentColor",
-        textShadow: "none",
+        color: "rgba(29, 35, 48, 0.14)",
       });
 
       const revealTimeline = gsap.timeline({
@@ -80,108 +71,46 @@ export function BrandStatementSection() {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.15,
+          scrub: 0.4,
           invalidateOnRefresh: true,
         },
       });
 
-      revealTimeline
-        .to(
-          chars,
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.9,
-            stagger: {
-              each: 0.0048,
-              from: "start",
-            },
-            ease: "power2.out",
-          },
-          0,
-        )
-        .to(
-          accentChars,
-          {
-            color: "var(--accent-color)",
-            textShadow:
-              "0 0 22px color-mix(in srgb, var(--accent-color) 25%, transparent)",
-            duration: 0.28,
-            stagger: 0.018,
-            ease: "power2.out",
-          },
-          0.14,
-        )
-        .fromTo(
-          ".brand-statement__signature",
-          {
-            opacity: 0,
-            y: 18,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.16,
-            ease: "power2.out",
-          },
-          0.82,
-        );
+      // Smooth letter-by-letter scroll reveal
+      revealTimeline.to(chars, {
+        color: (_i, el) => {
+          const isAccent = el.classList.contains("accent");
+          if (isAccent) {
+            if (el.classList.contains("accent--violet")) return "#7356e8";
+            if (el.classList.contains("accent--pink")) return "#e44c9f";
+            if (el.classList.contains("accent--blue")) return "#3769d9";
+            if (el.classList.contains("accent--orange")) return "#e06f2f";
+            if (el.classList.contains("accent--green")) return "#2c9e74";
+          }
+          return "#1d2330";
+        },
+        stagger: {
+          amount: 1,
+          from: "start",
+        },
+        ease: "none",
+      });
 
       gsap.fromTo(
-        ".brand-statement__eyebrow",
-        { opacity: 0, x: -16 },
+        ".brand-statement__signature",
+        { opacity: 0, y: 16 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 78%",
-            end: "top 36%",
-            scrub: 1,
+            start: "75% top",
+            end: "bottom bottom",
+            scrub: 0.5,
           },
-        },
+        }
       );
-
-      gsap.to(".brand-aurora--one", {
-        xPercent: 10,
-        yPercent: -7,
-        rotate: 10,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.5,
-        },
-      });
-
-      gsap.to(".brand-aurora--two", {
-        xPercent: -10,
-        yPercent: 9,
-        rotate: -9,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.7,
-        },
-      });
-
-      gsap.to(".brand-aurora--three", {
-        xPercent: 6,
-        yPercent: 5,
-        scale: 1.06,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.6,
-        },
-      });
     },
     { scope: root },
   );
@@ -205,19 +134,15 @@ export function BrandStatementSection() {
 
         <div className="brand-statement__inner">
           <p className="brand-statement__copy" aria-label={segments.map((item) => item.text).join("")}>
-            {characters.map((item, index) => {
-              const isSpace = item.char === " ";
-
-              return (
-                <span
-                  className={`brand-char ${item.className}`}
-                  key={`${item.segmentIndex}-${item.charIndex}-${index}`}
-                  aria-hidden="true"
-                >
-                  {isSpace ? "\u00A0" : item.char}
-                </span>
-              );
-            })}
+            {characters.map((item, index) => (
+              <span
+                className={`brand-char ${item.className} ${item.isSpace ? "brand-space" : ""}`}
+                key={`${item.segmentIndex}-${item.charIndex}-${index}`}
+                aria-hidden="true"
+              >
+                {item.isSpace ? "\u00A0" : item.char}
+              </span>
+            ))}
           </p>
         </div>
 

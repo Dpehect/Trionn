@@ -64,7 +64,7 @@
 .layer-visual { position: relative; height: min(68vh, 720px); min-height: 420px; }
 
 .selected-cases {
-  padding: clamp(110px, 13vw, 210px) 5vw clamp(120px, 14vw, 220px);
+  padding: clamp(80px, 8vw, 120px) 5vw clamp(40px, 4vw, 60px);
   background: #f6f5f2;
   perspective: 1400px;
 }
@@ -229,7 +229,7 @@
 /* Section 03 — colorful Finland office brand statement */
 .brand-statement {
   position: relative;
-  height: 360vh;
+  height: 220vh;
   color: #1d2330;
   background: #eef4ff;
 }
