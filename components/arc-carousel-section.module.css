@@ -299,3 +299,89 @@
     display: none;
   }
 }
+
+
+/* Final related-cases vertical rhythm correction */
+.section {
+  min-height: auto;
+  padding-top: clamp(38px, 3vw, 56px);
+  padding-bottom: clamp(28px, 2.5vw, 42px);
+}
+
+.header {
+  min-height: auto;
+  margin-bottom: clamp(30px, 3.5vw, 52px);
+}
+
+.viewport {
+  height: clamp(560px, 53vw, 700px);
+}
+
+.ring {
+  bottom: calc(var(--arc-radius) * -1 + 500px);
+}
+
+.progress {
+  margin-top: 8px;
+}
+
+@media (max-width: 1400px) {
+  .section {
+    min-height: auto;
+    padding-bottom: 34px;
+  }
+
+  .header {
+    min-height: auto;
+    margin-bottom: 38px;
+  }
+
+  .viewport {
+    height: 630px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 465px);
+  }
+}
+
+@media (max-width: 1050px) {
+  .section {
+    min-height: auto;
+    padding-bottom: 30px;
+  }
+
+  .header {
+    min-height: auto;
+    margin-bottom: 32px;
+  }
+
+  .viewport {
+    height: 580px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 420px);
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: auto;
+    padding-top: 28px;
+    padding-bottom: 26px;
+  }
+
+  .header {
+    min-height: auto;
+    margin-bottom: 24px;
+  }
+
+  .viewport {
+    height: 500px;
+  }
+
+  .ring {
+    bottom: calc(var(--arc-radius) * -1 + 355px);
+  }
+}

@@ -186,7 +186,7 @@ export function ArcCarouselSection({
     <section className={styles.section} aria-labelledby="arc-carousel-title">
       <div className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>Section 03 — Related work</p>
+          
           <h2 id="arc-carousel-title" className={styles.title}>
             Explore other cases.
           </h2>
