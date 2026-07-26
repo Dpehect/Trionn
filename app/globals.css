@@ -738,7 +738,7 @@ svg {
 }
 
 .capability-section__header {
-  margin-bottom: clamp(22px, 3vh, 36px) !important;
+  margin-bottom: clamp(52px, 6vh, 82px) !important;
 }
 
 .capability-section__rows {
