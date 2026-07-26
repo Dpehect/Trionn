@@ -369,20 +369,12 @@ const profiles: Record<string, CaseProfile> = {
 
 function buildCaseContent(study: CaseStudy) {
   const profile = profiles[study.slug] ?? profiles["ai-software-development-finland"];
-  const images =
-    study.slug === "ai-software-development-finland"
-      ? [
-          "/case-editorial/softbridge-automation-premium.png",
-          study.hero,
-          study.visuals[0],
-          study.visuals[1] ?? study.visuals[0],
-        ]
-      : [
-          study.editorialHero,
-          study.hero,
-          study.visuals[0],
-          study.visuals[1] ?? study.visuals[0],
-        ];
+  const images = [
+    study.editorialHero,
+    study.editorialHero,
+    study.editorialHero,
+    study.editorialHero,
+  ];
 
   const featuredItems: FeaturedItem[] = profile.featured.map((item, index) => ({
     ...item,
@@ -393,9 +385,9 @@ function buildCaseContent(study: CaseStudy) {
   }));
 
   const serviceImages = [
-    study.visuals[0],
-    study.visuals[1] ?? study.visuals[0],
-    study.visuals[2] ?? study.visuals[0],
+    study.editorialHero,
+    study.editorialHero,
+    study.editorialHero,
     study.editorialHero,
   ];
 
