@@ -4,7 +4,7 @@
   --arc-position: 6;
   position: relative;
   min-height: 100vh;
-  padding: clamp(60px, 6vw, 100px) 0 clamp(60px, 6vw, 100px);
+  padding: clamp(60px, 6vw, 110px) 0 clamp(80px, 8vw, 130px);
   overflow: hidden;
   color: #f6f3ed;
   background:
@@ -14,7 +14,7 @@
 
 .header {
   width: min(100%, 1440px);
-  margin: 0 auto 30px auto;
+  margin: 0 auto 20px auto;
   padding: 0 4vw;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
   max-width: 900px;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(38px, 4.5vw, 68px);
+  font-size: clamp(36px, 4.2vw, 64px);
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -.03em;
@@ -48,9 +48,9 @@
 .viewport {
   position: relative;
   width: 100%;
-  height: clamp(740px, 72vw, 900px);
+  height: clamp(840px, 80vw, 1040px);
   margin-top: 10px;
-  overflow: hidden;
+  overflow: visible;
   outline: none;
   cursor: grab;
   touch-action: pan-y pinch-zoom;
@@ -65,7 +65,7 @@
 .ring {
   position: absolute;
   left: 50%;
-  bottom: calc(var(--arc-radius) * -1 + 280px);
+  bottom: calc(var(--arc-radius) * -1 + 200px);
   width: 1px;
   height: 1px;
   transform: translate3d(0, 0, 0);
@@ -78,7 +78,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: clamp(260px, 19vw, 340px);
+  width: clamp(270px, 20vw, 360px);
   transform:
     rotate(var(--slot-angle))
     translateY(calc(var(--arc-radius) * -1))
@@ -98,7 +98,7 @@
 .active .card {
   position: relative;
   z-index: 30;
-  transform: scale(1.04) translateY(-6px) translateZ(0);
+  transform: scale(1.05) translateY(-8px) translateZ(0);
   opacity: 1;
 }
 
@@ -130,7 +130,7 @@
 .cover {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .16);
@@ -151,7 +151,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   pointer-events: none;
 }
 
@@ -260,15 +260,15 @@
   }
 
   .viewport {
-    height: 700px;
+    height: 760px;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 240px);
+    bottom: calc(var(--arc-radius) * -1 + 180px);
   }
 
   .slot {
-    width: clamp(230px, 30vw, 300px);
+    width: clamp(240px, 32vw, 320px);
   }
 }
 
@@ -284,16 +284,16 @@
   }
 
   .viewport {
-    height: 620px;
+    height: 680px;
     margin-top: 10px;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 200px);
+    bottom: calc(var(--arc-radius) * -1 + 150px);
   }
 
   .slot {
-    width: min(72vw, 270px);
+    width: min(76vw, 290px);
   }
 
   .dragCursor {
