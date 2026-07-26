@@ -1,28 +1,23 @@
 .section {
   position: relative !important;
   width: 100% !important;
-
-  /*
-    The outer section supplies the scroll distance.
-    It never gets pinned or transformed by JavaScript.
-  */
-  height: 2200px !important;
-  min-height: 2200px !important;
+  height: 1900px !important;
+  min-height: 1900px !important;
   max-height: none !important;
   margin: 0 !important;
   overflow: visible !important;
-  contain: layout style;
+
+  /* Critical: globals.css used contain: layout paint style, which breaks sticky. */
+  contain: none !important;
+  isolation: auto !important;
+
   background:
     linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%) !important;
 }
 
 .sticky {
-  /*
-    Native CSS sticky is stable in both scroll directions.
-    No GSAP pin spacer, reparenting, or transform is used.
-  */
   position: sticky !important;
-  top: max(0px, calc((100svh - 550px) / 2)) !important;
+  top: calc((100svh - 550px) / 2) !important;
   width: 100% !important;
   height: 550px !important;
   min-height: 550px !important;
@@ -34,7 +29,10 @@
   justify-content: initial !important;
   overflow: hidden !important;
   transform: none !important;
-  contain: layout paint;
+
+  /* Critical: remove containment from the sticky element too. */
+  contain: none !important;
+
   background:
     linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%) !important;
 }
@@ -61,6 +59,7 @@
   align-items: flex-start !important;
   overflow: hidden !important;
   transform: none !important;
+  contain: none !important;
 }
 
 .copy {
@@ -86,22 +85,21 @@
   bottom: 26px !important;
 }
 
+@media (max-height: 650px) {
+  .sticky {
+    top: 0 !important;
+  }
+}
+
 @media (max-width: 900px) {
   .section {
-    height: 2050px !important;
-    min-height: 2050px !important;
+    height: 1800px !important;
+    min-height: 1800px !important;
   }
 
   .sticky {
     top: max(0px, calc((100svh - 550px) / 2)) !important;
     padding: 26px 18px 22px !important;
-  }
-
-  .eyebrow,
-  .inner,
-  .signature {
-    left: auto !important;
-    right: auto !important;
   }
 
   .copy {
@@ -117,8 +115,8 @@
 
 @media (max-width: 600px) {
   .section {
-    height: 2150px !important;
-    min-height: 2150px !important;
+    height: 1900px !important;
+    min-height: 1900px !important;
   }
 
   .sticky {
@@ -133,17 +131,5 @@
 
   .index {
     display: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section {
-    height: auto !important;
-    min-height: 550px !important;
-  }
-
-  .sticky {
-    position: relative !important;
-    top: auto !important;
   }
 }

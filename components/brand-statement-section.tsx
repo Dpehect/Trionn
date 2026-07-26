@@ -75,9 +75,8 @@ export function BrandStatementSection() {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.05,
+          scrub: 1,
           invalidateOnRefresh: true,
-          fastScrollEnd: false,
         },
       });
 
@@ -95,10 +94,7 @@ export function BrandStatementSection() {
             return "#1d2330";
           },
           duration: 0.94,
-          stagger: {
-            each: 0.0048,
-            from: "start",
-          },
+          stagger: { each: 0.0048, from: "start" },
         }, 0)
         .fromTo(
           signature,
