@@ -301,87 +301,97 @@
 }
 
 
-/* Final related-cases vertical rhythm correction */
+/* FINAL ARC CAROUSEL LAYOUT FIX — no structure removed */
 .section {
-  min-height: auto;
-  padding-top: clamp(38px, 3vw, 56px);
-  padding-bottom: clamp(28px, 2.5vw, 42px);
+  min-height: auto !important;
+  padding-top: clamp(44px, 4vw, 64px) !important;
+  padding-bottom: clamp(22px, 2vw, 32px) !important;
+  overflow: hidden !important;
 }
 
 .header {
-  min-height: auto;
-  margin-bottom: clamp(30px, 3.5vw, 52px);
+  min-height: 0 !important;
+  margin-bottom: clamp(18px, 2.2vw, 32px) !important;
 }
 
 .viewport {
-  height: clamp(560px, 53vw, 700px);
+  height: clamp(430px, 42vw, 560px) !important;
+  margin-top: 0 !important;
+  overflow: visible !important;
 }
 
 .ring {
-  bottom: calc(var(--arc-radius) * -1 + 500px);
+  bottom: calc(var(--arc-radius) * -1 + 390px) !important;
+}
+
+.dragCursor {
+  width: 76px !important;
+  height: 76px !important;
 }
 
 .progress {
-  margin-top: 8px;
+  width: min(320px, 56vw) !important;
+  margin-top: 4px !important;
 }
 
 @media (max-width: 1400px) {
   .section {
-    min-height: auto;
-    padding-bottom: 34px;
+    padding-top: 46px !important;
+    padding-bottom: 26px !important;
   }
 
   .header {
-    min-height: auto;
-    margin-bottom: 38px;
+    margin-bottom: 24px !important;
   }
 
   .viewport {
-    height: 630px;
+    height: 500px !important;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 465px);
+    bottom: calc(var(--arc-radius) * -1 + 360px) !important;
   }
 }
 
 @media (max-width: 1050px) {
   .section {
-    min-height: auto;
-    padding-bottom: 30px;
+    padding-top: 40px !important;
+    padding-bottom: 24px !important;
   }
 
   .header {
-    min-height: auto;
-    margin-bottom: 32px;
+    margin-bottom: 22px !important;
   }
 
   .viewport {
-    height: 580px;
+    height: 455px !important;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 420px);
+    bottom: calc(var(--arc-radius) * -1 + 330px) !important;
   }
 }
 
 @media (max-width: 700px) {
   .section {
-    min-height: auto;
-    padding-top: 28px;
-    padding-bottom: 26px;
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
   }
 
   .header {
-    min-height: auto;
-    margin-bottom: 24px;
+    margin-bottom: 18px !important;
   }
 
   .viewport {
-    height: 500px;
+    height: 390px !important;
   }
 
   .ring {
-    bottom: calc(var(--arc-radius) * -1 + 355px);
+    bottom: calc(var(--arc-radius) * -1 + 282px) !important;
+  }
+
+  .progress {
+    width: min(260px, 72vw) !important;
+    margin-top: 2px !important;
   }
 }
