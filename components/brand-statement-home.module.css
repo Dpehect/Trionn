@@ -1,19 +1,28 @@
 .section {
   position: relative !important;
   width: 100% !important;
-  height: 550px !important;
-  min-height: 550px !important;
-  max-height: 550px !important;
+
+  /*
+    The outer section supplies the scroll distance.
+    It never gets pinned or transformed by JavaScript.
+  */
+  height: 2200px !important;
+  min-height: 2200px !important;
+  max-height: none !important;
   margin: 0 !important;
-  overflow: hidden !important;
-  contain: layout paint style;
+  overflow: visible !important;
+  contain: layout style;
   background:
     linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%) !important;
 }
 
-.panel {
-  position: relative !important;
-  inset: auto !important;
+.sticky {
+  /*
+    Native CSS sticky is stable in both scroll directions.
+    No GSAP pin spacer, reparenting, or transform is used.
+  */
+  position: sticky !important;
+  top: max(0px, calc((100svh - 550px) / 2)) !important;
   width: 100% !important;
   height: 550px !important;
   min-height: 550px !important;
@@ -26,6 +35,8 @@
   overflow: hidden !important;
   transform: none !important;
   contain: layout paint;
+  background:
+    linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%) !important;
 }
 
 .eyebrow {
@@ -76,14 +87,13 @@
 }
 
 @media (max-width: 900px) {
-  .section,
-  .panel {
-    height: 550px !important;
-    min-height: 550px !important;
-    max-height: 550px !important;
+  .section {
+    height: 2050px !important;
+    min-height: 2050px !important;
   }
 
-  .panel {
+  .sticky {
+    top: max(0px, calc((100svh - 550px) / 2)) !important;
     padding: 26px 18px 22px !important;
   }
 
@@ -106,7 +116,13 @@
 }
 
 @media (max-width: 600px) {
-  .panel {
+  .section {
+    height: 2150px !important;
+    min-height: 2150px !important;
+  }
+
+  .sticky {
+    top: 0 !important;
     padding-top: 22px !important;
   }
 
@@ -117,5 +133,17 @@
 
   .index {
     display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: auto !important;
+    min-height: 550px !important;
+  }
+
+  .sticky {
+    position: relative !important;
+    top: auto !important;
   }
 }

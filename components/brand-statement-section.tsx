@@ -74,14 +74,10 @@ export function BrandStatementSection() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=1500",
-          scrub: 1,
-          pin: section,
-          pinSpacing: true,
-          anticipatePin: 1,
+          end: "bottom bottom",
+          scrub: 1.05,
           invalidateOnRefresh: true,
-          preventOverlaps: "brand-section",
-          fastScrollEnd: true,
+          fastScrollEnd: false,
         },
       });
 
@@ -98,17 +94,17 @@ export function BrandStatementSection() {
             }
             return "#1d2330";
           },
-          duration: 0.92,
+          duration: 0.94,
           stagger: {
-            each: 0.0045,
+            each: 0.0048,
             from: "start",
           },
         }, 0)
         .fromTo(
           signature,
           { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.08, ease: "power2.out" },
-          0.9,
+          { opacity: 1, y: 0, duration: 0.06, ease: "power2.out" },
+          0.92,
         );
 },
     { scope: root },
@@ -120,7 +116,7 @@ export function BrandStatementSection() {
       className={`brand-statement brand-statement--colorful ${homeStyles.section}`}
       aria-label="About SoftBridge Solutions Finland office"
     >
-      <div className={`brand-statement__sticky ${homeStyles.panel}`}>
+      <div className={`brand-statement__sticky ${homeStyles.sticky}`}>
         <div className="brand-aurora brand-aurora--one" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--two" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--three" aria-hidden="true" />
