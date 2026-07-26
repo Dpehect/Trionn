@@ -2095,12 +2095,6 @@
 }
 
 
-/* Hide remaining section labels safely */
-[class*="sectionLabel"],
-[class*="sectionEyebrow"],
-[class*="sectionNumber"]{
-  display:none !important;
-}
 
 /* More space under Explore other cases */
 .arcCarouselSection,
@@ -2110,4 +2104,12 @@
 .arcCarouselHeading,
 .arcCarouselTitle{
   margin-bottom: 28px !important;
+}
+
+
+/* Hide remaining section labels safely — CSS Modules compatible */
+.titaniumTheme .sectionLabel,
+.titaniumTheme .sectionEyebrow,
+.titaniumTheme .sectionNumber {
+  display: none !important;
 }
