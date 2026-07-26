@@ -67,23 +67,21 @@ export function BrandStatementSection() {
         color: "rgba(29, 35, 48, 0.12)",
       });
 
-      const stickyPanel = section.querySelector<HTMLElement>(".brand-statement__sticky");
       const signature = section.querySelector<HTMLElement>(".brand-statement__signature");
-
-      if (!stickyPanel) return;
 
       const revealTimeline = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=1850",
-          scrub: 1.15,
-          pin: stickyPanel,
+          end: "+=1500",
+          scrub: 1,
+          pin: section,
           pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          fastScrollEnd: false,
+          preventOverlaps: "brand-section",
+          fastScrollEnd: true,
         },
       });
 
@@ -100,17 +98,17 @@ export function BrandStatementSection() {
             }
             return "#1d2330";
           },
-          duration: 0.9,
+          duration: 0.92,
           stagger: {
-            each: 0.0048,
+            each: 0.0045,
             from: "start",
           },
         }, 0)
         .fromTo(
           signature,
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.12, ease: "power2.out" },
-          0.86,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.08, ease: "power2.out" },
+          0.9,
         );
 },
     { scope: root },
@@ -122,7 +120,7 @@ export function BrandStatementSection() {
       className={`brand-statement brand-statement--colorful ${homeStyles.section}`}
       aria-label="About SoftBridge Solutions Finland office"
     >
-      <div className={`brand-statement__sticky ${homeStyles.sticky}`}>
+      <div className={`brand-statement__sticky ${homeStyles.panel}`}>
         <div className="brand-aurora brand-aurora--one" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--two" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--three" aria-hidden="true" />

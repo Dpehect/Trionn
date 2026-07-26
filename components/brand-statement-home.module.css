@@ -1,17 +1,19 @@
 .section {
   position: relative !important;
   width: 100% !important;
-  height: auto !important;
+  height: 550px !important;
   min-height: 550px !important;
-  max-height: none !important;
-  margin-top: 0 !important;
-  overflow: visible !important;
-  contain: layout style;
+  max-height: 550px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  contain: layout paint style;
+  background:
+    linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%) !important;
 }
 
-.sticky {
+.panel {
   position: relative !important;
-  top: auto !important;
+  inset: auto !important;
   width: 100% !important;
   height: 550px !important;
   min-height: 550px !important;
@@ -22,8 +24,8 @@
   align-content: stretch !important;
   justify-content: initial !important;
   overflow: hidden !important;
+  transform: none !important;
   contain: layout paint;
-  will-change: transform;
 }
 
 .eyebrow {
@@ -56,7 +58,7 @@
   margin: 0 !important;
   font-size: clamp(27px, 3vw, 50px) !important;
   line-height: 1.055 !important;
-  letter-spacing: -0.038em !important;
+  letter-spacing: -.038em !important;
   text-wrap: pretty !important;
 }
 
@@ -74,10 +76,14 @@
 }
 
 @media (max-width: 900px) {
-  .sticky {
+  .section,
+  .panel {
     height: 550px !important;
     min-height: 550px !important;
     max-height: 550px !important;
+  }
+
+  .panel {
     padding: 26px 18px 22px !important;
   }
 
@@ -88,17 +94,9 @@
     right: auto !important;
   }
 
-  .eyebrow {
-    margin-bottom: 18px !important;
-  }
-
   .copy {
     font-size: clamp(24px, 5.3vw, 39px) !important;
     line-height: 1.04 !important;
-  }
-
-  .signature {
-    bottom: auto !important;
   }
 
   .index {
@@ -108,7 +106,7 @@
 }
 
 @media (max-width: 600px) {
-  .sticky {
+  .panel {
     padding-top: 22px !important;
   }
 
@@ -119,15 +117,5 @@
 
   .index {
     display: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section {
-    min-height: 550px !important;
-  }
-
-  .sticky {
-    transform: none !important;
   }
 }
