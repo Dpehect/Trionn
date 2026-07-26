@@ -1761,23 +1761,3 @@
     min-height: 390px;
   }
 }
-
-
-/* Reduce large whitespace above service titles */
-.titaniumTheme .serviceGroup {
-  padding-top: clamp(18px, 2.2vw, 34px) !important;
-}
-
-.titaniumTheme .serviceHeader {
-  margin-bottom: clamp(24px, 3vw, 46px) !important;
-}
-
-@media (max-width: 800px) {
-  .titaniumTheme .serviceGroup {
-    padding-top: 14px !important;
-  }
-
-  .titaniumTheme .serviceHeader {
-    margin-bottom: 22px !important;
-  }
-}
