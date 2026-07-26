@@ -388,18 +388,34 @@ function buildCaseContent(study: CaseStudy) {
 
   const serviceImages = [
     study.editorialHero,
-    study.editorialHero,
-    study.editorialHero,
-    study.editorialHero,
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&fm=jpg&q=82&w=1400",
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&fm=jpg&q=82&w=1400",
   ];
 
   const serviceGroups: ServiceGroup[] = profile.services.map((group, index) => ({
     number: String(index + 1).padStart(2, "0"),
     title: group.title,
-    rows: group.rows.map((label, rowIndex) => ({
-      label,
-      image: serviceImages[(index + rowIndex) % serviceImages.length],
-    })),
+    rows: group.rows.map((label, rowIndex) => {
+      const absoluteRowIndex = index * 4 + rowIndex;
+
+      return {
+        label,
+        image: serviceImages[absoluteRowIndex % serviceImages.length],
+      };
+    }),
   }));
 
   return { ...profile, featuredItems, serviceGroups };
