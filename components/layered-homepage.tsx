@@ -10,6 +10,7 @@ import { useRef } from "react";
 import homeTheme from "./home-black-background.module.css";
 import { IntroAudienceSection } from "./intro-audience-section";
 import { CapabilityMarqueeSection } from "./capability-marquee-section";
+import { SiteNavbar } from "./site-navbar";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -320,6 +321,7 @@ export function LayeredHomepage() {
 
   return (
     <main ref={root} className={`site-shell ${homeTheme.root}`}>
+      <SiteNavbar />
       <section className="intro">
         <div className="intro-aurora intro-aurora--one" aria-hidden="true" />
         <div className="intro-aurora intro-aurora--two" aria-hidden="true" />
