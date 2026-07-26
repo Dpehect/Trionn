@@ -229,14 +229,18 @@
 /* Section 03 — colorful Finland office brand statement */
 .brand-statement {
   position: relative;
-  height: 220vh;
+  width: 100%;
+  min-height: 100vh;
   color: #1d2330;
   background: #eef4ff;
 }
 .brand-statement__sticky {
-  position: sticky;
-  top: 0;
-  min-height: 100svh;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   isolation: isolate;
   background:

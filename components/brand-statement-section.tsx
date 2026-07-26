@@ -63,18 +63,10 @@ export function BrandStatementSection() {
 
       // Initial state: dim unrevealed text
       gsap.set(chars, {
-        color: "rgba(29, 35, 48, 0.14)",
+        color: "rgba(29, 35, 48, 0.12)",
       });
 
-      const revealTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.4,
-          invalidateOnRefresh: true,
-        },
-      });
+      const revealTimeline = gsap.timeline();
 
       // Smooth letter-by-letter scroll reveal
       revealTimeline.to(chars, {
@@ -90,10 +82,22 @@ export function BrandStatementSection() {
           return "#1d2330";
         },
         stagger: {
-          amount: 1,
+          each: 0.005,
           from: "start",
         },
         ease: "none",
+      });
+
+      // Pin section on screen so user scrolls THROUGH letter-by-letter reveal
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "+=1800",
+        pin: true,
+        scrub: 0.4,
+        animation: revealTimeline,
+        anticipatePin: 1,
+        refreshPriority: 1,
       });
 
       gsap.fromTo(
@@ -105,8 +109,8 @@ export function BrandStatementSection() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "75% top",
-            end: "bottom bottom",
+            start: "top top+=200",
+            end: "top top+=1400",
             scrub: 0.5,
           },
         }
