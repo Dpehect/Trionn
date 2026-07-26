@@ -738,7 +738,7 @@ svg {
 }
 
 .capability-section__header {
-  margin-bottom: clamp(46px, 5.5vh, 72px) !important;
+  margin-bottom: clamp(22px, 3vh, 36px) !important;
 }
 
 .capability-section__rows {
@@ -796,10 +796,4 @@ svg {
     padding: 12px 16px !important;
     font-size: 15px !important;
   }
-}
-
-
-/* Capability rows spacing refinement */
-.capability-section__rows {
-  margin-top: 10px !important;
 }
