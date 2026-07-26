@@ -83,7 +83,7 @@ export function BrandStatementSection() {
           return "#1d2330";
         },
         stagger: {
-          each: 0.005,
+          each: 0.012,
           from: "start",
         },
         ease: "none",
@@ -92,9 +92,9 @@ export function BrandStatementSection() {
       // Smooth letter-by-letter scroll reveal as user scrolls past section
       ScrollTrigger.create({
         trigger: section,
-        start: "top 75%",
-        end: "bottom 25%",
-        scrub: 0.3,
+        start: "top 82%",
+        end: "+=1700",
+        scrub: 1.1,
         animation: revealTimeline,
         invalidateOnRefresh: true,
       });
@@ -108,9 +108,9 @@ export function BrandStatementSection() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 60%",
-            end: "bottom 30%",
-            scrub: 0.3,
+            start: "top 55%",
+            end: "+=1450",
+            scrub: 1.05,
           },
         }
       );

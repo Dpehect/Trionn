@@ -1,9 +1,10 @@
-TRIONN SELECTED CASES GERCEK DUZELTME
+ZIP içindeki components klasörünü mevcut Trionn proje klasörünün üzerine bırak.
+Değiştir seçeneğini onayla.
 
-1. ZIP'i aç.
-2. components/layered-homepage.tsx dosyasını projendeki aynı dosyanın üzerine yaz.
-3. app/globals.css dosyasını projendeki aynı dosyanın üzerine yaz.
-4. public/media/selected-cases-scroll-optimized.mp4 artık kullanılmıyor; silebilirsin.
-5. npm run dev çalıştır.
+Bu paket yalnızca 03 / SOFTBRIDGE SOLUTIONS bölümündeki harf harf scroll animasyonunu yavaşlatır.
+550px bölüm yüksekliği, detay sayfası, carousel ve diğer bölümler değişmez.
 
-Bu sürüm videoyu tamamen kaldırır. İkinci bölümde yalnızca "Selected Cases" görünür.
+Değişen dosya:
+- components/brand-statement-section.tsx
+
+Sonra GitHub Desktop: Commit > Push.
