@@ -10,6 +10,7 @@ import { getCaseSeoProfile, type CaseStudy } from "@/data/cases";
 import styles from "./case-study-page.module.css";
 import { ArcCarouselSection } from "./arc-carousel-section";
 import { SiteNavbar } from "./site-navbar";
+import { VideoReferencePreloader } from "./video-reference-preloader";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -500,6 +501,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
   return (
     <main ref={root} className={`${styles.page} ${styles.titaniumTheme}`}>
+      <VideoReferencePreloader />
       <SiteNavbar />
       <section className={styles.workSection}>
         <div className={styles.workSticky}>

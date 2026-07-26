@@ -9,16 +9,8 @@ export function SiteNavbar() {
       <div className={styles.spacer} aria-hidden="true" />
       <header className={styles.shell}>
       <nav className={styles.nav} aria-label="Primary navigation">
-        <Link className={styles.brand} href="/" aria-label="SoftBridge Solutions home">
-          <span className={styles.mark} aria-hidden="true">
-            <svg viewBox="0 0 36 36" role="presentation">
-              <path d="M7 23.5V12.8c0-2 1.6-3.6 3.6-3.6h3.2c2 0 3.6 1.6 3.6 3.6v10.7" />
-              <path d="M18.6 23.5V12.8c0-2 1.6-3.6 3.6-3.6h3.2c2 0 3.6 1.6 3.6 3.6v10.7" />
-              <path d="M7 18h22" />
-              <path d="M10.5 26.8h15" />
-            </svg>
-          </span>
-          <span className={styles.wordmark}>SoftBridge</span>
+        <Link className={styles.brand} href="/" aria-label="SoftBridge Solutions Finland home">
+          <span className={styles.wordmark}>SOFTBRIDGE SOLUTIONS FINLAND</span>
         </Link>
 
         <div className={styles.desktopLinks}>

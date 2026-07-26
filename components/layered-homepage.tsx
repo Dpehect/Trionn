@@ -11,6 +11,7 @@ import homeTheme from "./home-black-background.module.css";
 import { IntroAudienceSection } from "./intro-audience-section";
 import { CapabilityMarqueeSection } from "./capability-marquee-section";
 import { SiteNavbar } from "./site-navbar";
+import { VideoReferencePreloader } from "./video-reference-preloader";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -321,6 +322,7 @@ export function LayeredHomepage() {
 
   return (
     <main ref={root} className={`site-shell ${homeTheme.root}`}>
+      <VideoReferencePreloader />
       <SiteNavbar />
       <section className="intro">
         <div className="intro-aurora intro-aurora--one" aria-hidden="true" />
