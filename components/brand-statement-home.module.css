@@ -1,17 +1,22 @@
 .section {
   position: relative !important;
   width: 100% !important;
-  height: 550px !important;
-  min-height: 550px !important;
-  max-height: 550px !important;
+
+  /*
+    Scroll runway: the visible panel stays 550px,
+    but the outer section remains active until every letter finishes.
+  */
+  height: 2350px !important;
+  min-height: 2350px !important;
+  max-height: none !important;
   margin-top: 0 !important;
-  overflow: hidden !important;
-  contain: layout paint style;
+  overflow: visible !important;
+  contain: layout style;
 }
 
 .sticky {
-  position: relative !important;
-  top: auto !important;
+  position: sticky !important;
+  top: 0 !important;
   width: 100% !important;
   height: 550px !important;
   min-height: 550px !important;
@@ -73,14 +78,15 @@
 }
 
 @media (max-width: 900px) {
-  .section,
+  .section {
+    height: 2100px !important;
+    min-height: 2100px !important;
+  }
+
   .sticky {
     height: 550px !important;
     min-height: 550px !important;
     max-height: 550px !important;
-  }
-
-  .sticky {
     padding: 26px 18px 22px !important;
   }
 
@@ -111,6 +117,11 @@
 }
 
 @media (max-width: 600px) {
+  .section {
+    height: 2250px !important;
+    min-height: 2250px !important;
+  }
+
   .sticky {
     padding-top: 22px !important;
   }
