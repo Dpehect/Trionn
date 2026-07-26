@@ -36,20 +36,6 @@ export async function generateMetadata({
     description: seo.metaDescription,
     keywords: seo.keywords,
     alternates: { canonical: `/cases/${study.slug}` },
-    openGraph: {
-      type: "website",
-      locale: "en_FI",
-      title: seo.seoTitle,
-      description: seo.metaDescription,
-      images: [
-        {
-          url: study.hero,
-          width: 1200,
-          height: 630,
-          alt: `${seo.serviceName} by SoftBridge Solutions`,
-        },
-      ],
-    },
   };
 }
 
