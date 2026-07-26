@@ -1,0 +1,126 @@
+.section {
+  position: relative !important;
+  width: 100% !important;
+  height: 550px !important;
+  min-height: 550px !important;
+  max-height: 550px !important;
+  margin-top: 0 !important;
+  overflow: hidden !important;
+  contain: layout paint style;
+}
+
+.sticky {
+  position: relative !important;
+  top: auto !important;
+  width: 100% !important;
+  height: 550px !important;
+  min-height: 550px !important;
+  max-height: 550px !important;
+  padding: 30px 3vw 26px !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+  align-content: stretch !important;
+  justify-content: initial !important;
+  overflow: hidden !important;
+  contain: layout paint;
+}
+
+.eyebrow {
+  position: relative !important;
+  inset: auto !important;
+  min-height: 18px;
+  margin: 0 0 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+}
+
+.inner {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 10 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+
+.copy {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  font-size: clamp(27px, 3vw, 50px) !important;
+  line-height: 1.055 !important;
+  letter-spacing: -0.038em !important;
+  text-wrap: pretty !important;
+}
+
+.signature {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 28 !important;
+  align-self: end !important;
+  margin: 14px 0 0 !important;
+}
+
+.index {
+  right: 3vw !important;
+  bottom: 26px !important;
+}
+
+@media (max-width: 900px) {
+  .section,
+  .sticky {
+    height: 550px !important;
+    min-height: 550px !important;
+    max-height: 550px !important;
+  }
+
+  .sticky {
+    padding: 26px 18px 22px !important;
+  }
+
+  .eyebrow,
+  .inner,
+  .signature {
+    left: auto !important;
+    right: auto !important;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px !important;
+  }
+
+  .copy {
+    font-size: clamp(24px, 5.3vw, 39px) !important;
+    line-height: 1.04 !important;
+  }
+
+  .signature {
+    bottom: auto !important;
+  }
+
+  .index {
+    right: 18px !important;
+    bottom: 22px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .sticky {
+    padding-top: 22px !important;
+  }
+
+  .copy {
+    font-size: clamp(21px, 6.6vw, 31px) !important;
+    line-height: 1.03 !important;
+  }
+
+  .index {
+    display: none !important;
+  }
+}
