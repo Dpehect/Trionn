@@ -147,96 +147,68 @@ export function LayeredHomepage() {
       });
       gsap.to(".intro-scroll i", { scaleX: 1, repeat: -1, yoyo: true, duration: 1.15, ease: "sine.inOut" });
 
-      const layerSection = root.current?.querySelector<HTMLElement>(".layer-stack");
-      const layerCards = gsap.utils.toArray<HTMLElement>(".layer-card");
-
-      if (layerSection && layerCards.length > 0) {
-        gsap.set(layerCards, {
-          position: "absolute",
-          inset: 0,
-          clipPath: "inset(100% 0% 0% 0%)",
-          zIndex: (index) => index + 1,
-        });
-
-        gsap.set(layerCards[0], {
-          clipPath: "inset(0% 0% 0% 0%)",
-        });
-
-        layerCards.forEach((card, index) => {
-          const copy = card.querySelector<HTMLElement>(".layer-copy");
-          const background = card.querySelector<HTMLElement>(".layer-background");
-
-          if (copy) {
-            gsap.set(copy, {
-              y: index === 0 ? 0 : 72,
-              opacity: index === 0 ? 1 : 0,
-            });
-          }
-
-          if (background) {
-            gsap.set(background, {
-              yPercent: index % 2 === 0 ? -4 : -2,
-              scale: 1.08,
-            });
-          }
-        });
-
-        const layerTimeline = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: layerSection,
-            start: "top top",
-            end: () => `+=${window.innerHeight * (layerCards.length - 1)}`,
-            scrub: 1,
-            pin: ".layer-stage",
-            pinSpacing: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
+      gsap.utils.toArray<HTMLElement>(".layer-card").forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            clipPath:
+              index === 0
+                ? "inset(0% 0% 0% 0%)"
+                : "inset(100% 0% 0% 0%)",
           },
-        });
-
-        layerCards.forEach((card, index) => {
-          if (index === 0) return;
-
-          const copy = card.querySelector<HTMLElement>(".layer-copy");
-          const background = card.querySelector<HTMLElement>(".layer-background");
-          const position = index - 1;
-
-          layerTimeline.to(
-            card,
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 0.72,
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
             },
-            position,
-          );
-
-          if (copy) {
-            layerTimeline.to(
-              copy,
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.52,
-                ease: "power3.out",
-              },
-              position + 0.18,
-            );
           }
+        );
 
-          if (background) {
-            layerTimeline.to(
-              background,
-              {
-                yPercent: index % 2 === 0 ? 5 : 4,
-                scale: 1.12,
-                duration: 1,
-              },
-              position,
-            );
+        gsap.fromTo(
+          card.querySelector(".layer-copy"),
+          { y: 72, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 76%",
+              end: "top 30%",
+              scrub: 0.9,
+            },
           }
-        });
-      }
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>(".layer-card").forEach((card, index) => {
+        const background = card.querySelector<HTMLElement>(".layer-background");
+        if (!background) return;
+
+        gsap.fromTo(
+          background,
+          {
+            yPercent: index % 2 === 0 ? -4 : -2,
+            scale: 1.08,
+          },
+          {
+            yPercent: index % 2 === 0 ? 5 : 4,
+            scale: 1.12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.6,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      });
 
       gsap.fromTo(
         ".selected-cases__title",
@@ -367,7 +339,6 @@ export function LayeredHomepage() {
       </section>
 
       <section className="layer-stack" aria-label="Layered content">
-        <div className="layer-stage">
         {layers.map((layer, index) => (
           <article
             className={`layer-card layer-card--${index + 1}`}
@@ -414,8 +385,6 @@ export function LayeredHomepage() {
             </div>
           </article>
         ))}
-
-        </div>
       </section>
 
       <section id="cases" className="selected-cases">
