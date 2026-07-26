@@ -204,3 +204,45 @@
   border-bottom:none!important;
   box-shadow:none!important;
 }
+
+
+/* Final underline removal for all homepage case-card text */
+.root :global(.case-card__link),
+.root :global(.case-card__link:hover),
+.root :global(.case-card__link:focus),
+.root :global(.case-card__link:focus-visible),
+.root :global(.case-card__link *),
+.root :global(.case-card__meta),
+.root :global(.case-card__meta *),
+.root :global(.case-card__meta p),
+.root :global(.case-card__meta h3),
+.root :global(.case-card__meta a),
+.root :global(.case-card__meta span),
+.root :global(.case-card__meta strong) {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-thickness: 0 !important;
+  text-underline-offset: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+.root :global(.case-card__link::before),
+.root :global(.case-card__link::after),
+.root :global(.case-card__meta::before),
+.root :global(.case-card__meta::after),
+.root :global(.case-card__meta p::before),
+.root :global(.case-card__meta p::after),
+.root :global(.case-card__meta h3::before),
+.root :global(.case-card__meta h3::after),
+.root :global(.case-card__meta a::before),
+.root :global(.case-card__meta a::after) {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+}
+
+.root :global(.case-card__meta p) {
+  text-transform: uppercase !important;
+}
