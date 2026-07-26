@@ -230,14 +230,15 @@
 .brand-statement {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   color: #1d2330;
   background: #eef4ff;
 }
 .brand-statement__sticky {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
+  padding: clamp(48px, 5vw, 72px) 4vw clamp(54px, 5vw, 80px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -303,11 +304,9 @@
     radial-gradient(circle at 50% 50%, rgba(71,193,154,.34), rgba(71,193,154,.06) 62%, transparent 74%);
 }
 .brand-statement__eyebrow {
-  position: absolute;
+  position: relative;
   z-index: 30;
-  top: 24px;
-  left: 2.2vw;
-  right: 2.2vw;
+  margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -317,12 +316,9 @@
   text-transform: uppercase;
 }
 .brand-statement__inner {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  left: 2.2vw;
-  right: 2.2vw;
-  top: 50%;
-  transform: translateY(-50%);
+  margin: 16px 0;
   will-change: transform;
 }
 .brand-statement__copy {
@@ -350,10 +346,9 @@
 .brand-char.accent--green { --accent-color: #2c9e74; }
 
 .brand-statement__signature {
-  position: absolute;
+  position: relative;
   z-index: 28;
-  left: 2.2vw;
-  bottom: 2.2vw;
+  margin-top: 28px;
   display: grid;
   gap: 5px;
   will-change: transform, opacity;

@@ -91,8 +91,8 @@ export function BrandStatementSection() {
       // Pin section on screen so user scrolls THROUGH letter-by-letter reveal
       ScrollTrigger.create({
         trigger: section,
-        start: "top top",
-        end: "+=500",
+        start: "top 10%",
+        end: "+=350",
         pin: true,
         scrub: 0.2,
         animation: revealTimeline,
@@ -102,16 +102,16 @@ export function BrandStatementSection() {
 
       gsap.fromTo(
         ".brand-statement__signature",
-        { opacity: 0, y: 16 },
+        { opacity: 0, y: 12 },
         {
           opacity: 1,
           y: 0,
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top top+=100",
-            end: "top top+=450",
-            scrub: 0.3,
+            start: "top 10%",
+            end: "top 10%+=300",
+            scrub: 0.2,
           },
         }
       );
