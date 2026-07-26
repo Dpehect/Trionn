@@ -230,24 +230,21 @@
 .brand-statement {
   position: relative;
   width: 100%;
-  margin-top: clamp(60px, 7vw, 120px);
-  min-height: auto;
+  margin-top: clamp(40px, 4vw, 80px);
   color: #1d2330;
-  background: transparent;
+  background: #eef4ff;
 }
 .brand-statement__sticky {
   position: relative;
   width: 100%;
-  min-height: auto;
-  padding: clamp(54px, 5.5vw, 84px) 4vw clamp(54px, 5.5vw, 84px);
+  padding: clamp(40px, 4vw, 60px) 4vw clamp(40px, 4vw, 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
-  border-radius: 24px;
   background:
-    linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff3ea 100%);
+    linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff4e9 100%);
 }
 .brand-statement__sticky::after {
   content: "";
