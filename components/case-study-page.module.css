@@ -2113,3 +2113,29 @@
 .titaniumTheme .sectionNumber {
   display: none !important;
 }
+
+
+/* SECTION 4 BACKGROUND MATCH — preserve structure */
+.seoSection {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(240, 100, 47, .07), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(72, 120, 255, .055), transparent 38%),
+    #0D1117 !important;
+}
+
+.seoSection::before {
+  opacity: .10 !important;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) !important;
+  background-size: 72px 72px !important;
+}
+
+.seoValueCard {
+  background: rgba(17, 24, 39, .72) !important;
+}
+
+.seoValueGrid {
+  background: rgba(255, 255, 255, .065) !important;
+  border-color: rgba(255, 255, 255, .08) !important;
+}
