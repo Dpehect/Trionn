@@ -122,3 +122,56 @@
 .root :global(#about) {
   background: #000 !important;
 }
+
+
+/* UX refinement: lighter capability pills and clearer case titles */
+.root :global(.capability-pill) {
+  color: #f7f7f5 !important;
+  border-color: rgba(255, 255, 255, .26) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .055)),
+    #1d1d1d !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .10),
+    0 10px 28px rgba(0, 0, 0, .24);
+}
+
+.root :global(.capability-pill:hover) {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, .42) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .08)),
+    #252525 !important;
+}
+
+.root :global(.case-card__meta p) {
+  margin-bottom: 10px !important;
+  color: rgba(255, 255, 255, .62) !important;
+  font-size: clamp(11px, .82vw, 14px) !important;
+  line-height: 1.35 !important;
+  letter-spacing: .06em !important;
+  text-decoration: none !important;
+}
+
+.root :global(.case-card__meta h3) {
+  color: #ffffff !important;
+  font-size: clamp(21px, 1.8vw, 32px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.035em !important;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+
+.root :global(.case-card__meta a),
+.root :global(.case-card__meta a:hover),
+.root :global(.case-card__meta h3 a) {
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+
+.root :global(.case-card__meta) {
+  min-height: 112px !important;
+  padding: 20px 20px 22px !important;
+  align-items: center !important;
+}
