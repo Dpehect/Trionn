@@ -70,7 +70,7 @@ function AnimatedWords({ copy }: { copy: string }) {
 export function IntroAudienceSection() {
   const [activeKey, setActiveKey] = useState<AudienceKey>("anyone");
   const [pointerInside, setPointerInside] = useState(false);
-  
+
   const activeAudience =
     audiences.find((item) => item.key === activeKey) ?? audiences[0];
 
@@ -127,10 +127,7 @@ export function IntroAudienceSection() {
               onPointerMove={onPointerMove}
               onPointerLeave={() => {
                 setPointerInside(false);
-                
               }}
-              
-              
             >
               <p className={`${styles.copy} ${styles.copyDim}`}>
                 <AnimatedWords copy={activeAudience.copy} />
@@ -147,25 +144,6 @@ export function IntroAudienceSection() {
                 {activeAudience.copy}
               </p>
 
-              <div
-                className={[
-                  styles.customCursor,
-                  pointerInside ? styles.customCursorVisible : "",
-                  pointerDown ? styles.customCursorDown : "",
-                ].join(" ")}
-                aria-hidden="true"
-              >
-                <span className={styles.cursorDot} />
-                <svg className={styles.cursorHand} viewBox="0 0 28 28" fill="none">
-                  <path
-                    d="M10.2 14.2V5.8a2 2 0 1 1 4 0v5.1-2.5a2 2 0 1 1 4 0v3.4-1.8a2 2 0 1 1 4 0v6.2c0 5.2-3.2 8-8.1 8h-1.5c-3 0-4.5-1.1-6-3.4l-2.3-3.5a2.2 2.2 0 0 1 3.5-2.7l2.4 2.1"
-                    stroke="currentColor"
-                    strokeWidth="1.55"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
             </div>
 
             <footer className={styles.cardFooter}>

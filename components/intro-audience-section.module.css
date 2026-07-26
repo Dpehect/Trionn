@@ -192,16 +192,6 @@
 
 .copyBrightVisible { opacity: 1; }
 
-
-
-
-
-
-
-
-
-
-
 .cardFooter {
   position: relative;
   z-index: 3;
@@ -243,10 +233,13 @@
   .copy { font-size: clamp(29px,8.7vw,42px); line-height: 1.22; }
   .fold { width: 62px; height: 62px; }
   .cardFooter span:last-child { display: none; }
-  
+  .textStage { cursor: auto; }
+}
 
 @media (hover:none) {
-  
+  .textStage { cursor: auto; }
+  .copyBright { opacity: 0 !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .textStage, .word { animation: none; opacity: 1; transform: none; }
