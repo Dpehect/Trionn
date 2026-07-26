@@ -1,0 +1,133 @@
+.page {
+  min-height: 100vh;
+  color: #171b1d;
+  background: #f3f1ec;
+}
+
+.hero {
+  min-height: 100svh;
+  padding: 120px 5vw 70px;
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 5vw;
+}
+
+.heroCopy {
+  max-width: 720px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 52px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  border-bottom: 1px solid currentColor;
+}
+
+.kicker {
+  margin: 0 0 20px;
+  color: #5f696d;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 7.5vw, 138px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+
+.intro {
+  max-width: 680px;
+  margin: 34px 0 0;
+  color: #586166;
+  font-size: clamp(17px, 1.25vw, 22px);
+  line-height: 1.55;
+}
+
+.tags {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags span {
+  padding: 8px 11px;
+  border: 1px solid rgba(20, 28, 32, .16);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.heroMedia {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #dfe4e4;
+}
+
+.heroMedia img {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  display: block;
+  object-fit: cover;
+}
+
+.summary {
+  padding: 100px 7vw 120px;
+  display: grid;
+  grid-template-columns: .35fr .8fr 1fr;
+  gap: 5vw;
+  border-top: 1px solid rgba(20, 28, 32, .12);
+}
+
+.summary > p:first-child {
+  margin: 0;
+  color: #687175;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+.summary h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 86px);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: -.05em;
+}
+
+.summary > p:last-child {
+  margin: 0;
+  color: #586166;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 100px 20px 60px;
+    grid-template-columns: 1fr;
+  }
+
+  .heroMedia,
+  .heroMedia img {
+    min-height: 480px;
+  }
+
+  .summary {
+    padding: 70px 20px 90px;
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}

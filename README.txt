@@ -1,3 +1,5 @@
 ZIP içindeki components klasörünü Trionn proje klasörünün üzerine bırak.
-Sadece arc-carousel-section.module.css değişir.
-Değiştir/Replace seçeneğini onayla ve GitHub Desktop'tan Commit > Push yap.
+Birleştir/Değiştir seçeneğini onayla.
+1. ve 2. bölümün orijinal layered-homepage yapısı korunur.
+Eksik build dosyaları geri gelir; carousel title çakışması ve alt gap düzelir.
+Sonra GitHub Desktop: Commit > Push.
