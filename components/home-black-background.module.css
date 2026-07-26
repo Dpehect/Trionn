@@ -246,3 +246,54 @@
 .root :global(.case-card__meta p) {
   text-transform: uppercase !important;
 }
+
+
+/* Home Layer 01 — cards overlap while keeping the existing GSAP animation */
+.root :global(.layer-stack) {
+  position: relative !important;
+  display: block !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: #000 !important;
+}
+
+.root :global(.layer-card) {
+  position: sticky !important;
+  top: 70px !important;
+  width: auto !important;
+  height: calc(100svh - 70px) !important;
+  min-height: 630px !important;
+  margin: 0 3vw !important;
+  margin-bottom: 0 !important;
+  transform-origin: center top !important;
+}
+
+/* Every incoming card uses the same sticky point and sits above the previous one. */
+.root :global(.layer-card + .layer-card) {
+  margin-top: 0 !important;
+}
+
+.root :global(.layer-card--1) { z-index: 1 !important; }
+.root :global(.layer-card--2) { z-index: 2 !important; }
+.root :global(.layer-card--3) { z-index: 3 !important; }
+.root :global(.layer-card--4) { z-index: 4 !important; }
+
+/* Prevent visible seams while one card covers another. */
+.root :global(.layer-card::before) {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  pointer-events: none;
+  background: inherit;
+}
+
+@media (max-width: 800px) {
+  .root :global(.layer-card) {
+    top: 0 !important;
+    height: 100svh !important;
+    min-height: 720px !important;
+    margin: 0 !important;
+  }
+}
