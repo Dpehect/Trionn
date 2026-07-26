@@ -78,21 +78,21 @@
   min-width: 128px;
   z-index: 3;
   transform: rotate(-2deg) translateY(12px) scale(.88);
-  animation-delay: .40s;
+  animation-delay: .46s;
 }
 
 .pill3 {
   min-width: 136px;
   z-index: 2;
   transform: rotate(-8deg) translateY(12px) scale(.88);
-  animation-delay: .84s;
+  animation-delay: .74s;
 }
 
 .pill4 {
   min-width: 184px;
   z-index: 1;
   transform: rotate(-7deg) translateY(12px) scale(.88);
-  animation-delay: .84s;
+  animation-delay: 1.02s;
 }
 
 .motionLine {
@@ -102,7 +102,7 @@
   border-top: 2.2px solid currentColor;
   border-radius: 50%;
   opacity: 0;
-  animation: sketchLine .74s ease-out 1.12s forwards;
+  animation: sketchLine .74s ease-out 1.34s forwards;
 }
 
 .motionLine::after {

@@ -15,7 +15,7 @@ export function VideoReferencePreloader() {
     const timer = window.setTimeout(() => {
       setVisible(false);
       document.documentElement.style.overflow = previousOverflow;
-    }, 3400);
+    }, 3650);
 
     return () => {
       window.clearTimeout(timer);
