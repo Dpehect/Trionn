@@ -4,13 +4,13 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 14px clamp(16px, 2.8vw, 42px);
+  padding: 12px clamp(16px, 2.8vw, 42px);
   pointer-events: none;
 }
 
 .nav {
   width: min(100%, 1440px);
-  min-height: 58px;
+  min-height: 56px;
   margin: 0 auto;
   padding: 0 10px 0 14px;
   display: grid;
@@ -36,15 +36,17 @@
 }
 
 .mark {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  border-radius: 9px;
+  border-radius: 11px;
   color: #08110d;
   background: #61e3a0;
-  font-size: 13px;
-  font-weight: 800;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.28),
+    0 8px 22px rgba(97, 227, 160, .14);
+  flex: 0 0 auto;
 }
 
 .wordmark {
@@ -217,5 +219,39 @@
   .cta,
   .mobileMenu summary span {
     transition: none;
+  }
+}
+
+
+.spacer {
+  height: 88px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.mark svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 520px) {
+  .spacer {
+    height: 74px;
+  }
+
+  .mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mark svg {
+    width: 22px;
+    height: 22px;
   }
 }
