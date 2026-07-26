@@ -1727,37 +1727,21 @@
 }
 
 
-/* Longer SEO/GEO featured-work copy */
-.featuredTitleGroup {
-  height: clamp(180px, 17vw, 270px);
+/* Final detail-page transition spacing reduction.
+   Only the visual distance between Part 01 and Part 02 is reduced.
+   Existing DOM, GSAP timelines, heights and responsive structure remain intact. */
+.titaniumTheme .servicesSection {
+  margin-top: -28px !important;
+  padding-top: clamp(18px, 2.6vw, 38px) !important;
 }
 
-.featuredTitle p {
-  max-width: 760px;
-  font-size: clamp(14px, 1.15vw, 18px);
-  line-height: 1.48;
-}
-
-.featuredTitle span {
-  margin-top: 12px;
-  line-height: 1.35;
-}
-
-.workContent {
-  min-height: 610px;
+.titaniumTheme .serviceGroup:first-child {
+  padding-top: 0 !important;
 }
 
 @media (max-width: 800px) {
-  .featuredTitleGroup {
-    height: 250px;
-  }
-
-  .featuredTitle p {
-    font-size: 14px;
-    line-height: 1.45;
-  }
-
-  .workContent {
-    min-height: 390px;
+  .titaniumTheme .servicesSection {
+    margin-top: -12px !important;
+    padding-top: 18px !important;
   }
 }
