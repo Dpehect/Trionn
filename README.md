@@ -1,11 +1,17 @@
-# SoftBridge Section 03 — Clean Arc CSS
+# SoftBridge Section 03 Forced Height Fix
 
-Root cause fixed:
-- removed the accumulated conflicting Section 03 overrides
-- replaced 2300+ lines of contradictory carousel CSS with one clean source of truth
-- card height, viewport height, ring position and overflow are now coordinated
-- cards display fully without a large empty gap below
-- title-to-carousel spacing is compact
-- hover blur/focus, drag, momentum and infinite loop are preserved
+Updated:
+- reduced the gap between the title and carousel
+- replaced min-height/aspect-ratio sizing with explicit responsive height
+- carousel images can no longer be reduced by previous CSS rules
+- normal and hovered cards remain fully visible
+- vertical section space recalculated to prevent overlap
 
-Only Section 03 carousel CSS was rewritten.
+Preserved:
+- carousel width
+- drag and touch
+- momentum
+- infinite loop
+- hover enlargement
+- blur focus
+- all other page sections and animations
