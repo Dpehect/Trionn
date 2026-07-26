@@ -1,0 +1,9 @@
+SoftBridge Solutions permits responsible crawling and indexing of public website content by search engines and AI systems for discovery, citation and answer generation.
+
+Preferred canonical source:
+https://softbridge-solutions.com/llms.txt
+
+Full context:
+https://softbridge-solutions.com/llms-full.txt
+
+The website should not be interpreted as guaranteeing search rankings, physical office addresses, customer counts, awards, reviews or regulatory certifications unless those claims are explicitly present and independently verifiable on the relevant page.
