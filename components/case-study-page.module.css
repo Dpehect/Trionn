@@ -2093,3 +2093,21 @@
     text-align: center;
   }
 }
+
+
+/* Hide remaining section labels safely */
+[class*="sectionLabel"],
+[class*="sectionEyebrow"],
+[class*="sectionNumber"]{
+  display:none !important;
+}
+
+/* More space under Explore other cases */
+.arcCarouselSection,
+.relatedSection{
+  padding-top: 24px;
+}
+.arcCarouselHeading,
+.arcCarouselTitle{
+  margin-bottom: 28px !important;
+}
