@@ -67,54 +67,52 @@ export function BrandStatementSection() {
         color: "rgba(29, 35, 48, 0.12)",
       });
 
-      const revealTimeline = gsap.timeline();
+      const stickyPanel = section.querySelector<HTMLElement>(".brand-statement__sticky");
+      const signature = section.querySelector<HTMLElement>(".brand-statement__signature");
 
-      // Smooth letter-by-letter scroll reveal
-      revealTimeline.to(chars, {
-        color: (_i, el) => {
-          const isAccent = el.classList.contains("accent");
-          if (isAccent) {
-            if (el.classList.contains("accent--violet")) return "#7356e8";
-            if (el.classList.contains("accent--pink")) return "#e44c9f";
-            if (el.classList.contains("accent--blue")) return "#3769d9";
-            if (el.classList.contains("accent--orange")) return "#e06f2f";
-            if (el.classList.contains("accent--green")) return "#2c9e74";
-          }
-          return "#1d2330";
+      if (!stickyPanel) return;
+
+      const revealTimeline = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=1850",
+          scrub: 1.15,
+          pin: stickyPanel,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          fastScrollEnd: false,
         },
-        stagger: {
-          each: 0.014,
-          from: "start",
-        },
-        ease: "none",
       });
 
-      // Smooth letter-by-letter scroll reveal as user scrolls past section
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.25,
-        animation: revealTimeline,
-        invalidateOnRefresh: true,
-      });
-
-      gsap.fromTo(
-        ".brand-statement__signature",
-        { opacity: 0, y: 12 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 18%",
-            end: "bottom bottom",
-            scrub: 1.1,
+      revealTimeline
+        .to(chars, {
+          color: (_i, el) => {
+            const isAccent = el.classList.contains("accent");
+            if (isAccent) {
+              if (el.classList.contains("accent--violet")) return "#7356e8";
+              if (el.classList.contains("accent--pink")) return "#e44c9f";
+              if (el.classList.contains("accent--blue")) return "#3769d9";
+              if (el.classList.contains("accent--orange")) return "#e06f2f";
+              if (el.classList.contains("accent--green")) return "#2c9e74";
+            }
+            return "#1d2330";
           },
-        }
-      );
-    },
+          duration: 0.9,
+          stagger: {
+            each: 0.0048,
+            from: "start",
+          },
+        }, 0)
+        .fromTo(
+          signature,
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.12, ease: "power2.out" },
+          0.86,
+        );
+},
     { scope: root },
   );
 

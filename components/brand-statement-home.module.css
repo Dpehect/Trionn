@@ -1,13 +1,8 @@
 .section {
   position: relative !important;
   width: 100% !important;
-
-  /*
-    Scroll runway: the visible panel stays 550px,
-    but the outer section remains active until every letter finishes.
-  */
-  height: 2350px !important;
-  min-height: 2350px !important;
+  height: auto !important;
+  min-height: 550px !important;
   max-height: none !important;
   margin-top: 0 !important;
   overflow: visible !important;
@@ -15,8 +10,8 @@
 }
 
 .sticky {
-  position: sticky !important;
-  top: 0 !important;
+  position: relative !important;
+  top: auto !important;
   width: 100% !important;
   height: 550px !important;
   min-height: 550px !important;
@@ -28,6 +23,7 @@
   justify-content: initial !important;
   overflow: hidden !important;
   contain: layout paint;
+  will-change: transform;
 }
 
 .eyebrow {
@@ -78,11 +74,6 @@
 }
 
 @media (max-width: 900px) {
-  .section {
-    height: 2100px !important;
-    min-height: 2100px !important;
-  }
-
   .sticky {
     height: 550px !important;
     min-height: 550px !important;
@@ -117,11 +108,6 @@
 }
 
 @media (max-width: 600px) {
-  .section {
-    height: 2250px !important;
-    min-height: 2250px !important;
-  }
-
   .sticky {
     padding-top: 22px !important;
   }
@@ -133,5 +119,15 @@
 
   .index {
     display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    min-height: 550px !important;
+  }
+
+  .sticky {
+    transform: none !important;
   }
 }
