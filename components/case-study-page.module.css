@@ -1763,19 +1763,21 @@
 }
 
 
-/* Final safe Part 01 → Part 02 spacing reduction */
-.titaniumTheme .servicesSection {
-  margin-top: -24px !important;
-  padding-top: clamp(20px, 2.8vw, 40px) !important;
+/* Reduce large whitespace above service titles */
+.titaniumTheme .serviceGroup {
+  padding-top: clamp(18px, 2.2vw, 34px) !important;
 }
 
-.titaniumTheme .serviceGroup:first-child {
-  padding-top: 0 !important;
+.titaniumTheme .serviceHeader {
+  margin-bottom: clamp(24px, 3vw, 46px) !important;
 }
 
 @media (max-width: 800px) {
-  .titaniumTheme .servicesSection {
-    margin-top: -10px !important;
-    padding-top: 18px !important;
+  .titaniumTheme .serviceGroup {
+    padding-top: 14px !important;
+  }
+
+  .titaniumTheme .serviceHeader {
+    margin-bottom: 22px !important;
   }
 }
