@@ -7,7 +7,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import { BrandStatementSection } from "./brand-statement-section";
 import { CapabilityMarqueeSection } from "./capability-marquee-section";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -433,8 +432,6 @@ export function LayeredHomepage() {
           ))}
         </div>
       </section>
-
-      <BrandStatementSection />
 
       <CapabilityMarqueeSection />
     </main>
