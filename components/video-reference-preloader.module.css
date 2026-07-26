@@ -9,7 +9,7 @@
   background:
     radial-gradient(circle at 50% 42%, rgba(97, 227, 160, .07), transparent 26%),
     #0D1117;
-  animation: curtainExit 1.05s cubic-bezier(.76, 0, .24, 1) 2.15s forwards;
+  animation: curtainExit 1.2s cubic-bezier(.76, 0, .24, 1) 2.2s forwards;
   transform-origin: top center;
 }
 
@@ -22,8 +22,8 @@
   align-items: center;
   justify-content: center;
   animation:
-    stackArrival .9s cubic-bezier(.22, 1, .36, 1) both,
-    stackCompress .5s cubic-bezier(.22, 1, .36, 1) 1.82s forwards;
+    stackArrival 1.05s cubic-bezier(.22, 1, .36, 1) both,
+    stackCompress .62s cubic-bezier(.22, 1, .36, 1) 2.02s forwards;
 }
 
 .pill {
@@ -45,7 +45,7 @@
   box-shadow: inset 0 0 0 .4px currentColor;
   opacity: 0;
   transform-origin: center;
-  animation: pillIn .72s cubic-bezier(.2, 1.18, .35, 1) forwards;
+  animation: pillIn .86s cubic-bezier(.2, 1.14, .35, 1) forwards;
 }
 
 .pill::before,
@@ -71,28 +71,28 @@
   min-width: 124px;
   z-index: 4;
   transform: rotate(8deg) translateY(12px) scale(.88);
-  animation-delay: .14s;
+  animation-delay: .18s;
 }
 
 .pill2 {
   min-width: 128px;
   z-index: 3;
   transform: rotate(-2deg) translateY(12px) scale(.88);
-  animation-delay: .30s;
+  animation-delay: .40s;
 }
 
 .pill3 {
   min-width: 136px;
   z-index: 2;
   transform: rotate(-8deg) translateY(12px) scale(.88);
-  animation-delay: .46s;
+  animation-delay: .84s;
 }
 
 .pill4 {
-  min-width: 198px;
+  min-width: 184px;
   z-index: 1;
   transform: rotate(-7deg) translateY(12px) scale(.88);
-  animation-delay: .62s;
+  animation-delay: .84s;
 }
 
 .motionLine {
@@ -102,7 +102,7 @@
   border-top: 2.2px solid currentColor;
   border-radius: 50%;
   opacity: 0;
-  animation: sketchLine .62s ease-out .88s forwards;
+  animation: sketchLine .74s ease-out 1.12s forwards;
 }
 
 .motionLine::after {

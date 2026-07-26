@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./video-reference-preloader.module.css";
 
-const labels = ["Let’s", "Build", "Good", "Companies"] as const;
+const labels = ["Let’s", "Build", "Good", "Products"] as const;
 
 export function VideoReferencePreloader() {
   const [visible, setVisible] = useState(true);
@@ -15,7 +15,7 @@ export function VideoReferencePreloader() {
     const timer = window.setTimeout(() => {
       setVisible(false);
       document.documentElement.style.overflow = previousOverflow;
-    }, 2200);
+    }, 3400);
 
     return () => {
       window.clearTimeout(timer);
