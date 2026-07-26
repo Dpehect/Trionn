@@ -48,26 +48,26 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "AI Discovery",
         description:
-          "Finding the highest-value automation opportunities before engineering begins.",
-        audience: "Operations leaders · Product teams · Innovation units",
+          "Finding the highest-value automation opportunities before engineering begins. The solution is designed for Finnish and Nordic companies that need secure AI integration, governed access to business data and production-ready automation across European operations.",
+        audience: "Operations leaders · Product teams · Innovation units · Finland · Nordics",
       },
       {
         category: "LLM Workflows",
         description:
-          "Secure language-model workflows connected to real company knowledge and business rules.",
-        audience: "SaaS teams · Service companies · Knowledge businesses",
+          "Secure language-model workflows connected to real company knowledge and business rules. The solution is designed for Finnish and Nordic companies that need secure AI integration, governed access to business data and production-ready automation across European operations.",
+        audience: "SaaS teams · Service companies · Knowledge businesses · Finland · Nordics",
       },
       {
         category: "Automation Systems",
         description:
-          "Orchestrated agents and integrations that remove repetitive work from critical processes.",
-        audience: "Logistics · Finance · Manufacturing · Healthcare",
+          "Orchestrated agents and integrations that remove repetitive work from critical processes. The solution is designed for Finnish and Nordic companies that need secure AI integration, governed access to business data and production-ready automation across European operations.",
+        audience: "Logistics · Finance · Manufacturing · Healthcare · Finland · Nordics",
       },
       {
         category: "AI Operations",
         description:
-          "Observable, controlled AI infrastructure built for production reliability and continuous improvement.",
-        audience: "Enterprise IT · Data teams · Scale-ups",
+          "Observable, controlled AI infrastructure built for production reliability and continuous improvement. The solution is designed for Finnish and Nordic companies that need secure AI integration, governed access to business data and production-ready automation across European operations.",
+        audience: "Enterprise IT · Data teams · Scale-ups · Finland · Nordics",
       },
     ],
     services: [
@@ -84,25 +84,25 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Product Architecture",
         description:
-          "A modular foundation that keeps permissions, workflows and business logic maintainable.",
-        audience: "B2B SaaS · Enterprise teams · Multi-market companies",
+          "A modular foundation that keeps permissions, workflows and business logic maintainable. This approach supports Finnish, Nordic and European B2B organizations that need scalable SaaS architecture, multi-market delivery and maintainable enterprise software.",
+        audience: "B2B SaaS · Enterprise teams · Multi-market companies · Finland · Nordics · Europe",
       },
       {
         category: "Enterprise UX",
         description:
-          "Role-aware interfaces that reduce cognitive load and make critical actions easy to find.",
-        audience: "Operations · Finance · Customer success · Management",
+          "Role-aware interfaces that reduce cognitive load and make critical actions easy to find. This approach supports Finnish, Nordic and European B2B organizations that need scalable SaaS architecture, multi-market delivery and maintainable enterprise software.",
+        audience: "Operations · Finance · Customer success · Management · Finland · Nordics · Europe",
       },
       {
         category: "Data & Reporting",
         description:
-          "Decision-ready dashboards that connect operational activity with measurable outcomes.",
-        audience: "Executives · Analysts · Regional teams",
+          "Decision-ready dashboards that connect operational activity with measurable outcomes. This approach supports Finnish, Nordic and European B2B organizations that need scalable SaaS architecture, multi-market delivery and maintainable enterprise software.",
+        audience: "Executives · Analysts · Regional teams · Finland · Nordics · Europe",
       },
       {
         category: "Platform Scale",
         description:
-          "Cloud-native delivery, observability and integration patterns for long-term expansion.",
+          "Cloud-native delivery, observability and integration patterns for long-term expansion. This approach supports Finnish, Nordic and European B2B organizations that need scalable SaaS architecture, multi-market delivery and maintainable enterprise software.",
         audience: "Nordic scale-ups · International SaaS providers",
       },
     ],
@@ -120,25 +120,25 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Care Journeys",
         description:
-          "Patient and clinician workflows designed around clarity, urgency and reduced administrative burden.",
-        audience: "Clinics · Care providers · Digital health teams",
+          "Patient and clinician workflows designed around clarity, urgency and reduced administrative burden. The platform is shaped for Nordic healthcare providers and European digital-health teams that require accessible workflows, privacy-aware design and dependable clinical software.",
+        audience: "Clinics · Care providers · Digital health teams · Nordic healthcare · Europe",
       },
       {
         category: "Secure Access",
         description:
-          "Privacy-aware access patterns that make sensitive information understandable and controlled.",
-        audience: "Clinical staff · Administrators · Patients",
+          "Privacy-aware access patterns that make sensitive information understandable and controlled. The platform is shaped for Nordic healthcare providers and European digital-health teams that require accessible workflows, privacy-aware design and dependable clinical software.",
+        audience: "Clinical staff · Administrators · Patients · Nordic healthcare · Europe",
       },
       {
         category: "Clinical Operations",
         description:
-          "Shared dashboards that surface appointments, tasks and operational priorities in real time.",
-        audience: "Healthcare operations · Multi-site organizations",
+          "Shared dashboards that surface appointments, tasks and operational priorities in real time. The platform is shaped for Nordic healthcare providers and European digital-health teams that require accessible workflows, privacy-aware design and dependable clinical software.",
+        audience: "Healthcare operations · Multi-site organizations · Nordic healthcare · Europe",
       },
       {
         category: "Connected Care",
         description:
-          "Interoperable services designed to connect communication, scheduling and clinical systems.",
+          "Interoperable services designed to connect communication, scheduling and clinical systems. The platform is shaped for Nordic healthcare providers and European digital-health teams that require accessible workflows, privacy-aware design and dependable clinical software.",
         audience: "Health platforms · Public providers · Nordic clinics",
       },
     ],
@@ -156,25 +156,25 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Fleet Visibility",
         description:
-          "Live views that connect vehicles, routes and operational status across regions.",
-        audience: "Fleet managers · Dispatch teams · Logistics operators",
+          "Live views that connect vehicles, routes and operational status across regions. It supports logistics companies in Finland and across Europe with clearer fleet operations, regional scalability, connected data and faster operational decision-making.",
+        audience: "Fleet managers · Dispatch teams · Logistics operators · Finland · European operations",
       },
       {
         category: "Route Intelligence",
         description:
-          "Contextual routing and performance insight for faster, better-informed decisions.",
-        audience: "Transport planners · Regional operations",
+          "Contextual routing and performance insight for faster, better-informed decisions. It supports logistics companies in Finland and across Europe with clearer fleet operations, regional scalability, connected data and faster operational decision-making.",
+        audience: "Transport planners · Regional operations · Finland · European operations",
       },
       {
         category: "Exception Control",
         description:
-          "Priority alerts and workflows that prevent small disruptions becoming expensive delays.",
-        audience: "Control rooms · Customer operations · Management",
+          "Priority alerts and workflows that prevent small disruptions becoming expensive delays. It supports logistics companies in Finland and across Europe with clearer fleet operations, regional scalability, connected data and faster operational decision-making.",
+        audience: "Control rooms · Customer operations · Management · Finland · European operations",
       },
       {
         category: "Network Scale",
         description:
-          "Multi-region architecture for growing logistics networks and partner integrations.",
+          "Multi-region architecture for growing logistics networks and partner integrations. It supports logistics companies in Finland and across Europe with clearer fleet operations, regional scalability, connected data and faster operational decision-making.",
         audience: "European carriers · 3PL providers · Distribution networks",
       },
     ],
@@ -192,26 +192,26 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Signal Intelligence",
         description:
-          "Normalizing machine and process signals into a dependable operational data layer.",
-        audience: "Plant managers · Engineering teams · Industry 4.0 leaders",
+          "Normalizing machine and process signals into a dependable operational data layer. The system is built for manufacturers in Finland, the Nordics and Europe that need Industry 4.0 analytics, predictive maintenance and measurable production visibility.",
+        audience: "Plant managers · Engineering teams · Industry 4.0 leaders · Finland · Nordic industry",
       },
       {
         category: "Predictive Maintenance",
         description:
-          "Early-warning models that help maintenance teams act before equipment failure.",
-        audience: "Maintenance · Reliability engineering · Production",
+          "Early-warning models that help maintenance teams act before equipment failure. The system is built for manufacturers in Finland, the Nordics and Europe that need Industry 4.0 analytics, predictive maintenance and measurable production visibility.",
+        audience: "Maintenance · Reliability engineering · Production · Finland · Nordic industry",
       },
       {
         category: "Quality Analytics",
         description:
-          "Clear quality indicators connecting production conditions with measurable outcomes.",
-        audience: "Quality teams · Process engineers · Operations",
+          "Clear quality indicators connecting production conditions with measurable outcomes. The system is built for manufacturers in Finland, the Nordics and Europe that need Industry 4.0 analytics, predictive maintenance and measurable production visibility.",
+        audience: "Quality teams · Process engineers · Operations · Finland · Nordic industry",
       },
       {
         category: "Factory Operations",
         description:
-          "Shared production views that align uptime, throughput and maintenance priorities.",
-        audience: "Manufacturers · Industrial groups · Smart factories",
+          "Shared production views that align uptime, throughput and maintenance priorities. The system is built for manufacturers in Finland, the Nordics and Europe that need Industry 4.0 analytics, predictive maintenance and measurable production visibility.",
+        audience: "Manufacturers · Industrial groups · Smart factories · Finland · Nordic industry",
       },
     ],
     services: [
@@ -228,25 +228,25 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Cloud Architecture",
         description:
-          "Scalable service boundaries and infrastructure choices aligned with product growth.",
-        audience: "SaaS providers · Enterprise IT · Product engineering",
+          "Scalable service boundaries and infrastructure choices aligned with product growth. This cloud-native approach helps Finnish and European product teams improve scalability, observability, deployment reliability and long-term software performance.",
+        audience: "SaaS providers · Enterprise IT · Product engineering · Finland · Europe",
       },
       {
         category: "Delivery Systems",
         description:
-          "Automated CI/CD pipelines that make releases faster, safer and repeatable.",
-        audience: "Engineering teams · DevOps · Platform teams",
+          "Automated CI/CD pipelines that make releases faster, safer and repeatable. This cloud-native approach helps Finnish and European product teams improve scalability, observability, deployment reliability and long-term software performance.",
+        audience: "Engineering teams · DevOps · Platform teams · Finland · Europe",
       },
       {
         category: "Observability",
         description:
-          "Unified health, performance and incident context for dependable operations.",
-        audience: "SRE teams · Technical leaders · Support operations",
+          "Unified health, performance and incident context for dependable operations. This cloud-native approach helps Finnish and European product teams improve scalability, observability, deployment reliability and long-term software performance.",
+        audience: "SRE teams · Technical leaders · Support operations · Finland · Europe",
       },
       {
         category: "Cloud Reliability",
         description:
-          "Recovery, scaling and security patterns designed for business-critical software.",
+          "Recovery, scaling and security patterns designed for business-critical software. This cloud-native approach helps Finnish and European product teams improve scalability, observability, deployment reliability and long-term software performance.",
         audience: "Scale-ups · Enterprise platforms · European SaaS",
       },
     ],
@@ -264,26 +264,26 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Mobile Strategy",
         description:
-          "Defining the smallest, strongest product experience around real user priorities.",
-        audience: "Startups · Product teams · Digital service providers",
+          "Defining the smallest, strongest product experience around real user priorities. The product is designed for companies in Finland and the Nordics that need high-quality iOS, Android and cross-platform mobile experiences connected to reliable backend services.",
+        audience: "Startups · Product teams · Digital service providers · Finland · Nordics",
       },
       {
         category: "Product UX",
         description:
-          "Clear navigation and interaction patterns optimized for everyday mobile contexts.",
-        audience: "Consumers · Field teams · Service customers",
+          "Clear navigation and interaction patterns optimized for everyday mobile contexts. The product is designed for companies in Finland and the Nordics that need high-quality iOS, Android and cross-platform mobile experiences connected to reliable backend services.",
+        audience: "Consumers · Field teams · Service customers · Finland · Nordics",
       },
       {
         category: "Cross-Platform Build",
         description:
-          "Reusable mobile architecture for reliable delivery across iOS and Android.",
-        audience: "Growing products · Multi-platform businesses",
+          "Reusable mobile architecture for reliable delivery across iOS and Android. The product is designed for companies in Finland and the Nordics that need high-quality iOS, Android and cross-platform mobile experiences connected to reliable backend services.",
+        audience: "Growing products · Multi-platform businesses · Finland · Nordics",
       },
       {
         category: "Mobile Growth",
         description:
-          "Analytics, release systems and product iteration designed for long-term adoption.",
-        audience: "FinTech · HealthTech · Retail · Travel",
+          "Analytics, release systems and product iteration designed for long-term adoption. The product is designed for companies in Finland and the Nordics that need high-quality iOS, Android and cross-platform mobile experiences connected to reliable backend services.",
+        audience: "FinTech · HealthTech · Retail · Travel · Finland · Nordics",
       },
     ],
     services: [
@@ -300,26 +300,26 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Demand Intelligence",
         description:
-          "Combining product, sales and behavioral signals to reveal changing demand patterns.",
-        audience: "Retail planners · Merchandising · E-commerce teams",
+          "Combining product, sales and behavioral signals to reveal changing demand patterns. The solution supports Finnish and European retail teams with commerce intelligence, customer-data integration, operational automation and scalable digital growth.",
+        audience: "Retail planners · Merchandising · E-commerce teams · Finland · European retail",
       },
       {
         category: "Commerce Automation",
         description:
-          "Rule-based and AI-assisted workflows for repetitive merchandising and operational tasks.",
-        audience: "Digital commerce · Operations · Category managers",
+          "Rule-based and AI-assisted workflows for repetitive merchandising and operational tasks. The solution supports Finnish and European retail teams with commerce intelligence, customer-data integration, operational automation and scalable digital growth.",
+        audience: "Digital commerce · Operations · Category managers · Finland · European retail",
       },
       {
         category: "Customer Insight",
         description:
-          "Actionable segmentation and journey insight focused on conversion and retention.",
-        audience: "Marketing · CRM · Customer experience",
+          "Actionable segmentation and journey insight focused on conversion and retention. The solution supports Finnish and European retail teams with commerce intelligence, customer-data integration, operational automation and scalable digital growth.",
+        audience: "Marketing · CRM · Customer experience · Finland · European retail",
       },
       {
         category: "Retail Operations",
         description:
-          "A shared decision layer for inventory, conversion and channel performance.",
-        audience: "Retailers · Marketplaces · Omnichannel brands",
+          "A shared decision layer for inventory, conversion and channel performance. The solution supports Finnish and European retail teams with commerce intelligence, customer-data integration, operational automation and scalable digital growth.",
+        audience: "Retailers · Marketplaces · Omnichannel brands · Finland · European retail",
       },
     ],
     services: [
@@ -336,25 +336,25 @@ const profiles: Record<string, CaseProfile> = {
       {
         category: "Transformation Strategy",
         description:
-          "Aligning business priorities, technology constraints and organizational change in one roadmap.",
-        audience: "Executive teams · Transformation offices · Enterprise IT",
+          "Aligning business priorities, technology constraints and organizational change in one roadmap. This model helps Finnish, Nordic and European organizations modernize legacy workflows, connect business systems and deliver measurable digital transformation without unnecessary disruption.",
+        audience: "Executive teams · Transformation offices · Enterprise IT · Finland · Nordics · Europe",
       },
       {
         category: "Service Modernization",
         description:
-          "Replacing fragmented processes with clear, connected digital service journeys.",
-        audience: "Operations · Employees · Customer service",
+          "Replacing fragmented processes with clear, connected digital service journeys. This model helps Finnish, Nordic and European organizations modernize legacy workflows, connect business systems and deliver measurable digital transformation without unnecessary disruption.",
+        audience: "Operations · Employees · Customer service · Finland · Nordics · Europe",
       },
       {
         category: "Platform Integration",
         description:
-          "Connecting new product layers with essential legacy systems and data sources.",
-        audience: "Architecture teams · Product groups · System owners",
+          "Connecting new product layers with essential legacy systems and data sources. This model helps Finnish, Nordic and European organizations modernize legacy workflows, connect business systems and deliver measurable digital transformation without unnecessary disruption.",
+        audience: "Architecture teams · Product groups · System owners · Finland · Nordics · Europe",
       },
       {
         category: "Adoption Systems",
         description:
-          "Interfaces, feedback and rollout patterns that help teams move confidently into new workflows.",
+          "Interfaces, feedback and rollout patterns that help teams move confidently into new workflows. This model helps Finnish, Nordic and European organizations modernize legacy workflows, connect business systems and deliver measurable digital transformation without unnecessary disruption.",
         audience: "Nordic enterprises · Public organizations · Multi-team companies",
       },
     ],

@@ -1725,3 +1725,39 @@
     margin-top: 30px !important;
   }
 }
+
+
+/* Longer SEO/GEO featured-work copy */
+.featuredTitleGroup {
+  height: clamp(180px, 17vw, 270px);
+}
+
+.featuredTitle p {
+  max-width: 760px;
+  font-size: clamp(14px, 1.15vw, 18px);
+  line-height: 1.48;
+}
+
+.featuredTitle span {
+  margin-top: 12px;
+  line-height: 1.35;
+}
+
+.workContent {
+  min-height: 610px;
+}
+
+@media (max-width: 800px) {
+  .featuredTitleGroup {
+    height: 250px;
+  }
+
+  .featuredTitle p {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .workContent {
+    min-height: 390px;
+  }
+}
