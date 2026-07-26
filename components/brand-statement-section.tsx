@@ -88,16 +88,14 @@ export function BrandStatementSection() {
         ease: "none",
       });
 
-      // Pin section on screen so user scrolls THROUGH letter-by-letter reveal
+      // Smooth letter-by-letter scroll reveal as user scrolls past section
       ScrollTrigger.create({
         trigger: section,
-        start: "top 10%",
-        end: "+=350",
-        pin: true,
-        scrub: 0.2,
+        start: "top 75%",
+        end: "bottom 25%",
+        scrub: 0.3,
         animation: revealTimeline,
-        anticipatePin: 1,
-        refreshPriority: 1,
+        invalidateOnRefresh: true,
       });
 
       gsap.fromTo(
@@ -109,9 +107,9 @@ export function BrandStatementSection() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 10%",
-            end: "top 10%+=300",
-            scrub: 0.2,
+            start: "top 60%",
+            end: "bottom 30%",
+            scrub: 0.3,
           },
         }
       );

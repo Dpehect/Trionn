@@ -230,20 +230,22 @@
 .brand-statement {
   position: relative;
   width: 100%;
+  margin-top: clamp(60px, 7vw, 120px);
   min-height: auto;
   color: #1d2330;
-  background: #eef4ff;
+  background: transparent;
 }
 .brand-statement__sticky {
   position: relative;
   width: 100%;
   min-height: auto;
-  padding: clamp(48px, 5vw, 72px) 4vw clamp(54px, 5vw, 80px);
+  padding: clamp(54px, 5.5vw, 84px) 4vw clamp(54px, 5.5vw, 84px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
+  border-radius: 24px;
   background:
     linear-gradient(135deg, #f7f8ff 0%, #edf4ff 34%, #f7efff 68%, #fff3ea 100%);
 }
@@ -306,27 +308,28 @@
 .brand-statement__eyebrow {
   position: relative;
   z-index: 30;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: rgba(29,35,48,.52);
-  font-size: 8px;
+  color: rgba(29,35,48,.56);
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
 }
 .brand-statement__inner {
   position: relative;
   z-index: 10;
-  margin: 16px 0;
+  margin: 12px 0 28px 0;
   will-change: transform;
 }
 .brand-statement__copy {
   margin: 0;
   max-width: 96vw;
-  font-size: clamp(30px, 4.05vw, 76px);
-  line-height: 1;
-  letter-spacing: -.05em;
+  font-size: clamp(26px, 3.5vw, 62px);
+  line-height: 1.18;
+  letter-spacing: -.035em;
   font-weight: 500;
   text-wrap: balance;
 }
@@ -348,7 +351,7 @@
 .brand-statement__signature {
   position: relative;
   z-index: 28;
-  margin-top: 28px;
+  margin-top: 24px;
   display: grid;
   gap: 5px;
   will-change: transform, opacity;
