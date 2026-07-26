@@ -1,0 +1,137 @@
+/*
+  Case carousel visibility fix.
+  This file is route-scoped through app/cases/[slug]/layout.tsx.
+  Existing component and CSS module files are not replaced.
+*/
+
+section[class*="arc-carousel-section_section"] {
+  min-height: 1320px !important;
+  padding-top: clamp(34px, 3vw, 52px) !important;
+  padding-bottom: clamp(38px, 3.5vw, 58px) !important;
+}
+
+div[class*="arc-carousel-section_header"] {
+  min-height: 178px !important;
+  padding-inline: clamp(18px, 2.2vw, 38px) !important;
+}
+
+div[class*="arc-carousel-section_viewport"] {
+  height: 1030px !important;
+  min-height: 1030px !important;
+  margin-top: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Keep the complete cards below the title instead of letting them overlap it. */
+div[class*="arc-carousel-section_ring"] {
+  bottom: calc(var(--arc-radius) * -1 + 690px) !important;
+}
+
+div[class*="arc-carousel-section_slot"] {
+  width: clamp(300px, 21vw, 410px) !important;
+}
+
+article[class*="arc-carousel-section_card"] {
+  transform-origin: center top !important;
+}
+
+a[class*="arc-carousel-section_cover"] {
+  height: 520px !important;
+  aspect-ratio: auto !important;
+}
+
+div[class*="arc-carousel-section_text"] {
+  min-height: 190px !important;
+  padding-top: 18px !important;
+}
+
+div[class*="arc-carousel-section_progress"] {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 1400px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 1210px !important;
+  }
+
+  div[class*="arc-carousel-section_header"] {
+    min-height: 162px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 925px !important;
+    min-height: 925px !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 610px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 480px !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 1110px !important;
+    padding-top: 30px !important;
+    padding-bottom: 42px !important;
+  }
+
+  div[class*="arc-carousel-section_header"] {
+    min-height: 150px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 845px !important;
+    min-height: 845px !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 540px) !important;
+  }
+
+  div[class*="arc-carousel-section_slot"] {
+    width: clamp(270px, 42vw, 350px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 450px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 1000px !important;
+    padding-top: 26px !important;
+    padding-bottom: 34px !important;
+  }
+
+  div[class*="arc-carousel-section_header"] {
+    min-height: 192px !important;
+    padding-inline: 16px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 735px !important;
+    min-height: 735px !important;
+    margin-top: 0 !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 445px) !important;
+  }
+
+  div[class*="arc-carousel-section_slot"] {
+    width: min(82vw, 340px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 420px !important;
+  }
+
+  div[class*="arc-carousel-section_text"] {
+    min-height: 170px !important;
+  }
+}
