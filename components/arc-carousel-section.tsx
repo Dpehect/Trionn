@@ -3,11 +3,24 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { caseStudies } from "@/data/cases";
 import styles from "./arc-carousel-section.module.css";
-import fix from "./arc-carousel-layout-fix.module.css";
 
 const CLONE_COUNT = 6;
 
-export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
+function shortestWrappedDistance(index: number, position: number, count: number) {
+  let distance = index - position;
+  const half = count / 2;
+
+  if (distance > half) distance -= count;
+  if (distance < -half) distance += count;
+
+  return distance;
+}
+
+export function ArcCarouselSection({
+  currentSlug,
+}: {
+  currentSlug: string;
+}) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef(0);
   const targetRef = useRef(0);
@@ -42,13 +55,15 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
     setActiveIndex(0);
 
     const animate = () => {
+      const position = positionRef.current;
+
       if (!isDraggingRef.current) {
         velocityRef.current *= 0.94;
         targetRef.current += velocityRef.current;
       }
 
-      positionRef.current +=
-        (targetRef.current - positionRef.current) * 0.115;
+      positionRef.current =
+        position + (targetRef.current - position) * 0.115;
 
       const count = relatedCases.length;
       const min = cloneCount;
@@ -63,11 +78,13 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
           targetRef.current -= count;
         }
 
-        const index =
+        const originalIndex =
           ((Math.round(positionRef.current) - cloneCount) % count + count) %
           count;
 
-        setActiveIndex((current) => (current === index ? current : index));
+        setActiveIndex((current) =>
+          current === originalIndex ? current : originalIndex,
+        );
       }
 
       viewportRef.current?.style.setProperty(
@@ -92,10 +109,12 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
     isDraggingRef.current = true;
     setDragging(true);
     velocityRef.current = 0;
+
     dragStartRef.current = {
       x: event.clientX,
       position: targetRef.current,
     };
+
     lastMoveRef.current = {
       x: event.clientX,
       time: performance.now(),
@@ -108,9 +127,13 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
 
     if (!isDraggingRef.current) return;
 
-    const viewportWidth = Math.max(viewportRef.current?.clientWidth ?? 1, 1);
+    const viewportWidth = Math.max(
+      viewportRef.current?.clientWidth ?? 1,
+      1,
+    );
     const pixelsPerCard = Math.max(150, viewportWidth * 0.13);
-    const delta = (event.clientX - dragStartRef.current.x) / pixelsPerCard;
+    const delta =
+      (event.clientX - dragStartRef.current.x) / pixelsPerCard;
 
     targetRef.current = dragStartRef.current.position - delta;
 
@@ -118,8 +141,13 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
     const dt = Math.max(now - lastMoveRef.current.time, 8);
     const dx = event.clientX - lastMoveRef.current.x;
 
-    velocityRef.current = (-dx / pixelsPerCard) * (16.67 / dt);
-    lastMoveRef.current = { x: event.clientX, time: now };
+    velocityRef.current =
+      (-dx / pixelsPerCard) * (16.67 / dt);
+
+    lastMoveRef.current = {
+      x: event.clientX,
+      time: now,
+    };
   };
 
   const finishDrag = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -135,46 +163,76 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "ArrowRight") targetRef.current += 1;
-    if (event.key === "ArrowLeft") targetRef.current -= 1;
-    if (event.key === "Home") targetRef.current = cloneCount;
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      velocityRef.current = 0;
+      targetRef.current += 1;
+    }
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      velocityRef.current = 0;
+      targetRef.current -= 1;
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      velocityRef.current = 0;
+      targetRef.current = cloneCount;
+    }
   };
 
   return (
-    <section
-      className={`${styles.section} ${fix.section}`}
-      aria-labelledby="arc-carousel-title"
-    >
-      <div className={`${styles.header} ${fix.header}`}>
+    <section className={styles.section} aria-labelledby="arc-carousel-title">
+      <div className={styles.header}>
         <div>
           <p className={styles.eyebrow}>Section 03 — Related work</p>
           <h2 id="arc-carousel-title" className={styles.title}>
             Explore other cases.
           </h2>
         </div>
+
+
       </div>
 
       <div
         ref={viewportRef}
-        className={`${styles.viewport} ${fix.viewport} ${
-          dragging ? styles.dragging : ""
-        }`}
+        className={`${styles.viewport} ${dragging ? styles.dragging : ""}`}
         role="region"
         aria-roledescription="carousel"
-        aria-label="Other SoftBridge Solutions case studies"
+        aria-label="Other SoftBridge Solutions case studies. Drag or use the arrow keys."
         tabIndex={0}
+        onPointerEnter={(event) => {
+          event.currentTarget.style.setProperty(
+            "--cursor-x",
+            `${event.clientX}px`,
+          );
+          event.currentTarget.style.setProperty(
+            "--cursor-y",
+            `${event.clientY}px`,
+          );
+        }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={finishDrag}
         onPointerCancel={finishDrag}
         onKeyDown={onKeyDown}
       >
-        <div className={`${styles.ring} ${fix.ring}`}>
+        <div className={styles.ring}>
           {renderedCases.map((study, index) => {
             const sourceIndex =
               ((index - cloneCount) % relatedCases.length +
                 relatedCases.length) %
               relatedCases.length;
+
+            const distance = shortestWrappedDistance(
+              index,
+              cloneCount + activeIndex,
+              renderedCases.length,
+            );
+
+            const isActive =
+              sourceIndex === activeIndex && Math.abs(distance) < 1.1;
 
             const isClone =
               index < cloneCount ||
@@ -182,10 +240,12 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
 
             return (
               <div
-                className={`${styles.slot} ${
-                  sourceIndex === activeIndex ? styles.active : ""
-                }`}
-                style={{ "--slot-index": index } as React.CSSProperties}
+                className={`${styles.slot} ${isActive ? styles.active : ""}`}
+                style={
+                  {
+                    "--slot-index": index,
+                  } as React.CSSProperties
+                }
                 key={`${study.slug}-${index}`}
                 aria-hidden={isClone}
               >
@@ -214,7 +274,10 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
                   <div className={styles.text}>
                     <h3>{study.title}</h3>
                     <p>{study.intro}</p>
-                    <a href={`/cases/${study.slug}`} tabIndex={isClone ? -1 : 0}>
+                    <a
+                      href={`/cases/${study.slug}`}
+                      tabIndex={isClone ? -1 : 0}
+                    >
                       View case
                     </a>
                   </div>
@@ -229,7 +292,7 @@ export function ArcCarouselSection({ currentSlug }: { currentSlug: string }) {
         </div>
       </div>
 
-      <div className={`${styles.progress} ${fix.progress}`} aria-hidden="true">
+      <div className={styles.progress} aria-hidden="true">
         <span
           style={{
             width: `${((activeIndex + 1) / relatedCases.length) * 100}%`,
