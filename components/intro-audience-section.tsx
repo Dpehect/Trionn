@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useMemo, useState } from "react";
 import styles from "./intro-audience-section.module.css";
 
 type AudienceKey =
@@ -51,117 +45,46 @@ const audiences: AudienceItem[] = [
     key: "engineers",
     label: "Engineers",
     copy:
-      'We are highly technical without losing the human perspective. We can move fluently across product thinking, frontend systems, cloud architecture, APIs, AI workflows and the details that make software reliable.',
+      'We are highly technical without losing the human perspective. We move fluently across product thinking, frontend systems, cloud architecture, APIs, AI workflows and the details that make software reliable.',
   },
 ];
 
-function Word({
-  value,
-  index,
-  activeIndex,
-  wordRef,
-}: {
-  value: string;
-  index: number;
-  activeIndex: number | null;
-  wordRef: (node: HTMLSpanElement | null) => void;
-}) {
-  const isActive = activeIndex === index;
-  const isMuted = activeIndex !== null && activeIndex !== index;
+function AnimatedWords({ copy }: { copy: string }) {
+  const words = useMemo(() => copy.trim().split(/\s+/), [copy]);
 
   return (
-    <span
-      ref={wordRef}
-      className={[
-        styles.word,
-        isActive ? styles.wordActive : "",
-        isMuted ? styles.wordMuted : "",
-      ].join(" ")}
-      style={{ "--word-index": index } as React.CSSProperties}
-    >
-      {value}
-    </span>
+    <>
+      {words.map((word, index) => (
+        <span
+          key={`${word}-${index}`}
+          className={styles.word}
+          style={{ "--word-index": index } as React.CSSProperties}
+        >
+          {word}
+        </span>
+      ))}
+    </>
   );
 }
 
 export function IntroAudienceSection() {
   const [activeKey, setActiveKey] = useState<AudienceKey>("anyone");
-  const [activeWord, setActiveWord] = useState<number | null>(null);
   const [pointerInside, setPointerInside] = useState(false);
   const [pointerDown, setPointerDown] = useState(false);
-
-  const textAreaRef = useRef<HTMLDivElement>(null);
-  const wordRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const pointerRef = useRef({ x: 0, y: 0 });
-  const frameRef = useRef<number | null>(null);
 
   const activeAudience =
     audiences.find((item) => item.key === activeKey) ?? audiences[0];
 
-  const words = useMemo(
-    () => activeAudience.copy.trim().split(/\s+/),
-    [activeAudience.copy],
-  );
-
-  useEffect(() => {
-    wordRefs.current = [];
-    setActiveWord(null);
-  }, [activeKey]);
-
-  const updateProximity = useCallback(() => {
-    const { x, y } = pointerRef.current;
-    let nearestIndex: number | null = null;
-    let nearestDistance = 118;
-
-    wordRefs.current.forEach((node, index) => {
-      if (!node) return;
-
-      const rect = node.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const distance = Math.hypot(centerX - x, centerY - y);
-
-      if (distance < nearestDistance) {
-        nearestDistance = distance;
-        nearestIndex = index;
-      }
-    });
-
-    setActiveWord(nearestIndex);
-    frameRef.current = null;
-  }, []);
-
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    pointerRef.current = { x: event.clientX, y: event.clientY };
+    const rect = event.currentTarget.getBoundingClientRect();
+    const localX = event.clientX - rect.left;
+    const localY = event.clientY - rect.top;
 
-    event.currentTarget.style.setProperty(
-      "--cursor-x",
-      `${event.clientX}px`,
-    );
-    event.currentTarget.style.setProperty(
-      "--cursor-y",
-      `${event.clientY}px`,
-    );
-
-    if (frameRef.current === null) {
-      frameRef.current = requestAnimationFrame(updateProximity);
-    }
+    event.currentTarget.style.setProperty("--spot-x", `${localX}px`);
+    event.currentTarget.style.setProperty("--spot-y", `${localY}px`);
+    event.currentTarget.style.setProperty("--cursor-x", `${event.clientX}px`);
+    event.currentTarget.style.setProperty("--cursor-y", `${event.clientY}px`);
   };
-
-  const onPointerLeave = () => {
-    setPointerInside(false);
-    setPointerDown(false);
-    setActiveWord(null);
-  };
-
-  useEffect(
-    () => () => {
-      if (frameRef.current !== null) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    },
-    [],
-  );
 
   return (
     <section id="about" className={styles.section}>
@@ -200,29 +123,29 @@ export function IntroAudienceSection() {
 
             <div
               key={activeKey}
-              ref={textAreaRef}
-              className={[
-                styles.textArea,
-                pointerInside ? styles.textAreaInteractive : "",
-              ].join(" ")}
+              className={styles.textStage}
               onPointerEnter={() => setPointerInside(true)}
               onPointerMove={onPointerMove}
-              onPointerLeave={onPointerLeave}
+              onPointerLeave={() => {
+                setPointerInside(false);
+                setPointerDown(false);
+              }}
               onPointerDown={() => setPointerDown(true)}
               onPointerUp={() => setPointerDown(false)}
             >
-              <p className={styles.copy}>
-                {words.map((word, index) => (
-                  <Word
-                    key={`${activeKey}-${index}-${word}`}
-                    value={word}
-                    index={index}
-                    activeIndex={activeWord}
-                    wordRef={(node) => {
-                      wordRefs.current[index] = node;
-                    }}
-                  />
-                ))}
+              <p className={`${styles.copy} ${styles.copyDim}`}>
+                <AnimatedWords copy={activeAudience.copy} />
+              </p>
+
+              <p
+                aria-hidden="true"
+                className={[
+                  styles.copy,
+                  styles.copyBright,
+                  pointerInside ? styles.copyBrightVisible : "",
+                ].join(" ")}
+              >
+                {activeAudience.copy}
               </p>
 
               <div
@@ -234,11 +157,7 @@ export function IntroAudienceSection() {
                 aria-hidden="true"
               >
                 <span className={styles.cursorDot} />
-                <svg
-                  className={styles.cursorHand}
-                  viewBox="0 0 28 28"
-                  fill="none"
-                >
+                <svg className={styles.cursorHand} viewBox="0 0 28 28" fill="none">
                   <path
                     d="M10.2 14.2V5.8a2 2 0 1 1 4 0v5.1-2.5a2 2 0 1 1 4 0v3.4-1.8a2 2 0 1 1 4 0v6.2c0 5.2-3.2 8-8.1 8h-1.5c-3 0-4.5-1.1-6-3.4l-2.3-3.5a2.2 2.2 0 0 1 3.5-2.7l2.4 2.1"
                     stroke="currentColor"
