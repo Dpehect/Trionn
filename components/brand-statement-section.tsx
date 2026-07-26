@@ -92,9 +92,9 @@ export function BrandStatementSection() {
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=1800",
+        end: "+=1000",
         pin: true,
-        scrub: 0.4,
+        scrub: 0.3,
         animation: revealTimeline,
         anticipatePin: 1,
         refreshPriority: 1,

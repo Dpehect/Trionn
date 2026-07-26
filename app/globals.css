@@ -487,18 +487,19 @@
 /* Section 04 — self-running SEO/GEO capability marquee */
 .capability-section {
   position: relative;
-  min-height: 100svh;
+  min-height: auto;
   color: #20283a;
   background: #eef4ff;
   overflow: hidden;
 }
 .capability-section__sticky {
   position: relative;
-  min-height: 100svh;
+  min-height: auto;
+  padding: clamp(32px, 3.5vw, 54px) 0 clamp(32px, 3.5vw, 54px);
   overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 40px);
   isolation: isolate;
   background:
     linear-gradient(135deg, #f7f8ff 0%, #edf6ff 34%, #f5efff 67%, #fff4e9 100%);
