@@ -43,19 +43,25 @@
 }
 
 
-/* LOWER CARDS WITHOUT INCREASING SECTION HEIGHT */
+/* TITLE / CARD OVERLAP FINAL FIX */
+.header,
+.title {
+  position: relative;
+  z-index: 50 !important;
+}
+
 .ring {
-  bottom: calc(var(--arc-radius) * -1 + 346px) !important;
+  bottom: calc(var(--arc-radius) * -1 + 225px) !important;
 }
 
 @media (max-width: 1400px) {
-  .ring { bottom: calc(var(--arc-radius) * -1 + 322px) !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 218px) !important; }
 }
 
 @media (max-width: 1050px) {
-  .ring { bottom: calc(var(--arc-radius) * -1 + 298px) !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 205px) !important; }
 }
 
 @media (max-width: 700px) {
-  .ring { bottom: calc(var(--arc-radius) * -1 + 262px) !important; }
+  .ring { bottom: calc(var(--arc-radius) * -1 + 192px) !important; }
 }
