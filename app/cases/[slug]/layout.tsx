@@ -5,5 +5,5 @@ export default function CaseStudyLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return <>{children}</>;
 }
