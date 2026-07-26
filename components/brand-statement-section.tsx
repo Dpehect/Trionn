@@ -8,142 +8,124 @@ import styles from "./brand-statement-section.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+type Tone = "violet" | "pink" | "blue" | "orange" | "green";
+
 type Segment = {
   text: string;
-  tone?: "violet" | "pink" | "blue" | "orange" | "green";
+  tone?: Tone;
 };
 
 const segments: Segment[] = [
   { text: "SoftBridge Solutions", tone: "violet" },
-  {
-    text:
-      " helps companies transform ambitious ideas into modern digital products. From custom software and ",
-  },
-  { text: "AI-powered", tone: "pink" },
-  {
-    text:
-      " automation to enterprise platforms and intuitive user experiences, we build technology designed to scale across ",
-  },
-  { text: "Europe.", tone: "blue" },
-  { text: " Our " },
-  { text: "Finland office", tone: "orange" },
-  {
-    text:
-      " strengthens collaboration with Nordic partners while our ",
-  },
-  { text: "global engineering", tone: "green" },
-  {
-    text:
-      " team delivers reliable, high-quality software for startups, SMEs and enterprise organizations.",
-  },
+  { text: " turns ambitious ideas into " },
+  { text: "intelligent digital products.", tone: "pink" },
+  { text: " We combine strategy, design and engineering to build " },
+  { text: "AI systems,", tone: "blue" },
+  { text: " scalable software and seamless experiences for companies across " },
+  { text: "Finland,", tone: "orange" },
+  { text: " the Nordics and Europe. Every product is shaped for clarity, performance and " },
+  { text: "long-term growth.", tone: "green" },
 ];
 
-const toneColors = {
-  violet: "#7356e8",
-  pink: "#e44c9f",
-  blue: "#3769d9",
-  orange: "#e06f2f",
-  green: "#2c9e74",
-} as const;
+const toneMap: Record<Tone, string> = {
+  violet: "#7257ff",
+  pink: "#e84aa5",
+  blue: "#2f6fe4",
+  orange: "#ed7436",
+  green: "#1f9c72",
+};
 
-type Character = {
-  char: string;
-  color: string;
+type Letter = {
+  value: string;
+  finalColor: string;
   key: string;
 };
 
 export function BrandStatementSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLParagraphElement>(null);
-  const signatureRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
-  const characters = useMemo<Character[]>(() => {
-    const output: Character[] = [];
+  const letters = useMemo<Letter[]>(() => {
+    const result: Letter[] = [];
 
     segments.forEach((segment, segmentIndex) => {
-      const color = segment.tone
-        ? toneColors[segment.tone]
-        : "#1d2330";
+      const finalColor = segment.tone ? toneMap[segment.tone] : "#14202b";
 
-      Array.from(segment.text).forEach((char, charIndex) => {
-        output.push({
-          char,
-          color,
-          key: `${segmentIndex}-${charIndex}`,
+      Array.from(segment.text).forEach((value, letterIndex) => {
+        result.push({
+          value,
+          finalColor,
+          key: `${segmentIndex}-${letterIndex}`,
         });
       });
     });
 
-    return output;
+    return result;
   }, []);
 
-  const scrollDistance = Math.round(
-    Math.max(1750, Math.min(2450, characters.length * 5.4)),
-  );
+  const scrollRunway = Math.max(1800, Math.min(2700, letters.length * 5.2));
 
   useGSAP(
     () => {
       const section = sectionRef.current;
       const copy = copyRef.current;
-      const signature = signatureRef.current;
+      const footer = footerRef.current;
 
-      if (!section || !copy || !signature) return;
+      if (!section || !copy || !footer) return;
 
-      const chars = gsap.utils.toArray<HTMLElement>(
-        "[data-brand-char]",
+      const characters = gsap.utils.toArray<HTMLElement>(
+        "[data-section-three-letter]",
         copy,
       );
 
-      gsap.set(chars, {
-        opacity: 0.14,
-        y: 9,
-        color: "rgba(29, 35, 48, 0.18)",
+      gsap.set(characters, {
+        opacity: 0.12,
+        y: 12,
+        color: "rgba(20, 32, 43, 0.14)",
       });
 
-      gsap.set(signature, {
+      gsap.set(footer, {
         opacity: 0,
-        y: 12,
+        y: 14,
       });
 
       const timeline = gsap.timeline({
-        defaults: {
-          ease: "none",
-        },
+        defaults: { ease: "none" },
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.15,
+          scrub: 1.1,
           invalidateOnRefresh: true,
-          fastScrollEnd: false,
         },
       });
 
       timeline
         .to(
-          chars,
+          characters,
           {
             opacity: 1,
             y: 0,
             color: (_index, element) =>
-              element.getAttribute("data-final-color") ?? "#1d2330",
+              element.dataset.finalColor ?? "#14202b",
             duration: 0.96,
             stagger: {
-              amount: 0.94,
+              amount: 0.95,
               from: "start",
             },
           },
           0,
         )
         .to(
-          signature,
+          footer,
           {
             opacity: 1,
             y: 0,
-            duration: 0.06,
+            duration: 0.05,
             ease: "power2.out",
           },
-          0.94,
+          0.95,
         );
 
       ScrollTrigger.refresh();
@@ -160,51 +142,46 @@ export function BrandStatementSection() {
     <section
       ref={sectionRef}
       className={styles.section}
-      style={{
-        minHeight: `calc(550px + ${scrollDistance}px)`,
-      }}
-      aria-label="About SoftBridge Solutions Finland office"
+      style={{ minHeight: `calc(100svh + ${scrollRunway}px)` }}
+      aria-label="SoftBridge Solutions company statement"
     >
       <div className={styles.sticky}>
-        <div className={`${styles.aurora} ${styles.auroraOne}`} aria-hidden="true" />
-        <div className={`${styles.aurora} ${styles.auroraTwo}`} aria-hidden="true" />
-        <div className={`${styles.aurora} ${styles.auroraThree}`} aria-hidden="true" />
-        <div className={styles.noise} aria-hidden="true" />
+        <div className={styles.glowOne} aria-hidden="true" />
+        <div className={styles.glowTwo} aria-hidden="true" />
+        <div className={styles.glowThree} aria-hidden="true" />
+        <div className={styles.grid} aria-hidden="true" />
 
-        <div className={styles.eyebrow}>
+        <header className={styles.header}>
           <span>03 / SOFTBRIDGE SOLUTIONS</span>
-          <span>Finland Office / Serving Europe</span>
-        </div>
+          <span>FINLAND · NORDICS · EUROPE</span>
+        </header>
 
-        <div className={styles.inner}>
+        <div className={styles.content}>
           <p
             ref={copyRef}
             className={styles.copy}
             aria-label={segments.map((segment) => segment.text).join("")}
           >
-            {characters.map((item) => (
+            {letters.map((letter) => (
               <span
-                key={item.key}
-                data-brand-char
-                data-final-color={item.color}
-                className={item.char === " " ? styles.space : styles.character}
+                key={letter.key}
+                data-section-three-letter
+                data-final-color={letter.finalColor}
+                className={
+                  letter.value === " " ? styles.space : styles.letter
+                }
                 aria-hidden="true"
               >
-                {item.char === " " ? "\u00A0" : item.char}
+                {letter.value === " " ? "\u00A0" : letter.value}
               </span>
             ))}
           </p>
         </div>
 
-        <div ref={signatureRef} className={styles.signature}>
-          <span>FINLAND OFFICE</span>
+        <footer ref={footerRef} className={styles.footer}>
+          <span>AI · SOFTWARE · CLOUD · DIGITAL PRODUCTS</span>
           <strong>SOFTBRIDGE SOLUTIONS</strong>
-        </div>
-
-        <div className={styles.index} aria-hidden="true">
-          <span>EUROPEAN SOFTWARE PARTNER</span>
-          <span>AI · CLOUD · WEB · MOBILE</span>
-        </div>
+        </footer>
       </div>
     </section>
   );
