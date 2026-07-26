@@ -1691,7 +1691,7 @@
 
 
 
-/* SoftBridge Titanium canonical viewport */
+/* SoftBridge canonical viewport */
 html,
 body {
   margin: 0;
@@ -1699,28 +1699,9 @@ body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  background: #71848e;
+  background: #f7f8f8;
 }
 
 body {
   max-width: none;
-}
-
-html,
-body {
-  background: #F9F6F1 !important;
-}
-
-
-/* Deep Petrol page fallback */
-html,
-body {
-  background: #0F3D3E !important;
-}
-
-
-/* Unified case-page fallback background */
-html,
-body {
-  background: #164C4D !important;
 }
