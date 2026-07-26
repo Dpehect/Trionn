@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMemo, useRef } from "react";
+import homeStyles from "./brand-statement-home.module.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -120,22 +121,22 @@ export function BrandStatementSection() {
   return (
     <section
       ref={root}
-      className="brand-statement brand-statement--colorful"
+      className={`brand-statement brand-statement--colorful ${homeStyles.section}`}
       aria-label="About SoftBridge Solutions Finland office"
     >
-      <div className="brand-statement__sticky">
+      <div className={`brand-statement__sticky ${homeStyles.sticky}`}>
         <div className="brand-aurora brand-aurora--one" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--two" aria-hidden="true" />
         <div className="brand-aurora brand-aurora--three" aria-hidden="true" />
         <div className="brand-statement__noise" aria-hidden="true" />
 
-        <div className="brand-statement__eyebrow">
+        <div className={`brand-statement__eyebrow ${homeStyles.eyebrow}`}>
           <span>03 / SOFTBRIDGE SOLUTIONS</span>
           <span>Finland Office / Serving Europe</span>
         </div>
 
-        <div className="brand-statement__inner">
-          <p className="brand-statement__copy" aria-label={segments.map((item) => item.text).join("")}>
+        <div className={`brand-statement__inner ${homeStyles.inner}`}>
+          <p className={`brand-statement__copy ${homeStyles.copy}`} aria-label={segments.map((item) => item.text).join("")}>
             {characters.map((item, index) => (
               <span
                 className={`brand-char ${item.className} ${item.isSpace ? "brand-space" : ""}`}
@@ -148,12 +149,12 @@ export function BrandStatementSection() {
           </p>
         </div>
 
-        <div className="brand-statement__signature" aria-hidden="true">
+        <div className={`brand-statement__signature ${homeStyles.signature}`} aria-hidden="true">
           <span>FINLAND OFFICE</span>
           <strong>SOFTBRIDGE SOLUTIONS</strong>
         </div>
 
-        <div className="brand-statement__index" aria-hidden="true">
+        <div className={`brand-statement__index ${homeStyles.index}`} aria-hidden="true">
           <span>EUROPEAN SOFTWARE PARTNER</span>
           <span>AI • CLOUD • WEB • MOBILE</span>
         </div>
