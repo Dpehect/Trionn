@@ -103,10 +103,7 @@ export function CapabilityMarqueeSection() {
 
       gsap.fromTo(
         ".capability-row",
-        {
-          opacity: 0,
-          y: 28,
-        },
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
@@ -128,25 +125,21 @@ export function CapabilityMarqueeSection() {
         if (!track) return;
 
         const direction = index % 2 === 0 ? -1 : 1;
-        const travel = Math.max(220, track.scrollWidth * 0.12);
+        const distance = Math.max(track.scrollWidth / 2, 600);
 
-        gsap.fromTo(
+        const tween = gsap.fromTo(
           track,
+          { x: direction === -1 ? 0 : -distance },
           {
-            x: direction === -1 ? 0 : -travel,
-          },
-          {
-            x: direction === -1 ? -travel : 0,
+            x: direction === -1 ? -distance : 0,
+            duration: 24 + index * 4,
             ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-              invalidateOnRefresh: true,
-            },
+            repeat: -1,
           },
         );
+
+        row.addEventListener("mouseenter", () => tween.timeScale(0.35));
+        row.addEventListener("mouseleave", () => tween.timeScale(1));
       });
 
       gsap.to(".capability-aurora--one", {

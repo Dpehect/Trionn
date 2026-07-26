@@ -1,0 +1,77 @@
+
+/* Capability marquee final overrides */
+.capability-section {
+  min-height: 132svh !important;
+}
+
+.capability-section__sticky {
+  padding-top: clamp(40px, 4.5vw, 68px) !important;
+  padding-bottom: clamp(24px, 2.8vw, 40px) !important;
+}
+
+.capability-section__header {
+  margin-bottom: clamp(22px, 3vh, 36px) !important;
+}
+
+.capability-section__rows {
+  gap: clamp(10px, 1.35vh, 16px) !important;
+}
+
+.capability-row {
+  overflow: hidden !important;
+  padding-block: 2px !important;
+}
+
+.capability-row__track {
+  display: flex !important;
+  width: max-content !important;
+  gap: clamp(10px, 0.9vw, 14px) !important;
+  transform: none !important;
+  will-change: transform !important;
+}
+
+.capability-row--one .capability-row__track,
+.capability-row--two .capability-row__track,
+.capability-row--three .capability-row__track {
+  transform: none !important;
+}
+
+.capability-pill {
+  min-width: clamp(210px, 22vw, 360px) !important;
+  min-height: clamp(70px, 6.8vw, 92px) !important;
+  padding: 14px 22px !important;
+  font-size: clamp(15px, 1.12vw, 20px) !important;
+  line-height: 1.08 !important;
+  white-space: nowrap !important;
+  border-radius: 999px !important;
+}
+
+.capability-section__footer {
+  margin-top: clamp(20px, 2.7vh, 34px) !important;
+}
+
+@media (max-width: 900px) {
+  .capability-section {
+    min-height: auto !important;
+  }
+
+  .capability-pill {
+    min-width: clamp(190px, 50vw, 300px) !important;
+    min-height: 68px !important;
+    padding: 13px 18px !important;
+    font-size: clamp(14px, 3.4vw, 18px) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .capability-section__rows {
+    gap: 10px !important;
+  }
+
+  .capability-pill {
+    min-width: 200px !important;
+    min-height: 62px !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+  }
+}
