@@ -1,54 +1,164 @@
-section[class*="arc-carousel-section_section"]{
-  min-height:1320px!important;
-  padding-top:38px!important;
-  padding-bottom:48px!important;
-}
-div[class*="arc-carousel-section_header"]{
-  min-height:180px!important;
-}
-div[class*="arc-carousel-section_viewport"]{
-  height:1030px!important;
-  min-height:1030px!important;
-  margin-top:0!important;
-  overflow:hidden!important;
-}
-div[class*="arc-carousel-section_ring"]{
-  bottom:calc(var(--arc-radius) * -1 + 690px)!important;
-}
-div[class*="arc-carousel-section_slot"]{
-  width:clamp(300px,21vw,410px)!important;
-}
-a[class*="arc-carousel-section_cover"]{
-  height:520px!important;
-  aspect-ratio:auto!important;
-}
-div[class*="arc-carousel-section_text"]{
-  min-height:190px!important;
-}
-div[class*="arc-carousel-section_progress"]{
-  margin-top:0!important;
+/*
+  Final carousel repair:
+  - media cards sit fully below the title
+  - card images remain visible
+  - text stays inside the section
+  - previous route-level overrides are neutralized
+*/
+
+section[class*="arc-carousel-section_section"] {
+  min-height: 1180px !important;
+  padding: 42px 0 48px !important;
+  overflow: hidden !important;
 }
 
-@media(max-width:1400px){
-  section[class*="arc-carousel-section_section"]{min-height:1210px!important;}
-  div[class*="arc-carousel-section_viewport"]{height:925px!important;min-height:925px!important;}
-  div[class*="arc-carousel-section_ring"]{bottom:calc(var(--arc-radius) * -1 + 610px)!important;}
-  a[class*="arc-carousel-section_cover"]{height:480px!important;}
+div[class*="arc-carousel-section_header"] {
+  min-height: 170px !important;
+  position: relative !important;
+  z-index: 20 !important;
 }
 
-@media(max-width:1050px){
-  section[class*="arc-carousel-section_section"]{min-height:1110px!important;}
-  div[class*="arc-carousel-section_viewport"]{height:845px!important;min-height:845px!important;}
-  div[class*="arc-carousel-section_ring"]{bottom:calc(var(--arc-radius) * -1 + 540px)!important;}
-  div[class*="arc-carousel-section_slot"]{width:clamp(270px,42vw,350px)!important;}
-  a[class*="arc-carousel-section_cover"]{height:450px!important;}
+div[class*="arc-carousel-section_viewport"] {
+  height: 900px !important;
+  min-height: 900px !important;
+  margin-top: 8px !important;
+  overflow: hidden !important;
 }
 
-@media(max-width:700px){
-  section[class*="arc-carousel-section_section"]{min-height:1000px!important;}
-  div[class*="arc-carousel-section_header"]{min-height:192px!important;}
-  div[class*="arc-carousel-section_viewport"]{height:735px!important;min-height:735px!important;}
-  div[class*="arc-carousel-section_ring"]{bottom:calc(var(--arc-radius) * -1 + 445px)!important;}
-  div[class*="arc-carousel-section_slot"]{width:min(82vw,340px)!important;}
-  a[class*="arc-carousel-section_cover"]{height:420px!important;}
+/*
+  The previous 690px ring offset lifted the media above the viewport.
+  A smaller offset lowers the complete cards beneath the heading.
+*/
+div[class*="arc-carousel-section_ring"] {
+  bottom: calc(var(--arc-radius) * -1 + 455px) !important;
+}
+
+div[class*="arc-carousel-section_slot"] {
+  width: clamp(290px, 20vw, 390px) !important;
+}
+
+article[class*="arc-carousel-section_card"] {
+  opacity: .88 !important;
+  transform-origin: center top !important;
+}
+
+div[class*="arc-carousel-section_coverWrap"] {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+a[class*="arc-carousel-section_cover"] {
+  display: block !important;
+  width: 100% !important;
+  height: 500px !important;
+  min-height: 500px !important;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+a[class*="arc-carousel-section_cover"] img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+div[class*="arc-carousel-section_text"] {
+  min-height: 170px !important;
+  padding-top: 16px !important;
+}
+
+div[class*="arc-carousel-section_progress"] {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 1400px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 1090px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 820px !important;
+    min-height: 820px !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 405px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 455px !important;
+    min-height: 455px !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 1010px !important;
+    padding-top: 34px !important;
+  }
+
+  div[class*="arc-carousel-section_header"] {
+    min-height: 154px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 760px !important;
+    min-height: 760px !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 365px) !important;
+  }
+
+  div[class*="arc-carousel-section_slot"] {
+    width: clamp(260px, 42vw, 340px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 425px !important;
+    min-height: 425px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  section[class*="arc-carousel-section_section"] {
+    min-height: 930px !important;
+    padding: 28px 0 34px !important;
+  }
+
+  div[class*="arc-carousel-section_header"] {
+    min-height: 190px !important;
+    padding-inline: 16px !important;
+  }
+
+  div[class*="arc-carousel-section_viewport"] {
+    height: 675px !important;
+    min-height: 675px !important;
+    margin-top: 0 !important;
+  }
+
+  div[class*="arc-carousel-section_ring"] {
+    bottom: calc(var(--arc-radius) * -1 + 320px) !important;
+  }
+
+  div[class*="arc-carousel-section_slot"] {
+    width: min(82vw, 330px) !important;
+  }
+
+  a[class*="arc-carousel-section_cover"] {
+    height: 390px !important;
+    min-height: 390px !important;
+  }
+
+  div[class*="arc-carousel-section_text"] {
+    min-height: 158px !important;
+  }
 }
