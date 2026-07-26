@@ -121,6 +121,34 @@ export function CapabilityMarqueeSection() {
         },
       );
 
+      const rows = gsap.utils.toArray<HTMLElement>(".capability-row");
+
+      rows.forEach((row, index) => {
+        const track = row.querySelector<HTMLElement>(".capability-row__track");
+        if (!track) return;
+
+        const direction = index % 2 === 0 ? -1 : 1;
+        const travel = Math.max(220, track.scrollWidth * 0.12);
+
+        gsap.fromTo(
+          track,
+          {
+            x: direction === -1 ? 0 : -travel,
+          },
+          {
+            x: direction === -1 ? -travel : 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      });
+
       gsap.to(".capability-aurora--one", {
         xPercent: 8,
         yPercent: -6,
