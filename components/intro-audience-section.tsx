@@ -70,8 +70,7 @@ function AnimatedWords({ copy }: { copy: string }) {
 export function IntroAudienceSection() {
   const [activeKey, setActiveKey] = useState<AudienceKey>("anyone");
   const [pointerInside, setPointerInside] = useState(false);
-  const [pointerDown, setPointerDown] = useState(false);
-
+  
   const activeAudience =
     audiences.find((item) => item.key === activeKey) ?? audiences[0];
 
@@ -128,10 +127,10 @@ export function IntroAudienceSection() {
               onPointerMove={onPointerMove}
               onPointerLeave={() => {
                 setPointerInside(false);
-                setPointerDown(false);
+                
               }}
-              onPointerDown={() => setPointerDown(true)}
-              onPointerUp={() => setPointerDown(false)}
+              
+              
             >
               <p className={`${styles.copy} ${styles.copyDim}`}>
                 <AnimatedWords copy={activeAudience.copy} />

@@ -192,49 +192,15 @@
 
 .copyBrightVisible { opacity: 1; }
 
-.customCursor {
-  position: fixed;
-  z-index: 100;
-  left: var(--cursor-x);
-  top: var(--cursor-y);
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate3d(-50%,-50%,0) scale(.72);
-  transition: opacity .14s ease, transform .18s cubic-bezier(.16,1,.3,1);
-}
 
-.customCursorVisible {
-  opacity: 1;
-  transform: translate3d(-50%,-50%,0) scale(1);
-}
 
-.customCursorDown {
-  transform: translate3d(-50%,-50%,0) scale(.84);
-}
 
-.cursorDot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 0 18px rgba(255,255,255,.72);
-}
 
-.cursorHand {
-  position: absolute;
-  width: 31px;
-  height: 31px;
-  left: 31px;
-  top: 29px;
-  color: rgba(255,255,255,.92);
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,.45));
-}
+
+
+
+
+
 
 .cardFooter {
   position: relative;
@@ -277,15 +243,10 @@
   .copy { font-size: clamp(29px,8.7vw,42px); line-height: 1.22; }
   .fold { width: 62px; height: 62px; }
   .cardFooter span:last-child { display: none; }
-  .customCursor { display: none; }
-  .textStage { cursor: auto; }
-}
+  
 
 @media (hover:none) {
-  .customCursor { display: none; }
-  .textStage { cursor: auto; }
-  .copyBright { opacity: 0 !important; }
-}
+  
 
 @media (prefers-reduced-motion: reduce) {
   .textStage, .word { animation: none; opacity: 1; transform: none; }
