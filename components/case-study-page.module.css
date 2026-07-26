@@ -1847,3 +1847,249 @@
     padding-top: 18px !important;
   }
 }
+
+
+/* Professional SEO / UX section redesign */
+.seoSection {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(96px, 10vw, 168px) 0;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(240,100,47,.08), transparent 30%),
+    radial-gradient(circle at 94% 84%, rgba(72,120,255,.07), transparent 34%),
+    #101722;
+  color: #F3F4F6;
+}
+
+.seoSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.seoContainer {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 0 4vw;
+}
+
+.seoIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, .72fr);
+  gap: clamp(48px, 7vw, 118px);
+  align-items: end;
+  padding-bottom: clamp(52px, 6vw, 88px);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.seoKicker {
+  margin: 0 0 18px;
+  color: #F0642F;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.seoHeading {
+  max-width: 920px;
+  margin: 0;
+  color: #F7F8FA;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 98px);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+.seoLead {
+  max-width: 620px;
+  margin: 0;
+  color: #B8C1CC;
+  font-size: clamp(17px, 1.3vw, 22px);
+  line-height: 1.56;
+}
+
+.seoValueGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(46px, 6vw, 86px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(255,255,255,.09);
+}
+
+.seoValueCard {
+  min-height: 320px;
+  padding: clamp(28px, 3vw, 48px);
+  background: rgba(17,24,39,.92);
+}
+
+.seoValueCard span {
+  display: block;
+  margin-bottom: 28px;
+  color: #F0642F;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.seoValueCard h3 {
+  max-width: 360px;
+  margin: 0;
+  color: #F3F4F6;
+  font-size: clamp(24px, 2.1vw, 36px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.seoValueCard p {
+  max-width: 440px;
+  margin: 24px 0 0;
+  color: #AAB4C0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.seoFaqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  margin-top: clamp(70px, 8vw, 118px);
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+
+.seoFaqItem {
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+.seoFaqItem summary {
+  position: relative;
+  padding: 28px 42px 28px 0;
+  color: #EEF1F5;
+  font-size: clamp(18px, 1.35vw, 23px);
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+}
+
+.seoFaqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.seoFaqItem summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 25px;
+  color: #F0642F;
+  font-size: 26px;
+  font-weight: 300;
+  transition: transform .28s ease;
+}
+
+.seoFaqItem[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.seoFaqItem p {
+  max-width: 620px;
+  margin: -4px 0 28px;
+  color: #AAB4C0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.seoProofRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: clamp(44px, 6vw, 80px);
+}
+
+.seoProofRow span {
+  padding: 11px 16px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 999px;
+  color: #D5DCE4;
+  background: rgba(255,255,255,.035);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+/* Remove amateur labels while preserving layout and animation targets */
+.featuredLabel,
+.clientLabel {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .seoIntro,
+  .seoValueGrid,
+  .seoFaqGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .seoIntro {
+    align-items: start;
+  }
+
+  .seoValueGrid {
+    gap: 1px;
+  }
+
+  .seoValueCard {
+    min-height: auto;
+  }
+
+  .seoFaqGrid {
+    gap: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .seoSection {
+    padding: 76px 0;
+  }
+
+  .seoContainer {
+    padding-inline: 18px;
+  }
+
+  .seoHeading {
+    font-size: clamp(40px, 12vw, 58px);
+  }
+
+  .seoLead {
+    font-size: 16px;
+  }
+
+  .seoValueCard {
+    padding: 26px 22px;
+  }
+
+  .seoFaqItem summary {
+    font-size: 18px;
+  }
+
+  .seoProofRow span {
+    width: 100%;
+    text-align: center;
+  }
+}

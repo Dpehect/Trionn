@@ -508,7 +508,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 
             <div className={styles.workGrid}>
               <div className={styles.workContent}>
-                <div className={styles.featuredLabel}>Featured work</div>
+                
 
                 <div className={styles.featuredTitleGroup}>
                   {featuredItems.map((item) => (
@@ -527,7 +527,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
                         <img src={item.logo} alt="SoftBridge Solutions" />
                       </div>
                       <div className={styles.clientText}>
-                        <div className={styles.clientLabel}>Client</div>
+                        
                         <div className={styles.clientName}>{item.client}</div>
                       </div>
                     </div>
@@ -605,17 +605,57 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       {seo ? (
         <section className={styles.seoSection} aria-labelledby="case-seo-heading">
           <div className={styles.seoContainer}>
-            <p className={styles.seoEyebrow}>{seo.serviceName}</p>
-            <h2 id="case-seo-heading" className={styles.seoHeading}>
-              {seo.geoSummary}
-            </h2>
+            <div className={styles.seoIntro}>
+              <div>
+                <p className={styles.seoKicker}>{seo.serviceName}</p>
+                <h2 id="case-seo-heading" className={styles.seoHeading}>
+                  Built for measurable business impact across Finland, the Nordics and Europe
+                </h2>
+              </div>
+              <p className={styles.seoLead}>{seo.geoSummary}</p>
+            </div>
+
+            <div className={styles.seoValueGrid}>
+              <article className={styles.seoValueCard}>
+                <span>Business clarity</span>
+                <h3>Clear scope, priorities and decision-ready delivery</h3>
+                <p>
+                  Product strategy, UX and engineering decisions are aligned with operational
+                  goals, user needs and long-term maintainability.
+                </p>
+              </article>
+              <article className={styles.seoValueCard}>
+                <span>Technical resilience</span>
+                <h3>Reliable architecture for real production environments</h3>
+                <p>
+                  Secure integrations, scalable cloud foundations and observable systems reduce
+                  operational risk as the platform grows.
+                </p>
+              </article>
+              <article className={styles.seoValueCard}>
+                <span>Regional delivery</span>
+                <h3>Finland-focused collaboration with European reach</h3>
+                <p>
+                  Delivery is shaped for Finnish, Nordic and European organizations that need
+                  dependable software, AI automation and digital product engineering.
+                </p>
+              </article>
+            </div>
+
             <div className={styles.seoFaqGrid}>
               {seo.faqs.map((faq) => (
-                <article className={styles.seoFaqItem} key={faq.question}>
-                  <h3>{faq.question}</h3>
+                <details className={styles.seoFaqItem} key={faq.question}>
+                  <summary>{faq.question}</summary>
                   <p>{faq.answer}</p>
-                </article>
+                </details>
               ))}
+            </div>
+
+            <div className={styles.seoProofRow} aria-label="Delivery principles">
+              <span>Accessible UX</span>
+              <span>GDPR-aware engineering</span>
+              <span>Scalable architecture</span>
+              <span>Finland · Nordics · Europe</span>
             </div>
           </div>
         </section>
